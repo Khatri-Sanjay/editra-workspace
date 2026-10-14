@@ -1,0 +1,862 @@
+:host {
+	--editra-surface: #fff;
+	--editra-text: #182338;
+	--editra-border: #b8c2d0;
+	--editra-active: #dce9ff;
+	--editra-focus: #1763d1;
+	--editra-error: #b42318;
+	--editra-toolbar: #f7f9fc;
+	--editra-hover: #e9edf3;
+	display: block;
+	position: relative;
+	color: var(--editra-text);
+	background: var(--editra-surface);
+	border: 1px solid var(--editra-border);
+	border-radius: 8px;
+	font:
+		16px/1.5 system-ui,
+		sans-serif;
+}
+[hidden] {
+	display: none !important;
+}
+:host(.editra-dark) {
+	--editra-surface: #182338;
+	--editra-text: #f1f5fb;
+	--editra-border: #6b7a90;
+	--editra-active: #31517e;
+	--editra-focus: #93baff;
+	--editra-error: #ffb4ab;
+	--editra-toolbar: #202e45;
+	--editra-hover: #2a3b56;
+}
+@media (prefers-color-scheme: dark) {
+	:host(.editra-auto) {
+		--editra-surface: #182338;
+		--editra-text: #f1f5fb;
+		--editra-border: #6b7a90;
+		--editra-active: #31517e;
+		--editra-focus: #93baff;
+		--editra-error: #ffb4ab;
+		--editra-toolbar: #202e45;
+		--editra-hover: #2a3b56;
+	}
+}
+:host(.editra-fullscreen) {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	display: flex;
+	flex-direction: column;
+	border: 0;
+	border-radius: 0;
+	overflow: hidden;
+	overscroll-behavior: contain;
+	> editra-toolbar,
+	> .editra-status {
+		flex-shrink: 0;
+	}
+	> .editra-surface {
+		flex: 1;
+		min-height: 0 !important;
+		max-height: none !important;
+		overscroll-behavior: contain;
+	}
+}
+.editra-surface {
+	position: relative;
+	overflow: auto;
+	padding: 16px;
+}
+.editra-static {
+	padding: 16px;
+}
+.editra-status {
+	border-top: 1px solid var(--editra-border);
+	padding: 6px 16px;
+	font-size: 13px;
+}
+label {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+input,
+select,
+button {
+	font: inherit;
+	color: inherit;
+	background: var(--editra-surface);
+	border: 1px solid var(--editra-border);
+	border-radius: 4px;
+	min-height: 36px;
+	padding: 4px 8px;
+}
+button {
+	cursor: pointer;
+}
+button:disabled {
+	opacity: 0.5;
+}
+:focus-visible {
+	outline: 3px solid var(--editra-focus);
+	outline-offset: 2px;
+}
+dialog {
+	color: var(--editra-text);
+	background: var(--editra-surface);
+	border: 1px solid var(--editra-border);
+	border-radius: 12px;
+	width: min(480px, calc(100vw - 48px));
+	max-height: 85vh;
+	overflow: auto;
+}
+dialog::backdrop {
+	background: #0008;
+}
+dialog.editra-table-picker {
+	position: fixed;
+	margin: 0;
+	width: 312px;
+	max-width: calc(100vw - 16px);
+	padding: 12px;
+	max-height: calc(100dvh - 16px);
+	box-shadow: 0 10px 35px #0003;
+	h2 {
+		font-size: 15px;
+		margin: 0 0 12px;
+	}
+}
+dialog.editra-table-picker::backdrop {
+	background: transparent;
+}
+.table-picker-help {
+	font-size: 11px;
+	margin: 10px 0;
+	opacity: 0.8;
+}
+.table-size-fields {
+	display: flex;
+	gap: 12px;
+	label {
+		display: grid;
+		flex: 1;
+		gap: 5px;
+		font-size: 12px;
+		margin: 8px 0;
+	}
+	input {
+		min-width: 0;
+		width: 100%;
+	}
+}
+
+.table-action-button {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 3px;
+	min-width: 44px;
+	height: 50px;
+	padding: 5px;
+	border: 1px solid transparent;
+	background: transparent;
+	border-radius: 5px;
+	&:hover:not(:disabled) {
+		background: var(--editra-hover);
+	}
+}
+.table-action-caption {
+	font-size: 9px;
+	white-space: nowrap;
+}
+.table-settings {
+	position: relative;
+	margin-left: auto;
+	font-size: 11px;
+	summary {
+		cursor: pointer;
+		padding: 9px;
+		min-height: 36px;
+	}
+}
+.table-settings-content {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	padding: 9px 0;
+}
+.table-resize-tip {
+	flex-basis: 100%;
+	font-size: 10px;
+	margin: 0 3px;
+	opacity: 0.75;
+}
+dialog label {
+	display: flex;
+	margin: 10px 0;
+	flex-wrap: wrap;
+}
+dialog input:not([type='checkbox']),
+dialog select {
+	flex: 1;
+	min-width: 120px;
+}
+.dialog-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	margin-top: 16px;
+}
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+}
+.toolbar-field {
+	font-size: 12px;
+	gap: 6px;
+	min-height: 36px;
+	border: 1px solid var(--editra-border);
+	border-radius: 5px;
+	padding: 0 6px;
+	background: var(--editra-surface);
+	select,
+	input {
+		border: 0;
+		border-radius: 3px;
+		background: transparent;
+		min-height: 32px;
+		padding: 2px 0;
+		max-width: 100%;
+		&:focus {
+			// The enclosing field owns the focus indicator, including its icon.
+			outline: none;
+			box-shadow: none;
+		}
+	}
+	select {
+		cursor: pointer;
+	}
+	&:focus-within {
+		border-color: var(--editra-focus);
+		outline: 2px solid var(--editra-focus);
+		outline-offset: -1px;
+	}
+}
+.field-style select {
+	width: 110px;
+}
+.field-font select {
+	width: 110px;
+}
+.field-size select {
+	width: 55px;
+}
+.field-line-height select {
+	width: 45px;
+}
+.editra-tool-button,
+.toolbar-colour {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	flex-shrink: 0;
+	padding: 7px;
+	border: 1px solid transparent;
+	border-radius: 5px;
+	background: transparent;
+	color: inherit;
+}
+.editra-tool-button:not(:disabled):hover,
+.toolbar-colour:has(input:not(:disabled)):hover {
+	background: var(--editra-hover);
+}
+.editra-tool-button[aria-pressed='true'] {
+	background: var(--editra-active);
+	color: var(--editra-focus);
+}
+.toolbar-colour {
+	position: relative;
+	cursor: pointer;
+	input {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		border: 0;
+		opacity: 0;
+		cursor: pointer;
+	}
+	&:focus-within {
+		outline: 3px solid var(--editra-focus);
+		outline-offset: 2px;
+	}
+	&:has(input:disabled) {
+		opacity: 0.5;
+		cursor: default;
+	}
+}
+.colour-indicator {
+	position: absolute;
+	bottom: 4px;
+	left: 9px;
+	width: 16px;
+	height: 3px;
+	border-radius: 1px;
+}
+.toolbar-separator {
+	height: 23px;
+	width: 1px;
+	background: var(--editra-border);
+	margin: 0 3px;
+}
+.table-field {
+	font-size: 11px;
+	input {
+		width: 55px;
+	}
+}
+.floating-toolbar {
+	position: fixed;
+	z-index: 1100;
+	background: var(--editra-surface);
+	border: 1px solid var(--editra-border);
+	border-radius: 6px;
+	box-shadow: 0 4px 16px #0003;
+}
+@media (prefers-reduced-motion: reduce) {
+	* {
+		scroll-behavior: auto;
+	}
+}
+
+.toolbar-action-group {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 3px;
+	padding: 0 8px 0 0;
+	margin-right: 3px;
+	border-right: 1px solid var(--editra-border);
+	&:last-of-type {
+		border-right: 0;
+		padding-right: 0;
+		margin-right: 0;
+	}
+	&:not(:has(button:not([hidden]))) {
+		display: none;
+	}
+}
+.editra-tool-button {
+	cursor: pointer;
+}
+.editra-tool-button:disabled {
+	cursor: default;
+	opacity: 0.4;
+}
+.editra-tool-button:focus-visible {
+	outline: 2px solid var(--editra-focus);
+	outline-offset: 2px;
+}
+.editra-tool-button[aria-label='Delete selection']:not(:disabled):hover {
+	color: #b42318;
+}
+
+.table-control-group {
+	display: flex;
+	flex-direction: column;
+	align-self: stretch;
+	gap: 5px;
+	padding: 4px 10px;
+	border-right: 1px solid var(--editra-border);
+}
+.table-group-label {
+	font-size: 11px;
+	font-weight: 600;
+	color: var(--editra-muted, #56657a);
+}
+.table-group-actions {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+.table-action-button {
+	min-width: 54px;
+	height: 48px;
+	cursor: pointer;
+	color: inherit;
+}
+.table-action-button:disabled {
+	opacity: 0.4;
+	cursor: default;
+}
+.table-action-button:focus-visible {
+	outline: 2px solid var(--editra-focus);
+	outline-offset: 2px;
+}
+.table-action-caption {
+	font-size: 11px;
+}
+.table-control-group[aria-label='Remove'] .table-action-button:not(:disabled):hover {
+	color: #b42318;
+}
+
+.table-appearance .toolbar-field {
+	align-items: center;
+	gap: 6px;
+}
+.table-appearance select {
+	min-width: 105px;
+	height: 32px;
+}
+@media (max-width: 600px) {
+	.table-control-group {
+		padding: 4px 6px;
+	}
+	.table-settings {
+		margin-left: 0;
+		flex-basis: 100%;
+	}
+}
+
+.table-tools-popup {
+	position: fixed;
+	inset: auto;
+	margin: 0;
+	width: min(420px, calc(100vw - 16px));
+	max-height: calc(100vh - 24px);
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	padding: 12px;
+	border: 1px solid var(--editra-border);
+	border-radius: 10px;
+	background: var(--editra-surface, #fff);
+	color: var(--editra-text, #182338);
+	box-shadow: 0 8px 28px #0002;
+	box-sizing: border-box;
+	&:not(:popover-open) {
+		display: none;
+	}
+	&:popover-open {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 10px;
+	}
+
+	.table-control-group {
+		border: 0;
+		padding: 0;
+		gap: 5px;
+	}
+	.table-group-actions {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 2px;
+	}
+	.table-action-button {
+		flex-direction: row;
+		justify-content: flex-start;
+		gap: 8px;
+		min-width: 0;
+		height: auto;
+		min-height: 36px;
+		padding: 6px;
+		text-align: left;
+	}
+	.table-action-caption {
+		white-space: normal;
+		font-size: 12px;
+	}
+	.table-settings,
+	.table-resize-tip {
+		grid-column: 1 / -1;
+		margin: 0;
+	}
+	.table-settings {
+		border-top: 1px solid var(--editra-border);
+		padding-top: 4px;
+	}
+	.table-appearance .toolbar-field {
+		flex-wrap: wrap;
+		font-size: 12px;
+	}
+	.table-resize-tip {
+		font-size: 11px;
+		line-height: 1.5;
+	}
+}
+@media (max-width: 380px) {
+	.table-tools-popup:popover-open {
+		grid-template-columns: 1fr;
+	}
+}
+
+.toolbar-insert-pair {
+	display: inline-flex;
+	align-items: center;
+}
+.table-insert-pair {
+	border: 1px solid transparent;
+	border-radius: 5px;
+	overflow: hidden;
+	gap: 0;
+}
+.table-insert-pair > .editra-tool-button {
+	width: 34px;
+	padding: 0;
+	border: 0;
+	border-radius: 4px 0 0 4px;
+}
+.table-menu-arrow {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 36px;
+	padding: 0;
+	box-sizing: border-box;
+	border-radius: 0 4px 4px 0;
+	border: 0;
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+}
+.table-menu-arrow:disabled {
+	opacity: 0.4;
+	cursor: default;
+}
+.table-menu-arrow:not(:disabled):hover,
+.table-menu-arrow[aria-expanded='true'] {
+	background: var(--editra-hover);
+}
+.table-menu-arrow:focus-visible {
+	outline: 2px solid var(--editra-focus);
+	outline-offset: -2px;
+}
+.table-tools-popup {
+	width: min(400px, calc(100vw - 16px));
+	padding: 10px;
+	font-size: 12px;
+	.table-popup-heading {
+		grid-column: 1 / -1;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: 1px solid var(--editra-border);
+		padding-bottom: 4px;
+	}
+	.table-popup-heading strong {
+		font-size: 14px;
+	}
+	.table-control-group {
+		background: var(--editra-toolbar, var(--editra-surface));
+		padding: 8px;
+		border-radius: 6px;
+		min-width: 0;
+	}
+	.table-action-button {
+		min-height: 32px;
+		padding: 4px;
+	}
+	.table-appearance {
+		grid-column: 1 / -1;
+	}
+	.table-appearance .table-group-actions {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.table-appearance .toolbar-field {
+		flex-wrap: nowrap;
+	}
+	.table-control-group[aria-label='Remove'] {
+		grid-column: 1 / -1;
+		order: 4;
+		border-top: 1px solid var(--editra-border);
+		background: transparent;
+	}
+	.table-control-group[aria-label='Remove'] > .table-group-label {
+		display: none;
+	}
+	.table-settings {
+		order: 2;
+	}
+	.table-resize-tip {
+		order: 3;
+	}
+}
+
+:host,
+.editra-surface,
+.table-tools-popup,
+.table-settings-content {
+	scrollbar-width: thin;
+	scrollbar-color: var(--editra-border) transparent;
+}
+:host::-webkit-scrollbar,
+.editra-surface::-webkit-scrollbar,
+.table-tools-popup::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+:host::-webkit-scrollbar-thumb,
+.editra-surface::-webkit-scrollbar-thumb,
+.table-tools-popup::-webkit-scrollbar-thumb {
+	background: var(--editra-border);
+	border-radius: 8px;
+}
+:host::-webkit-scrollbar-track,
+.editra-surface::-webkit-scrollbar-track,
+.table-tools-popup::-webkit-scrollbar-track {
+	background: transparent;
+}
+.table-tools-popup {
+	.table-popup-heading {
+		position: sticky;
+		top: -10px;
+		z-index: 5;
+		background: var(--editra-surface);
+		margin: -10px -10px 0;
+		padding: 8px 12px;
+	}
+	.table-line-weight {
+		grid-column: 1 / -1;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 8px;
+		background: var(--editra-toolbar);
+		border-radius: 6px;
+		font-size: 12px;
+	}
+	.table-line-weight select {
+		margin-left: auto;
+		width: 110px;
+	}
+	select,
+	input {
+		min-height: 34px;
+		padding: 5px 8px;
+		border: 1px solid var(--editra-border);
+		border-radius: 5px;
+		color: var(--editra-text);
+		background: var(--editra-surface);
+		font: inherit;
+	}
+	select:focus-visible,
+	input:focus-visible {
+		outline: 2px solid var(--editra-focus);
+		outline-offset: 1px;
+	}
+	.table-settings-content {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 8px;
+	}
+	.table-settings-content .toolbar-field {
+		flex-direction: column;
+		align-items: stretch;
+		font-size: 12px;
+	}
+	.table-settings-content input {
+		width: 100%;
+		box-sizing: border-box;
+	}
+	.table-settings-content > button {
+		grid-column: 1 / -1;
+		min-height: 34px;
+		border: 1px solid var(--editra-border);
+		border-radius: 5px;
+		background: var(--editra-surface);
+		color: inherit;
+		cursor: pointer;
+	}
+}
+
+.line-menu-trigger {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 36px;
+	border: 0;
+	border-radius: 4px 0 0 4px;
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+	font: inherit;
+	padding: 0;
+}
+.line-settings-popup {
+	position: fixed;
+	inset: auto;
+	margin: 0;
+	width: min(280px, calc(100vw - 16px));
+	padding: 12px;
+	box-sizing: border-box;
+	border: 1px solid var(--editra-border);
+	border-radius: 8px;
+	background: var(--editra-surface);
+	color: var(--editra-text);
+	box-shadow: 0 8px 24px #0002;
+}
+.line-settings-popup:not(:popover-open) {
+	display: none;
+}
+.line-settings-popup:popover-open {
+	display: grid;
+	gap: 12px;
+}
+.line-settings-popup .table-popup-heading {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.line-settings-popup label {
+	display: flex;
+	justify-content: space-between;
+}
+.line-settings-popup select {
+	width: 120px;
+}
+.line-preview {
+	border-top-color: currentColor;
+	margin: 8px 0;
+}
+.line-apply {
+	padding: 8px;
+	border: 0;
+	border-radius: 5px;
+	background: var(--editra-focus);
+	color: var(--editra-surface);
+	cursor: pointer;
+}
+
+.editor-tools {
+	margin-left: auto;
+	border-right: 0;
+	border-left: 1px solid var(--editra-border);
+	padding: 0 0 0 8px;
+}
+
+.button-primary,
+.button-secondary {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	min-height: 36px;
+	padding: 7px 12px;
+	border: 1px solid var(--editra-border);
+	border-radius: 6px;
+	font: inherit;
+	font-size: 13px;
+	cursor: pointer;
+}
+.button-primary {
+	background: var(--editra-focus);
+	color: var(--editra-surface);
+	border-color: var(--editra-focus);
+}
+.button-secondary {
+	background: var(--editra-surface);
+	color: var(--editra-text);
+}
+.button-secondary:not(:disabled):hover {
+	background: var(--editra-hover);
+}
+.button-primary:disabled,
+.button-secondary:disabled {
+	opacity: 0.45;
+	cursor: default;
+}
+.button-primary:focus-visible,
+.button-secondary:focus-visible {
+	outline: 2px solid var(--editra-focus);
+	outline-offset: 2px;
+}
+.find-dialog {
+	padding: 20px;
+	overscroll-behavior: contain;
+}
+.find-dialog h2 {
+	margin: 0 0 16px;
+	font-size: 21px;
+}
+.find-fields {
+	display: grid;
+	gap: 14px;
+}
+.find-fields label {
+	display: grid;
+	gap: 6px;
+	margin: 0;
+	font-size: 13px;
+	font-weight: 600;
+}
+.find-fields input {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 9px 10px;
+}
+.find-navigation,
+.find-replace-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+.find-navigation span {
+	flex-basis: 100%;
+	font-size: 12px;
+	color: var(--editra-text);
+}
+.find-dialog .dialog-actions {
+	border-top: 1px solid var(--editra-border);
+	padding-top: 14px;
+}
+.line-settings-popup {
+	max-height: calc(100vh - 16px);
+	overflow: auto;
+	overscroll-behavior: contain;
+	scrollbar-width: thin;
+}
+
+:host > editra-toolbar.sticky-toolbar {
+	position: sticky;
+	z-index: 30;
+	background: var(--editra-toolbar);
+	box-shadow: 0 2px 6px #0001;
+}
+
+.table-insert-pair:hover,
+.table-insert-pair:focus-within {
+	border-color: var(--editra-border);
+}
+.table-menu-arrow editra-icon {
+	transform: scale(0.6);
+}
+.table-insert-pair:hover > .table-menu-arrow {
+	border-left: 1px solid var(--editra-border);
+}
+.line-menu-trigger:not(:disabled):hover {
+	background: var(--editra-hover);
+}
+.line-menu-trigger:disabled {
+	opacity: 0.5;
+	cursor: default;
+}
+.line-menu-trigger:focus-visible {
+	outline: 2px solid var(--editra-focus);
+	outline-offset: -2px;
+}

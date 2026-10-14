@@ -1,0 +1,12 @@
+node_modules/
+dist/
+out-tsc/
+coverage/
+.angular/
+.npm-cache/
+.idea/
+package-lock.json
+artifacts/
+test-results/
+playwright-report/
+apps/compatibility/*/package-lock.json

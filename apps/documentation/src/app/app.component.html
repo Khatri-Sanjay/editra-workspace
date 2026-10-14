@@ -1,0 +1,97 @@
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+	<a class="brand" routerLink="/" (click)="closeMenu()"
+		><span class="brand-mark" aria-hidden="true">e<span>.</span></span
+		><span
+			>Editra <span class="brand-divider">/</span>
+			<span class="brand-subtitle">Docs</span></span
+		></a
+	>
+	<span class="version">v0.1.0 <span>alpha</span></span>
+	<div class="header-actions">
+		<a routerLink="/examples" class="header-demo"
+			>Try the editor <span aria-hidden="true">↗</span></a
+		><button
+			type="button"
+			class="theme-toggle"
+			(click)="toggleTheme()"
+			[attr.aria-pressed]="dark()"
+			aria-label="Toggle dark theme"
+		>
+			{{ dark() ? '☀' : '◐' }}</button
+		><button
+			type="button"
+			class="mobile-toggle"
+			(click)="menuOpen.set(!menuOpen())"
+			[attr.aria-expanded]="menuOpen()"
+			aria-controls="documentation-navigation"
+		>
+			Menu
+		</button>
+	</div>
+</header>
+<div class="docs-layout">
+	<aside
+		id="documentation-navigation"
+		class="sidebar"
+		[class.is-open]="menuOpen()"
+		aria-label="Documentation navigation"
+	>
+		<label class="search-label" for="guide-search">Search documentation</label>
+		<div class="search-box">
+			<span aria-hidden="true">⌕</span
+			><input
+				id="guide-search"
+				type="search"
+				[(ngModel)]="query"
+				placeholder="Search the docs…"
+				autocomplete="off"
+			/>
+		</div>
+		@if (query.trim()) {
+			<div class="search-results" aria-live="polite">
+				<p>{{ results.length }} results</p>
+				@for (guide of results; track guide.slug) {
+					<a [routerLink]="['/guides', guide.slug]" (click)="closeMenu()"
+						>{{ guide.title }}<small>{{ guide.group }}</small></a
+					>
+				}
+				@if (!results.length) {
+					<p class="empty-search">Try “forms”, “image”, or “SSR”.</p>
+				}
+			</div>
+		} @else {
+			<nav>
+				<a
+					class="nav-home"
+					routerLink="/"
+					routerLinkActive="active"
+					[routerLinkActiveOptions]="{ exact: true }"
+					(click)="closeMenu()"
+					>Overview <span aria-hidden="true">↗</span></a
+				>
+				@for (group of groups; track group) {
+					<div class="nav-group">
+						<h2>{{ group }}</h2>
+						@for (guide of guides; track guide.slug) {
+							@if (guide.group === group) {
+								<a
+									[routerLink]="['/guides', guide.slug]"
+									routerLinkActive="active"
+									ariaCurrentWhenActive="page"
+									(click)="closeMenu()"
+									>{{ guide.title }}</a
+								>
+							}
+						}
+					</div>
+				}
+			</nav>
+		}
+		<div class="sidebar-note">
+			<span class="status-dot"></span> Built on ProseMirror
+			<p>Angular integration. Your document model.</p>
+		</div>
+	</aside>
+	<main id="main-content" tabindex="-1"><router-outlet /></main>
+</div>

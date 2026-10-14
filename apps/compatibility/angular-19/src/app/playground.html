@@ -1,0 +1,84 @@
+<main>
+	<header>
+		<span class="eyebrow">OPEN SOURCE · ANGULAR + PROSEMIRROR</span>
+		<h1>Make room for your ideas.</h1>
+		<p>A secure, modular editing workspace. Try the live editor and inspect its document.</p>
+	</header>
+	<section class="settings" aria-label="Editor settings">
+		<label
+			>Theme
+			<select aria-label="Theme" [ngModel]="config.theme" (ngModelChange)="theme($event)">
+				<option>light</option>
+				<option>dark</option>
+				<option>auto</option>
+			</select></label
+		>
+		<label><input type="checkbox" [(ngModel)]="readOnly" /> Read only</label>
+		<label
+			><input
+				type="checkbox"
+				[ngModel]="form.controls.body.disabled"
+				(ngModelChange)="disable($event)"
+			/>
+			Disabled</label
+		>
+		<button type="button" (click)="form.reset({body: initial})">Reset form</button>
+		<button type="button" (click)="mounted = !mounted">
+			{{mounted ? 'Unmount editor' : 'Mount editor'}}
+		</button>
+	</section>
+	<section class="workspace" aria-label="Reactive Forms example">
+		<div class="section-heading">
+			<h2>Your document</h2>
+			<span
+				>Reactive Forms · {{form.dirty ? 'Modified' : 'Pristine'}} · {{form.touched ?
+				'Touched' : 'Untouched'}}</span
+			>
+		</div>
+		@if (mounted) {<editra-editor
+			#editor
+			[formControl]="form.controls.body"
+			[config]="config"
+			[readonly]="readOnly"
+			[required]="true"
+			(contentChange)="changed($event)"
+			(editorError)="error = $event.message"
+		/>} @if (error) {
+		<p role="alert">{{error}}</p>
+		}
+	</section>
+	<section class="output" aria-label="Document output">
+		<h2>Under the surface</h2>
+		<div class="tabs">
+			@for (format of formats; track format) {<button
+				type="button"
+				[attr.aria-pressed]="selected === format"
+				(click)="selected = format"
+			>
+				{{format}}</button
+			>}
+		</div>
+		<pre>{{output()}}</pre>
+		<label>Import Markdown <textarea [(ngModel)]="markdownInput" rows="3"></textarea></label
+		><button type="button" (click)="importMarkdown()">Import Markdown</button>
+	</section>
+	<details>
+		<summary>Template-driven forms example</summary>
+		<editra-editor [(ngModel)]="templateValue" [config]="compactConfig" />
+		<pre>{{templateValue}}</pre>
+	</details>
+	<details>
+		<summary>Import HTML</summary>
+		<label
+			>HTML input<textarea
+				aria-label="HTML input"
+				[(ngModel)]="htmlInput"
+				rows="4"
+			></textarea></label
+		><button type="button" (click)="importHTML()">Apply HTML</button>
+	</details>
+	<footer>
+		URL-only media. No uploads. HTML-valued forms. SSR static rendering with an explicit editor
+		hydration boundary.
+	</footer>
+</main>

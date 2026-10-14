@@ -1,0 +1,785 @@
+@if (!config.toolbar?.hidden) {
+	<editra-toolbar
+		[class.sticky-toolbar]="toolbarSticky"
+		[style.top.px]="fullscreen ? 0 : (config.toolbar?.stickyOffset ?? 0)"
+		[items]="toolbarItems"
+		[groups]="toolbarGroups"
+		[overflow]="config.toolbar?.overflow ?? 'wrap'"
+		[disabled]="locked"
+		[enabled]="enabled"
+		[active]="active"
+		(execute)="execute($event)"
+	>
+		<label
+			class="toolbar-field field-line-height"
+			title="Line height"
+			[hidden]="!showControl('Line height')"
+			><span class="visually-hidden">Line height</span><editra-icon name="line_height" />
+			<select
+				aria-label="Line height"
+				[ngModel]="currentLineHeight"
+				[ngModelOptions]="{ standalone: true }"
+				[disabled]="locked"
+				(change)="format($event, 'lineHeight')"
+			>
+				<option value="mixed" disabled>Mixed line heights</option>
+				@for (height of [1, 1.25, 1.5, 2, 2.5, 3]; track height) {
+					<option [value]="height">{{ height }}×</option>
+				}
+			</select></label
+		>
+		<label
+			class="toolbar-field field-style"
+			title="Paragraph style"
+			[hidden]="!showControl('Paragraph style')"
+			><span class="visually-hidden">Style</span>
+			<select
+				aria-label="Paragraph style"
+				[ngModel]="currentBlock"
+				[ngModelOptions]="{ standalone: true }"
+				[disabled]="locked"
+				(change)="format($event, 'heading')"
+			>
+				<option value="paragraph">Paragraph</option>
+				<option value="mixed" disabled>Mixed styles</option>
+				<option value="custom" disabled>Custom block</option>
+				<option value="code_block">Code block</option>
+				@for (level of [1, 2, 3, 4, 5, 6]; track level) {
+					<option [value]="'h' + level">Heading {{ level }}</option>
+				}
+			</select></label
+		>
+		<label
+			class="toolbar-field field-font"
+			title="Font family"
+			[hidden]="!showControl('Font family')"
+			><span class="visually-hidden">Font family</span><editra-icon name="font" />
+			<select
+				aria-label="Font family"
+				[ngModel]="formatValue('font')"
+				[ngModelOptions]="{ standalone: true }"
+				[disabled]="locked"
+				(change)="format($event, 'font')"
+			>
+				<option value="">Default font</option>
+				<option value="mixed" disabled>Mixed</option>
+				@for (font of fonts; track font) {
+					<option [value]="font">{{ font }}</option>
+				}
+			</select></label
+		>
+		<label
+			class="toolbar-field field-size"
+			title="Font size"
+			[hidden]="!showControl('Font size')"
+			><span class="visually-hidden">Font size</span><editra-icon name="font_size" />
+			<select
+				aria-label="Font size"
+				[ngModel]="formatValue('size')"
+				[ngModelOptions]="{ standalone: true }"
+				[disabled]="locked"
+				(change)="format($event, 'size')"
+			>
+				<option value="">Size</option>
+				<option value="mixed" disabled>Mixed</option>
+				@for (size of [12, 14, 16, 18, 24, 32, 48]; track size) {
+					<option [value]="size">{{ size }}</option>
+				}
+			</select></label
+		>
+		<label
+			class="toolbar-field"
+			title="Change selected text case"
+			[hidden]="!showControl('Text case')"
+			><editra-icon name="text_case" /><select
+				aria-label="Text case"
+				[disabled]="locked || selectionEmpty"
+				(change)="applyTextCase($event)"
+			>
+				<option value="">Case</option>
+				@for (item of textCases; track item.value) {
+					<option [value]="item.value">{{ item.label }}</option>
+				}
+			</select></label
+		>
+		<span class="toolbar-separator" aria-hidden="true"></span>
+		<editra-colour-picker
+			label="Text colour"
+			kind="color"
+			[value]="formatValue('color')"
+			[disabled]="locked"
+			[hidden]="!showControl('Text colour')"
+			(opened)="rememberColourSelection('color')"
+			(closed)="clearColourSelection('color')"
+			(colourChange)="applyColour('color', $event)"
+		/>
+		<editra-colour-picker
+			label="Highlight colour"
+			kind="highlight"
+			[value]="formatValue('highlight')"
+			[disabled]="locked"
+			[hidden]="!showControl('Highlight colour')"
+			(opened)="rememberColourSelection('highlight')"
+			(closed)="clearColourSelection('highlight')"
+			(colourChange)="applyColour('highlight', $event)"
+		/>
+		<div class="toolbar-action-group" role="group" aria-label="Insert content">
+			@for (kind of dialogKinds; track kind) {
+				<div class="toolbar-insert-pair" [class.table-insert-pair]="kind === 'table'">
+					<button
+						class="editra-tool-button"
+						type="button"
+						[attr.aria-label]="kind"
+						[title]="kind === 'find' ? 'Find and replace' : 'Insert or edit ' + kind"
+						[disabled]="locked"
+						(pointerdown)="$event.preventDefault()"
+						[hidden]="!showControl(kind)"
+						(click)="openToolDialog(kind, $event)"
+					>
+						<editra-icon [name]="kind" />
+					</button>
+					@if (kind === 'table') {
+						<button
+							type="button"
+							class="table-menu-arrow"
+							aria-label="Table tools"
+							[title]="
+								tableActive
+									? 'Table settings'
+									: 'Select a table cell to change its settings'
+							"
+							aria-haspopup="dialog"
+							[attr.aria-expanded]="tableMenuOpen"
+							[disabled]="locked || !tableActive"
+							(pointerdown)="$event.preventDefault()"
+							(click)="toggleTableMenu(tableMenu, $event)"
+						>
+							<editra-icon name="chevron_down" />
+						</button>
+						<div
+							#tableMenu
+							popover="auto"
+							class="table-layout-ribbon table-tools-popup"
+							role="dialog"
+							aria-label="Table tools"
+							(toggle)="onTableMenuToggle(tableMenu)"
+							(keydown)="$event.stopPropagation()"
+						>
+							<div class="table-popup-heading">
+								<strong>Table settings</strong
+								><button
+									type="button"
+									class="editra-tool-button"
+									aria-label="Close table settings"
+									title="Close table settings"
+									(click)="tableMenu.hidePopover()"
+								>
+									<editra-icon name="close" />
+								</button>
+							</div>
+							@for (group of tableActionGroups; track group.label) {
+								<div
+									class="table-control-group"
+									role="group"
+									[attr.aria-label]="group.label"
+								>
+									<span class="table-group-label">{{ group.label }}</span>
+									<div class="table-group-actions">
+										@for (action of group.actions; track action.id) {
+											<button
+												class="table-action-button"
+												type="button"
+												[attr.aria-label]="action.label"
+												[title]="action.label"
+												[disabled]="!enabled(action.command)"
+												[hidden]="!showControl(action.command)"
+												(pointerdown)="$event.preventDefault()"
+												(click)="execute(action.command)"
+											>
+												<editra-icon [name]="action.command" /><span
+													class="table-action-caption"
+													>{{ action.label }}</span
+												>
+											</button>
+										}
+									</div>
+								</div>
+							}
+							<div
+								class="table-control-group table-appearance"
+								role="group"
+								aria-label="Table appearance"
+							>
+								<span class="table-group-label">Appearance</span>
+								<div class="table-group-actions">
+									<editra-colour-picker
+										label="Cell background colour"
+										kind="background"
+										[value]="currentCellBackground"
+										[disabled]="locked"
+										[hidden]="!showControl('Cell background colour')"
+										(opened)="rememberColourSelection('background')"
+										(closed)="clearColourSelection('background')"
+										(colourChange)="applyColour('background', $event)"
+									/>
+									<label
+										class="toolbar-field table-field"
+										[hidden]="!showControl('Table border')"
+										>Table border<select
+											aria-label="Table border"
+											[disabled]="locked"
+											[ngModel]="currentTableBorder"
+											[ngModelOptions]="{ standalone: true }"
+											(change)="tableFormat($event, 'border')"
+										>
+											<option value="solid">Solid</option>
+											<option value="dashed">Dashed</option>
+											<option value="dotted">Dotted</option>
+											<option value="double">Double</option>
+											<option value="none">No borders</option>
+										</select></label
+									>
+								</div>
+							</div>
+							<label
+								class="table-line-weight"
+								[hidden]="!showControl('Table line weight')"
+								><editra-icon name="line_weight" /><span>Line weight</span
+								><select
+									aria-label="Table line weight"
+									[disabled]="locked"
+									[ngModel]="currentTableLineWeight"
+									[ngModelOptions]="{ standalone: true }"
+									(change)="tableFormat($event, 'borderWidth')"
+								>
+									@for (weight of [1, 2, 3, 4, 6, 8]; track weight) {
+										<option [value]="weight">{{ weight }} px</option>
+									}
+								</select></label
+							>
+
+							<details class="table-settings">
+								<summary>More table settings</summary>
+								<div class="table-settings-content">
+									<label
+										class="toolbar-field table-field"
+										[hidden]="!showControl('Table width percent')"
+										>Table width %<input
+											type="number"
+											aria-label="Table width percent"
+											[value]="currentTableWidth"
+											min="10"
+											max="100"
+											[disabled]="locked"
+											(change)="tableFormat($event, 'width')"
+									/></label>
+									<label
+										class="toolbar-field table-field"
+										[hidden]="!showControl('Row height pixels')"
+										>Row height<input
+											type="number"
+											aria-label="Row height pixels"
+											[value]="currentRowHeight"
+											min="0"
+											max="2000"
+											[disabled]="locked"
+											(change)="tableFormat($event, 'height')"
+									/></label>
+									<button
+										type="button"
+										[disabled]="!enabled('resetTableRowHeights')"
+										(pointerdown)="$event.preventDefault()"
+										(click)="execute('resetTableRowHeights')"
+									>
+										Reset row heights
+									</button>
+								</div>
+							</details>
+							<p class="table-resize-tip">
+								Drag a column border or anywhere along a row border to resize. Tab
+								to a resize boundary and use arrow keys for keyboard resizing.
+							</p>
+						</div>
+					}
+				</div>
+			}
+			<div
+				class="toolbar-insert-pair table-insert-pair"
+				[hidden]="!showControl('Insert line')"
+			>
+				<button
+					type="button"
+					class="line-menu-trigger"
+					aria-label="Insert horizontal line"
+					title="Insert horizontal line using saved style and weight"
+					[disabled]="locked"
+					(pointerdown)="$event.preventDefault()"
+					(click)="insertSavedLine()"
+				>
+					<editra-icon name="horizontal_rule" />
+				</button>
+				<button
+					type="button"
+					class="table-menu-arrow"
+					aria-label="Line settings"
+					title="Change line style and weight"
+					aria-haspopup="dialog"
+					[disabled]="locked"
+					(pointerdown)="$event.preventDefault()"
+					(click)="openLineSettings(linePopup, $event)"
+				>
+					<editra-icon name="chevron_down" />
+				</button>
+			</div>
+			<div
+				#linePopup
+				popover="auto"
+				class="line-settings-popup"
+				role="dialog"
+				aria-label="Line settings"
+				(keydown)="$event.stopPropagation()"
+				(keydown.escape)="linePopup.hidePopover()"
+			>
+				<div class="table-popup-heading">
+					<strong>Horizontal line</strong
+					><button
+						type="button"
+						class="editra-tool-button"
+						aria-label="Close line settings"
+						(click)="linePopup.hidePopover()"
+					>
+						<editra-icon name="close" />
+					</button>
+				</div>
+				<label
+					>Line style<select
+						aria-label="Line style"
+						[(ngModel)]="lineStyle"
+						[ngModelOptions]="{ standalone: true }"
+					>
+						<option value="solid">Solid</option>
+						<option value="dashed">Dashed</option>
+						<option value="dotted">Dotted</option>
+						<option value="double">Double</option>
+					</select></label
+				>
+				<label
+					>Line weight<select
+						aria-label="Horizontal line weight"
+						[(ngModel)]="lineWeight"
+						[ngModelOptions]="{ standalone: true }"
+					>
+						@for (weight of [1, 2, 3, 4, 6, 8]; track weight) {
+							<option [value]="weight">{{ weight }} px</option>
+						}
+					</select></label
+				>
+				<div
+					class="line-preview"
+					aria-hidden="true"
+					[style.border-top-style]="lineStyle"
+					[style.border-top-width.px]="
+						lineStyle === 'double' ? (lineWeight < 3 ? 3 : lineWeight) : lineWeight
+					"
+				></div>
+				<button
+					type="button"
+					class="line-apply button-primary"
+					(click)="applyLineSettings(linePopup)"
+				>
+					<editra-icon name="check" />Apply line
+				</button>
+			</div>
+
+			<button
+				type="button"
+				class="editra-tool-button"
+				[disabled]="locked"
+				(pointerdown)="$event.preventDefault()"
+				aria-label="Insert columns"
+				title="Insert columns"
+				(click)="insertColumns()"
+			>
+				<editra-icon name="columns" />
+			</button>
+		</div>
+		@if (imageSelected && !locked) {
+			<div class="toolbar-action-group" role="group" aria-label="Image layout">
+				@if (imageInColumn && !locked) {
+					<button
+						type="button"
+						class="editra-tool-button"
+						(pointerdown)="$event.preventDefault()"
+						aria-label="Image section left"
+						title="Image section left"
+						(click)="placeImageSide('left')"
+					>
+						<editra-icon name="image_section_left" />
+					</button>
+					<button
+						type="button"
+						class="editra-tool-button"
+						(pointerdown)="$event.preventDefault()"
+						aria-label="Image section right"
+						title="Image section right"
+						(click)="placeImageSide('right')"
+					>
+						<editra-icon name="image_section_right" />
+					</button>
+					<button
+						type="button"
+						class="editra-tool-button"
+						(pointerdown)="$event.preventDefault()"
+						aria-label="Fit image to column"
+						title="Fit image to column"
+						(click)="fitImageToColumn()"
+					>
+						<editra-icon name="fit_image_column" />
+					</button>
+				}
+				@if (imageSelected && !locked) {
+					<button
+						type="button"
+						class="editra-tool-button"
+						(pointerdown)="$event.preventDefault()"
+						aria-label="Add content beside image"
+						title="Add content beside image"
+						(click)="insertColumns(true)"
+					>
+						<editra-icon name="image_content" />
+					</button>
+				}
+			</div>
+		}
+		<div
+			editor-tools
+			class="toolbar-action-group editor-tools"
+			role="group"
+			aria-label="Editor tools"
+		>
+			<button
+				type="button"
+				class="editra-tool-button"
+				aria-label="Sticky toolbar"
+				[title]="toolbarSticky ? 'Unpin toolbar' : 'Pin toolbar while scrolling'"
+				[attr.aria-pressed]="toolbarSticky"
+				[hidden]="!showControl('Sticky toolbar')"
+				(pointerdown)="$event.preventDefault()"
+				(click)="toggleStickyToolbar()"
+			>
+				<editra-icon [name]="toolbarSticky ? 'unpin' : 'pin'" />
+			</button>
+
+			<button
+				class="editra-tool-button"
+				type="button"
+				aria-label="find"
+				title="Find and replace"
+				[disabled]="locked"
+				[hidden]="!showControl('find')"
+				(pointerdown)="$event.preventDefault()"
+				(click)="openToolDialog('find', $event)"
+			>
+				<editra-icon name="find" />
+			</button>
+			<button
+				class="editra-tool-button"
+				type="button"
+				aria-label="Delete selection"
+				title="Delete selection"
+				[hidden]="!showControl('Delete selection')"
+				[disabled]="locked || selectionEmpty"
+				(pointerdown)="$event.preventDefault()"
+				(click)="removeSelected()"
+			>
+				<editra-icon name="delete" />
+			</button>
+			<button
+				class="editra-tool-button"
+				type="button"
+				aria-label="Fullscreen"
+				[title]="fullscreen ? 'Exit fullscreen' : 'Fullscreen'"
+				[hidden]="!showControl('Fullscreen')"
+				[attr.aria-pressed]="fullscreen"
+				(pointerdown)="$event.preventDefault()"
+				(click)="toggleFullscreen()"
+			>
+				<editra-icon [name]="fullscreen ? 'fullscreen_exit' : 'fullscreen'" />
+			</button>
+		</div>
+	</editra-toolbar>
+}
+@if (floatingVisible && !locked) {
+	<editra-toolbar
+		class="floating-toolbar"
+		[style.left.px]="floatingX"
+		[style.top.px]="floatingY"
+		[items]="floatingItems"
+		[enabled]="enabled"
+		[active]="active"
+		(execute)="execute($event)"
+	/>
+}
+@if (!ready) {
+	<div class="editra-static" [innerHTML]="html"></div>
+}
+<div
+	#surface
+	class="editra-surface"
+	[style.min-height.px]="config.minHeight ?? 180"
+	[style.max-height.px]="config.maxHeight"
+></div>
+<div class="editra-status">
+	{{ counts.words }} words · {{ counts.characters }} characters
+	@if (locked) {
+		· Read only
+	}
+</div>
+<span class="visually-hidden" aria-live="polite">{{ announcement }}</span>
+<dialog
+	#dialog
+	tabindex="-1"
+	[class.editra-table-picker]="dialogKind === 'table'"
+	[class.find-dialog]="dialogKind === 'find'"
+	(click)="dialogBackdrop($event)"
+	(keydown.escape)="$event.preventDefault(); $event.stopPropagation(); closeDialog()"
+	(cancel)="closeDialog()"
+	(close)="dialogClosed()"
+	[attr.aria-label]="dialogKind === 'tableContext' ? 'Table actions' : 'Edit ' + dialogKind"
+>
+	<h2>
+		{{
+			dialogKind === 'table'
+				? 'Insert table'
+				: dialogKind === 'find'
+					? 'Find and replace'
+					: dialogKind === 'tableContext'
+						? 'Table actions'
+						: 'Insert or edit ' + dialogKind
+		}}
+	</h2>
+	@if (dialogKind === 'link' || dialogKind === 'image' || dialogKind === 'video') {
+		<label
+			>URL
+			<input
+				type="url"
+				[(ngModel)]="values.url"
+				[ngModelOptions]="{ standalone: true }"
+				placeholder="https://"
+		/></label>
+	}
+	@if (dialogKind === 'link') {
+		<label
+			><input
+				type="checkbox"
+				[(ngModel)]="values.newTab"
+				[ngModelOptions]="{ standalone: true }"
+			/>
+			Open in a new tab</label
+		>
+	}
+	@if (dialogKind === 'image' || dialogKind === 'video') {
+		<p>
+			Paste a direct image URL or a supported video link. Resize and align it after inserting.
+		</p>
+		@if (editingMedia) {
+			<details class="media-options">
+				<summary>Image and video settings</summary>
+				@if (dialogKind === 'image') {
+					<label
+						>Alternative text
+						<input [(ngModel)]="values.alt" [ngModelOptions]="{ standalone: true }"
+					/></label>
+					<label
+						>Border
+						<select [(ngModel)]="values.border" [ngModelOptions]="{ standalone: true }">
+							<option>none</option>
+							<option>solid</option>
+							<option>dashed</option>
+						</select></label
+					>
+					<label
+						>Corner radius
+						<input
+							type="number"
+							min="0"
+							max="100"
+							[(ngModel)]="values.radius"
+							[ngModelOptions]="{ standalone: true }"
+					/></label>
+					<label
+						>Spacing
+						<input
+							type="number"
+							min="0"
+							max="100"
+							[(ngModel)]="values.spacing"
+							[ngModelOptions]="{ standalone: true }"
+					/></label>
+					<label
+						><input
+							type="checkbox"
+							[(ngModel)]="values.wrap"
+							[disabled]="values.fullWidth || values.align === 'center'"
+							[ngModelOptions]="{ standalone: true }"
+						/>
+						Wrap text</label
+					>
+				}
+				@if (dialogKind === 'image' || dialogKind === 'video') {
+					<label
+						>Caption
+						<input [(ngModel)]="values.caption" [ngModelOptions]="{ standalone: true }"
+					/></label>
+					<label>
+						<input
+							type="checkbox"
+							[(ngModel)]="values.fullWidth"
+							[ngModelOptions]="{ standalone: true }"
+						/>
+						Full content width
+					</label>
+					<label
+						><input
+							type="checkbox"
+							[(ngModel)]="values.aspect"
+							[ngModelOptions]="{ standalone: true }"
+						/>
+						Maintain aspect ratio</label
+					>
+					@if (dialogKind === 'video') {
+						<label
+							><input
+								type="checkbox"
+								[(ngModel)]="values.controls"
+								[ngModelOptions]="{ standalone: true }"
+							/>
+							Show direct video controls</label
+						>
+					}
+					<label
+						>Alignment
+						<select
+							aria-label="Alignment"
+							[(ngModel)]="values.align"
+							[ngModelOptions]="{ standalone: true }"
+						>
+							<option value="left">Left</option>
+							<option value="center">Centre</option>
+							<option value="right">Right</option>
+						</select></label
+					>
+					<p>
+						Media starts centred at its natural size and fits the content area. Click
+						the image or video, then drag its corner to resize. Use the alignment
+						toolbar to move it left, centre or right. Maintain aspect ratio keeps
+						resizing proportional.
+					</p>
+				}
+			</details>
+		}
+	}
+	@if (dialogKind === 'table') {
+		<editra-table-grid
+			[maxRows]="config.table?.maxRows ?? 8"
+			[maxColumns]="config.table?.maxColumns ?? 10"
+			[quickInsert]="true"
+			(dimensions)="chooseTable($event)"
+			(insert)="insertGridTable($event)"
+		/>
+		<p class="table-picker-help">Choose a grid size to insert, or enter dimensions below.</p>
+		<div class="table-size-fields">
+			<label
+				>Rows
+				<input
+					type="number"
+					min="1"
+					[max]="config.table?.maxRows ?? 50"
+					[(ngModel)]="values.rows"
+					[ngModelOptions]="{ standalone: true }" /></label
+			><label
+				>Columns
+				<input
+					type="number"
+					min="1"
+					[max]="config.table?.maxColumns ?? 20"
+					[(ngModel)]="values.columns"
+					[ngModelOptions]="{ standalone: true }"
+			/></label>
+		</div>
+	}
+	@if (dialogKind === 'find') {
+		<div class="find-fields">
+			<label
+				>Find<input
+					aria-label="Find"
+					placeholder="Search this document"
+					[(ngModel)]="values.query"
+					(ngModelChange)="matchIndex = -1"
+					[ngModelOptions]="{ standalone: true }"
+					(keydown.enter)="findInputEnter($event)"
+			/></label>
+			<div class="find-navigation">
+				<span role="status">{{ findSummary }}</span
+				><button
+					type="button"
+					class="button-secondary"
+					[disabled]="!findCount"
+					(click)="findNext(-1)"
+				>
+					<editra-icon name="previous" />Previous match</button
+				><button
+					type="button"
+					class="button-primary"
+					[disabled]="!findCount"
+					(click)="findNext()"
+				>
+					<editra-icon name="next" />Next match
+				</button>
+			</div>
+			<label
+				>Replace with<input
+					aria-label="Replace with"
+					placeholder="Replacement text"
+					[(ngModel)]="values.replacement"
+					[ngModelOptions]="{ standalone: true }"
+					[disabled]="locked"
+			/></label>
+			<div class="find-replace-actions">
+				<button
+					type="button"
+					class="button-secondary"
+					[disabled]="locked || !findCount"
+					(click)="replaceCurrent()"
+				>
+					<editra-icon name="replace" />Replace current</button
+				><button
+					type="button"
+					class="button-primary"
+					[disabled]="locked || !findCount"
+					(click)="replaceAll()"
+				>
+					<editra-icon name="replace_all" />Replace all
+				</button>
+			</div>
+		</div>
+	}
+	@if (dialogKind === 'tableContext') {
+		<editra-menu [items]="tableActions" [enabled]="enabled" (execute)="contextAction($event)" />
+	}
+	@if (error) {
+		<p role="alert">{{ error }}</p>
+	}
+	<div class="dialog-actions">
+		<button type="button" class="button-secondary" (click)="closeDialog()">
+			<editra-icon name="close" />{{ dialogKind === 'find' ? 'Close' : 'Cancel' }}
+		</button>
+		@if (dialogKind !== 'tableContext' && dialogKind !== 'find') {
+			<button type="button" class="button-primary" (click)="applyDialog()">
+				<editra-icon [name]="dialogKind === 'table' ? 'table' : 'check'" />{{
+					dialogKind === 'table' ? 'Insert table' : 'Apply'
+				}}
+			</button>
+		}
+	</div>
+</dialog>

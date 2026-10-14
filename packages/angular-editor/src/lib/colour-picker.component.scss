@@ -1,0 +1,222 @@
+:host {
+	display: inline-flex;
+	flex-shrink: 0;
+}
+.split-colour {
+	display: flex;
+	border: 1px solid transparent;
+	border-radius: 5px;
+	&:hover,
+	&:focus-within {
+		border-color: var(--editra-border, #b8c2d0);
+	}
+}
+button {
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+}
+.apply-colour,
+.palette-toggle {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 36px;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: inherit;
+	&:hover:not(:disabled) {
+		background: var(--editra-hover, #e9edf3);
+	}
+	&:disabled {
+		opacity: 0.5;
+		cursor: default;
+	}
+}
+.apply-colour {
+	width: 34px;
+	border-radius: 4px 0 0 4px;
+}
+.palette-toggle {
+	width: 24px;
+	border-radius: 0 4px 4px 0;
+	editra-icon {
+		transform: scale(0.6);
+	}
+}
+.split-colour:hover .palette-toggle {
+	border-left: 1px solid var(--editra-border, #b8c2d0);
+}
+.colour-bar {
+	position: absolute;
+	bottom: 4px;
+	left: 9px;
+	width: 16px;
+	height: 3px;
+	border-radius: 1px;
+}
+.mixed .colour-bar {
+	background-image: repeating-linear-gradient(
+		90deg,
+		transparent,
+		transparent 3px,
+		var(--editra-surface, #fff) 3px,
+		var(--editra-surface, #fff) 5px
+	);
+}
+dialog {
+	position: fixed;
+	margin: 0;
+	width: 312px;
+	max-width: calc(100vw - 16px);
+	max-height: calc(100dvh - 16px);
+	overflow: auto;
+	padding: 12px;
+	border: 1px solid var(--editra-border, #b8c2d0);
+	border-radius: 8px;
+	background: var(--editra-surface, #fff);
+	color: var(--editra-text, #182338);
+	box-shadow: 0 10px 35px #0003;
+	z-index: 1200;
+	font:
+		12px/1.5 system-ui,
+		sans-serif;
+}
+.palette-heading {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid var(--editra-border, #b8c2d0);
+	margin: -2px 0 10px;
+	padding-bottom: 7px;
+	h2 {
+		font-size: 13px;
+		margin: 0;
+		font-weight: 600;
+	}
+}
+.close-palette {
+	width: 28px;
+	height: 28px;
+	font-size: 20px;
+	background: transparent;
+	color: inherit;
+	border: 0;
+	border-radius: 4px;
+}
+h3 {
+	font-size: 11px;
+	font-weight: 600;
+	margin: 12px 0 6px;
+}
+.automatic-colour {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	width: 100%;
+	min-height: 32px;
+	padding: 4px 6px;
+	border: 0;
+	border-radius: 4px;
+	background: transparent;
+	text-align: left;
+}
+.no-colour {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: linear-gradient(135deg, transparent 44%, #d13438 45%, #d13438 54%, transparent 55%);
+	border: 1px solid var(--editra-border, #b8c2d0);
+}
+.swatches {
+	display: grid;
+	grid-template-columns: repeat(10, 24px);
+	gap: 2px;
+}
+.automatic-swatch {
+	background: currentColor;
+}
+.swatch {
+	width: 24px;
+	height: 24px;
+	border: 1px solid #8888;
+	border-radius: 1px;
+	padding: 0;
+	position: relative;
+	&[aria-pressed='true'] {
+		outline: 2px solid var(--editra-focus, #1763d1);
+		outline-offset: -3px;
+		box-shadow: inset 0 0 0 3px #fff;
+	}
+	&:hover {
+		outline: 2px solid var(--editra-focus, #1763d1);
+		outline-offset: 0;
+		z-index: 1;
+	}
+}
+.custom-colour {
+	margin-top: 14px;
+	border-top: 1px solid var(--editra-border, #b8c2d0);
+	padding-top: 12px;
+	display: flex;
+	align-items: flex-end;
+	gap: 8px;
+	label {
+		flex: 1;
+		display: grid;
+		gap: 4px;
+	}
+	input {
+		width: 100%;
+		min-width: 0;
+		background: var(--editra-surface, #fff);
+		color: inherit;
+		border: 1px solid var(--editra-border, #b8c2d0);
+		border-radius: 4px;
+		height: 32px;
+		padding: 5px 8px;
+		font:
+			12px ui-monospace,
+			monospace;
+	}
+	button {
+		min-height: 32px;
+		background: var(--editra-active, #dce9ff);
+		border: 1px solid var(--editra-border, #b8c2d0);
+		border-radius: 4px;
+		padding: 5px 10px;
+	}
+}
+.more-colours {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 10px;
+	input {
+		width: 40px;
+		height: 30px;
+		border: 1px solid var(--editra-border, #b8c2d0);
+		background: transparent;
+		cursor: pointer;
+	}
+}
+.palette-error {
+	color: var(--editra-error, #b42318);
+	font-size: 11px;
+}
+:focus-visible {
+	outline: 3px solid var(--editra-focus, #1763d1);
+	outline-offset: 2px;
+}
+.automatic-colour:hover,
+.close-palette:hover {
+	background: var(--editra-hover, #e9edf3);
+}
+@media (forced-colors: active) {
+	.swatch,
+	.colour-bar {
+		forced-color-adjust: none;
+	}
+}

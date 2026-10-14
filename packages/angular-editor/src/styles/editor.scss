@@ -1,0 +1,289 @@
+editra-editor {
+	.ProseMirror {
+		outline: none;
+		min-height: 140px;
+		white-space: pre-wrap;
+		overflow-wrap: break-word;
+	}
+	.ProseMirror:focus-visible {
+		outline: 2px solid var(--editra-focus, #1763d1);
+		outline-offset: 6px;
+	}
+	.ProseMirror p {
+		margin: 0.5em 0;
+	}
+	.ProseMirror:has(> p:first-child:last-child > br.ProseMirror-trailingBreak:only-child)::before {
+		content: attr(data-placeholder);
+		color: #67758a;
+		pointer-events: none;
+		position: absolute;
+	}
+	.ProseMirror table {
+		border-collapse: collapse;
+		width: 100%;
+		table-layout: fixed;
+	}
+	.ProseMirror tbody,
+	.ProseMirror tr {
+		border: inherit;
+	}
+	.ProseMirror td,
+	.ProseMirror th {
+		border: inherit;
+		padding: 8px;
+		min-width: 30px;
+		position: relative;
+	}
+	.ProseMirror .tableWrapper {
+		overflow-x: auto;
+	}
+	.ProseMirror td p,
+	.ProseMirror th p {
+		margin: 0;
+	}
+	.editra-table-resize-layer {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 2;
+	}
+	.editra-table-resize-layer[hidden] {
+		display: none;
+	}
+	.editra-table-row-resize,
+	.editra-table-column-resize {
+		position: absolute;
+		pointer-events: none;
+		touch-action: none;
+		padding: 0;
+		min-height: 0;
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+		&:focus-visible {
+			outline: 2px solid var(--editra-focus, #1763d1);
+			outline-offset: -10px;
+		}
+		&::after {
+			content: '';
+			position: absolute;
+			pointer-events: auto;
+			touch-action: none;
+		}
+	}
+	.editra-table-row-resize {
+		cursor: row-resize;
+		&::after {
+			height: 6px;
+			width: 100%;
+			left: 0;
+			top: 9px;
+		}
+	}
+	.editra-table-column-resize {
+		z-index: 1;
+		cursor: col-resize;
+		&::after {
+			height: 100%;
+			width: 6px;
+			left: 9px;
+			top: 0;
+		}
+	}
+	.editra-table-resize-guide {
+		position: absolute;
+		background: var(--editra-focus, #1763d1);
+		box-shadow: 0 0 0 1px var(--editra-focus, #1763d1);
+		pointer-events: none;
+	}
+	.editra-table-resize-feedback {
+		position: absolute;
+		border-radius: 4px;
+		padding: 3px 7px;
+		background: var(--editra-text, #182338);
+		color: var(--editra-surface, #fff);
+		font:
+			11px/1.5 system-ui,
+			sans-serif;
+		white-space: nowrap;
+	}
+	.editra-resize-announcement {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+	}
+	.ProseMirror .selectedCell::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: #589bff44;
+		pointer-events: none;
+	}
+	.ProseMirror .column-resize-handle {
+		position: absolute;
+		right: -2px;
+		top: 0;
+		bottom: 0;
+		width: 4px;
+		background: #1763d1;
+	}
+	.ProseMirror.resize-cursor {
+		cursor: col-resize;
+	}
+	.ProseMirror-selectednode {
+		outline: 3px solid var(--editra-focus, #1763d1);
+	}
+	.editra-media-view {
+		position: relative;
+		display: flow-root;
+		max-width: 100%;
+		> figure {
+			position: relative;
+		}
+		&.ProseMirror-selectednode {
+			outline: none;
+			> figure {
+				outline: 2px solid var(--editra-focus, #1763d1);
+				outline-offset: 2px;
+			}
+		}
+	}
+	.editra-media-view img,
+	.editra-media-view video,
+	.editra-media-view iframe {
+		max-width: 100%;
+	}
+	.editra-media-view:not(.ProseMirror-selectednode) iframe {
+		pointer-events: none;
+	}
+	.editra-media-view:focus-visible {
+		outline: 2px solid var(--editra-focus, #1763d1);
+	}
+	.editra-resize {
+		position: absolute;
+		z-index: 2;
+		width: 28px;
+		height: 28px;
+		min-width: 28px;
+		min-height: 28px;
+		padding: 0;
+		border-radius: 3px;
+		touch-action: none;
+		cursor: nwse-resize;
+		background: #fff;
+		color: #182338;
+		border: 2px solid #1763d1;
+		&::after {
+			content: '';
+			position: absolute;
+			inset: 7px;
+			border-right: 2px solid currentColor;
+			border-bottom: 2px solid currentColor;
+		}
+		&:disabled {
+			display: none;
+		}
+	}
+	.editra-resize:focus-visible {
+		outline: 3px solid #1763d1;
+		outline-offset: 2px;
+	}
+}
+
+editra-editor .ProseMirror [data-editra-column] {
+	min-height: 80px;
+	padding: 4px;
+	box-sizing: border-box;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	&:hover,
+	&:focus-within {
+		border-color: var(--editra-border, #bbc5d4);
+	}
+}
+editra-editor .ProseMirror [data-editra-column] > p:only-child:empty::before {
+	content: 'Add text, headings, images...';
+	color: var(--editra-muted, #65758b);
+	pointer-events: none;
+}
+
+editra-editor .editra-columns-view {
+	position: relative;
+}
+editra-editor .editra-column-resize {
+	position: absolute;
+	width: 16px;
+	min-width: 16px;
+	padding: 0;
+	border: 0;
+	border-radius: 6px;
+	background: transparent;
+	cursor: col-resize;
+	touch-action: none;
+	z-index: 3;
+}
+editra-editor .editra-column-resize::after {
+	content: '';
+	position: absolute;
+	width: 3px;
+	height: 100%;
+	top: 0;
+	left: 6px;
+	border-radius: 3px;
+	background: var(--editra-border, #bbc5d4);
+	opacity: 0;
+}
+editra-editor .editra-columns-view:hover .editra-column-resize::after {
+	opacity: 0.6;
+}
+editra-editor .editra-columns-dragging .editra-column-resize::after,
+editra-editor .editra-column-resize:hover::after,
+editra-editor .editra-column-resize:focus-visible::after {
+	background: var(--editra-focus, #1763d1);
+	opacity: 1;
+}
+editra-editor .editra-column-resize:focus-visible {
+	outline: 2px solid var(--editra-focus, #1763d1);
+}
+editra-editor .editra-column-resize[hidden],
+editra-editor .editra-column-resize:disabled {
+	display: none;
+}
+
+editra-editor .editra-columns-preview > [data-editra-column]:first-child {
+	flex: var(--editra-preview-left) 1 calc((100% - 16px) * var(--editra-preview-left) / 100) !important;
+}
+editra-editor .editra-columns-preview > [data-editra-column]:last-child {
+	flex: calc(100 - var(--editra-preview-left)) 1
+		calc((100% - 16px) * (100 - var(--editra-preview-left)) / 100) !important;
+}
+
+editra-editor .ProseMirror [data-editra-column] > :first-child {
+	margin-top: 0;
+}
+editra-editor .ProseMirror [data-editra-column] > :last-child {
+	margin-bottom: 0;
+}
+
+/* Every editor-owned scrolling surface, including projected toolbar controls and popups. */
+editra-editor,
+editra-editor * {
+	scrollbar-width: thin;
+	scrollbar-color: var(--editra-border, #b8c2d0) transparent;
+}
+editra-editor::-webkit-scrollbar,
+editra-editor *::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+editra-editor::-webkit-scrollbar-thumb,
+editra-editor *::-webkit-scrollbar-thumb {
+	background: var(--editra-border, #b8c2d0);
+	border-radius: 8px;
+}
+editra-editor::-webkit-scrollbar-track,
+editra-editor *::-webkit-scrollbar-track {
+	background: transparent;
+}
