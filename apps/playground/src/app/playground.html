@@ -55,6 +55,14 @@
 		<p role="alert">{{error}}</p>
 		}
 	</section>
+	<section class="workspace" aria-label="Rendered document">
+		<h2>Rendered document</h2>
+		<div
+			class="editra-content"
+			editraCodeCopy
+			[innerHTML]="form.controls.body.value | editraHtml: config"
+		></div>
+	</section>
 	<section class="output" aria-label="Document output">
 		<h2>Under the surface</h2>
 		<div class="tabs">

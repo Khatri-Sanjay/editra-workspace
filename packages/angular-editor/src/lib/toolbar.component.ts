@@ -20,7 +20,7 @@ export const defaultToolbar: readonly EditraToolbarItem[] = [
 		label: `Align ${align}`,
 		command: `align_${align}`,
 	})),
-	...['bullet_list', 'ordered_list', 'indent', 'outdent', 'blockquote', 'code', 'code_block'].map(
+	...['bullet_list', 'ordered_list', 'indent', 'outdent', 'blockquote', 'code_block'].map(
 		(command) => ({ id: command, label: command.replaceAll('_', ' '), command }),
 	),
 ];

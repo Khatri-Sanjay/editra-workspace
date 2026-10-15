@@ -521,7 +521,7 @@
 	/>
 }
 @if (!ready) {
-	<div class="editra-static" [innerHTML]="previewHTML"></div>
+	<editra-viewer class="editra-static" [html]="html" [config]="config" />
 }
 <div
 	#surface

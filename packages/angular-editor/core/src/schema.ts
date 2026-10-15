@@ -138,7 +138,13 @@ export function createSchema(
 			group: 'block',
 			defining: true,
 			parseDOM: [{ tag: 'blockquote' }],
-			toDOM: () => ['blockquote', 0],
+			toDOM: () => [
+				'blockquote',
+				{
+					style: 'margin:0.65em 0;padding:10px 16px;border-inline-start:3px solid var(--editra-border,#b8c2d0);background:var(--editra-toolbar,#f7f9fc);border-radius:0 6px 6px 0',
+				},
+				0,
+			],
 		},
 		code_block: {
 			attrs: { language: { default: '' } },
@@ -169,8 +175,18 @@ export function createSchema(
 					.slice(0, 40);
 				return [
 					'pre',
-					language ? { 'data-language': language } : {},
-					['code', language ? { class: `language-${language}` } : {}, 0],
+					{
+						...(language ? { 'data-language': language } : {}),
+						style: 'margin:0.75em 0;padding:16px;background:var(--editra-toolbar,#f7f9fc);border:1px solid var(--editra-border,#b8c2d0);border-radius:8px;white-space:pre;overflow-x:auto;tab-size:4',
+					},
+					[
+						'code',
+						{
+							...(language ? { class: `language-${language}` } : {}),
+							style: 'font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:0.9em',
+						},
+						0,
+					],
 				];
 			},
 		},
@@ -237,7 +253,16 @@ export function createSchema(
 	for (const [name, tag] of Object.entries(simple))
 		marks[name] = {
 			parseDOM: [{ tag }],
-			toDOM: () => [tag, 0],
+			toDOM: () =>
+				name === 'code'
+					? [
+							tag,
+							{
+								style: 'font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:0.9em;background:var(--editra-hover,#e9edf3);border:1px solid var(--editra-border,#b8c2d0);border-radius:4px;padding:0.1em 0.3em;box-decoration-break:clone',
+							},
+							0,
+						]
+					: [tag, 0],
 			...(name === 'code' ? { code: true } : {}),
 			...(name === 'subscript'
 				? { excludes: 'superscript' }
@@ -368,7 +393,7 @@ export function createSchema(
 				toDOM: (node) => [
 					'table',
 					{
-						style: `width:${dimension(attributes(node)['width'], 100, 100)}%;border:${Math.max(1, dimension(attributes(node)['borderWidth'], 1, 8))}px ${['solid', 'dashed', 'dotted', 'double', 'none'].includes(String(attributes(node)['border'])) ? String(attributes(node)['border']) : 'solid'} #b8c2d0;border-collapse:collapse`,
+						style: `width:${dimension(attributes(node)['width'], 100, 100)}%;border:${Math.max(1, dimension(attributes(node)['borderWidth'], 1, 8))}px ${['solid', 'dashed', 'dotted', 'double', 'none'].includes(String(attributes(node)['border'])) ? String(attributes(node)['border']) : 'solid'} #b8c2d0;border-collapse:collapse;table-layout:fixed;max-width:100%`,
 					},
 					['tbody', { style: 'border:inherit' }, 0],
 				],
@@ -416,7 +441,19 @@ export function createSchema(
 									? { 'data-colwidth': attrs['colwidth'].join(',') }
 									: {}),
 								style:
-									'border:inherit' +
+									'border:inherit;padding:8px;min-width:30px;vertical-align:top' +
+									(Array.isArray(attrs['colwidth']) &&
+									attrs['colwidth'].every(
+										(width: unknown) => dimension(width) > 0,
+									)
+										? ';width:' +
+											attrs['colwidth'].reduce(
+												(sum: number, width: unknown) =>
+													sum + dimension(width),
+												0,
+											) +
+											'px'
+										: '') +
 									(background ? ';background-color:' + background : ''),
 							},
 							0,

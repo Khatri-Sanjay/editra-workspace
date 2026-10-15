@@ -29,3 +29,9 @@ export type {
 	EditraSecurityConfig,
 	EditraVideoProvider,
 } from 'ngx-editra/core';
+
+export { EditraViewerComponent } from './lib/viewer.component';
+
+export { EditraHtmlPipe } from './lib/html.pipe';
+
+export { EditraCodeCopyDirective } from './lib/code-copy.directive';

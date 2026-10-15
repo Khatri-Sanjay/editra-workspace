@@ -1,6 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditraEditorComponent, defaultToolbar } from 'ngx-editra';
+import {
+	EditraEditorComponent,
+	EditraHtmlPipe,
+	EditraCodeCopyDirective,
+	defaultToolbar,
+} from 'ngx-editra';
 import type { EditraConfig, EditraChange, EditraTheme } from 'ngx-editra';
 import { demoContent } from './demo-content';
 import { imageExtension, videoExtension } from 'ngx-editra/extensions';
@@ -8,7 +13,13 @@ import { imageExtension, videoExtension } from 'ngx-editra/extensions';
 @Component({
 	selector: 'app-root',
 	standalone: true,
-	imports: [FormsModule, ReactiveFormsModule, EditraEditorComponent],
+	imports: [
+		FormsModule,
+		ReactiveFormsModule,
+		EditraEditorComponent,
+		EditraHtmlPipe,
+		EditraCodeCopyDirective,
+	],
 	templateUrl: './playground.html',
 	styleUrl: './playground.scss',
 })

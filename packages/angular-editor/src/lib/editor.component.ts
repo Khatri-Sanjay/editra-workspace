@@ -3,7 +3,7 @@ import type { TextPiece, TextCase } from './text-case';
 import { lockPageScroll } from './page-scroll-lock';
 import { ColumnsNodeView } from './columns-node-view';
 import { CodeBlockNodeView } from './code-block-node-view';
-import { staticPreview } from './static-preview';
+import { EditraViewerComponent } from './viewer.component';
 import {
 	afterNextRender,
 	Component,
@@ -118,6 +118,7 @@ const dialogDefaults = (): DialogValues => ({
 	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
+		EditraViewerComponent,
 		FormsModule,
 		EditraToolbarComponent,
 		EditraIconComponent,
@@ -465,9 +466,6 @@ export class EditraEditorComponent
 	}
 	get html(): string {
 		return this.engine.getHTML();
-	}
-	get previewHTML(): string {
-		return staticPreview(this.html);
 	}
 	get counts() {
 		return this.engine.counts();
