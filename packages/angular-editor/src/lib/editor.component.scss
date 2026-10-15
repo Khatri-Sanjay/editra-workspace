@@ -1,4 +1,6 @@
 :host {
+	color-scheme: light;
+	--editra-muted: #56657a;
 	--editra-surface: #fff;
 	--editra-text: #182338;
 	--editra-border: #b8c2d0;
@@ -21,6 +23,8 @@
 	display: none !important;
 }
 :host(.editra-dark) {
+	color-scheme: dark;
+	--editra-muted: #bcc9dc;
 	--editra-surface: #182338;
 	--editra-text: #f1f5fb;
 	--editra-border: #6b7a90;
@@ -32,6 +36,8 @@
 }
 @media (prefers-color-scheme: dark) {
 	:host(.editra-auto) {
+		color-scheme: dark;
+		--editra-muted: #bcc9dc;
 		--editra-surface: #182338;
 		--editra-text: #f1f5fb;
 		--editra-border: #6b7a90;
@@ -859,4 +865,14 @@ dialog select {
 .line-menu-trigger:focus-visible {
 	outline: 2px solid var(--editra-focus);
 	outline-offset: -2px;
+}
+
+option,
+optgroup {
+	background: var(--editra-surface);
+	color: var(--editra-text);
+}
+input::placeholder {
+	color: var(--editra-muted);
+	opacity: 1;
 }

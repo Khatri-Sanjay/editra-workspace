@@ -26,5 +26,5 @@ export const EDITRA_DIALOG_PRESENTER = new InjectionToken<EditraDialogPresenter>
 	},
 );
 export function provideEditraDialogs(presenter: EditraDialogPresenter): Provider {
-	return { provide: EDITRA_DIALOG_PRESENTER, useValue: presenter };
+		return { provide: EDITRA_DIALOG_PRESENTER, useValue: presenter };
 }

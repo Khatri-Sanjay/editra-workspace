@@ -7,10 +7,42 @@ editra-editor {
 	}
 	.ProseMirror:focus-visible {
 		outline: 2px solid var(--editra-focus, #1763d1);
-		outline-offset: 6px;
+		outline-offset: 2px;
 	}
 	.ProseMirror p {
 		margin: 0.5em 0;
+	}
+	.ProseMirror {
+		// Keep browser heading and list margins from adding empty space to the canvas.
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin: 0.75em 0 0.35em;
+		}
+		ul,
+		ol {
+			margin: 0.5em 0;
+			padding-inline-start: 1.5em;
+		}
+		li > p {
+			margin: 0.2em 0;
+		}
+		blockquote {
+			margin: 0.65em 0;
+			padding-inline-start: 1em;
+			border-inline-start: 3px solid var(--editra-border, #b8c2d0);
+		}
+		& > :first-child,
+		blockquote > :first-child {
+			margin-top: 0;
+		}
+		& > :last-child,
+		blockquote > :last-child {
+			margin-bottom: 0;
+		}
 	}
 	.ProseMirror:has(> p:first-child:last-child > br.ProseMirror-trailingBreak:only-child)::before {
 		content: attr(data-placeholder);
@@ -286,4 +318,103 @@ editra-editor *::-webkit-scrollbar-thumb {
 editra-editor::-webkit-scrollbar-track,
 editra-editor *::-webkit-scrollbar-track {
 	background: transparent;
+}
+
+editra-editor .ProseMirror {
+	code {
+		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+		font-size: 0.9em;
+	}
+	:not(pre) > code {
+		background: var(--editra-hover, #e9edf3);
+		border: 1px solid var(--editra-border, #b8c2d0);
+		border-radius: 4px;
+		padding: 0.1em 0.3em;
+		box-decoration-break: clone;
+	}
+	pre {
+		margin: 0.75em 0;
+		padding: 16px;
+		background: var(--editra-toolbar, #f7f9fc);
+		border: 1px solid var(--editra-border, #b8c2d0);
+		border-radius: 8px;
+		white-space: pre;
+		overflow-x: auto;
+		tab-size: 4;
+	}
+	.editra-code-block {
+		margin: 0.75em 0;
+		border: 1px solid var(--editra-border, #b8c2d0);
+		border-radius: 8px;
+		overflow: hidden;
+		background: var(--editra-toolbar, #f7f9fc);
+		pre {
+			margin: 0;
+			border: 0;
+			border-radius: 0;
+		}
+	}
+	.editra-code-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 6px 12px;
+		border-bottom: 1px solid var(--editra-border, #b8c2d0);
+		color: var(--editra-muted, #56657a);
+		font:
+			12px/1.5 system-ui,
+			sans-serif;
+		button {
+			font: inherit;
+			color: var(--editra-text, #182338);
+			background: transparent;
+			border: 1px solid transparent;
+			border-radius: 4px;
+			padding: 4px 8px;
+			cursor: pointer;
+			&:hover {
+				background: var(--editra-hover, #e9edf3);
+			}
+			&:focus-visible {
+				outline: 2px solid var(--editra-focus, #1763d1);
+				outline-offset: 2px;
+			}
+		}
+	}
+	blockquote {
+		padding: 10px 16px;
+		background: var(--editra-toolbar, #f7f9fc);
+		border-radius: 0 6px 6px 0;
+	}
+}
+
+editra-editor .ProseMirror .editra-code-header {
+	select {
+		max-width: min(240px, 60%);
+		min-width: 0;
+		border: 1px solid transparent;
+		border-radius: 4px;
+		padding: 4px;
+		font: inherit;
+		color: var(--editra-text, #182338);
+		background: var(--editra-toolbar, #f7f9fc);
+		&:hover {
+			border-color: var(--editra-border, #b8c2d0);
+		}
+		&:focus-visible {
+			outline: 2px solid var(--editra-focus, #1763d1);
+		}
+	}
+	.editra-code-status {
+		margin-inline-start: auto;
+	}
+	button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		width: 32px;
+		height: 32px;
+	}
 }

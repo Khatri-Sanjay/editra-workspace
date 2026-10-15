@@ -19,6 +19,18 @@ import type { EditraHtmlElement } from 'ngx-editra/core';
 import type { Schema } from 'prosemirror-model';
 
 describe('Editra engine', () => {
+	it('preserves code languages and escaped code through HTML round trips', () => {
+		const engine = new EditraEngine(
+			{},
+			'<pre><code class="language-java">if (x &lt; 2) {}</code></pre>',
+		);
+		expect(attributes(engine.state.doc.firstChild!)['language']).toBe('java');
+		const html = engine.getHTML();
+		expect(html).toContain('data-language="java"');
+		expect(html).toContain('class="language-java"');
+		const restored = new EditraEngine({}, html);
+		expect(restored.state.doc.toJSON()).toEqual(engine.state.doc.toJSON());
+	});
 	it('keeps omitted image and video dimensions automatic through HTML round trips', () => {
 		const engine = new EditraEngine(
 			{},

@@ -2,6 +2,8 @@ import { openToolbarPopup } from './popup-behavior';
 import type { TextPiece, TextCase } from './text-case';
 import { lockPageScroll } from './page-scroll-lock';
 import { ColumnsNodeView } from './columns-node-view';
+import { CodeBlockNodeView } from './code-block-node-view';
+import { staticPreview } from './static-preview';
 import {
 	afterNextRender,
 	Component,
@@ -210,6 +212,7 @@ export class EditraEditorComponent
 	readonly fonts = ['Arial', 'Georgia', 'Verdana', 'Times New Roman', 'monospace'];
 	private nodeViews(): Record<string, NodeViewConstructor> {
 		const result: Record<string, NodeViewConstructor> = {
+			code_block: (node, view, getPos) => new CodeBlockNodeView(node, view, getPos),
 			content_columns: (node, view, getPos) => new ColumnsNodeView(node, view, getPos),
 		};
 		for (const ext of this.engine.extensions)
@@ -462,6 +465,9 @@ export class EditraEditorComponent
 	}
 	get html(): string {
 		return this.engine.getHTML();
+	}
+	get previewHTML(): string {
+		return staticPreview(this.html);
 	}
 	get counts() {
 		return this.engine.counts();

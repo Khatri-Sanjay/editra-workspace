@@ -206,8 +206,21 @@ export function parseHTML(html: string, schema: Schema, config: EditraConfig = {
 				),
 			});
 		}
-		if (tag === 'pre')
-			return create('code_block', {}, text(node) ? [schema.text(text(node))] : []);
+		if (tag === 'pre') {
+			const code = node.childNodes.find(
+				(child) => element(child) && child.tagName === 'code',
+			);
+			const language = (
+				attr(node, 'data-language') ||
+				(code && element(code)
+					? attr(code, 'class')?.match(/\blanguage-([\w+-]+)/u)?.[1]
+					: '') ||
+				''
+			)
+				.replace(/[^\w+-]/gu, '')
+				.slice(0, 40);
+			return create('code_block', { language }, text(node) ? [schema.text(text(node))] : []);
+		}
 		const children = node.childNodes.flatMap((child) =>
 			walk(child, nextMarks, depth + 1, preserve),
 		);

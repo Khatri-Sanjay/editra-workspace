@@ -141,13 +141,38 @@ export function createSchema(
 			toDOM: () => ['blockquote', 0],
 		},
 		code_block: {
+			attrs: { language: { default: '' } },
 			content: 'text*',
 			marks: '',
 			group: 'block',
 			code: true,
 			defining: true,
-			parseDOM: [{ tag: 'pre', preserveWhitespace: 'full' }],
-			toDOM: () => ['pre', ['code', 0]],
+			parseDOM: [
+				{
+					tag: 'pre',
+					preserveWhitespace: 'full',
+					getAttrs: (dom) => ({
+						language:
+							typeof dom === 'string'
+								? ''
+								: dom.getAttribute('data-language') ||
+									dom
+										.querySelector('code')
+										?.className.match(/\blanguage-([\w+-]+)/u)?.[1] ||
+									'',
+					}),
+				},
+			],
+			toDOM: (node) => {
+				const language = String(attributes(node)['language'] || '')
+					.replace(/[^\w+-]/gu, '')
+					.slice(0, 40);
+				return [
+					'pre',
+					language ? { 'data-language': language } : {},
+					['code', language ? { class: `language-${language}` } : {}, 0],
+				];
+			},
 		},
 		horizontal_rule: {
 			group: 'block',
