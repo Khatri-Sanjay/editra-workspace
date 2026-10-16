@@ -22,12 +22,12 @@ await new Promise((resolve, reject) => {
 	);
 });
 
-// Root documents are canonical. ng-packagr only accepts assets inside the
-// library project, so copy these directly into the completed distribution.
+// The package README targets npm consumers; project policies live at the root.
+await copyFile(new URL('packages/ngx-editra/README.md', root), new URL('README.md', distribution));
 for (const name of [
-	'README.md',
 	'LICENSE',
 	'PROGRESS.md',
+	'SECURITY.md',
 	'CONTRIBUTING.md',
 	'CHANGELOG.md',
 	'ARCHITECTURE.md',

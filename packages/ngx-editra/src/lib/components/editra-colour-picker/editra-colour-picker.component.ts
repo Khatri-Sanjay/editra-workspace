@@ -13,7 +13,7 @@ import type { ElementRef, OnChanges, OnDestroy } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { safeColor } from '../../core/public-api';
 import { EditraIconComponent } from '../editra-icon/editra-icon.component';
-import { positionPopover } from '../../utils/popover-position';
+import { observePopover, positionPopover } from '../../utils/popover-position';
 import { themeColours, standardColours, highlightColours } from './colour-palettes';
 
 @Component({
@@ -111,6 +111,9 @@ export class EditraColourPickerComponent implements OnChanges, OnDestroy {
 			toggle = this.toggle?.nativeElement;
 		if (!palette || !toggle) return;
 		this.error = '';
+		const selectedColour = safeColor(this.value);
+		if (selectedColour && /^#[a-f\d]{6}$/iu.test(selectedColour))
+			this.customColour = selectedColour;
 		this.isOpen = true;
 		this.opened.emit();
 		palette.show();
@@ -142,9 +145,7 @@ export class EditraColourPickerComponent implements OnChanges, OnDestroy {
 			},
 			{ signal: events.signal },
 		);
-		this.document.defaultView?.addEventListener('resize', () => this.position(), {
-			signal: events.signal,
-		});
+		observePopover(palette, toggle, events.signal);
 		const blockScroll = (event: Event): void => {
 			if (!(event.target instanceof Node && palette.contains(event.target)))
 				event.preventDefault();
@@ -171,6 +172,7 @@ export class EditraColourPickerComponent implements OnChanges, OnDestroy {
 			},
 		);
 		(
+			(!this.value ? palette.querySelector<HTMLButtonElement>('.automatic-colour') : null) ??
 			palette.querySelector<HTMLButtonElement>('[data-swatch][aria-pressed="true"]') ??
 			palette.querySelector<HTMLButtonElement>('[data-swatch][tabindex="0"]')
 		)?.focus({ preventScroll: true });

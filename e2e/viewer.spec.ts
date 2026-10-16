@@ -78,21 +78,23 @@ test('saved HTML matches editor content presentation on desktop and mobile', asy
 			);
 		expect(fits).toBe(true);
 	}
-	const nativeRendering = await page.locator('.output > pre').evaluate((output) => {
-		const container = document.createElement('div');
-		container.innerHTML = output.textContent ?? '';
-		document.body.append(container);
-		const pre = container.querySelector('pre');
-		const result = {
-			whiteSpace: pre ? getComputedStyle(pre).whiteSpace : '',
-			padding: pre ? getComputedStyle(pre).padding : '',
-			code: pre?.textContent,
-			quotePadding: container.querySelector('blockquote')?.style.padding,
-			cellPadding: container.querySelector('td')?.style.padding,
-		};
-		container.remove();
-		return result;
-	});
+	const nativeRendering = await page
+		.getByRole('region', { name: 'Document source code' })
+		.evaluate((output) => {
+			const container = document.createElement('div');
+			container.innerHTML = output.textContent ?? '';
+			document.body.append(container);
+			const pre = container.querySelector('pre');
+			const result = {
+				whiteSpace: pre ? getComputedStyle(pre).whiteSpace : '',
+				padding: pre ? getComputedStyle(pre).padding : '',
+				code: pre?.textContent,
+				quotePadding: container.querySelector('blockquote')?.style.padding,
+				cellPadding: container.querySelector('td')?.style.padding,
+			};
+			container.remove();
+			return result;
+		});
 	expect(nativeRendering).toEqual({
 		whiteSpace: 'pre',
 		padding: '16px',

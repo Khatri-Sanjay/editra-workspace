@@ -1,5 +1,6 @@
 /* Shared presentation for editing, saved HTML and server-rendered previews. */
-ngx-editra-viewer {
+ngx-editra-viewer,
+.editra-html {
 	display: block;
 	font:
 		16px/1.5 system-ui,
@@ -7,7 +8,8 @@ ngx-editra-viewer {
 	color: var(--editra-text, #182338);
 	background: var(--editra-surface, #fff);
 }
-ngx-editra-viewer.editra-dark {
+ngx-editra-viewer.editra-dark,
+.editra-html.editra-dark {
 	color-scheme: dark;
 	--editra-text: #f1f5fb;
 	--editra-surface: #182338;
@@ -17,7 +19,8 @@ ngx-editra-viewer.editra-dark {
 	--editra-muted: #bcc9dc;
 }
 @media (prefers-color-scheme: dark) {
-	ngx-editra-viewer.editra-auto {
+	ngx-editra-viewer.editra-auto,
+	.editra-html.editra-auto {
 		color-scheme: dark;
 		--editra-text: #f1f5fb;
 		--editra-surface: #182338;

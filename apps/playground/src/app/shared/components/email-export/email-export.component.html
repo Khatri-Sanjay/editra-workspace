@@ -1,0 +1,38 @@
+﻿<p>
+	Browser preview of email-targeted HTML. Gmail, Outlook and Apple Mail may render it differently.
+	Send test messages through your email provider before production use.
+</p>
+@if (error) {
+	<p role="alert">{{ error }}</p>
+}
+@if (result) {
+	<div class="actions">
+		<button type="button" (click)="copy('html')">Copy email HTML</button>
+		<button type="button" (click)="copy('text')">Copy email text</button>
+	</div>
+	<p role="status" aria-live="polite">{{ feedback() }}</p>
+	<h3>Export notes</h3>
+	<ul>
+		@for (warning of result.warnings; track warning.code) {
+			<li>{{ warning.message }}</li>
+		} @empty {
+			<li>No content conversion warnings.</li>
+		}
+	</ul>
+}
+<iframe
+	#preview
+	title="Email export browser preview"
+	sandbox=""
+	referrerpolicy="no-referrer"
+></iframe>
+@if (result) {
+	<details>
+		<summary>Email HTML source</summary>
+		<pre tabindex="0" role="region" aria-label="Email HTML source">{{ result.html }}</pre>
+	</details>
+	<details>
+		<summary>Email plain text</summary>
+		<pre tabindex="0" role="region" aria-label="Email plain text">{{ result.text }}</pre>
+	</details>
+}

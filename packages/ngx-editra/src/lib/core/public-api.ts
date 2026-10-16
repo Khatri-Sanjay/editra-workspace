@@ -47,6 +47,8 @@ export {
 export { orderExtensions, EditraEngine } from './engine';
 export { automaticLinks } from './plugins';
 export { normalizeConfig } from './configuration';
+export { exportEmail } from './email';
+export type { EditraEmailOptions, EditraEmailResult, EditraEmailWarning } from './email';
 export {
 	resizeTableRow,
 	resizeTableColumns,

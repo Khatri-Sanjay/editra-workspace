@@ -1,6 +1,16 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import MarkdownIt from 'markdown-it';
 import { format, resolveConfig } from 'prettier';
+import { posix } from 'node:path';
+
+const check = process.argv.includes('--check');
+async function output(path, contents) {
+	if (check) {
+		const current = await readFile(path, 'utf8');
+		if (current.replace(/\r\n/g, '\n') !== contents.replace(/\r\n/g, '\n'))
+			throw new Error(`Stale generated documentation: ${path}. Run npm run docs:generate.`);
+	} else await writeFile(path, contents);
+}
 
 // Only repository-authored Markdown is compiled; raw HTML stays disabled.
 const markdown = new MarkdownIt({ html: false });
@@ -12,6 +22,7 @@ const pages = [
 	['angular-forms', 'Angular Forms', 'Build with Editra', 'ANGULAR_FORMS'],
 	['content', 'Load and save content', 'Build with Editra', 'CONTENT'],
 	['viewer', 'Display saved content', 'Build with Editra', 'VIEWER'],
+	['email', 'Export for email', 'Build with Editra', 'EMAIL'],
 	['events', 'Events and lifecycle', 'Build with Editra', 'EVENTS'],
 	['toolbar', 'Toolbar', 'Build with Editra', 'TOOLBAR'],
 	['theming', 'Theming', 'Build with Editra', 'THEMING'],
@@ -32,6 +43,8 @@ const pages = [
 	['security', 'Security', 'Reference', 'SECURITY'],
 	['compatibility', 'Compatibility', 'Reference', 'COMPATIBILITY'],
 	['releasing', 'Release process', 'Project', 'RELEASING'],
+	['deployment', 'Deploy the websites', 'Project', 'DEPLOYMENT'],
+	['maintenance', 'Maintenance policy', 'Project', 'MAINTENANCE'],
 ];
 const sources = [
 	...pages.map(([slug, title, group, file]) => ({
@@ -43,8 +56,14 @@ const sources = [
 	{ slug: 'project-status', title: 'Project status', group: 'Project', source: 'PROGRESS.md' },
 	{ slug: 'contributing', title: 'Contributing', group: 'Project', source: 'CONTRIBUTING.md' },
 	{ slug: 'changelog', title: 'Changelog', group: 'Project', source: 'CHANGELOG.md' },
+	{
+		slug: 'security-reporting',
+		title: 'Report a vulnerability',
+		group: 'Project',
+		source: 'SECURITY.md',
+	},
 ];
-const slugs = new Map(sources.map(({ slug, source }) => [source.split('/').pop(), slug]));
+const slugs = new Map(sources.map(({ slug, source }) => [source, slug]));
 const documents = [];
 for (const source of sources) {
 	const text = await readFile(source.source, 'utf8');
@@ -73,8 +92,12 @@ for (const source of sources) {
 		for (const child of token.children ?? []) {
 			if (child.type !== 'link_open') continue;
 			const href = child.attrGet('href');
-			const filename = href?.split('/').pop()?.split('#')[0];
-			const slug = slugs.get(filename);
+			const filename = href?.split('#')[0];
+			const target =
+				filename && !/^(?:[a-z]+:|\/)/iu.test(filename)
+					? posix.normalize(posix.join(posix.dirname(source.source), filename))
+					: null;
+			const slug = target && slugs.get(target);
 			if (slug)
 				child.attrSet(
 					'href',
@@ -118,7 +141,7 @@ for (const source of sources) {
 }
 await mkdir('apps/documentation/src/app/content/generated', { recursive: true });
 const generatedPath = 'apps/documentation/src/app/content/generated/guides.ts';
-await writeFile(
+await output(
 	generatedPath,
 	await format(
 		`// Generated from repository Markdown by scripts/generate-documentation.mjs.\nimport type { Guide } from '../../shared/models/guide';\nexport const guides: readonly Guide[] = ${JSON.stringify(documents, null, '\t')};\n`,
@@ -133,14 +156,14 @@ const navigation = documents.map(({ slug, title, group, summary, search }) => ({
 	summary,
 	search,
 }));
-await writeFile(
+await output(
 	navigationPath,
 	await format(
 		`// Generated navigation/search index; full articles load with the guide route.\nimport type { GuideNavigation } from '../../shared/models/guide';\nexport const guideNavigation: readonly GuideNavigation[] = ${JSON.stringify(navigation)};\n`,
 		{ ...(await resolveConfig(navigationPath, { editorconfig: true })), parser: 'typescript' },
 	),
 );
-await writeFile(
+await output(
 	'apps/documentation/prerender-routes.txt',
 	['/', '/examples', ...documents.map(({ slug }) => `/guides/${slug}`)].join('\n') + '\n',
 );

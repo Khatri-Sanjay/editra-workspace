@@ -1,0 +1,43 @@
+version: 2
+updates:
+    - package-ecosystem: npm
+      directory: /
+      schedule:
+          interval: weekly
+      open-pull-requests-limit: 5
+      groups:
+          angular-tooling:
+              patterns:
+                  - '@angular/*'
+                  - '@angular-devkit/*'
+                  - '@angular-eslint/*'
+                  - ng-packagr
+          prosemirror:
+              patterns:
+                  - prosemirror-*
+    - package-ecosystem: github-actions
+      directory: /
+      schedule:
+          interval: weekly
+    - package-ecosystem: npm
+      directories:
+          - /apps/compatibility/angular-17
+          - /apps/compatibility/angular-18
+          - /apps/compatibility/angular-19
+          - /apps/compatibility/angular-20
+          - /apps/compatibility/angular-21
+          - /apps/compatibility/angular-22
+      schedule:
+          interval: weekly
+      open-pull-requests-limit: 5
+      ignore:
+          - dependency-name: ngx-editra
+          - dependency-name: '@angular/*'
+            update-types: ['version-update:semver-major']
+          - dependency-name: '@angular-devkit/*'
+            update-types: ['version-update:semver-major']
+          - dependency-name: typescript
+            update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      groups:
+          angular:
+              patterns: ['@angular/*', '@angular-devkit/*', 'zone.js']

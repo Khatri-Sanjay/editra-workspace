@@ -2,6 +2,12 @@
 
 Connect the editor to your Angular form just like another value accessor. Its value is an HTML string, so you can load, validate, reset, disable, and save it through the form API.
 
+| Form API                                            | Current support                                                                             |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Reactive Forms: `formControl` and `formControlName` | Implemented and integration-tested                                                          |
+| Template-driven forms: `ngModel`                    | Implemented and integration-tested                                                          |
+| Signal Forms: `formField`                           | Angular ControlValueAccessor compatibility; dedicated library integration tests outstanding |
+
 ## Complete reactive form example
 
 ```typescript
@@ -76,6 +82,39 @@ Import FormsModule and NgxEditraComponent in the component that owns this templa
 ```
 
 The name is needed when this control is inside a template-driven form. Do not bind ngModel and formControl to the same editor.
+
+## Signal Forms compatibility (Angular 22)
+
+Angular's `FormField` supports components that provide a `ControlValueAccessor`, which
+is the editor's existing integration. The editor does not implement the native
+`FormValueControl` interface. Signal Forms is stable in Angular 22. See Angular's
+[FormField reference](https://angular.dev/api/forms/signals/FormField).
+
+This example is a usage pattern, not a claim of completed Signal Forms validation.
+The current suite tests Reactive Forms and ngModel. Value updates, disabled state,
+touched state, required validation and resets need dedicated Signal Forms tests before
+the library advertises fully verified support.
+
+```typescript
+import { Component, signal } from '@angular/core';
+import { form, FormField } from '@angular/forms/signals';
+import { NgxEditraComponent } from 'ngx-editra';
+
+@Component({
+	selector: 'app-signal-description',
+	standalone: true,
+	imports: [FormField, NgxEditraComponent],
+	template: `<ngx-editra [formField]="articleForm.body" />`,
+})
+export class SignalDescriptionComponent {
+	readonly model = signal({ body: '<p>Initial content.</p>' });
+	readonly articleForm = form(this.model);
+}
+```
+
+Read the HTML from `model().body`. Do not combine `formField`, `ngModel` and `formControl`
+on the same editor. This example requires Angular 22; Angular 17–20 applications should
+use Reactive Forms or template-driven forms.
 
 ## Disabled and readonly are different
 

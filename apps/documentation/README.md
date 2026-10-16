@@ -17,10 +17,16 @@ npm run build:docs
 npm run serve:ssr:docs
 ```
 
-The production build prerenders the home page, live example, and all 30 guide pages.
+The production build prerenders the home page, live example, and all generated guide pages.
 `dist/documentation/browser` can be deployed to a static host supporting directory indexes
 and an index.html fallback for unknown client-side routes. The SSR server defaults to port 4300;
 set PORT to override it.
+
+For GitHub-to-Vercel deployment, use `npm run build:site -- documentation` and the
+manual deployment workflow. The static browser output is hosted in its own project;
+the Express server is not deployed. Follow [deployment setup](../../docs/DEPLOYMENT.md)
+for Node 20 build / Node 24 deployment separation and project secrets.
+The workspace's MIT [LICENSE](../../LICENSE) applies to this application.
 
 Edit files in `docs/`, PROGRESS.md, CONTRIBUTING.md, or CHANGELOG.md to update guides.
 `npm run docs:generate` converts them to typed page data and regenerates the prerender routes.

@@ -9,8 +9,14 @@
 		}
 	}
 	ngx-editra {
+		--editra-sticky-offset: 74px;
 		display: block;
 		margin-top: 16px;
+	}
+}
+@media (max-width: 800px) {
+	.examples-page ngx-editra {
+		--editra-sticky-offset: 65px;
 	}
 }
 .example-controls {

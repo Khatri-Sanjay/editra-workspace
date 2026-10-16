@@ -1,0 +1,16 @@
+<div class="output-actions">
+	<div class="formats" role="group" aria-label="Output format">
+		@for (item of formats; track item) {
+			<button
+				type="button"
+				[attr.aria-pressed]="format === item"
+				(click)="formatChange.emit(item); feedback.set('')"
+			>
+				{{ item }}
+			</button>
+		}
+	</div>
+	<button type="button" (click)="copy()">Copy output</button>
+</div>
+<p role="status" aria-live="polite">{{ feedback() }}</p>
+<pre tabindex="0" role="region" aria-label="Document source code">{{ value }}</pre>

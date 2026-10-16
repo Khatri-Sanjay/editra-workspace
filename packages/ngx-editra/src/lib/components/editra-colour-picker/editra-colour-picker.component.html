@@ -46,7 +46,12 @@
 			×
 		</button>
 	</div>
-	<button type="button" class="automatic-colour" (click)="choose(null)">
+	<button
+		type="button"
+		class="automatic-colour"
+		[attr.aria-pressed]="!value"
+		(click)="choose(null)"
+	>
 		<span
 			class="no-colour"
 			[class.automatic-swatch]="kind === 'color'"

@@ -38,6 +38,11 @@ Never permit arbitrary frame origins.
 Third-party providers may have additional requirements and may block playback or embedding.
 
 Client sanitization is not a replacement for server validation, authorization or safe redisplay.
+
+Email export rebuilds validated content without using extension serializers. Its
+playground preview assigns only exporter output to a sandboxed iframe with a restrictive
+CSP. Raw editor HTML must never be assigned to that sink. Email warnings describe
+conversions, not a complete audit of removed input or a guarantee of inbox safety.
 Revalidate stored HTML/JSON on the server with the same content policy. Limits are one million
 input characters and 100 nesting levels. Extension serializers/plugins are trusted application
 code and need an independent audit; they must not emit unsafe tags/URLs or perform uploads.

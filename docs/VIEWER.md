@@ -23,21 +23,42 @@ The viewer includes its content styles automatically. Pass `[config]="config"` w
 
 ## Use an existing HTML container
 
-If your layout needs its own container, import EditraHtmlPipe and EditraCodeCopyDirective in the component's imports and use:
+For automatic styling and code-copy buttons with one import, use `EditraContentDirective`:
 
-```html
-<div class="editra-content" editraCodeCopy [innerHTML]="savedHtml | editraHtml: config"></div>
+```typescript
+import { Component } from '@angular/core';
+import { EditraContentDirective } from 'ngx-editra';
+
+@Component({
+	selector: 'app-article',
+	standalone: true,
+	imports: [EditraContentDirective],
+	template: '<div [editraContent]="savedHtml"></div>',
+})
+export class ArticleComponent {
+	savedHtml = '<h2>Published article</h2><pre><code>const value = 1;</code></pre>';
+}
 ```
 
-The pipe reconstructs supported content before trusting it for Angular rendering. The directive adds copy controls to code blocks. Replace the config object when changing configuration so the pipe can observe the change.
+The directive validates saved HTML and loads content styles and code-copy controls automatically. No pipe, viewer, Sass import or separate copy directive is required. Use a `div` or `article` container; the directive owns its contents, so do not combine it with `[innerHTML]` or child templates on the same element. Code-copy buttons run in the browser and require HTTPS or localhost.
+
+Configuration is optional. For custom extensions, URL policy or a theme, pass a new config object through `[editraContentConfig]="config"` alongside `[editraContent]`.
+
+## Use an innerHTML binding
+
+Import `EditraHtmlPipe` in your component's imports, then use:
+
+```html
+<div [innerHTML]="savedHtml | editraHtml"></div>
+```
+
+The pipe validates the HTML, adds a styled content wrapper, and loads shared styles automatically. No global Sass import, CSS class, viewer, or configuration is required. The wrapper is part of the rendered HTML, so use a container that accepts block content, such as a `div` or `article`.
+
+Optionally pass `editraHtml: config` for custom extensions, URL policy or a theme. Replace the config object when changing it. For interactive code-copy buttons, also import `EditraCodeCopyDirective` and add `editraCodeCopy` to the container.
 
 ## Content styles
 
-No stylesheet import is needed for the editor or standalone viewer. If you render saved HTML in your own container using the HTML pipe rather than either component, import the optional content stylesheet globally:
-
-```scss
-@use 'ngx-editra/styles/content.scss';
-```
+The editor, viewer, content directive and HTML pipe include their styles automatically. The optional `ngx-editra/styles/content.scss` export is only needed for HTML rendered without these Angular APIs.
 
 Plain Angular innerHTML may remove inline styles and embedded players. Do not solve this by trusting raw user HTML yourself. Prefer the viewer or the validated pipe, and validate content on the server as well. Custom extension serializers are trusted code and must be reviewed.
 

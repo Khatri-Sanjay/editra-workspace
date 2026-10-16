@@ -1,0 +1,46 @@
+﻿:host {
+	display: block;
+	min-width: 0;
+}
+.actions {
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+button {
+	font: inherit;
+	min-height: 40px;
+	padding: 8px 12px;
+	border: 1px solid #b7c4d8;
+	border-radius: 6px;
+	background: white;
+	color: #17263f;
+	cursor: pointer;
+}
+iframe {
+	width: 100%;
+	height: 520px;
+	border: 1px solid #b7c4d8;
+	border-radius: 6px;
+	background: #fff;
+}
+pre {
+	padding: 16px;
+	max-height: 300px;
+	overflow: auto;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	background: #142138;
+	color: #dee8ff;
+}
+[role='status'] {
+	min-height: 24px;
+}
+summary {
+	cursor: pointer;
+	margin: 16px 0;
+}
+:focus-visible {
+	outline: 3px solid #1763d1;
+	outline-offset: 3px;
+}

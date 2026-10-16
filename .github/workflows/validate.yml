@@ -3,71 +3,39 @@ on:
     push:
     pull_request:
     workflow_dispatch:
+    schedule:
+        - cron: '30 6 * * 1'
+concurrency:
+    group: validate-${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
 permissions:
     contents: read
 jobs:
     package:
         runs-on: ubuntu-latest
+        timeout-minutes: 45
         steps:
             - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
+              with:
+                  node-version: 24.21.0
+                  package-manager-cache: false
+            - run: echo "EDITRA_NODE24=$(command -v node)" >> "$GITHUB_ENV"
             - uses: actions/setup-node@v7
               with:
                   node-version: 20.20.2
                   cache: npm
+            - run: |
+                  echo "EDITRA_NODE20=$(command -v node)" >> "$GITHUB_ENV"
+                  echo "EDITRA_NPM_CLI=$(npm root -g)/npm/bin/npm-cli.js" >> "$GITHUB_ENV"
             - run: npm ci
-            - run: npm run build
-            - run: npm run format:check
-            - run: npm run lint
-            - run: npm run test:architecture
-            - run: npm run typecheck
-            - run: npm run test:ci
+            - run: npx playwright install --with-deps chromium
+            - run: npm run validate -- --compatibility
               env:
                   CHROME_BIN: /usr/bin/google-chrome
-            - run: npm run pack
-            - run: npm run build:playground
-            - run: npm run build:docs
-            - run: npx playwright install --with-deps chromium
-            - run: npm run test:e2e
-            - run: npm run test:docs
-            - run: npm run test:performance
-            - uses: actions/upload-artifact@v4
-              with:
-                  name: package-and-evidence
-                  path: artifacts/
-    compatibility:
-        needs: package
-        runs-on: ubuntu-latest
-        strategy:
-            fail-fast: false
-            matrix:
-                include:
-                    - { angular: 17, node: 20.20.2 }
-                    - { angular: 18, node: 20.20.2 }
-                    - { angular: 19, node: 20.20.2 }
-                    - { angular: 20, node: 20.20.2 }
-                    - { angular: 21, node: 24.21.0 }
-                    - { angular: 22, node: 24.21.0 }
-        steps:
-            - uses: actions/checkout@v7
-            - uses: actions/setup-node@v7
-              with:
-                  node-version: 20.20.2
-            - run: npm ci
-            - uses: actions/download-artifact@v4
-              with:
-                  name: package-and-evidence
-                  path: artifacts
-            - uses: actions/setup-node@v7
-              with:
-                  node-version: ${{ matrix.node }}
-            - run: npx playwright install --with-deps chromium
-            - run: |
-                  echo "EDITRA_NPM_CLI=$(npm root -g)/npm/bin/npm-cli.js" >> "$GITHUB_ENV"
-                  echo "EDITRA_NODE20=$(command -v node)" >> "$GITHUB_ENV"
-                  echo "EDITRA_NODE24=$(command -v node)" >> "$GITHUB_ENV"
-            - run: npm run test:compatibility -- ${{ matrix.angular }}
+            - run: npm run verify:evidence
             - uses: actions/upload-artifact@v4
               if: always()
               with:
-                  name: angular-${{ matrix.angular }}-evidence
+                  name: package-and-evidence
                   path: artifacts/

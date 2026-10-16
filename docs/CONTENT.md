@@ -2,6 +2,9 @@
 
 The editor does not save to a server automatically. Your application owns storage, authentication, loading indicators, and error handling. Angular Forms supplies the current HTML value.
 
+To send content through an email provider, use the separate [email exporter](EMAIL.md).
+Normal editor/viewer HTML targets browsers and should not be treated as an email template.
+
 ## Save HTML from a form
 
 Read the form control when the user submits. Send that string to your own backend, where it must be validated and authorized before storage. This example deliberately shows the integration boundary rather than an invented server endpoint.

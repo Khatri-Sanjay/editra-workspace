@@ -19,7 +19,6 @@ export class ExamplesComponent {
 	);
 	private readonly theme = inject(DocsTheme);
 	readonly config = computed<EditraConfig>(() => ({
-		minHeight: 280,
 		placeholder: 'Start writing…',
 		theme: this.theme.dark() ? 'dark' : 'light',
 	}));

@@ -1,13 +1,25 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxEditraComponent } from 'ngx-editra';
+import {
+	NgxEditraComponent,
+	EditraContentDirective,
+	EditraHtmlPipe,
+	NgxEditraViewerComponent,
+} from 'ngx-editra';
 import type { EditraConfig, EditraChange, EditraTheme } from 'ngx-editra';
 import { demoContent } from './demo-content';
 
 @Component({
 	selector: 'app-root',
 	standalone: true,
-	imports: [FormsModule, ReactiveFormsModule, NgxEditraComponent],
+	imports: [
+		FormsModule,
+		ReactiveFormsModule,
+		NgxEditraComponent,
+		EditraContentDirective,
+		EditraHtmlPipe,
+		NgxEditraViewerComponent,
+	],
 	templateUrl: './playground.html',
 	styleUrl: './playground.scss',
 })

@@ -22,6 +22,15 @@
 	},
 	"sideEffects": false,
 	"description": "Modular ProseMirror rich-text editor for Angular",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Khatri-Sanjay/editra-workspace.git",
+		"directory": "packages/ngx-editra"
+	},
+	"homepage": "https://github.com/Khatri-Sanjay/editra-workspace#readme",
+	"bugs": {
+		"url": "https://github.com/Khatri-Sanjay/editra-workspace/issues"
+	},
 	"license": "MIT",
 	"keywords": [
 		"angular",

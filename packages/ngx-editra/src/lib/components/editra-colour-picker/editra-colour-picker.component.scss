@@ -67,6 +67,8 @@ button {
 	);
 }
 dialog {
+	box-sizing: border-box;
+	overscroll-behavior: contain;
 	position: fixed;
 	margin: 0;
 	width: 312px;
@@ -139,6 +141,9 @@ h3 {
 	background: currentColor;
 }
 .swatch {
+	box-sizing: border-box;
+	min-height: 0;
+	min-width: 0;
 	width: 24px;
 	height: 24px;
 	border: 1px solid #8888;
@@ -195,6 +200,9 @@ h3 {
 	justify-content: space-between;
 	margin-top: 10px;
 	input {
+		flex: none;
+		min-width: 0;
+		min-height: 0;
 		width: 40px;
 		height: 30px;
 		border: 1px solid var(--editra-border, #b8c2d0);
@@ -211,6 +219,7 @@ h3 {
 	outline-offset: 2px;
 }
 .automatic-colour:hover,
+.automatic-colour[aria-pressed='true'],
 .close-palette:hover {
 	background: var(--editra-hover, #e9edf3);
 }

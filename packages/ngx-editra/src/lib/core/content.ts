@@ -29,11 +29,12 @@ function style(node: DefaultTreeAdapterTypes.Element): Record<string, string> {
 	}
 	return result;
 }
-function text(node: HtmlNode): string {
+function text(node: HtmlNode, depth = 0): string {
+	if (depth > 100) throw new Error('Content nesting exceeds the supported limit');
 	return 'value' in node
 		? node.value
 		: 'childNodes' in node
-			? node.childNodes.map(text).join('')
+			? node.childNodes.map((child) => text(child, depth + 1)).join('')
 			: '';
 }
 function element(node: HtmlNode): node is DefaultTreeAdapterTypes.Element {
@@ -166,7 +167,7 @@ export function parseHTML(html: string, schema: Schema, config: EditraConfig = {
 				);
 				if (media.tagName === 'img')
 					return image(media, {
-						caption: caption ? text(caption) : '',
+						caption: caption ? text(caption, depth + 1) : '',
 						align: alignment(css['text-align']),
 						spacing: dimension(css['margin-top'] ?? css['margin'], 8, 100),
 						wrap: attr(node, 'data-wrap') === 'true',
@@ -175,7 +176,7 @@ export function parseHTML(html: string, schema: Schema, config: EditraConfig = {
 					});
 				const url = attr(node, 'data-editra-video') || attr(media, 'src');
 				return video(media, url, {
-					caption: caption ? text(caption) : '',
+					caption: caption ? text(caption, depth + 1) : '',
 					align: alignment(css['text-align']),
 					aspect: attr(node, 'data-aspect') !== 'false',
 					fullWidth: attr(node, 'data-full-width') === 'true',
@@ -186,10 +187,11 @@ export function parseHTML(html: string, schema: Schema, config: EditraConfig = {
 		if (tag === 'iframe' || tag === 'video') return video(node, attr(node, 'src'));
 		if (tag === 'br') return create('hard_break', {});
 		if (tag === 'hr') {
+			const border = css['border-top']?.split(/\s+/u) ?? [];
 			const line =
-				attr(node, 'data-line-style') ??
-				css['border-top-style'] ??
-				css['border-top']?.split(' ')[1];
+				attr(node, 'data-line-style') ||
+				css['border-top-style'] ||
+				border.find((part) => ['solid', 'dashed', 'dotted', 'double'].includes(part));
 			return create('horizontal_rule', {
 				style: ['solid', 'dashed', 'dotted', 'double'].includes(line ?? '')
 					? line
@@ -197,9 +199,9 @@ export function parseHTML(html: string, schema: Schema, config: EditraConfig = {
 				weight: Math.max(
 					1,
 					dimension(
-						attr(node, 'data-line-weight') ??
-							css['border-top-width'] ??
-							css['border-top']?.split(' ')[0],
+						attr(node, 'data-line-weight') ||
+							css['border-top-width'] ||
+							border.find((part) => /^\d+(?:\.\d+)?(?:px)?$/u.test(part)),
 						1,
 						8,
 					),
@@ -219,7 +221,8 @@ export function parseHTML(html: string, schema: Schema, config: EditraConfig = {
 			)
 				.replace(/[^\w+-]/gu, '')
 				.slice(0, 40);
-			return create('code_block', { language }, text(node) ? [schema.text(text(node))] : []);
+			const value = text(node, depth);
+			return create('code_block', { language }, value ? [schema.text(value)] : []);
 		}
 		const children = node.childNodes.flatMap((child) =>
 			walk(child, nextMarks, depth + 1, preserve),
@@ -296,7 +299,7 @@ export function parseHTML(html: string, schema: Schema, config: EditraConfig = {
 							.map((a) => [a.name, a.value]),
 					),
 					content: children,
-					text: text(node),
+					text: text(node, depth),
 				},
 				schema,
 			);

@@ -178,7 +178,7 @@ export const defaultToolbar: readonly EditraToolbarItem[] = [
 export class EditraToolbarComponent {
 	@Input() items: readonly EditraToolbarItem[] = defaultToolbar;
 	@Input() groups: readonly EditraToolbarGroup[] = [];
-	@Input() overflow: 'wrap' | 'scroll' = 'wrap';
+	@Input() overflow: 'wrap' | 'scroll' = 'scroll';
 	get renderedGroups(): readonly EditraToolbarGroup[] {
 		if (this.groups.length) return this.groups.filter((group) => group.items.length);
 		const groups: { id: string; label: string; items: EditraToolbarItem[] }[] = [];

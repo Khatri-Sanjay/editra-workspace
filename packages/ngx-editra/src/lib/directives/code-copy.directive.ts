@@ -22,6 +22,11 @@ export class EditraCodeCopyDirective implements AfterViewInit, OnDestroy {
 	}
 
 	private decorate(): void {
+		for (const [button, timer] of this.timers) {
+			if (this.element.contains(button)) continue;
+			clearTimeout(timer);
+			this.timers.delete(button);
+		}
 		const doc = this.element.ownerDocument;
 		for (const pre of Array.from(this.element.querySelectorAll('pre'))) {
 			if (!pre.querySelector('code') || pre.closest('.editra-rendered-code')) continue;

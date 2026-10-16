@@ -2,6 +2,10 @@
 
 Match the editor to your application with a theme, then adjust supported CSS custom properties when you need brand-specific colours. Editor and viewer styles load automatically; no global Sass import is required for either component.
 
+For pages with a fixed header, set `--editra-sticky-offset` on `ngx-editra` to its height,
+including responsive overrides. This overrides `config.toolbar.stickyOffset` when pinned;
+fullscreen mode always uses a zero offset.
+
 ```typescript
 import type { EditraConfig } from 'ngx-editra';
 export const config: EditraConfig = { theme: 'auto' };
@@ -51,15 +55,15 @@ raw HTML directly; the viewer validates input before rendering it.
 
 ## Using Angular innerHTML
 
-Import the standalone `EditraHtmlPipe` and `EditraCodeCopyDirective` from `ngx-editra`
-in your component imports.
-Include `@use 'ngx-editra/styles/content.scss';` in your global stylesheet, then use:
+For automatic rendering, styles and code-copy buttons, import `EditraContentDirective` and use `<div [editraContent]="savedHtml"></div>`. Optionally add `[editraContentConfig]="config"` for a theme or custom extensions. No pipe, separate copy directive or Sass import is needed. See [Display saved content](VIEWER.md).
+
+Import the standalone `EditraHtmlPipe` from `ngx-editra` in your component imports. Styles load automatically; use:
 
 ```html
-<div class="editra-content" editraCodeCopy [innerHTML]="savedHtml | editraHtml: config"></div>
+<div [innerHTML]="savedHtml | editraHtml"></div>
 ```
 
-The pipe validates saved HTML with the editor schema before trusting its output.
+The pipe validates saved HTML with the editor schema before trusting its output and adds a styled content wrapper. Configuration is optional: use `editraHtml: config` when needed.
 Plain Angular `[innerHTML]="savedHtml"` strips inline styles and embedded players;
 the pipe preserves approved formatting and video URLs. Pass the editor configuration
 for the same extensions and URL policy, and replace the configuration object when it changes.

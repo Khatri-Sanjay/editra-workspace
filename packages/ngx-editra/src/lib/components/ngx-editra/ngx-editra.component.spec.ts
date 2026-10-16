@@ -33,6 +33,28 @@ describe('Angular forms adapter', () => {
 			imports: [FormHostComponent, ParentFormHostComponent, NgxEditraComponent],
 		}).compileComponents();
 	});
+	it('keeps active extensions alive when a replacement configuration is rejected', async () => {
+		const fixture = TestBed.createComponent(NgxEditraComponent);
+		const created = jasmine.createSpy('created');
+		const destroyed = jasmine.createSpy('destroyed');
+		fixture.componentRef.setInput('config', {
+			extensions: [{ id: 'lifecycle', onCreate: created, onDestroy: destroyed }],
+		});
+		fixture.detectChanges();
+		await fixture.whenStable();
+		fixture.detectChanges();
+		expect(created).toHaveBeenCalledTimes(1);
+		const errors = jasmine.createSpy('errors');
+		fixture.componentInstance.editorError.subscribe(errors);
+		fixture.componentRef.setInput('config', {
+			extensions: [{ id: 'duplicate' }, { id: 'duplicate' }],
+		});
+		fixture.detectChanges();
+		expect(errors).toHaveBeenCalled();
+		expect(destroyed).not.toHaveBeenCalled();
+		fixture.destroy();
+		expect(destroyed).toHaveBeenCalledTimes(1);
+	});
 	it('integrates formControlName and named ngModel inside parent forms', async () => {
 		const fixture = TestBed.createComponent(ParentFormHostComponent);
 		fixture.detectChanges();

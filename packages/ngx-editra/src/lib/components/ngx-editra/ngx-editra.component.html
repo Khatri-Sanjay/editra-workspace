@@ -1,10 +1,14 @@
 @if (!config.toolbar?.hidden) {
 	<editra-toolbar
 		[class.sticky-toolbar]="toolbarSticky"
-		[style.top.px]="fullscreen ? 0 : (config.toolbar?.stickyOffset ?? 0)"
+		[style.top]="
+			fullscreen
+				? '0px'
+				: 'var(--editra-sticky-offset, ' + (config.toolbar?.stickyOffset ?? 0) + 'px)'
+		"
 		[items]="toolbarItems"
 		[groups]="toolbarGroups"
-		[overflow]="config.toolbar?.overflow ?? 'wrap'"
+		[overflow]="config.toolbar?.overflow ?? 'scroll'"
 		[disabled]="locked"
 		[enabled]="enabled"
 		[active]="active"
@@ -123,7 +127,11 @@
 			(closed)="clearColourSelection('highlight')"
 			(colourChange)="applyColour('highlight', $event)"
 		/>
-		<div class="toolbar-action-group" role="group" aria-label="Insert content">
+		<div
+			class="toolbar-action-group toolbar-insert-actions"
+			role="group"
+			aria-label="Insert content"
+		>
 			@for (kind of dialogKinds; track kind) {
 				<div class="toolbar-insert-pair" [class.table-insert-pair]="kind === 'table'">
 					<button

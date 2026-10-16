@@ -32,3 +32,82 @@ and [quick start](QUICK_START.md). Verify both components work without any appli
 Package-name ownership and availability must be checked at release time; no name is reserved.
 See the [official npm publish reference](https://docs.npmjs.com/cli/v10/commands/npm-publish/)
 for archive publishing and tags.
+
+## Automated validation and maintenance
+
+The package is unpublished and remains an alpha until the release evidence and manual
+acceptance work are complete. Validation and packing never publish a package.
+
+## Local validation
+
+Use the repository's Node 20.20.2/npm 10.8.2 compilation baseline, install dependencies
+with `npm ci`, and provide Chrome/Chromium for browser tests. On Windows, use `npm.cmd`
+if PowerShell blocks npm.ps1. Set `CHROME_BIN` for Karma and `EDITRA_BROWSER` for
+Playwright when using an installed Chromium browser, including Microsoft Edge.
+
+```sh
+npm run validate
+```
+
+The command stops on the first failure. It checks generated documentation, formatting,
+lint, architectural boundaries, builds, types, all unit tests, packaged server rendering,
+archive contents, production playground/docs browser tests and performance observations.
+Server rendering checks exercise the pipe, directive and viewer, including shared styles,
+validated media, CSP nonces and isolated requests. Browser rendering checks exercise
+hydration and code copying through the public package entry point.
+
+## Consumer compatibility
+
+Set `EDITRA_NODE20` and `EDITRA_NODE24` to the respective Node executables and, if not
+running through npm, `EDITRA_NPM_CLI` to npm's JavaScript entry point. Then run:
+
+```sh
+npm run validate -- --compatibility
+npm run verify:evidence
+```
+
+The compatibility runner installs the newly packed archive in six independent Angular
+17–22 consumers using normal peer resolution. Each consumer must pass production build,
+forms, SSR/hydration, security, media, table and saved-content rendering tests. Evidence
+is stored in `artifacts/compatibility-results.json` with the archive SHA-256. Historical
+results do not validate a changed archive. Do not widen peer ranges without passing the
+corresponding consumer checks.
+
+The oldest supported Angular runtime determines the current compilation baseline.
+Upgrading the compilation Angular major requires reviewing the lower peer ranges and
+retesting consumers; it is not a dependency-only change. Legacy compatibility does not
+establish ongoing security support for an application's Angular or Node version.
+
+## Ongoing maintenance
+
+GitHub Actions runs the same complete validation and evidence verification command for
+pushes, pull requests, manual requests and weekly, with separate Node runtimes for consumers.
+Dependabot checks workspace, consumer and action dependencies weekly; review updates
+through the same checks. CI configuration is not evidence of a successful remote run.
+Consumer Angular majors remain distinct, and TypeScript minor changes need manual review.
+See [maintenance policy](MAINTENANCE.md) for migration and repository-setting requirements.
+
+Validation generates `artifacts/release-validation.json` directly from executed checks.
+It records failures as well as successes, the source fingerprint, archive hash and fresh
+consumer reports. `verify:evidence` rejects missing checks, source/archive changes, missing
+consumer majors or a failed maintained-consumer production audit. After changing source,
+revalidate before publishing. The source fingerprint normalizes consumer tarball paths;
+their installed lockfile hashes are recorded per consumer.
+
+For each release, update `CHANGELOG.md`, usage/API documentation, `PROGRESS.md` and
+the compatibility evidence. Review the consuming application's production dependency
+audit separately from legacy build-tool dependencies. Address or explicitly document
+findings before release. Never infer a current audit result from an earlier report.
+
+## Stable-release acceptance
+
+-   All automated checks pass for the exact archive intended for release.
+-   Remote CI completes successfully on the release revision.
+-   Keyboard, screen-reader, high-contrast and mobile behavior is reviewed manually.
+-   HTML policies, extension trust boundaries and dependency findings receive review.
+-   Clipboard failures, repeated mounting and memory behavior are tested in supported browsers.
+-   Bundle-size and performance costs are documented for the supported use cases.
+-   Package ownership, metadata and release notes are checked before an explicit publish action.
+
+Remaining manual and external checks are tracked in `PROGRESS.md`; they must not be
+marked complete based only on automated tests.

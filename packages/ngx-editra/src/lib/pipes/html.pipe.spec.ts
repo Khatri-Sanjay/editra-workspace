@@ -13,7 +13,30 @@ class HtmlHostComponent {
 		'<pre data-language="typescript"><code>if (x &lt; 2) {\n  run();\n}</code></pre><blockquote><p>Quote</p></blockquote><iframe src="https://youtu.be/dQw4w9WgXcQ"></iframe><script>alert(1)</script>';
 }
 
+@Component({
+	standalone: true,
+	imports: [EditraHtmlPipe],
+	template: '<div [innerHTML]="html | editraHtml"></div>',
+})
+class SimpleHtmlHostComponent {
+	html = '<h2>Title</h2><p>Content</p><script>alert(1)</script>';
+}
+
 describe('EditraHtmlPipe', () => {
+	it('styles a pipe-only binding without a viewer, directive or global Sass import', () => {
+		const fixture = TestBed.createComponent(SimpleHtmlHostComponent);
+		fixture.detectChanges();
+		const host = fixture.nativeElement as HTMLElement;
+		const content = host.querySelector('.editra-content') as HTMLElement;
+		expect(content.querySelector('h2')?.textContent).toBe('Title');
+		expect(content.querySelector('script')).toBeNull();
+		expect(getComputedStyle(content).display).toBe('flow-root');
+		fixture.componentInstance.html = '<p>Updated</p>';
+		fixture.detectChanges();
+		expect(host.querySelectorAll('.editra-content').length).toBe(1);
+		expect(host.textContent).toBe('Updated');
+		fixture.destroy();
+	});
 	it('copies code only, refreshes controls on replacement and reports clipboard failure', async () => {
 		const write = spyOn(navigator.clipboard, 'writeText').and.resolveTo();
 		const fixture = TestBed.createComponent(HtmlHostComponent);

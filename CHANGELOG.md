@@ -1,30 +1,51 @@
-# Changelog
+﻿# Changelog
 
-## 0.1.0-alpha.0 — unreleased
+## 0.1.0-alpha.0 - planned initial release
 
--   Renamed the public editor to `NgxEditraComponent` (`ngx-editra`) and viewer to
-    `NgxEditraViewerComponent` (`ngx-editra-viewer`), including component directories,
-    styles, examples and tests. Consumers of earlier source snapshots must update
-    their imports and template selectors; viewer HTML remains bound through `[html]`.
--   Documented npm installation, prerelease tags and complete published-package usage.
--   Bundled default editor styles with the component so applications no longer need
-    a global Sass import. The standalone viewer also includes its content styles.
+This version has not been published. These entries describe the current initial alpha,
+rather than migrations from an earlier npm release. Release acceptance and validation
+evidence are tracked in [project status](PROGRESS.md) and the [release process](docs/RELEASING.md).
 
--   ProseMirror document engine with server-safe parsing and deterministic HTML rendering.
--   Expanded task-based documentation with setup, feature walkthroughs, saving/rendering,
-    events, accessibility and troubleshooting; per-example copying and live Markdown/viewer previews.
--   Organized the documentation app into a shared layout, lazy feature pages, core services,
-    shared models, generated content and ordered stylesheet modules.
--   Standalone Angular HTML-valued forms adapter and explicit hydration boundary.
--   Text formatting, keyboard history, lists, URL media, table commands and resizing.
--   Extension registry, themes, find/replace, counts and CommonMark conversions.
--   Packaged SCSS, playground, security/command/forms tests and browser validation.
--   Independent Angular consumer matrix and release-preparation workflow.
--   Consolidated public imports into ngx-editra; removed /core and /extensions package entry points.
--   Centralized documentation at the workspace root and assembled release documents directly
-    into the distribution, with one build script and no duplicate package-source documents.
--   Library sources organized under packages/ngx-editra/src with explicit public exports,
-    enforced entry-point boundaries, build-before-serve scripts and package export validation.
+### Editor and forms
 
-This is a prerelease. Completion gaps and executed compatibility evidence are recorded in PROGRESS.md
-and docs/COMPATIBILITY.md. No package has been published.
+-   Standalone `NgxEditraComponent` (`<ngx-editra>`) with HTML-valued Reactive Forms and
+    template-driven forms, semantic required validation, disabled/read-only states, typed
+    events and an explicit hydration boundary.
+-   ProseMirror engine with schema-based HTML/JSON validation, bounded parsing,
+    deterministic serialization and configurable URL/media policies.
+-   Formatting, headings, lists, alignment, history, find/replace, counts, font/highlight
+    palettes, code blocks, tables, media, columns and horizontal lines.
+-   Model-backed media/table/column resizing with keyboard controls, cancellation and undo.
+-   Responsive toolbar controls, optional pinned/floating toolbars, viewport-contained
+    dialogs and palettes, compact colour swatches and fullscreen editing.
+-   Programmatic writes reset history; rejected configuration preserves the active editor.
+    Import validation includes nested code/captions and divider formatting.
+
+### Saved content and customization
+
+-   `exportEmail` generates separate inline-styled email HTML, plain text and conversion
+    warnings, with an Outlook width fallback and stacked column/video-link fallbacks.
+    A sandboxed playground preview and client-testing guide accompany the API; real
+    Gmail/Outlook/Apple Mail verification remains outstanding.
+-   `NgxEditraViewerComponent` (`<ngx-editra-viewer [html]="savedHtml">`) and `[editraContent]`
+    for validated, styled saved HTML with code-copy controls.
+-   `editraHtml` pipe for validated `[innerHTML]` rendering with automatic styles;
+    optional `editraCodeCopy` supplies interactive copy controls for this binding.
+-   Included editor/content styles, light/dark/automatic themes, CSS custom properties and
+    optional Sass exports. Public renderers do not require manual style imports.
+-   Public APIs exported from `ngx-editra`, including the document engine, typed
+    configuration, deterministic extensions and CommonMark conversion utilities.
+
+### Workspace and release checks
+
+-   Playground and searchable documentation apps with examples, code copying and guides
+    generated from the canonical repository Markdown.
+-   `npm run start:all` starts both development apps after preparing the library and guides.
+-   Unit, browser, SSR/CSP, security-policy, architecture and performance checks;
+    independent Angular 17-22 consumers validate the exact compiled archive.
+-   Package metadata, MIT licence, maintenance/security policies, scheduled CI and dependency
+    checks, source/archive fingerprints and stale-evidence rejection.
+
+Signal Forms can use Angular's ControlValueAccessor compatibility integration, but dedicated
+Signal Forms integration tests are outstanding. This alpha does not establish stable-release
+acceptance or upstream security support for legacy runtimes.

@@ -38,15 +38,22 @@ editra-workspace/
   angular.json              Angular project roots and builders
   tsconfig.json             Shared strict compiler settings and package alias
   package.json              Private workspace and development commands
-  README.md                 Canonical package overview
+  README.md                 GitHub workspace and deployment overview
   LICENSE                   Canonical license
   CHANGELOG.md              Canonical release notes
   CONTRIBUTING.md            Canonical contributor guidance
   PROGRESS.md                Canonical acceptance status
 ```
 
-Root documents and docs/ are maintained once. The library source does not contain
-copies. dist/, artifacts/, test-results/ and node_modules/ are generated outputs,
+The playground root is a router shell. Its lazy feature in
+`apps/playground/src/app/features/playground` owns editor/form state, toolbar presets,
+import actions and sample data. The shared document-output component accepts serialized
+text and emits format choices; it owns clipboard feedback without accessing editor internals.
+See [the playground architecture](apps/playground/README.md) for the file map and features.
+
+Root policies and docs/ are maintained once. packages/ngx-editra/README.md is the
+consumer-facing npm overview; the root README serves GitHub contributors. These have
+different audiences and are not generated copies. dist/, artifacts/, test-results/ and node_modules/ are generated outputs,
 not architecture layers. npm may create package-local node_modules for dependency
 versions that cannot share the root installation; these must not be manually moved.
 
@@ -75,8 +82,9 @@ their tooling and dependency resolution remain isolated.
 ## Build and packaging
 
 npm run build invokes scripts/build-library.mjs. It runs the configured ng-packagr
-builder, then copies the canonical root documents and docs/ directly into
-dist/ngx-editra. No generated documents are written back into package source.
+builder, then copies the package README, canonical root policies and docs/ directly into
+dist/ngx-editra. LICENSE is maintained at the root and copied unchanged into the package.
+No generated documents are written back into package source.
 The wrapper is needed because ng-packagr rejects assets outside the library root.
 Use npm run build for the complete distribution; bare ng build only compiles the
 library and local styles. npm run watch is for code iteration, not release packaging.

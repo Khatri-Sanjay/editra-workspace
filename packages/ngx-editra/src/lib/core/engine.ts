@@ -140,10 +140,6 @@ export class EditraEngine {
 		this.replace(parseJSON(value, this.schema, this.config));
 	}
 	private replace(doc: Node): void {
-		if (this.state.doc.eq(doc)) {
-			this.dirty = false;
-			return;
-		}
 		// Programmatic values reset history and dirty state, preserving a bounded cursor position.
 		const position = Math.min(this.state.selection.from, Math.max(1, doc.content.size - 1));
 		this.editorState = EditorState.create({

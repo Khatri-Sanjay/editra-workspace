@@ -38,12 +38,15 @@ Open the live example in this documentation to try the real component. The libra
 | Set application defaults     | provideEditra(config), with per-editor config input overrides                                |
 | Match a design system        | Light, dark, or auto themes and CSS custom properties                                        |
 | Save and restore content     | Read form HTML or explicit JSON conversion methods; use your own backend                     |
-| Render saved documents       | NgxEditraViewerComponent or the validated HTML pipe                                          |
+| Render saved documents       | NgxEditraViewerComponent, editraContent directive, or editraHtml pipe with automatic styles  |
 | React to editor activity     | Content, selection, ready, destroy, focus, blur, dirty, error, and transaction events        |
 | Add behavior                 | Typed extensions with commands, toolbar items, schema contributions, plugins, and node views |
 | Server-render an application | Static validated content on the server; browser editing starts after rendering               |
 
 ## What is not included
+
+Use [email export](EMAIL.md) for a separate conservative email HTML/text body with
+conversion warnings. Real Gmail, Outlook and Apple Mail rendering still requires inbox tests.
 
 The library does not provide a backend, file uploads, cloud storage, collaboration, track changes, PDF/Word export, or syntax highlighting. An image/video URL must already be accessible to the viewer. A valid URL does not guarantee that its host allows embedding.
 

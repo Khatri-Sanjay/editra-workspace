@@ -2,8 +2,8 @@
 
 ## Single package entry point
 
-All public symbols are imported from `ngx-editra`. Replace previous `/core` and
-`/extensions` import sources with `ngx-editra`; internal implementation paths are unsupported.
+All public symbols are imported from `ngx-editra`. Internal implementation paths and
+separate `/core` or `/extensions` import sources are unsupported.
 
 New to the component? Start with [Quick start](QUICK_START.md). Use [events](EVENTS.md) for typed event handlers, [content and saving](CONTENT.md) for conversion/persistence, and [the viewer](VIEWER.md) for reading surfaces. This page is the compact reference rather than a setup tutorial.
 
@@ -22,6 +22,25 @@ fitTableToPage, distributeTableColumns and resetTableRowHeights. Resize helpers 
 transactions or null; commands use the usual ProseMirror Command signature.
 
 Extension exports from `ngx-editra`: imageExtension, videoExtension, importMarkdown, exportMarkdown.
+
+## Saved content rendering
+
+All rendering APIs validate saved HTML through the same schema and load shared styles
+automatically. Each is standalone and exported from `ngx-editra`.
+
+| Import                     | Template                                            | Code-copy controls                 |
+| -------------------------- | --------------------------------------------------- | ---------------------------------- |
+| `EditraContentDirective`   | `<div [editraContent]="savedHtml"></div>`           | Included                           |
+| `EditraHtmlPipe`           | `<div [innerHTML]="savedHtml \| editraHtml"></div>` | Optional `EditraCodeCopyDirective` |
+| `NgxEditraViewerComponent` | `<ngx-editra-viewer [html]="savedHtml" />`          | Included                           |
+
+Configuration is optional: `[editraContentConfig]="config"`, `editraHtml: config`, or
+`[config]="config"`, respectively. Defaults come from `provideEditra` when configured.
+Replace configuration objects when changing themes or extensions. The pipe and directive
+accept null/undefined HTML as empty content. They render a block content wrapper; use
+a `div`, `article` or other suitable block container. Do not combine `editraContent`
+with another content binding or child template on its host. Copy controls require HTTPS
+or localhost in a browser; server rendering includes validated content and styles.
 
 ## Media document attributes
 
@@ -94,3 +113,10 @@ This is a separate document engine, not a way to access the Angular component's 
 
 CommonMark conversion supports its ordinary blocks/marks. Tables/videos export as safe raw HTML;
 colour/font/size marks lose presentation. Raw HTML Markdown imports and custom nodes are not lossless.
+
+## Email export
+
+`exportEmail(html, options?, config?)` returns `EditraEmailResult` with complete `html`,
+plain `text`, and conversion `warnings`. `EditraEmailOptions` accepts title, preheader,
+width (360–800, default 600) and language. See [email export](EMAIL.md) for content
+fallbacks, sending integration and the real-client verification requirements.

@@ -7,6 +7,7 @@
 /guides/angular-forms
 /guides/content
 /guides/viewer
+/guides/email
 /guides/events
 /guides/toolbar
 /guides/theming
@@ -27,6 +28,9 @@
 /guides/security
 /guides/compatibility
 /guides/releasing
+/guides/deployment
+/guides/maintenance
 /guides/project-status
 /guides/contributing
 /guides/changelog
+/guides/security-reporting

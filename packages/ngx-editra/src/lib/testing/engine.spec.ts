@@ -14,11 +14,23 @@ import {
 } from '../core/public-api';
 import { TextSelection } from 'prosemirror-state';
 import { CellSelection } from 'prosemirror-tables';
+import { undoDepth } from 'prosemirror-history';
 import { importMarkdown, exportMarkdown } from '../extensions/public-api';
 import type { EditraHtmlElement } from '../core/public-api';
 import type { Schema } from 'prosemirror-model';
 
 describe('Editra engine', () => {
+	it('clears undo history when a programmatic value equals the current document', () => {
+		for (const format of ['html', 'json']) {
+			const engine = new EditraEngine({}, '<p>Original</p>');
+			engine.apply(engine.state.tr.insertText('Updated ', 1));
+			expect(undoDepth(engine.state)).toBe(1);
+			if (format === 'html') engine.setHTML(engine.getHTML());
+			else engine.setJSON(engine.getJSON());
+			expect(engine.dirty).toBeFalse();
+			expect(undoDepth(engine.state)).toBe(0);
+		}
+	});
 	it('preserves code languages and escaped code through HTML round trips', () => {
 		const engine = new EditraEngine(
 			{},

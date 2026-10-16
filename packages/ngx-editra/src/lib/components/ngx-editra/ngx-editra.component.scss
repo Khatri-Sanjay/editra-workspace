@@ -8,6 +8,7 @@ ngx-editra {
 		--editra-surface: #fff;
 		--editra-text: #182338;
 		--editra-border: #b8c2d0;
+		--editra-frame: var(--editra-border);
 		--editra-active: #dce9ff;
 		--editra-focus: #1763d1;
 		--editra-error: #b42318;
@@ -27,6 +28,7 @@ ngx-editra {
 		display: none !important;
 	}
 	&:focus-within {
+		--editra-frame: var(--editra-focus);
 		border-color: var(--editra-focus);
 		box-shadow: 0 0 0 1px var(--editra-focus);
 	}
@@ -62,9 +64,18 @@ ngx-editra {
 			--editra-hover: #2a3b56;
 		}
 	}
-	&.editra-fullscreen {
+	&.editra-fullscreen.editra-fullscreen {
+		// Fullscreen must override the host page's normal editor layout.
 		position: fixed;
 		inset: 0;
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		max-width: none;
+		max-height: none;
+		box-sizing: border-box;
 		z-index: 1000;
 		display: flex;
 		flex-direction: column;
@@ -124,12 +135,15 @@ ngx-editra {
 		outline-offset: 2px;
 	}
 	dialog {
+		box-sizing: border-box;
+		max-width: calc(100vw - 16px);
+		overscroll-behavior: contain;
 		color: var(--editra-text);
 		background: var(--editra-surface);
 		border: 1px solid var(--editra-border);
 		border-radius: 12px;
 		width: min(480px, calc(100vw - 48px));
-		max-height: 85vh;
+		max-height: calc(100dvh - 16px);
 		overflow: auto;
 	}
 	dialog::backdrop {
@@ -372,6 +386,13 @@ ngx-editra {
 			padding-right: 0;
 			margin-right: 0;
 		}
+		&:not(:has(button:not([hidden]))) {
+			display: none;
+		}
+	}
+	// Let each insert control use the remaining space instead of wrapping the whole group.
+	.toolbar-action-group.toolbar-insert-actions {
+		display: contents;
 		&:not(:has(button:not([hidden]))) {
 			display: none;
 		}
@@ -764,6 +785,8 @@ ngx-editra {
 	}
 
 	.editor-tools {
+		flex-wrap: nowrap;
+		flex-shrink: 0;
 		margin-left: auto;
 		border-right: 0;
 		border-left: 1px solid var(--editra-border);
@@ -858,6 +881,17 @@ ngx-editra {
 		z-index: 30;
 		background: var(--editra-toolbar);
 		box-shadow: 0 2px 6px #0001;
+		border-radius: 7px 7px 0 0;
+		// The editor's top border scrolls away; keep the pinned header's frame visible.
+		&::after {
+			content: '';
+			position: absolute;
+			inset: 0 -1px 0;
+			border: 1px solid var(--editra-frame);
+			border-bottom: 0;
+			border-radius: 8px 8px 0 0;
+			pointer-events: none;
+		}
 	}
 
 	.table-insert-pair:hover,

@@ -1,4 +1,6 @@
-import { spawn } from 'node:child_process';
+import { spawn, execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+import { sourceFingerprint } from './release-evidence.mjs';
 import { mkdir, writeFile, readFile, copyFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
@@ -35,6 +37,11 @@ const archive = resolve(root, `artifacts/${pkg.name}-${pkg.version}.tgz`);
 const archiveSha256 = createHash('sha256')
 	.update(await readFile(archive))
 	.digest('hex');
+const manifest = JSON.parse(await readFile('artifacts/package-manifest.json', 'utf8'));
+const sourceSha256 = await sourceFingerprint();
+if (manifest.archiveSha256 !== archiveSha256 || manifest.sourceSha256 !== sourceSha256)
+	throw new Error('Archive is stale or unverified. Run npm run pack before consumer validation.');
+const execute = promisify(execFile);
 // Preserve other consumer results only when they validate this exact archive.
 try {
 	const previous = JSON.parse(
@@ -42,7 +49,10 @@ try {
 	);
 	results.push(
 		...previous.filter(
-			(result) => result.archiveSha256 === archiveSha256 && !majors.includes(result.angular),
+			(result) =>
+				result.archiveSha256 === archiveSha256 &&
+				result.sourceSha256 === sourceSha256 &&
+				!majors.includes(result.angular),
 		),
 	);
 } catch (error) {
@@ -51,6 +61,7 @@ try {
 // Prevent npm caching an older same-version local package.
 const snapshot = resolve(root, `artifacts/ngx-editra-${archiveSha256.slice(0, 12)}.tgz`);
 await copyFile(archive, snapshot);
+await writeFile('artifacts/compatibility-results.json', JSON.stringify(results, null, 2) + '\n');
 async function verify(major) {
 	const node = major >= 21 ? node24 : node20,
 		directory = resolve(root, `apps/compatibility/angular-${major}`);
@@ -58,56 +69,116 @@ async function verify(major) {
 	const result = {
 		angular: major,
 		archiveSha256,
+		sourceSha256,
+		startedAt: new Date().toISOString(),
+		node: (await execute(node, ['--version'])).stdout.trim(),
 		install: false,
 		build: false,
 		browserFormsSsrHydration: false,
+		productionAudit: major === 22 ? false : null,
+		peerBypass: process.env['EDITRA_CANDIDATE_PEERS'] === '1',
 	};
 	results.push(result);
-	// Candidate peer testing: publish metadata remains restricted until the matrix passes.
-	result.install = await run(
-		node,
-		[
-			npm,
-			'install',
-			snapshot,
-			...(process.env['EDITRA_CANDIDATE_PEERS'] === '1' ? ['--legacy-peer-deps'] : []),
-			'--workspaces=false',
-			'--offline=false',
-			'--cache',
-			resolve(root, '.npm-cache'),
-			'--no-audit',
-			'--no-fund',
-		],
-		directory,
-	);
-	if (result.install)
-		result.build = await run(
-			node,
-			['node_modules/@angular/cli/bin/ng.js', 'build', 'playground'],
-			directory,
-		);
-	if (result.build)
-		result.browserFormsSsrHydration = await run(
+	const manifestPath = resolve(directory, 'package.json');
+	const lockPath = resolve(directory, 'package-lock.json');
+	const originalManifest = await readFile(manifestPath);
+	const originalLock = await readFile(lockPath);
+	try {
+		// Candidate peer testing: publish metadata remains restricted until the matrix passes.
+		result.install = await run(
 			node,
 			[
-				resolve(root, 'node_modules/@playwright/test/cli.js'),
-				'test',
-				'e2e/editor.spec.ts',
-				'e2e/media.spec.ts',
-				'e2e/media-layout.spec.ts',
-				'e2e/word-tools.spec.ts',
+				npm,
+				'install',
+				snapshot,
+				...(process.env['EDITRA_CANDIDATE_PEERS'] === '1' ? ['--legacy-peer-deps'] : []),
+				'--workspaces=false',
+				'--offline=false',
+				'--cache',
+				resolve(root, '.npm-cache'),
+				'--no-audit',
+				'--no-fund',
 			],
-			root,
-			{
-				EDITRA_SERVER_COMMAND: `"${node}" "${resolve(directory, 'dist/playground/server/server.mjs')}"`,
-				EDITRA_E2E_REPORT: `artifacts/angular-${major}-e2e.json`,
-				EDITRA_TEST_OUTPUT: `test-results/angular-${major}`,
-				EDITRA_BASE_URL: `http://localhost:${4700 + major}`,
-				PORT: String(4700 + major),
-				EDITRA_SCREENSHOT_PREFIX: `angular-${major}-word`,
-			},
+			directory,
 		);
-	return result;
+		if (result.install)
+			result.build = await run(
+				node,
+				['node_modules/@angular/cli/bin/ng.js', 'build', 'playground'],
+				directory,
+			);
+		if (result.install) {
+			const angularPackage = JSON.parse(
+				await readFile(
+					resolve(directory, 'node_modules/@angular/core/package.json'),
+					'utf8',
+				),
+			);
+			result.angularVersion = angularPackage.version;
+			result.consumerLockSha256 = createHash('sha256')
+				.update(await readFile(resolve(directory, 'package-lock.json')))
+				.digest('hex');
+		}
+		if (result.build)
+			result.browserFormsSsrHydration = await run(
+				node,
+				[
+					resolve(root, 'node_modules/@playwright/test/cli.js'),
+					'test',
+					'e2e/editor.spec.ts',
+					'e2e/media.spec.ts',
+					'e2e/media-layout.spec.ts',
+					'e2e/word-tools.spec.ts',
+					'e2e/rendering.spec.ts',
+				],
+				root,
+				{
+					EDITRA_SERVER_COMMAND: `"${node}" "${resolve(directory, 'dist/playground/server/server.mjs')}"`,
+					EDITRA_E2E_REPORT: `artifacts/angular-${major}-e2e.json`,
+					EDITRA_TEST_OUTPUT: `test-results/angular-${major}`,
+					EDITRA_BASE_URL: `http://localhost:${4700 + major}`,
+					PORT: String(4700 + major),
+					EDITRA_SCREENSHOT_PREFIX: `angular-${major}-word`,
+				},
+			);
+		if (result.browserFormsSsrHydration) {
+			const report = JSON.parse(
+				await readFile(`artifacts/angular-${major}-e2e.json`, 'utf8'),
+			);
+			result.browserTests = report.stats;
+			result.browserFormsSsrHydration =
+				report.stats.expected > 0 &&
+				!report.stats.unexpected &&
+				!report.stats.flaky &&
+				!report.stats.skipped &&
+				Date.parse(report.stats.startTime) >= Date.parse(result.startedAt);
+		}
+		if (major === 22 && result.install) {
+			let output;
+			try {
+				output = (
+					await execute(
+						node,
+						[npm, 'audit', '--omit=dev', '--json', '--workspaces=false'],
+						{
+							cwd: directory,
+							maxBuffer: 8 * 1024 * 1024,
+						},
+					)
+				).stdout;
+			} catch (error) {
+				output = error.stdout || JSON.stringify({ error: error.message });
+			}
+			await writeFile('artifacts/angular-22-current-audit.json', output);
+			const audit = JSON.parse(output);
+			result.productionAudit = audit.metadata?.vulnerabilities?.total === 0;
+		}
+		result.finishedAt = new Date().toISOString();
+		return result;
+	} finally {
+		await writeFile(manifestPath, originalManifest);
+		await writeFile(lockPath, originalLock);
+	}
 }
 for (let index = 0; index < majors.length; index += 2) {
 	await Promise.all(majors.slice(index, index + 2).map(verify));
@@ -120,5 +191,12 @@ for (let index = 0; index < majors.length; index += 2) {
 		) + '\n',
 	);
 }
-if (results.some((result) => !result.build || !result.browserFormsSsrHydration))
+if (
+	results.some(
+		(result) =>
+			!result.build ||
+			!result.browserFormsSsrHydration ||
+			(result.angular === 22 && !result.productionAudit),
+	)
+)
 	process.exitCode = 1;

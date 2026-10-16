@@ -22,8 +22,11 @@ export type { EditraDialogPresenter } from './config/editra.config';
 export { NgxEditraViewerComponent } from './components/ngx-editra-viewer/ngx-editra-viewer.component';
 
 export { EditraHtmlPipe } from './pipes/html.pipe';
+export { exportEmail } from './core/email';
+export type { EditraEmailOptions, EditraEmailResult, EditraEmailWarning } from './core/email';
 
 export { EditraCodeCopyDirective } from './directives/code-copy.directive';
+export { EditraContentDirective } from './directives/content.directive';
 
 export type {
 	EditraDocument,

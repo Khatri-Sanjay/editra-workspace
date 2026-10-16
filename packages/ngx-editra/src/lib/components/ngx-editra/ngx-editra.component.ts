@@ -66,7 +66,7 @@ import {
 import { EditraToolbarComponent, defaultToolbar } from '../editra-toolbar/editra-toolbar.component';
 import { EditraIconComponent } from '../editra-icon/editra-icon.component';
 import { EditraColourPickerComponent } from '../editra-colour-picker/editra-colour-picker.component';
-import { positionPopover } from '../../utils/popover-position';
+import { observePopover } from '../../utils/popover-position';
 import { EDITRA_CONFIG, EDITRA_DIALOG_PRESENTER } from '../../config/editra.config';
 import { EditraTableGridComponent } from '../editra-table-grid/editra-table-grid.component';
 import { EditraMenuComponent } from '../editra-menu/editra-menu.component';
@@ -584,14 +584,9 @@ export class NgxEditraComponent implements ControlValueAccessor, Validator, OnCh
 		const dialog = this.dialog.nativeElement;
 		if (kind === 'table' && event.currentTarget instanceof HTMLElement && dialog.open) {
 			const anchor = event.currentTarget;
-			positionPopover(dialog, anchor);
 			const events = new AbortController();
 			this.tablePickerEvents = events;
-			dialog.ownerDocument.defaultView?.addEventListener(
-				'resize',
-				() => positionPopover(dialog, anchor),
-				{ signal: events.signal },
-			);
+			observePopover(dialog, anchor, events.signal);
 		}
 	}
 	dialogBackdrop(event: MouseEvent): void {
@@ -682,8 +677,7 @@ export class NgxEditraComponent implements ControlValueAccessor, Validator, OnCh
 					previous.table?.enabled !== this.config.table?.enabled;
 				if (schemaChanged) {
 					const html = this.engine.getHTML();
-					if (this.view) this.engine.extensions.forEach((ext) => ext.onDestroy?.());
-					this.engine = new EditraEngine(
+					const replacement = new EditraEngine(
 						{
 							...this.config,
 							extensions: this.config.extensions ?? [
@@ -693,6 +687,8 @@ export class NgxEditraComponent implements ControlValueAccessor, Validator, OnCh
 						},
 						html,
 					);
+					if (this.view) this.engine.extensions.forEach((ext) => ext.onDestroy?.());
+					this.engine = replacement;
 					if (this.view) this.engine.extensions.forEach((ext) => ext.onCreate?.());
 					this.view?.updateState(this.engine.state);
 					this.view?.setProps({ nodeViews: this.nodeViews() });

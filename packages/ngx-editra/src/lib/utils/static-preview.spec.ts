@@ -1,6 +1,28 @@
 import { staticPreview } from './static-preview';
 
 describe('staticPreview', () => {
+	it('imports divider appearance from CSS when data attributes are absent', () => {
+		for (const style of [
+			'border-top:4px dashed #123456',
+			'border-top:dashed 4px #123456',
+			'border-top-width:4px;border-top-style:dashed',
+		]) {
+			const html = staticPreview(`<hr style="${style}">`);
+			expect(html).toContain('data-line-style="dashed"');
+			expect(html).toContain('data-line-weight="4"');
+		}
+	});
+
+	it('applies nesting limits inside code blocks and media captions', () => {
+		const nested = '<span>'.repeat(105) + 'text' + '</span>'.repeat(105);
+		for (const html of [
+			`<pre><code>${nested}</code></pre>`,
+			`<figure><img src="https://example.com/image.png"><figcaption>${nested}</figcaption></figure>`,
+		])
+			expect(() => staticPreview(html)).toThrowError(
+				'Content nesting exceeds the supported limit',
+			);
+	});
 	it('preserves canonical formatting, language and escaped code', () => {
 		const html = staticPreview(
 			'<h2 style="text-align:center">Title</h2><p><span style="color:#ff0000;font-size:24px">Hello</span> <code>x</code></p><pre data-language="java"><code>if (x &lt; 2) {\n  run();\n}</code></pre><blockquote><p>Quote</p></blockquote>',

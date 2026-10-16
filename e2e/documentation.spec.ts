@@ -199,6 +199,174 @@ test('copy feedback keeps code blocks, buttons and the page position stable', as
 	expect(await geometry()).toEqual(before);
 });
 
+test('toolbar fills available space, renders the link icon and stays framed when pinned', async ({
+	page,
+}) => {
+	await page.setViewportSize({ width: 1333, height: 920 });
+	await page.goto('/examples');
+	const editor = page.locator('ngx-editra');
+	const toolbar = editor.locator('editra-toolbar');
+	const link = editor.getByRole('button', { name: 'link', exact: true });
+	const highlight = editor.locator('editra-colour-picker[kind="highlight"]');
+	await expect(link).toBeVisible();
+	const linkBox = await link.boundingBox();
+	const highlightBox = await highlight.boundingBox();
+	expect(Math.abs((linkBox?.y ?? 0) - (highlightBox?.y ?? 100))).toBeLessThan(3);
+	const bounds = await link.locator('path').evaluate((path) => {
+		const box = (path as SVGGraphicsElement).getBBox();
+		return { left: box.x, right: box.x + box.width, top: box.y, bottom: box.y + box.height };
+	});
+	expect(bounds.left).toBeGreaterThanOrEqual(1);
+	expect(bounds.right).toBeLessThanOrEqual(23);
+	expect(bounds.top).toBeGreaterThanOrEqual(1);
+	expect(bounds.bottom).toBeLessThanOrEqual(23);
+	for (const width of [1333, 390]) {
+		await page.setViewportSize({ width, height: 920 });
+		const commands = await toolbar.locator('.command-bar').boundingBox();
+		expect(commands?.height).toBeLessThan(70);
+		await editor.locator('.ProseMirror').click();
+		const before = await editor.boundingBox();
+		await editor.getByRole('button', { name: 'Sticky toolbar', exact: true }).click();
+		const after = await editor.boundingBox();
+		expect(Math.abs((before?.height ?? 0) - (after?.height ?? 100))).toBeLessThan(1);
+		const top = await editor.evaluate((el) => el.getBoundingClientRect().top + scrollY);
+		await page.evaluate((top) => scrollTo(0, top + 40), top);
+		await expect
+			.poll(async () => (await toolbar.boundingBox())?.y ?? -1)
+			.toBeGreaterThanOrEqual(width <= 800 ? 65 : 74);
+		const frame = await toolbar.evaluate((el) => {
+			const css = getComputedStyle(el, '::after');
+			return {
+				color: css.borderTopColor,
+				width: css.borderTopWidth,
+				pointerEvents: css.pointerEvents,
+				focus: getComputedStyle(el).getPropertyValue('--editra-focus').trim(),
+			};
+		});
+		expect(frame.width).toBe('1px');
+		expect(frame.pointerEvents).toBe('none');
+		await expect(toolbar).toHaveCSS('--editra-frame', frame.focus);
+		const padding = await editor.locator('.editra-surface').evaluate((surface) => {
+			const last = surface.querySelector('.ProseMirror > :last-child')!;
+			return surface.getBoundingClientRect().bottom - last.getBoundingClientRect().bottom;
+		});
+		expect(padding).toBeLessThanOrEqual(24);
+		await page.screenshot({ path: `artifacts/editor-toolbar-pinned-${width}.png` });
+		await editor.getByRole('button', { name: 'Sticky toolbar', exact: true }).click();
+	}
+});
+
+test('colour swatches are square and opening a palette preserves the sticky page layout', async ({
+	page,
+}) => {
+	await page.goto('/examples');
+	await page.setViewportSize({ width: 1333, height: 900 });
+	const editor = page.locator('ngx-editra');
+	const toggle = editor.getByRole('button', { name: 'Choose text colour', exact: true });
+	await toggle.scrollIntoViewIfNeeded();
+	const before = await page.locator('.site-header').boundingBox();
+	const editorBefore = await editor.boundingBox();
+	await toggle.click();
+	const palette = editor.locator('editra-colour-picker dialog[open]');
+	await expect(palette.getByRole('button', { name: 'Automatic', exact: true })).toHaveAttribute(
+		'aria-pressed',
+		'true',
+	);
+	await expect(palette.getByRole('button', { name: 'Automatic', exact: true })).toBeFocused();
+	const swatch = palette.locator('.swatch').first();
+	await expect(swatch).toHaveCSS('width', '24px');
+	await expect(swatch).toHaveCSS('height', '24px');
+	await expect(palette.getByRole('textbox', { name: 'Custom colour hex' })).toBeVisible();
+	await expect(palette.locator('input[type="color"]')).toHaveCSS('width', '40px');
+	expect(await page.locator('.site-header').boundingBox()).toEqual(before);
+	expect(await editor.boundingBox()).toEqual(editorBefore);
+	const colour = palette.locator('.swatch').nth(4);
+	const name = await colour.getAttribute('aria-label');
+	await colour.click();
+	await toggle.click();
+	await expect(palette.getByRole('button', { name: name!, exact: true }).first()).toHaveAttribute(
+		'aria-pressed',
+		'true',
+	);
+	await palette.screenshot({ path: 'artifacts/compact-colour-palette.png' });
+	await palette.press('Escape');
+});
+
+test('editor popups stay within the viewport after rendering and resizing', async ({ page }) => {
+	await page.goto('/examples');
+	const editor = page.locator('ngx-editra');
+	for (const width of [1902, 390]) {
+		await page.setViewportSize({ width, height: 700 });
+		for (const name of [
+			'table',
+			'find',
+			'Choose text colour',
+			'Choose highlight colour',
+			'link',
+		]) {
+			await editor.getByRole('button', { name, exact: true }).click();
+			const popup = editor.locator('dialog[open]');
+			await expect(popup).toBeVisible();
+			await expect
+				.poll(async () =>
+					popup.evaluate((element) => {
+						const rect = element.getBoundingClientRect();
+						return (
+							rect.left >= 0 &&
+							rect.top >= 0 &&
+							rect.right <= innerWidth &&
+							rect.bottom <= innerHeight
+						);
+					}),
+				)
+				.toBe(true);
+			await page.setViewportSize({ width, height: 500 });
+			await expect
+				.poll(async () =>
+					popup.evaluate(
+						(element) => element.getBoundingClientRect().bottom <= innerHeight,
+					),
+				)
+				.toBe(true);
+			await popup.screenshot({
+				path: `artifacts/popup-${name.replaceAll(' ', '-')}-${width}.png`,
+			});
+			await popup.press('Escape');
+			await expect(popup).toHaveCount(0);
+			await page.setViewportSize({ width, height: 700 });
+		}
+	}
+});
+
+test('fullscreen covers the viewport without exposing the surrounding page', async ({ page }) => {
+	await page.goto('/examples');
+	const editor = page.locator('ngx-editra');
+	for (const width of [1333, 390]) {
+		await page.setViewportSize({ width, height: 900 });
+		await editor.getByRole('button', { name: 'Fullscreen', exact: true }).click();
+		await expect(editor).toHaveClass(/editra-fullscreen/);
+		const bounds = await editor.boundingBox();
+		expect(bounds).toEqual({ x: 0, y: 0, width, height: 900 });
+		const coverage = await editor.evaluate((host) => {
+			const points = [
+				[1, 1],
+				[innerWidth - 2, 1],
+				[1, innerHeight - 2],
+				[innerWidth - 2, innerHeight - 2],
+			];
+			return points.every(([x, y]) => host.contains(document.elementFromPoint(x, y)));
+		});
+		expect(coverage).toBe(true);
+		await expect(editor).toHaveCSS('display', 'flex');
+		await expect(editor).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+		await page.screenshot({ path: `artifacts/editor-fullscreen-${width}.png` });
+		await editor.locator('.ProseMirror').focus();
+		await page.keyboard.press('Escape');
+		await expect(editor).not.toHaveClass(/editra-fullscreen/);
+		await expect(editor).toHaveCSS('margin-top', '16px');
+	}
+});
+
 test('the entire editor canvas accepts typing with one outer focus border', async ({ page }) => {
 	await page.goto('/examples');
 	await page.getByRole('button', { name: 'Reset content', exact: true }).click();

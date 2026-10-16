@@ -37,8 +37,9 @@ export function lockPageScroll(document: Document): () => void {
 		)
 			root.style.setProperty('scrollbar-gutter', 'stable', 'important');
 		const padding = window ? parseFloat(window.getComputedStyle(body).paddingRight) || 0 : 0;
-		for (const element of [root, body])
-			element.style.setProperty('overflow', 'hidden', 'important');
+		// Lock the viewport without turning body into a new scroll container:
+		// doing so changes the containing block of the host page's sticky UI.
+		root.style.setProperty('overflow', 'hidden', 'important');
 		// Older browsers without stable gutters retain the same content width as well.
 		const gap = root.clientWidth - width;
 		if (

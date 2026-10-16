@@ -77,6 +77,19 @@
 			></textarea></label
 		><button type="button" (click)="importHTML()">Apply HTML</button>
 	</details>
+	<section class="workspace" aria-label="Rendered document">
+		<h2>Rendered document</h2>
+		<div [editraContent]="form.controls.body.value" [editraContentConfig]="config"></div>
+	</section>
+	<details>
+		<summary>More rendering options</summary>
+		<section aria-label="Pipe rendering">
+			<div [innerHTML]="form.controls.body.value | editraHtml: config"></div>
+		</section>
+		<section aria-label="Viewer rendering">
+			<ngx-editra-viewer [html]="form.controls.body.value" [config]="config" />
+		</section>
+	</details>
 	<footer>
 		URL-only media. No uploads. HTML-valued forms. SSR static rendering with an explicit editor
 		hydration boundary.

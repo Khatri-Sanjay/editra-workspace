@@ -1,112 +1,88 @@
-﻿# ngx-editra
+﻿# editra workspace
 
-A standalone Angular rich-text editor built on ProseMirror. **0.1.0-alpha.0 is a prerelease**;
-stable-release acceptance criteria and remaining gaps are tracked in [PROGRESS.md](PROGRESS.md).
-No package has been published.
+Source repository for **ngx-editra**, a standalone Angular rich-text editor, its
+playground, and its documentation website. The initial `0.1.0-alpha.0` npm release
+is in preparation; no package has been published.
 
-Workspace structure and dependency rules are described in [ARCHITECTURE.md](ARCHITECTURE.md).
-The library lives in `packages/ngx-editra`, applications in `apps/`, and documentation in `docs/`.
+## Use the library
 
-## Working features
+See the [npm package README](packages/ngx-editra/README.md) for installation, forms,
+editor and saved-content examples. Full guides live in [docs](docs/INSTALLATION.md).
+The package README is copied into the compiled npm distribution; this root README
+explains repository development and deployment.
 
-HTML-valued Reactive Forms and ngModel; strict typed configuration; text marks, headings,
-lists, alignment, history and keyboard shortcuts; URL-only images/videos; model-backed
-media resizing; Word-style font/highlight colour palettes; quick table insertion and contextual
-table controls; pointer/keyboard row and column resizing; find/replace; counts; light/dark themes;
-CommonMark conversion; deterministic extensions; SSR static rendering and a hydration boundary.
+## Repository layout
 
-## Install and use after publication
+| Path                | Purpose                                      | Distribution                           |
+| ------------------- | -------------------------------------------- | -------------------------------------- |
+| packages/ngx-editra | Public library and consumer README           | npm compiled tarball                   |
+| apps/playground     | Interactive library demo                     | Separate Vercel static site            |
+| apps/documentation  | Searchable guides and live example           | Separate Vercel static site            |
+| docs                | Canonical feature and project guides         | GitHub, documentation app and npm docs |
+| scripts             | Build, validation and deployment preparation | Workspace tooling                      |
 
-For the initial alpha published under the `next` tag:
+## Develop locally
 
-```sh
-npm install ngx-editra@next
-```
-
-Once a stable version is published under `latest`, install it with `npm install ngx-editra`.
-Until publication, use the [local archive installation](docs/INSTALLATION.md#local-archive-option-before-publication).
-Your Angular packages must satisfy the [peer dependency ranges](docs/COMPATIBILITY.md).
-
-Editor and viewer styles load automatically with their components. No Sass import,
-global stylesheet registration, or Sass setup is required in your application.
-
-Import both standalone components from the public package:
-
-```typescript
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { NgxEditraComponent, NgxEditraViewerComponent } from 'ngx-editra';
-
-@Component({
-	selector: 'app-article',
-	standalone: true,
-	imports: [ReactiveFormsModule, NgxEditraComponent, NgxEditraViewerComponent],
-	template: `<ngx-editra [formControl]="body" /> <ngx-editra-viewer [html]="body.value" />`,
-})
-export class ArticleComponent {
-	readonly body = new FormControl('<p>Hello world</p>', { nonNullable: true });
-}
-```
-
-The editor's form value is HTML. Save `body.value` to your backend and pass saved HTML to
-`NgxEditraViewerComponent` through `[html]`. Both components and the framework-independent
-engine, media extensions and Markdown utilities are exported from `ngx-editra`.
-There are no separate `/core` or `/extensions` entry points.
-See [quick start](docs/QUICK_START.md), [forms](docs/ANGULAR_FORMS.md) and [viewer](docs/VIEWER.md).
-
-## Start developing
-
-Package compilation uses Node 20.20.2 and npm 10.8.2, matching the Angular 17 build baseline.
-Both are legacy tooling; Angular consumers must use their own supported runtime requirements.
+The legacy compilation baseline uses Node 20.20.2 and npm 10.8.2. Use the application's
+own Angular requirements for consumers; this baseline is not a production runtime recommendation.
 
 ```sh
 npm ci
-npm start
+npm run start:all
 ```
 
-The start command builds the library first. The playground imports the built package's public API.
-Run `npm run watch` in another terminal when editing library sources. For production SSR:
-
-```sh
-npm run build:playground
-npm run serve:ssr:playground
-```
-
-## Validate and package
-
-```sh
-npm run lint
-npm run format:check
-npm run typecheck
-npm run test:ci
-npm run build:playground
-npm run test:e2e
-npm run pack
-npm run test:performance
-```
-
-Chrome/Chromium is required for Karma. Set CHROME_BIN to an installed executable if needed.
-Playwright can use installed Chromium through EDITRA_BROWSER, or install its browser with
-`npx playwright install chromium`. Windows PowerShell can use npm.cmd when npm.ps1 is blocked.
-The IDE may override npm's global prefix; verify runtime versions.
+Playground: http://localhost:4200. Documentation: http://localhost:4300.
+Set `PLAYGROUND_PORT` or `DOCS_PORT` to override ports. Press Ctrl+C to stop both.
+Use `npm start` or `npm run start:docs` to run one app. Each starts from the compiled
+public library; run `npm run watch` in another terminal when editing library sources.
+Windows PowerShell can use `npm.cmd` if npm.ps1 is blocked.
 
 ## Documentation
 
-Run the searchable documentation app with `npm run start:docs` and open
-http://localhost:4300. It includes all guides, a live editor, light/dark themes, and mobile
-navigation. `npm run build:docs` produces prerendered pages; `npm run serve:ssr:docs`
-serves the production application. See [the app README](apps/documentation/README.md).
+Edit canonical Markdown in `docs/` and the root project policies, then run:
 
--   [Installation](docs/INSTALLATION.md), [quick start](docs/QUICK_START.md), [configuration](docs/CONFIGURATION.md)
--   [Forms](docs/ANGULAR_FORMS.md), [SSR](docs/SSR.md), [security/CSP](docs/SECURITY.md)
--   [Toolbar](docs/TOOLBAR.md), [images](docs/IMAGES.md), [videos](docs/VIDEOS.md), [tables](docs/TABLES.md)
--   [Plugins](docs/PLUGINS.md), [themes](docs/THEMING.md), [API](docs/API.md)
--   [Compatibility evidence](docs/COMPATIBILITY.md), [release preparation](docs/RELEASING.md)
--   [Contributing](CONTRIBUTING.md), [changelog](CHANGELOG.md), [MIT license](LICENSE)
+```sh
+npm run docs:generate
+npm run docs:check
+```
 
-## Limits before stable release
+Do not edit generated guide files. See the [documentation app README](apps/documentation/README.md)
+and [playground README](apps/playground/README.md).
 
-SSR static HTML intentionally passes through Angular sanitization, which can strip styles/iframes.
-CommonMark presentation limits are documented. Optional preview cards are future work;
-manual screen-reader evaluation and broader clipboard/memory/bundle hardening remain release work.
-Compatibility is established by executed consumer build/forms/SSR/hydration tests, never installation alone.
+## Validate and publish the npm library
+
+```sh
+npm run validate -- --compatibility
+npm run verify:evidence
+```
+
+The checks build and pack the library and install that exact archive into independent
+Angular 17-22 consumers. Configure Node/browser prerequisites using the
+[release guide](docs/RELEASING.md). Publishing is an explicit owner action using the
+validated tarball and `next` tag. Do not publish the private workspace or source folder.
+
+## Deploy the websites from GitHub to Vercel
+
+The two apps are independent static sites. Build them in GitHub Actions with the
+repository toolchain, then deploy the prepared output using Node 24. This avoids
+Vercel's retired Node 20 build runtime and does not deploy the legacy Express SSR server.
+
+```sh
+npm run build:site -- documentation
+npm run build:site -- playground
+```
+
+Use the manual **Deploy static site to Vercel** GitHub workflow for preview or production.
+Configure the two Vercel projects and GitHub secrets first. Follow the complete
+[deployment guide](docs/DEPLOYMENT.md); no deployment runs automatically on push.
+No live site URL is claimed until a deployment has been verified.
+
+## Project policies
+
+[Architecture](ARCHITECTURE.md) · [Contributing](CONTRIBUTING.md) ·
+[Maintenance](docs/MAINTENANCE.md) · [Project status](PROGRESS.md) ·
+[Changelog](CHANGELOG.md) · [Security reporting](SECURITY.md)
+
+## Licence
+
+MIT. The root [LICENSE](LICENSE) is canonical and is included in the npm archive.

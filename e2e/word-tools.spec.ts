@@ -258,6 +258,8 @@ test('colour palettes are keyboard-operable and accessible in light/dark/mobile 
 	await page.keyboard.press('ControlOrMeta+a');
 	await page.getByRole('button', { name: 'Choose text colour', exact: true }).click();
 	const palette = page.getByRole('dialog', { name: 'Font colour palette' });
+	await expect(palette.getByRole('button', { name: 'Automatic', exact: true })).toBeFocused();
+	await page.keyboard.press('Tab');
 	await expect(
 		palette.getByRole('button', { name: 'White (#ffffff)', exact: true }),
 	).toBeFocused();
