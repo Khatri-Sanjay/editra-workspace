@@ -4,6 +4,8 @@ Source repository for **ngx-editra**, a standalone Angular rich-text editor, its
 playground, and its documentation website. The initial `0.1.0-alpha.0` npm release
 is in preparation; no package has been published.
 
+[Documentation](https://ngx-editra-docs.vercel.app) · [Playground](https://ngx-editra-playground.vercel.app)
+
 ## Use the library
 
 See the [npm package README](packages/ngx-editra/README.md) for installation, forms,
@@ -75,7 +77,7 @@ npm run build:site -- playground
 Use the manual **Deploy static site to Vercel** GitHub workflow for preview or production.
 Configure the two Vercel projects and GitHub secrets first. Follow the complete
 [deployment guide](docs/DEPLOYMENT.md); no deployment runs automatically on push.
-No live site URL is claimed until a deployment has been verified.
+The live documentation and playground links above have been verified on Vercel.
 
 ## Project policies
 

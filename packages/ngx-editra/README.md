@@ -78,6 +78,8 @@ before accepting untrusted content or configuring external media.
 
 ## Documentation and support
 
+-   [Documentation website](https://ngx-editra-docs.vercel.app)
+-   [Interactive playground](https://ngx-editra-playground.vercel.app)
 -   [Installation and guides](https://github.com/Khatri-Sanjay/editra-workspace/blob/main/docs/INSTALLATION.md)
 -   [Forms](https://github.com/Khatri-Sanjay/editra-workspace/blob/main/docs/ANGULAR_FORMS.md)
 -   [Public API](https://github.com/Khatri-Sanjay/editra-workspace/blob/main/docs/API.md)

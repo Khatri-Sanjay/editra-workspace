@@ -1,8 +1,12 @@
 # Deploy the websites
 
-The library is published to npm. The documentation and playground are two independent
+The library's distribution target is npm; the initial alpha is not yet published.
+The documentation and playground are two independent
 static websites hosted on Vercel from GitHub. Site deployment does not publish the library.
-No production domains are configured or claimed in this repository yet.
+The initial deployments use [documentation](https://ngx-editra-docs.vercel.app) and
+[playground](https://ngx-editra-playground.vercel.app) production URLs. No custom domains
+are configured. Vercel assigns a new project's first deployment to production even
+without `--prod`; later deployments default to preview unless production is requested.
 
 ## Build model
 

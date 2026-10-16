@@ -37,10 +37,10 @@ const ignored = new Set(['node_modules', 'dist', '.angular', 'test-results']);
 export const requiredChecks = [
 	'docs:check',
 	'format:check',
+	'build',
 	'lint',
 	'test:architecture',
 	'test:maintenance',
-	'build',
 	'typecheck',
 	'test:ci',
 	'test:ssr',

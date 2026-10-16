@@ -1,5 +1,7 @@
 # Documentation application
 
+Live site: https://ngx-editra-docs.vercel.app.
+
 Use the workspace's Node 20.20.2 / npm 10.8.2 toolchain:
 
 ```sh

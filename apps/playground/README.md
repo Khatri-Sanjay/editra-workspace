@@ -1,5 +1,7 @@
 # Playground application
 
+Live site: https://ngx-editra-playground.vercel.app.
+
 The interactive demo imports the compiled public `ngx-editra` package. It is deployed
 as a website, separately from npm. Run commands from the repository root using the
 documented Node 20.20.2/npm 10 compilation baseline.
