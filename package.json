@@ -79,7 +79,7 @@
 		"karma-jasmine-html-reporter": "~2.1.0",
 		"ng-packagr": "^17.3.0",
 		"prettier": "3.3.3",
-		"typescript": "~5.4.2",
+		"typescript": "~7.0.2",
 		"markdown-it": "14.3.2"
 	},
 	"engines": {
