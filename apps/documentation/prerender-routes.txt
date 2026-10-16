@@ -28,6 +28,7 @@
 /guides/security
 /guides/compatibility
 /guides/releasing
+/guides/publishing
 /guides/deployment
 /guides/maintenance
 /guides/project-status

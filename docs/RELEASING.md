@@ -1,5 +1,7 @@
 # Release preparation
 
+For executable Windows instructions, follow the [step-by-step npm publishing guide](PUBLISHING.md).
+
 1. Run the validation commands in CONTRIBUTING.md and complete the outstanding acceptance
    criteria in PROGRESS.md. Do not call this alpha a stable release.
 2. Update package version, changelog, consumer tarball paths and any demonstrated peer ranges.

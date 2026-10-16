@@ -2932,9 +2932,9 @@ export const guides: readonly Guide[] = [
 		group: 'Project',
 		source: 'docs/RELEASING.md',
 		summary:
-			'Run the validation commands in CONTRIBUTING.md and complete the outstanding acceptancecriteria in PROGRESS.md. Do not call this alpha a stable release.',
+			'For executable Windows instructions, follow the step-by-step npm publishing guide.',
 		readingMinutes: 5,
-		html: '<h1 id="release-preparation">Release preparation</h1>\n<ol>\n<li>Run the validation commands in CONTRIBUTING.md and complete the outstanding acceptance\ncriteria in PROGRESS.md. Do not call this alpha a stable release.</li>\n<li>Update package version, changelog, consumer tarball paths and any demonstrated peer ranges.</li>\n<li>Run npm run pack (production build, dry-run package validation and actual tarball).</li>\n<li>Install that exact tarball into independent consumers; run the full compatibility matrix.</li>\n<li>Confirm README, LICENSE, public declarations, the single root API export and SCSS are in the archive.</li>\n<li>Verify package-name ownership and npm account permissions immediately before publication.</li>\n<li>After explicit owner authorization, publish the exact tested archive from the workspace root with the prerelease tag:</li>\n</ol>\n<pre><code class="language-sh">npm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next\n</code></pre>\n<p>No workflow publishes automatically. GitHub Actions prepares validation evidence and archives.\nThe package is named <code>ngx-editra</code>; source metadata defaults publishing to public access and the\n<code>next</code> tag. The workspace root is private. Do not publish <code>packages/ngx-editra</code> directly:\nng-packagr\'s compiled distribution is the package consumers need. Update the archive filename\nwhen the version changes. After a stable release is approved, explicitly publish that stable\narchive with <code>--tag latest</code> and update the source publishing default accordingly.</p>\n<p>After publication, verify the published alpha and its consumer instructions:</p>\n<pre><code class="language-sh">npm view ngx-editra@next version dist-tags peerDependencies\nnpm install ngx-editra@next\n</code></pre>\n<p>Run installation in a separate Angular application and follow <a href="/guides/installation">installation</a>\nand <a href="/guides/quick-start">quick start</a>. Verify both components work without any application Sass import.\nPackage-name ownership and availability must be checked at release time; no name is reserved.\nSee the <a href="https://docs.npmjs.com/cli/v10/commands/npm-publish/">official npm publish reference</a>\nfor archive publishing and tags.</p>\n<h2 id="automated-validation-and-maintenance">Automated validation and maintenance</h2>\n<p>The package is unpublished and remains an alpha until the release evidence and manual\nacceptance work are complete. Validation and packing never publish a package.</p>\n<h2 id="local-validation">Local validation</h2>\n<p>Use the repository\'s Node 20.20.2/npm 10.8.2 compilation baseline, install dependencies\nwith <code>npm ci</code>, and provide Chrome/Chromium for browser tests. On Windows, use <code>npm.cmd</code>\nif PowerShell blocks npm.ps1. Set <code>CHROME_BIN</code> for Karma and <code>EDITRA_BROWSER</code> for\nPlaywright when using an installed Chromium browser, including Microsoft Edge.</p>\n<pre><code class="language-sh">npm run validate\n</code></pre>\n<p>The command stops on the first failure. It checks generated documentation, formatting,\nlint, architectural boundaries, builds, types, all unit tests, packaged server rendering,\narchive contents, production playground/docs browser tests and performance observations.\nServer rendering checks exercise the pipe, directive and viewer, including shared styles,\nvalidated media, CSP nonces and isolated requests. Browser rendering checks exercise\nhydration and code copying through the public package entry point.</p>\n<h2 id="consumer-compatibility">Consumer compatibility</h2>\n<p>Set <code>EDITRA_NODE20</code> and <code>EDITRA_NODE24</code> to the respective Node executables and, if not\nrunning through npm, <code>EDITRA_NPM_CLI</code> to npm\'s JavaScript entry point. Then run:</p>\n<pre><code class="language-sh">npm run validate -- --compatibility\nnpm run verify:evidence\n</code></pre>\n<p>The compatibility runner installs the newly packed archive in six independent Angular\n17–22 consumers using normal peer resolution. Each consumer must pass production build,\nforms, SSR/hydration, security, media, table and saved-content rendering tests. Evidence\nis stored in <code>artifacts/compatibility-results.json</code> with the archive SHA-256. Historical\nresults do not validate a changed archive. Do not widen peer ranges without passing the\ncorresponding consumer checks.</p>\n<p>The oldest supported Angular runtime determines the current compilation baseline.\nUpgrading the compilation Angular major requires reviewing the lower peer ranges and\nretesting consumers; it is not a dependency-only change. Legacy compatibility does not\nestablish ongoing security support for an application\'s Angular or Node version.</p>\n<h2 id="ongoing-maintenance">Ongoing maintenance</h2>\n<p>GitHub Actions runs the same complete validation and evidence verification command for\npushes, pull requests, manual requests and weekly, with separate Node runtimes for consumers.\nDependabot checks workspace, consumer and action dependencies weekly; review updates\nthrough the same checks. CI configuration is not evidence of a successful remote run.\nConsumer Angular majors remain distinct, and TypeScript minor changes need manual review.\nSee <a href="/guides/maintenance">maintenance policy</a> for migration and repository-setting requirements.</p>\n<p>Validation generates <code>artifacts/release-validation.json</code> directly from executed checks.\nIt records failures as well as successes, the source fingerprint, archive hash and fresh\nconsumer reports. <code>verify:evidence</code> rejects missing checks, source/archive changes, missing\nconsumer majors or a failed maintained-consumer production audit. After changing source,\nrevalidate before publishing. The source fingerprint normalizes consumer tarball paths;\ntheir installed lockfile hashes are recorded per consumer.</p>\n<p>For each release, update <code>CHANGELOG.md</code>, usage/API documentation, <code>PROGRESS.md</code> and\nthe compatibility evidence. Review the consuming application\'s production dependency\naudit separately from legacy build-tool dependencies. Address or explicitly document\nfindings before release. Never infer a current audit result from an earlier report.</p>\n<h2 id="stable-release-acceptance">Stable-release acceptance</h2>\n<ul>\n<li>All automated checks pass for the exact archive intended for release.</li>\n<li>Remote CI completes successfully on the release revision.</li>\n<li>Keyboard, screen-reader, high-contrast and mobile behavior is reviewed manually.</li>\n<li>HTML policies, extension trust boundaries and dependency findings receive review.</li>\n<li>Clipboard failures, repeated mounting and memory behavior are tested in supported browsers.</li>\n<li>Bundle-size and performance costs are documented for the supported use cases.</li>\n<li>Package ownership, metadata and release notes are checked before an explicit publish action.</li>\n</ul>\n<p>Remaining manual and external checks are tracked in <code>PROGRESS.md</code>; they must not be\nmarked complete based only on automated tests.</p>\n',
+		html: '<h1 id="release-preparation">Release preparation</h1>\n<p>For executable Windows instructions, follow the <a href="/guides/publishing">step-by-step npm publishing guide</a>.</p>\n<ol>\n<li>Run the validation commands in CONTRIBUTING.md and complete the outstanding acceptance\ncriteria in PROGRESS.md. Do not call this alpha a stable release.</li>\n<li>Update package version, changelog, consumer tarball paths and any demonstrated peer ranges.</li>\n<li>Run npm run pack (production build, dry-run package validation and actual tarball).</li>\n<li>Install that exact tarball into independent consumers; run the full compatibility matrix.</li>\n<li>Confirm README, LICENSE, public declarations, the single root API export and SCSS are in the archive.</li>\n<li>Verify package-name ownership and npm account permissions immediately before publication.</li>\n<li>After explicit owner authorization, publish the exact tested archive from the workspace root with the prerelease tag:</li>\n</ol>\n<pre><code class="language-sh">npm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next\n</code></pre>\n<p>No workflow publishes automatically. GitHub Actions prepares validation evidence and archives.\nThe package is named <code>ngx-editra</code>; source metadata defaults publishing to public access and the\n<code>next</code> tag. The workspace root is private. Do not publish <code>packages/ngx-editra</code> directly:\nng-packagr\'s compiled distribution is the package consumers need. Update the archive filename\nwhen the version changes. After a stable release is approved, explicitly publish that stable\narchive with <code>--tag latest</code> and update the source publishing default accordingly.</p>\n<p>After publication, verify the published alpha and its consumer instructions:</p>\n<pre><code class="language-sh">npm view ngx-editra@next version dist-tags peerDependencies\nnpm install ngx-editra@next\n</code></pre>\n<p>Run installation in a separate Angular application and follow <a href="/guides/installation">installation</a>\nand <a href="/guides/quick-start">quick start</a>. Verify both components work without any application Sass import.\nPackage-name ownership and availability must be checked at release time; no name is reserved.\nSee the <a href="https://docs.npmjs.com/cli/v10/commands/npm-publish/">official npm publish reference</a>\nfor archive publishing and tags.</p>\n<h2 id="automated-validation-and-maintenance">Automated validation and maintenance</h2>\n<p>The package is unpublished and remains an alpha until the release evidence and manual\nacceptance work are complete. Validation and packing never publish a package.</p>\n<h2 id="local-validation">Local validation</h2>\n<p>Use the repository\'s Node 20.20.2/npm 10.8.2 compilation baseline, install dependencies\nwith <code>npm ci</code>, and provide Chrome/Chromium for browser tests. On Windows, use <code>npm.cmd</code>\nif PowerShell blocks npm.ps1. Set <code>CHROME_BIN</code> for Karma and <code>EDITRA_BROWSER</code> for\nPlaywright when using an installed Chromium browser, including Microsoft Edge.</p>\n<pre><code class="language-sh">npm run validate\n</code></pre>\n<p>The command stops on the first failure. It checks generated documentation, formatting,\nlint, architectural boundaries, builds, types, all unit tests, packaged server rendering,\narchive contents, production playground/docs browser tests and performance observations.\nServer rendering checks exercise the pipe, directive and viewer, including shared styles,\nvalidated media, CSP nonces and isolated requests. Browser rendering checks exercise\nhydration and code copying through the public package entry point.</p>\n<h2 id="consumer-compatibility">Consumer compatibility</h2>\n<p>Set <code>EDITRA_NODE20</code> and <code>EDITRA_NODE24</code> to the respective Node executables and, if not\nrunning through npm, <code>EDITRA_NPM_CLI</code> to npm\'s JavaScript entry point. Then run:</p>\n<pre><code class="language-sh">npm run validate -- --compatibility\nnpm run verify:evidence\n</code></pre>\n<p>The compatibility runner installs the newly packed archive in six independent Angular\n17–22 consumers using normal peer resolution. Each consumer must pass production build,\nforms, SSR/hydration, security, media, table and saved-content rendering tests. Evidence\nis stored in <code>artifacts/compatibility-results.json</code> with the archive SHA-256. Historical\nresults do not validate a changed archive. Do not widen peer ranges without passing the\ncorresponding consumer checks.</p>\n<p>The oldest supported Angular runtime determines the current compilation baseline.\nUpgrading the compilation Angular major requires reviewing the lower peer ranges and\nretesting consumers; it is not a dependency-only change. Legacy compatibility does not\nestablish ongoing security support for an application\'s Angular or Node version.</p>\n<h2 id="ongoing-maintenance">Ongoing maintenance</h2>\n<p>GitHub Actions runs the same complete validation and evidence verification command for\npushes, pull requests, manual requests and weekly, with separate Node runtimes for consumers.\nDependabot checks workspace, consumer and action dependencies weekly; review updates\nthrough the same checks. CI configuration is not evidence of a successful remote run.\nConsumer Angular majors remain distinct, and TypeScript minor changes need manual review.\nSee <a href="/guides/maintenance">maintenance policy</a> for migration and repository-setting requirements.</p>\n<p>Validation generates <code>artifacts/release-validation.json</code> directly from executed checks.\nIt records failures as well as successes, the source fingerprint, archive hash and fresh\nconsumer reports. <code>verify:evidence</code> rejects missing checks, source/archive changes, missing\nconsumer majors or a failed maintained-consumer production audit. After changing source,\nrevalidate before publishing. The source fingerprint normalizes consumer tarball paths;\ntheir installed lockfile hashes are recorded per consumer.</p>\n<p>For each release, update <code>CHANGELOG.md</code>, usage/API documentation, <code>PROGRESS.md</code> and\nthe compatibility evidence. Review the consuming application\'s production dependency\naudit separately from legacy build-tool dependencies. Address or explicitly document\nfindings before release. Never infer a current audit result from an earlier report.</p>\n<h2 id="stable-release-acceptance">Stable-release acceptance</h2>\n<ul>\n<li>All automated checks pass for the exact archive intended for release.</li>\n<li>Remote CI completes successfully on the release revision.</li>\n<li>Keyboard, screen-reader, high-contrast and mobile behavior is reviewed manually.</li>\n<li>HTML policies, extension trust boundaries and dependency findings receive review.</li>\n<li>Clipboard failures, repeated mounting and memory behavior are tested in supported browsers.</li>\n<li>Bundle-size and performance costs are documented for the supported use cases.</li>\n<li>Package ownership, metadata and release notes are checked before an explicit publish action.</li>\n</ul>\n<p>Remaining manual and external checks are tracked in <code>PROGRESS.md</code>; they must not be\nmarked complete based only on automated tests.</p>\n',
 		headings: [
 			{
 				id: 'automated-validation-and-maintenance',
@@ -2961,6 +2961,11 @@ export const guides: readonly Guide[] = [
 			{
 				html: '<h1 id="release-preparation">Release preparation</h1>\n',
 				id: 'release-preparation',
+				kind: 'content',
+			},
+			{
+				html: '<p>For executable Windows instructions, follow the <a href="/guides/publishing">step-by-step npm publishing guide</a>.</p>\n',
+				id: '',
 				kind: 'content',
 			},
 			{
@@ -3092,7 +3097,326 @@ export const guides: readonly Guide[] = [
 				kind: 'content',
 			},
 		],
-		search: " release preparation\n\n1. run the validation commands in contributing.md and complete the outstanding acceptance\n   criteria in progress.md. do not call this alpha a stable release.\n2. update package version, changelog, consumer tarball paths and any demonstrated peer ranges.\n3. run npm run pack (production build, dry-run package validation and actual tarball).\n4. install that exact tarball into independent consumers; run the full compatibility matrix.\n5. confirm readme, license, public declarations, the single root api export and scss are in the archive.\n6. verify package-name ownership and npm account permissions immediately before publication.\n7. after explicit owner authorization, publish the exact tested archive from the workspace root with the prerelease tag:\n\nsh\nnpm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next\n\n\nno workflow publishes automatically. github actions prepares validation evidence and archives.\nthe package is named ngx-editra; source metadata defaults publishing to public access and the\nnext tag. the workspace root is private. do not publish packages/ngx-editra directly:\nng-packagr's compiled distribution is the package consumers need. update the archive filename\nwhen the version changes. after a stable release is approved, explicitly publish that stable\narchive with --tag latest and update the source publishing default accordingly.\n\nafter publication, verify the published alpha and its consumer instructions:\n\nsh\nnpm view ngx-editra@next version dist-tags peerdependencies\nnpm install ngx-editra@next\n\n\nrun installation in a separate angular application and follow [installation](installation.md)\nand [quick start](quick_start.md). verify both components work without any application sass import.\npackage-name ownership and availability must be checked at release time; no name is reserved.\nsee the [official npm publish reference](https://docs.npmjs.com/cli/v10/commands/npm-publish/)\nfor archive publishing and tags.\n\n automated validation and maintenance\n\nthe package is unpublished and remains an alpha until the release evidence and manual\nacceptance work are complete. validation and packing never publish a package.\n\n local validation\n\nuse the repository's node 20.20.2/npm 10.8.2 compilation baseline, install dependencies\nwith npm ci, and provide chrome/chromium for browser tests. on windows, use npm.cmd\nif powershell blocks npm.ps1. set chrome_bin for karma and editra_browser for\nplaywright when using an installed chromium browser, including microsoft edge.\n\nsh\nnpm run validate\n\n\nthe command stops on the first failure. it checks generated documentation, formatting,\nlint, architectural boundaries, builds, types, all unit tests, packaged server rendering,\narchive contents, production playground/docs browser tests and performance observations.\nserver rendering checks exercise the pipe, directive and viewer, including shared styles,\nvalidated media, csp nonces and isolated requests. browser rendering checks exercise\nhydration and code copying through the public package entry point.\n\n consumer compatibility\n\nset editra_node20 and editra_node24 to the respective node executables and, if not\nrunning through npm, editra_npm_cli to npm's javascript entry point. then run:\n\nsh\nnpm run validate -- --compatibility\nnpm run verify:evidence\n\n\nthe compatibility runner installs the newly packed archive in six independent angular\n17–22 consumers using normal peer resolution. each consumer must pass production build,\nforms, ssr/hydration, security, media, table and saved-content rendering tests. evidence\nis stored in artifacts/compatibility-results.json with the archive sha-256. historical\nresults do not validate a changed archive. do not widen peer ranges without passing the\ncorresponding consumer checks.\n\nthe oldest supported angular runtime determines the current compilation baseline.\nupgrading the compilation angular major requires reviewing the lower peer ranges and\nretesting consumers; it is not a dependency-only change. legacy compatibility does not\nestablish ongoing security support for an application's angular or node version.\n\n ongoing maintenance\n\ngithub actions runs the same complete validation and evidence verification command for\npushes, pull requests, manual requests and weekly, with separate node runtimes for consumers.\ndependabot checks workspace, consumer and action dependencies weekly; review updates\nthrough the same checks. ci configuration is not evidence of a successful remote run.\nconsumer angular majors remain distinct, and typescript minor changes need manual review.\nsee [maintenance policy](maintenance.md) for migration and repository-setting requirements.\n\nvalidation generates artifacts/release-validation.json directly from executed checks.\nit records failures as well as successes, the source fingerprint, archive hash and fresh\nconsumer reports. verify:evidence rejects missing checks, source/archive changes, missing\nconsumer majors or a failed maintained-consumer production audit. after changing source,\nrevalidate before publishing. the source fingerprint normalizes consumer tarball paths;\ntheir installed lockfile hashes are recorded per consumer.\n\nfor each release, update changelog.md, usage/api documentation, progress.md and\nthe compatibility evidence. review the consuming application's production dependency\naudit separately from legacy build-tool dependencies. address or explicitly document\nfindings before release. never infer a current audit result from an earlier report.\n\n stable-release acceptance\n\n-   all automated checks pass for the exact archive intended for release.\n-   remote ci completes successfully on the release revision.\n-   keyboard, screen-reader, high-contrast and mobile behavior is reviewed manually.\n-   html policies, extension trust boundaries and dependency findings receive review.\n-   clipboard failures, repeated mounting and memory behavior are tested in supported browsers.\n-   bundle-size and performance costs are documented for the supported use cases.\n-   package ownership, metadata and release notes are checked before an explicit publish action.\n\nremaining manual and external checks are tracked in progress.md; they must not be\nmarked complete based only on automated tests.\n",
+		search: " release preparation\n\nfor executable windows instructions, follow the [step-by-step npm publishing guide](publishing.md).\n\n1. run the validation commands in contributing.md and complete the outstanding acceptance\n   criteria in progress.md. do not call this alpha a stable release.\n2. update package version, changelog, consumer tarball paths and any demonstrated peer ranges.\n3. run npm run pack (production build, dry-run package validation and actual tarball).\n4. install that exact tarball into independent consumers; run the full compatibility matrix.\n5. confirm readme, license, public declarations, the single root api export and scss are in the archive.\n6. verify package-name ownership and npm account permissions immediately before publication.\n7. after explicit owner authorization, publish the exact tested archive from the workspace root with the prerelease tag:\n\nsh\nnpm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next\n\n\nno workflow publishes automatically. github actions prepares validation evidence and archives.\nthe package is named ngx-editra; source metadata defaults publishing to public access and the\nnext tag. the workspace root is private. do not publish packages/ngx-editra directly:\nng-packagr's compiled distribution is the package consumers need. update the archive filename\nwhen the version changes. after a stable release is approved, explicitly publish that stable\narchive with --tag latest and update the source publishing default accordingly.\n\nafter publication, verify the published alpha and its consumer instructions:\n\nsh\nnpm view ngx-editra@next version dist-tags peerdependencies\nnpm install ngx-editra@next\n\n\nrun installation in a separate angular application and follow [installation](installation.md)\nand [quick start](quick_start.md). verify both components work without any application sass import.\npackage-name ownership and availability must be checked at release time; no name is reserved.\nsee the [official npm publish reference](https://docs.npmjs.com/cli/v10/commands/npm-publish/)\nfor archive publishing and tags.\n\n automated validation and maintenance\n\nthe package is unpublished and remains an alpha until the release evidence and manual\nacceptance work are complete. validation and packing never publish a package.\n\n local validation\n\nuse the repository's node 20.20.2/npm 10.8.2 compilation baseline, install dependencies\nwith npm ci, and provide chrome/chromium for browser tests. on windows, use npm.cmd\nif powershell blocks npm.ps1. set chrome_bin for karma and editra_browser for\nplaywright when using an installed chromium browser, including microsoft edge.\n\nsh\nnpm run validate\n\n\nthe command stops on the first failure. it checks generated documentation, formatting,\nlint, architectural boundaries, builds, types, all unit tests, packaged server rendering,\narchive contents, production playground/docs browser tests and performance observations.\nserver rendering checks exercise the pipe, directive and viewer, including shared styles,\nvalidated media, csp nonces and isolated requests. browser rendering checks exercise\nhydration and code copying through the public package entry point.\n\n consumer compatibility\n\nset editra_node20 and editra_node24 to the respective node executables and, if not\nrunning through npm, editra_npm_cli to npm's javascript entry point. then run:\n\nsh\nnpm run validate -- --compatibility\nnpm run verify:evidence\n\n\nthe compatibility runner installs the newly packed archive in six independent angular\n17–22 consumers using normal peer resolution. each consumer must pass production build,\nforms, ssr/hydration, security, media, table and saved-content rendering tests. evidence\nis stored in artifacts/compatibility-results.json with the archive sha-256. historical\nresults do not validate a changed archive. do not widen peer ranges without passing the\ncorresponding consumer checks.\n\nthe oldest supported angular runtime determines the current compilation baseline.\nupgrading the compilation angular major requires reviewing the lower peer ranges and\nretesting consumers; it is not a dependency-only change. legacy compatibility does not\nestablish ongoing security support for an application's angular or node version.\n\n ongoing maintenance\n\ngithub actions runs the same complete validation and evidence verification command for\npushes, pull requests, manual requests and weekly, with separate node runtimes for consumers.\ndependabot checks workspace, consumer and action dependencies weekly; review updates\nthrough the same checks. ci configuration is not evidence of a successful remote run.\nconsumer angular majors remain distinct, and typescript minor changes need manual review.\nsee [maintenance policy](maintenance.md) for migration and repository-setting requirements.\n\nvalidation generates artifacts/release-validation.json directly from executed checks.\nit records failures as well as successes, the source fingerprint, archive hash and fresh\nconsumer reports. verify:evidence rejects missing checks, source/archive changes, missing\nconsumer majors or a failed maintained-consumer production audit. after changing source,\nrevalidate before publishing. the source fingerprint normalizes consumer tarball paths;\ntheir installed lockfile hashes are recorded per consumer.\n\nfor each release, update changelog.md, usage/api documentation, progress.md and\nthe compatibility evidence. review the consuming application's production dependency\naudit separately from legacy build-tool dependencies. address or explicitly document\nfindings before release. never infer a current audit result from an earlier report.\n\n stable-release acceptance\n\n-   all automated checks pass for the exact archive intended for release.\n-   remote ci completes successfully on the release revision.\n-   keyboard, screen-reader, high-contrast and mobile behavior is reviewed manually.\n-   html policies, extension trust boundaries and dependency findings receive review.\n-   clipboard failures, repeated mounting and memory behavior are tested in supported browsers.\n-   bundle-size and performance costs are documented for the supported use cases.\n-   package ownership, metadata and release notes are checked before an explicit publish action.\n\nremaining manual and external checks are tracked in progress.md; they must not be\nmarked complete based only on automated tests.\n",
+	},
+	{
+		slug: 'publishing',
+		title: 'Publish to npm',
+		group: 'Project',
+		source: 'docs/PUBLISHING.md',
+		summary:
+			'This guide publishes the initial ngx-editra@0.1.0-alpha.0 prerelease with thenext tag. Run commands from the workspace root in PowerShell, one at a time.Stop whenever a command fails. Validation and dry runs do not publish anything;step 7 makes the package public.',
+		readingMinutes: 5,
+		html: '<h1 id="publish-ngx-editra-to-npm">Publish ngx-editra to npm</h1>\n<p>This guide publishes the initial <code>ngx-editra@0.1.0-alpha.0</code> prerelease with the\n<code>next</code> tag. Run commands from the workspace root in PowerShell, one at a time.\nStop whenever a command fails. Validation and dry runs do not publish anything;\nstep 7 makes the package public.</p>\n<h2 id="1-prepare-your-npm-account">1. Prepare your npm account</h2>\n<p>Create an account at <a href="https://www.npmjs.com/signup">npm</a>, verify your email address,\nand enable two-factor authentication in account settings. Complete authentication\nprompts in your own browser or terminal; never commit or share tokens or OTP codes.\nSee <a href="https://docs.npmjs.com/requiring-2fa-for-package-publishing-and-settings-modification/">npm publishing authentication</a>.</p>\n<h2 id="2-configure-the-windows-toolchain">2. Configure the Windows toolchain</h2>\n<p>The compilation baseline is Node 20.20.2/npm 10.8.2. Compatibility tests also need\nNode 24 and a Chromium browser. Adjust these executable paths for your machine.\nThis example uses the existing local installations and Microsoft Edge:</p>\n<pre><code class="language-powershell">cd F:\\POJECTS\\editra-workspace\n\n$env:EDITRA_NODE20 = \'C:\\Program Files\\nodejs\\node.exe\'\n$env:EDITRA_NODE24 = \'C:\\Users\\Sanjay Khatri\\AppData\\Local\\JetBrains\\IntelliJIdea2026.2\\acp-agents\\.runtimes\\node\\24.19.0\\node.exe\'\n$env:EDITRA_NPM_CLI = \'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js\'\n$env:PATH = \'C:\\Program Files\\nodejs;\' + $env:PATH\n$env:CHROME_BIN = \'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\'\n$env:EDITRA_BROWSER = $env:CHROME_BIN\n\nfunction editraNpm { &amp; $env:EDITRA_NODE20 $env:EDITRA_NPM_CLI @args }\n\n&amp; $env:EDITRA_NODE20 --version\n&amp; $env:EDITRA_NODE24 --version\neditraNpm --version\n</code></pre>\n<p>Expect Node 20, Node 24 and npm 10 respectively. The <code>editraNpm</code> helper explicitly\nselects npm 10; changing PATH alone can still select another npm installation.\nKeep this terminal open for the remaining steps. These environment variables and\nthe helper apply only to this terminal session.</p>\n<h2 id="3-sign-in-and-check-the-package-name">3. Sign in and check the package name</h2>\n<pre><code class="language-powershell">editraNpm login --registry=https://registry.npmjs.org/\neditraNpm whoami --registry=https://registry.npmjs.org/\neditraNpm view ngx-editra name versions --registry=https://registry.npmjs.org/\n</code></pre>\n<p>Complete the browser login and confirm <code>whoami</code> prints your intended account.\nAn E404 from <code>view</code> means no existing package was found; it does not reserve the\nname or guarantee npm will allow publication. If a package exists, confirm you\nhave publishing access and the intended version has never been published.</p>\n<p>The version comes from <code>packages/ngx-editra/package.json</code>, not the private root\npackage. If you change the version, update release notes and tarball references\nbefore validation. See the <a href="/guides/releasing">release process</a>.</p>\n<h2 id="4-stop-dev-servers-and-install-dependencies">4. Stop dev servers and install dependencies</h2>\n<p>Press Ctrl+C in terminals running <code>start:all</code>, <code>ng serve</code>, or build watchers.\nStop corresponding IDE run configurations too. Running servers can lock esbuild\nand Rollup files on Windows.</p>\n<pre><code class="language-powershell">editraNpm ci\n</code></pre>\n<p>Wait for successful completion before continuing. Review current dependency\nfindings with <code>editraNpm audit</code> and, separately, <code>editraNpm audit --omit=dev</code>.\nAudit can exit nonzero when it finds vulnerabilities. Resolve or document findings\nunder the <a href="/guides/maintenance">maintenance policy</a>; the workspace audit includes app\nand legacy toolchain dependencies, so assess the library and supported consumers\nas well. Do not blindly run <code>npm audit fix --force</code> before a release.</p>\n<h2 id="5-validate-the-exact-release">5. Validate the exact release</h2>\n<pre><code class="language-powershell">editraNpm run validate -- --compatibility\neditraNpm run verify:evidence\n</code></pre>\n<p>Both commands must succeed. Validation builds and packs the library, exercises\nthe apps, and installs the generated archive in independent Angular 17–22 consumers.\nThe archive for this version is:</p>\n<pre><code class="language-text">artifacts/ngx-editra-0.1.0-alpha.0.tgz\n</code></pre>\n<p>Review <code>artifacts/release-validation.json</code> and <code>artifacts/compatibility-results.json</code>,\ncomplete applicable manual release checks, and confirm remote CI passes for the\nrelease revision. Remaining acceptance work is tracked in <a href="/guides/project-status">project status</a>.\nDo not represent this alpha as stable.</p>\n<p>Source, documentation, or archive changes invalidate release evidence. Make all\nedits before validation; if anything changes afterward, repeat this step. Do not\nrebuild or repack after verification and then publish the replacement archive.</p>\n<h2 id="6-preview-package-publication">6. Preview package publication</h2>\n<pre><code class="language-powershell">editraNpm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next --registry=https://registry.npmjs.org/ --dry-run\n</code></pre>\n<p>Review the package name, version, tag and file list. Confirm the archive contains\ncompiled library files, public declarations, README, LICENSE and distributed\nstyles. A successful dry run checks packaging; it does not prove publishing\npermissions or reserve the name/version.</p>\n<h2 id="7-publish-the-tested-archive">7. Publish the tested archive</h2>\n<p>When you intend to make this release public, run:</p>\n<pre><code class="language-powershell">editraNpm run verify:evidence\neditraNpm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next --registry=https://registry.npmjs.org/\n</code></pre>\n<p>Run the second command only if evidence verification succeeds. Complete npm\'s\nauthentication prompt. Publish the tested tarball, not the private workspace root\nor <code>packages/ngx-editra</code> source directory. No repository workflow publishes npm\npackages automatically.</p>\n<p>The <code>next</code> tag identifies the prerelease. A published name/version combination\ncannot be reused, even after unpublishing. See the <a href="https://docs.npmjs.com/cli/commands/npm-publish/">npm publish reference</a>.</p>\n<h2 id="8-verify-the-public-package">8. Verify the public package</h2>\n<pre><code class="language-powershell">editraNpm view ngx-editra@0.1.0-alpha.0 version dist.integrity --registry=https://registry.npmjs.org/\neditraNpm view ngx-editra dist-tags --registry=https://registry.npmjs.org/\n</code></pre>\n<p>Confirm <code>next</code> points to <code>0.1.0-alpha.0</code> and open the\n<a href="https://www.npmjs.com/package/ngx-editra">package page</a>. In a separate supported\nAngular application, install the release:</p>\n<pre><code class="language-powershell">npm.cmd install ngx-editra@next\n</code></pre>\n<p>Follow <a href="/guides/quick-start">quick start</a> and verify editing, forms, saved-content\nrendering and code copying without an application Sass import. Update repository\nrelease status and installation instructions to reflect the actual publication,\nthen regenerate the documentation. Never mark publication complete before npm\nconfirms it.</p>\n<h2 id="troubleshooting">Troubleshooting</h2>\n<h3 id="eperm-unlink-esbuild-exe-or-rollup">EPERM unlink: esbuild.exe or Rollup</h3>\n<p>A running dev server, watcher or other process may hold the file open. Stop this\nworkspace\'s servers and watchers, then retry <code>editraNpm ci</code>. If the lock remains,\nclose the relevant IDE run configuration or restart Windows and retry before\nstarting the apps. Do not kill every Node process or disable antivirus globally.</p>\n<h3 id="cannot-find-markdown-it-after-npm-ci-failed">Cannot find markdown-it after npm ci failed</h3>\n<p>The dependency installation is incomplete. Fix the install error and rerun\n<code>editraNpm ci</code> successfully before validation. Do not install a single missing\npackage to conceal the interrupted clean install.</p>\n<h3 id="validation-is-incomplete-or-failed">Validation is incomplete or failed</h3>\n<p>Fix the first failed validation step, rerun the complete compatibility validation,\nthen verify evidence again. Never edit evidence reports to mark checks as passed.</p>\n<h3 id="e401-e403-or-version-already-exists">E401, E403 or version already exists</h3>\n<p>For authentication errors, repeat login and confirm <code>whoami</code>. For E403, read npm\'s\nmessage and check account permissions, 2FA requirements and package-name policy.\nIf the version exists, inspect the registry first: a previous attempt may have\nsucceeded. A genuinely new release needs a new version and fresh validation.</p>\n<h2 id="subsequent-releases">Subsequent releases</h2>\n<p>Use a new version such as <code>0.1.0-alpha.1</code>, update the changelog and tarball\nreferences, then repeat validation and publication using <code>next</code>. Release <code>1.0.0</code>\nor another stable version with <code>latest</code> only after stable acceptance criteria are\nmet; review the package\'s default publishing tag at that time.</p>\n',
+		headings: [
+			{
+				id: '1-prepare-your-npm-account',
+				label: '1. Prepare your npm account',
+			},
+			{
+				id: '2-configure-the-windows-toolchain',
+				label: '2. Configure the Windows toolchain',
+			},
+			{
+				id: '3-sign-in-and-check-the-package-name',
+				label: '3. Sign in and check the package name',
+			},
+			{
+				id: '4-stop-dev-servers-and-install-dependencies',
+				label: '4. Stop dev servers and install dependencies',
+			},
+			{
+				id: '5-validate-the-exact-release',
+				label: '5. Validate the exact release',
+			},
+			{
+				id: '6-preview-package-publication',
+				label: '6. Preview package publication',
+			},
+			{
+				id: '7-publish-the-tested-archive',
+				label: '7. Publish the tested archive',
+			},
+			{
+				id: '8-verify-the-public-package',
+				label: '8. Verify the public package',
+			},
+			{
+				id: 'troubleshooting',
+				label: 'Troubleshooting',
+			},
+			{
+				id: 'eperm-unlink-esbuild-exe-or-rollup',
+				label: 'EPERM unlink: esbuild.exe or Rollup',
+			},
+			{
+				id: 'cannot-find-markdown-it-after-npm-ci-failed',
+				label: 'Cannot find markdown-it after npm ci failed',
+			},
+			{
+				id: 'validation-is-incomplete-or-failed',
+				label: 'Validation is incomplete or failed',
+			},
+			{
+				id: 'e401-e403-or-version-already-exists',
+				label: 'E401, E403 or version already exists',
+			},
+			{
+				id: 'subsequent-releases',
+				label: 'Subsequent releases',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="publish-ngx-editra-to-npm">Publish ngx-editra to npm</h1>\n',
+				id: 'publish-ngx-editra-to-npm',
+				kind: 'content',
+			},
+			{
+				html: '<p>This guide publishes the initial <code>ngx-editra@0.1.0-alpha.0</code> prerelease with the\n<code>next</code> tag. Run commands from the workspace root in PowerShell, one at a time.\nStop whenever a command fails. Validation and dry runs do not publish anything;\nstep 7 makes the package public.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="1-prepare-your-npm-account">1. Prepare your npm account</h2>\n',
+				id: '1-prepare-your-npm-account',
+				kind: 'content',
+			},
+			{
+				html: '<p>Create an account at <a href="https://www.npmjs.com/signup">npm</a>, verify your email address,\nand enable two-factor authentication in account settings. Complete authentication\nprompts in your own browser or terminal; never commit or share tokens or OTP codes.\nSee <a href="https://docs.npmjs.com/requiring-2fa-for-package-publishing-and-settings-modification/">npm publishing authentication</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="2-configure-the-windows-toolchain">2. Configure the Windows toolchain</h2>\n',
+				id: '2-configure-the-windows-toolchain',
+				kind: 'content',
+			},
+			{
+				html: '<p>The compilation baseline is Node 20.20.2/npm 10.8.2. Compatibility tests also need\nNode 24 and a Chromium browser. Adjust these executable paths for your machine.\nThis example uses the existing local installations and Microsoft Edge:</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: "cd F:\\POJECTS\\editra-workspace\n\n$env:EDITRA_NODE20 = 'C:\\Program Files\\nodejs\\node.exe'\n$env:EDITRA_NODE24 = 'C:\\Users\\Sanjay Khatri\\AppData\\Local\\JetBrains\\IntelliJIdea2026.2\\acp-agents\\.runtimes\\node\\24.19.0\\node.exe'\n$env:EDITRA_NPM_CLI = 'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js'\n$env:PATH = 'C:\\Program Files\\nodejs;' + $env:PATH\n$env:CHROME_BIN = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'\n$env:EDITRA_BROWSER = $env:CHROME_BIN\n\nfunction editraNpm { & $env:EDITRA_NODE20 $env:EDITRA_NPM_CLI @args }\n\n& $env:EDITRA_NODE20 --version\n& $env:EDITRA_NODE24 --version\neditraNpm --version\n",
+				language: 'powershell',
+				html: "<pre><code class=\"language-powershell\">cd F:\\POJECTS\\editra-workspace\n\n$env:EDITRA_NODE20 = 'C:\\Program Files\\nodejs\\node.exe'\n$env:EDITRA_NODE24 = 'C:\\Users\\Sanjay Khatri\\AppData\\Local\\JetBrains\\IntelliJIdea2026.2\\acp-agents\\.runtimes\\node\\24.19.0\\node.exe'\n$env:EDITRA_NPM_CLI = 'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js'\n$env:PATH = 'C:\\Program Files\\nodejs;' + $env:PATH\n$env:CHROME_BIN = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'\n$env:EDITRA_BROWSER = $env:CHROME_BIN\n\nfunction editraNpm { &amp; $env:EDITRA_NODE20 $env:EDITRA_NPM_CLI @args }\n\n&amp; $env:EDITRA_NODE20 --version\n&amp; $env:EDITRA_NODE24 --version\neditraNpm --version\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Expect Node 20, Node 24 and npm 10 respectively. The <code>editraNpm</code> helper explicitly\nselects npm 10; changing PATH alone can still select another npm installation.\nKeep this terminal open for the remaining steps. These environment variables and\nthe helper apply only to this terminal session.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="3-sign-in-and-check-the-package-name">3. Sign in and check the package name</h2>\n',
+				id: '3-sign-in-and-check-the-package-name',
+				kind: 'content',
+			},
+			{
+				code: 'editraNpm login --registry=https://registry.npmjs.org/\neditraNpm whoami --registry=https://registry.npmjs.org/\neditraNpm view ngx-editra name versions --registry=https://registry.npmjs.org/\n',
+				language: 'powershell',
+				html: '<pre><code class="language-powershell">editraNpm login --registry=https://registry.npmjs.org/\neditraNpm whoami --registry=https://registry.npmjs.org/\neditraNpm view ngx-editra name versions --registry=https://registry.npmjs.org/\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Complete the browser login and confirm <code>whoami</code> prints your intended account.\nAn E404 from <code>view</code> means no existing package was found; it does not reserve the\nname or guarantee npm will allow publication. If a package exists, confirm you\nhave publishing access and the intended version has never been published.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>The version comes from <code>packages/ngx-editra/package.json</code>, not the private root\npackage. If you change the version, update release notes and tarball references\nbefore validation. See the <a href="/guides/releasing">release process</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="4-stop-dev-servers-and-install-dependencies">4. Stop dev servers and install dependencies</h2>\n',
+				id: '4-stop-dev-servers-and-install-dependencies',
+				kind: 'content',
+			},
+			{
+				html: '<p>Press Ctrl+C in terminals running <code>start:all</code>, <code>ng serve</code>, or build watchers.\nStop corresponding IDE run configurations too. Running servers can lock esbuild\nand Rollup files on Windows.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: 'editraNpm ci\n',
+				language: 'powershell',
+				html: '<pre><code class="language-powershell">editraNpm ci\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Wait for successful completion before continuing. Review current dependency\nfindings with <code>editraNpm audit</code> and, separately, <code>editraNpm audit --omit=dev</code>.\nAudit can exit nonzero when it finds vulnerabilities. Resolve or document findings\nunder the <a href="/guides/maintenance">maintenance policy</a>; the workspace audit includes app\nand legacy toolchain dependencies, so assess the library and supported consumers\nas well. Do not blindly run <code>npm audit fix --force</code> before a release.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="5-validate-the-exact-release">5. Validate the exact release</h2>\n',
+				id: '5-validate-the-exact-release',
+				kind: 'content',
+			},
+			{
+				code: 'editraNpm run validate -- --compatibility\neditraNpm run verify:evidence\n',
+				language: 'powershell',
+				html: '<pre><code class="language-powershell">editraNpm run validate -- --compatibility\neditraNpm run verify:evidence\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Both commands must succeed. Validation builds and packs the library, exercises\nthe apps, and installs the generated archive in independent Angular 17–22 consumers.\nThe archive for this version is:</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: 'artifacts/ngx-editra-0.1.0-alpha.0.tgz\n',
+				language: 'text',
+				html: '<pre><code class="language-text">artifacts/ngx-editra-0.1.0-alpha.0.tgz\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Review <code>artifacts/release-validation.json</code> and <code>artifacts/compatibility-results.json</code>,\ncomplete applicable manual release checks, and confirm remote CI passes for the\nrelease revision. Remaining acceptance work is tracked in <a href="/guides/project-status">project status</a>.\nDo not represent this alpha as stable.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Source, documentation, or archive changes invalidate release evidence. Make all\nedits before validation; if anything changes afterward, repeat this step. Do not\nrebuild or repack after verification and then publish the replacement archive.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="6-preview-package-publication">6. Preview package publication</h2>\n',
+				id: '6-preview-package-publication',
+				kind: 'content',
+			},
+			{
+				code: 'editraNpm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next --registry=https://registry.npmjs.org/ --dry-run\n',
+				language: 'powershell',
+				html: '<pre><code class="language-powershell">editraNpm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next --registry=https://registry.npmjs.org/ --dry-run\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Review the package name, version, tag and file list. Confirm the archive contains\ncompiled library files, public declarations, README, LICENSE and distributed\nstyles. A successful dry run checks packaging; it does not prove publishing\npermissions or reserve the name/version.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="7-publish-the-tested-archive">7. Publish the tested archive</h2>\n',
+				id: '7-publish-the-tested-archive',
+				kind: 'content',
+			},
+			{
+				html: '<p>When you intend to make this release public, run:</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: 'editraNpm run verify:evidence\neditraNpm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next --registry=https://registry.npmjs.org/\n',
+				language: 'powershell',
+				html: '<pre><code class="language-powershell">editraNpm run verify:evidence\neditraNpm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next --registry=https://registry.npmjs.org/\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: "<p>Run the second command only if evidence verification succeeds. Complete npm's\nauthentication prompt. Publish the tested tarball, not the private workspace root\nor <code>packages/ngx-editra</code> source directory. No repository workflow publishes npm\npackages automatically.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>The <code>next</code> tag identifies the prerelease. A published name/version combination\ncannot be reused, even after unpublishing. See the <a href="https://docs.npmjs.com/cli/commands/npm-publish/">npm publish reference</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="8-verify-the-public-package">8. Verify the public package</h2>\n',
+				id: '8-verify-the-public-package',
+				kind: 'content',
+			},
+			{
+				code: 'editraNpm view ngx-editra@0.1.0-alpha.0 version dist.integrity --registry=https://registry.npmjs.org/\neditraNpm view ngx-editra dist-tags --registry=https://registry.npmjs.org/\n',
+				language: 'powershell',
+				html: '<pre><code class="language-powershell">editraNpm view ngx-editra@0.1.0-alpha.0 version dist.integrity --registry=https://registry.npmjs.org/\neditraNpm view ngx-editra dist-tags --registry=https://registry.npmjs.org/\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Confirm <code>next</code> points to <code>0.1.0-alpha.0</code> and open the\n<a href="https://www.npmjs.com/package/ngx-editra">package page</a>. In a separate supported\nAngular application, install the release:</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: 'npm.cmd install ngx-editra@next\n',
+				language: 'powershell',
+				html: '<pre><code class="language-powershell">npm.cmd install ngx-editra@next\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Follow <a href="/guides/quick-start">quick start</a> and verify editing, forms, saved-content\nrendering and code copying without an application Sass import. Update repository\nrelease status and installation instructions to reflect the actual publication,\nthen regenerate the documentation. Never mark publication complete before npm\nconfirms it.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="troubleshooting">Troubleshooting</h2>\n',
+				id: 'troubleshooting',
+				kind: 'content',
+			},
+			{
+				html: '<h3 id="eperm-unlink-esbuild-exe-or-rollup">EPERM unlink: esbuild.exe or Rollup</h3>\n',
+				id: 'eperm-unlink-esbuild-exe-or-rollup',
+				kind: 'content',
+			},
+			{
+				html: "<p>A running dev server, watcher or other process may hold the file open. Stop this\nworkspace's servers and watchers, then retry <code>editraNpm ci</code>. If the lock remains,\nclose the relevant IDE run configuration or restart Windows and retry before\nstarting the apps. Do not kill every Node process or disable antivirus globally.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h3 id="cannot-find-markdown-it-after-npm-ci-failed">Cannot find markdown-it after npm ci failed</h3>\n',
+				id: 'cannot-find-markdown-it-after-npm-ci-failed',
+				kind: 'content',
+			},
+			{
+				html: '<p>The dependency installation is incomplete. Fix the install error and rerun\n<code>editraNpm ci</code> successfully before validation. Do not install a single missing\npackage to conceal the interrupted clean install.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h3 id="validation-is-incomplete-or-failed">Validation is incomplete or failed</h3>\n',
+				id: 'validation-is-incomplete-or-failed',
+				kind: 'content',
+			},
+			{
+				html: '<p>Fix the first failed validation step, rerun the complete compatibility validation,\nthen verify evidence again. Never edit evidence reports to mark checks as passed.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h3 id="e401-e403-or-version-already-exists">E401, E403 or version already exists</h3>\n',
+				id: 'e401-e403-or-version-already-exists',
+				kind: 'content',
+			},
+			{
+				html: "<p>For authentication errors, repeat login and confirm <code>whoami</code>. For E403, read npm's\nmessage and check account permissions, 2FA requirements and package-name policy.\nIf the version exists, inspect the registry first: a previous attempt may have\nsucceeded. A genuinely new release needs a new version and fresh validation.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="subsequent-releases">Subsequent releases</h2>\n',
+				id: 'subsequent-releases',
+				kind: 'content',
+			},
+			{
+				html: "<p>Use a new version such as <code>0.1.0-alpha.1</code>, update the changelog and tarball\nreferences, then repeat validation and publication using <code>next</code>. Release <code>1.0.0</code>\nor another stable version with <code>latest</code> only after stable acceptance criteria are\nmet; review the package's default publishing tag at that time.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " publish ngx-editra to npm\n\nthis guide publishes the initial ngx-editra@0.1.0-alpha.0 prerelease with the\nnext tag. run commands from the workspace root in powershell, one at a time.\nstop whenever a command fails. validation and dry runs do not publish anything;\nstep 7 makes the package public.\n\n 1. prepare your npm account\n\ncreate an account at [npm](https://www.npmjs.com/signup), verify your email address,\nand enable two-factor authentication in account settings. complete authentication\nprompts in your own browser or terminal; never commit or share tokens or otp codes.\nsee [npm publishing authentication](https://docs.npmjs.com/requiring-2fa-for-package-publishing-and-settings-modification/).\n\n 2. configure the windows toolchain\n\nthe compilation baseline is node 20.20.2/npm 10.8.2. compatibility tests also need\nnode 24 and a chromium browser. adjust these executable paths for your machine.\nthis example uses the existing local installations and microsoft edge:\n\npowershell\ncd f:\\pojects\\editra-workspace\n\n$env:editra_node20 = 'c:\\program files\\nodejs\\node.exe'\n$env:editra_node24 = 'c:\\users\\sanjay khatri\\appdata\\local\\jetbrains\\intellijidea2026.2\\acp-agents\\.runtimes\\node\\24.19.0\\node.exe'\n$env:editra_npm_cli = 'c:\\program files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js'\n$env:path = 'c:\\program files\\nodejs;' + $env:path\n$env:chrome_bin = 'c:\\program files (x86)\\microsoft\\edge\\application\\msedge.exe'\n$env:editra_browser = $env:chrome_bin\n\nfunction editranpm { & $env:editra_node20 $env:editra_npm_cli @args }\n\n& $env:editra_node20 --version\n& $env:editra_node24 --version\neditranpm --version\n\n\nexpect node 20, node 24 and npm 10 respectively. the editranpm helper explicitly\nselects npm 10; changing path alone can still select another npm installation.\nkeep this terminal open for the remaining steps. these environment variables and\nthe helper apply only to this terminal session.\n\n 3. sign in and check the package name\n\npowershell\neditranpm login --registry=https://registry.npmjs.org/\neditranpm whoami --registry=https://registry.npmjs.org/\neditranpm view ngx-editra name versions --registry=https://registry.npmjs.org/\n\n\ncomplete the browser login and confirm whoami prints your intended account.\nan e404 from view means no existing package was found; it does not reserve the\nname or guarantee npm will allow publication. if a package exists, confirm you\nhave publishing access and the intended version has never been published.\n\nthe version comes from packages/ngx-editra/package.json, not the private root\npackage. if you change the version, update release notes and tarball references\nbefore validation. see the [release process](releasing.md).\n\n 4. stop dev servers and install dependencies\n\npress ctrl+c in terminals running start:all, ng serve, or build watchers.\nstop corresponding ide run configurations too. running servers can lock esbuild\nand rollup files on windows.\n\npowershell\neditranpm ci\n\n\nwait for successful completion before continuing. review current dependency\nfindings with editranpm audit and, separately, editranpm audit --omit=dev.\naudit can exit nonzero when it finds vulnerabilities. resolve or document findings\nunder the [maintenance policy](maintenance.md); the workspace audit includes app\nand legacy toolchain dependencies, so assess the library and supported consumers\nas well. do not blindly run npm audit fix --force before a release.\n\n 5. validate the exact release\n\npowershell\neditranpm run validate -- --compatibility\neditranpm run verify:evidence\n\n\nboth commands must succeed. validation builds and packs the library, exercises\nthe apps, and installs the generated archive in independent angular 17–22 consumers.\nthe archive for this version is:\n\ntext\nartifacts/ngx-editra-0.1.0-alpha.0.tgz\n\n\nreview artifacts/release-validation.json and artifacts/compatibility-results.json,\ncomplete applicable manual release checks, and confirm remote ci passes for the\nrelease revision. remaining acceptance work is tracked in [project status](../progress.md).\ndo not represent this alpha as stable.\n\nsource, documentation, or archive changes invalidate release evidence. make all\nedits before validation; if anything changes afterward, repeat this step. do not\nrebuild or repack after verification and then publish the replacement archive.\n\n 6. preview package publication\n\npowershell\neditranpm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next --registry=https://registry.npmjs.org/ --dry-run\n\n\nreview the package name, version, tag and file list. confirm the archive contains\ncompiled library files, public declarations, readme, license and distributed\nstyles. a successful dry run checks packaging; it does not prove publishing\npermissions or reserve the name/version.\n\n 7. publish the tested archive\n\nwhen you intend to make this release public, run:\n\npowershell\neditranpm run verify:evidence\neditranpm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next --registry=https://registry.npmjs.org/\n\n\nrun the second command only if evidence verification succeeds. complete npm's\nauthentication prompt. publish the tested tarball, not the private workspace root\nor packages/ngx-editra source directory. no repository workflow publishes npm\npackages automatically.\n\nthe next tag identifies the prerelease. a published name/version combination\ncannot be reused, even after unpublishing. see the [npm publish reference](https://docs.npmjs.com/cli/commands/npm-publish/).\n\n 8. verify the public package\n\npowershell\neditranpm view ngx-editra@0.1.0-alpha.0 version dist.integrity --registry=https://registry.npmjs.org/\neditranpm view ngx-editra dist-tags --registry=https://registry.npmjs.org/\n\n\nconfirm next points to 0.1.0-alpha.0 and open the\n[package page](https://www.npmjs.com/package/ngx-editra). in a separate supported\nangular application, install the release:\n\npowershell\nnpm.cmd install ngx-editra@next\n\n\nfollow [quick start](quick_start.md) and verify editing, forms, saved-content\nrendering and code copying without an application sass import. update repository\nrelease status and installation instructions to reflect the actual publication,\nthen regenerate the documentation. never mark publication complete before npm\nconfirms it.\n\n troubleshooting\n\n eperm unlink: esbuild.exe or rollup\n\na running dev server, watcher or other process may hold the file open. stop this\nworkspace's servers and watchers, then retry editranpm ci. if the lock remains,\nclose the relevant ide run configuration or restart windows and retry before\nstarting the apps. do not kill every node process or disable antivirus globally.\n\n cannot find markdown-it after npm ci failed\n\nthe dependency installation is incomplete. fix the install error and rerun\neditranpm ci successfully before validation. do not install a single missing\npackage to conceal the interrupted clean install.\n\n validation is incomplete or failed\n\nfix the first failed validation step, rerun the complete compatibility validation,\nthen verify evidence again. never edit evidence reports to mark checks as passed.\n\n e401, e403 or version already exists\n\nfor authentication errors, repeat login and confirm whoami. for e403, read npm's\nmessage and check account permissions, 2fa requirements and package-name policy.\nif the version exists, inspect the registry first: a previous attempt may have\nsucceeded. a genuinely new release needs a new version and fresh validation.\n\n subsequent releases\n\nuse a new version such as 0.1.0-alpha.1, update the changelog and tarball\nreferences, then repeat validation and publication using next. release 1.0.0\nor another stable version with latest only after stable acceptance criteria are\nmet; review the package's default publishing tag at that time.\n",
 	},
 	{
 		slug: 'deployment',

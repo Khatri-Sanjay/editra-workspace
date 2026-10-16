@@ -43,6 +43,7 @@ const pages = [
 	['security', 'Security', 'Reference', 'SECURITY'],
 	['compatibility', 'Compatibility', 'Reference', 'COMPATIBILITY'],
 	['releasing', 'Release process', 'Project', 'RELEASING'],
+	['publishing', 'Publish to npm', 'Project', 'PUBLISHING'],
 	['deployment', 'Deploy the websites', 'Project', 'DEPLOYMENT'],
 	['maintenance', 'Maintenance policy', 'Project', 'MAINTENANCE'],
 ];

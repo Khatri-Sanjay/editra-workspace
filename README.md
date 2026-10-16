@@ -62,6 +62,8 @@ The checks build and pack the library and install that exact archive into indepe
 Angular 17-22 consumers. Configure Node/browser prerequisites using the
 [release guide](docs/RELEASING.md). Publishing is an explicit owner action using the
 validated tarball and `next` tag. Do not publish the private workspace or source folder.
+Follow the [step-by-step npm publishing guide](docs/PUBLISHING.md) for Windows setup,
+authentication, validation, publication and troubleshooting.
 
 ## Deploy the websites from GitHub to Vercel
 
