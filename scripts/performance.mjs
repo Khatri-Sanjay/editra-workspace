@@ -1,4 +1,5 @@
-import { EditraEngine } from '../dist/ngx-editra/fesm2022/ngx-editra-core.mjs';
+import '@angular/compiler';
+import { EditraEngine } from '../dist/ngx-editra/fesm2022/ngx-editra.mjs';
 import { performance } from 'node:perf_hooks';
 import { writeFile } from 'node:fs/promises';
 const results = [];

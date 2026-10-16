@@ -1,5 +1,7 @@
 ﻿# Compatibility evidence
 
+The table below is a historical validation baseline. A new archive must be checked independently; use the archive SHA-256 in artifacts/compatibility-results.json to identify the package actually tested. Published peer ranges describe supported Angular package versions, not a guarantee about every application or third-party extension.
+
 The package is compiled with Angular 17 APIs and partial-Ivy. The exact installed tarball
 was validated in independent applications with normal npm peer resolution and isolated tooling.
 

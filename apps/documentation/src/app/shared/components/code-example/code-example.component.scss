@@ -1,0 +1,92 @@
+:host {
+	display: block;
+	min-width: 0;
+}
+.code-example {
+	background: var(--code);
+	color: var(--code-ink);
+	border: 1px solid var(--line);
+	border-radius: 9px;
+	overflow: hidden;
+	.code-example-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 8px 12px 8px 18px;
+		border-bottom: 1px solid #ffffff24;
+	}
+	.code-example-language {
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		font:
+			12px ui-monospace,
+			monospace;
+	}
+	button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 7px;
+		height: 36px;
+		width: 112px;
+		flex: 0 0 112px;
+		white-space: nowrap;
+		padding: 6px 10px;
+		border: 1px solid #ffffff40;
+		border-radius: 5px;
+		background: transparent;
+		color: var(--code-ink);
+		font-size: 12px;
+		&:hover {
+			background: #ffffff14;
+		}
+		&:focus-visible {
+			outline: 2px solid var(--code-ink);
+			outline-offset: 2px;
+		}
+		&[aria-disabled='true'] {
+			cursor: progress;
+		}
+	}
+	svg {
+		flex: 0 0 16px;
+		stroke: currentColor;
+		stroke-width: 1.7;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+	pre {
+		width: 100%;
+		min-width: 0;
+		margin: 0;
+		padding: 18px;
+		overflow-x: auto;
+		border-radius: 0;
+		background: transparent;
+		color: inherit;
+		font:
+			12px/1.8 ui-monospace,
+			monospace;
+		overflow-wrap: normal;
+		tab-size: 2;
+		white-space: pre;
+	}
+	code {
+		font: inherit;
+	}
+	.code-example-status {
+		// Announce feedback without inserting a row or moving surrounding content.
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+		border: 0;
+	}
+}

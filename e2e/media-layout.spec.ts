@@ -42,13 +42,26 @@ async function assertAlignment(page: Page, media: Locator, alignment: string): P
 	await expect(page.locator('.editra-media-view')).toHaveClass(/ProseMirror-selectednode/);
 	await page.getByRole('button', { name: 'Align ' + alignment, exact: true }).click();
 	const rect = await media.boundingBox(),
-		area = await page.locator('.ProseMirror').first().boundingBox();
+		area = await contentArea(page);
 	if (!rect || !area) throw new Error('Missing alignment geometry');
 	if (alignment === 'left') expect(Math.abs(rect.x - area.x)).toBeLessThan(2);
 	if (alignment === 'right')
 		expect(Math.abs(rect.x + rect.width - area.x - area.width)).toBeLessThan(2);
 	if (alignment === 'center')
 		expect(Math.abs(rect.x + rect.width / 2 - area.x - area.width / 2)).toBeLessThan(2);
+}
+
+async function contentArea(page: Page): Promise<{ x: number; width: number }> {
+	return page
+		.locator('.ProseMirror')
+		.first()
+		.evaluate((element) => {
+			const rect = element.getBoundingClientRect();
+			const style = getComputedStyle(element);
+			const left = parseFloat(style.paddingLeft);
+			const right = parseFloat(style.paddingRight);
+			return { x: rect.x + left, width: element.clientWidth - left - right };
+		});
 }
 test('automatic images align, fill content width, resize, cancel and reload responsively', async ({
 	page,
@@ -76,10 +89,7 @@ test('automatic images align, fill content width, resize, cancel and reload resp
 	await dialog.getByLabel('Full content width').check();
 	await dialog.getByRole('button', { name: 'Apply', exact: true }).click();
 	await expect(page.locator('.ProseMirror figure')).toHaveAttribute('data-full-width', 'true');
-	expect((await image.boundingBox())?.width).toBeCloseTo(
-		(await page.locator('.ProseMirror').first().boundingBox())?.width ?? 0,
-		0,
-	);
+	expect((await image.boundingBox())?.width).toBeCloseTo((await contentArea(page)).width, 0);
 	const handle = page.getByRole('button', { name: 'Resize image; use arrow keys' });
 	const saved = await page.locator('.output pre').textContent();
 	await drag(page, handle, -60, -30, true);
@@ -213,9 +223,9 @@ test('URL-only insertion and editable content beside an image', async ({ page })
 	await page.keyboard.insertText('Text beside the image');
 	const text = page.locator('.ProseMirror p').filter({ hasText: 'Text beside the image' });
 	await expect(text).toBeVisible();
-	await expect(page.locator('[data-editra-column]')).toHaveCount(2);
+	await expect(page.locator('.ProseMirror [data-editra-column]')).toHaveCount(2);
 	await expect(page.locator('.editra-media-view')).toHaveCSS('float', 'none');
-	await expect(page.locator('[data-editra-column]').first()).toHaveAttribute(
+	await expect(page.locator('.ProseMirror [data-editra-column]').first()).toHaveAttribute(
 		'data-column-weight',
 		'35',
 	);
@@ -224,7 +234,7 @@ test('URL-only insertion and editable content beside an image', async ({ page })
 		.locator('.ProseMirror img')
 		.evaluate((el) => el.getBoundingClientRect().width);
 	const columnWidth = await page
-		.locator('[data-editra-column]')
+		.locator('.ProseMirror [data-editra-column]')
 		.first()
 		.evaluate((el) => el.clientWidth);
 	expect(columnWidth - imageWidth).toBeLessThan(12);
@@ -243,8 +253,8 @@ test('URL-only insertion and editable content beside an image', async ({ page })
 	await page.getByText('Import HTML', { exact: true }).click();
 	await page.getByLabel('HTML input').fill(html ?? '');
 	await page.getByRole('button', { name: 'Apply HTML', exact: true }).click();
-	await expect(page.locator('[data-editra-column]')).toHaveCount(2);
-	await expect(page.locator('[data-editra-column]').nth(1)).toContainText(
+	await expect(page.locator('.ProseMirror [data-editra-column]')).toHaveCount(2);
+	await expect(page.locator('.ProseMirror [data-editra-column]').nth(1)).toContainText(
 		'Text beside the image',
 	);
 });
@@ -261,7 +271,7 @@ test('blank columns keep headings, images and following text independent', async
 	await page.keyboard.insertText('This stays below the columns');
 	await page.keyboard.press('Home');
 	await page.getByRole('button', { name: 'Insert columns', exact: true }).click();
-	const cols = page.locator('[data-editra-column]');
+	const cols = page.locator('.ProseMirror [data-editra-column]');
 	await expect(cols).toHaveCount(2);
 	await page.getByLabel('Paragraph style').selectOption('h2');
 	await page.keyboard.insertText('Column heading');
@@ -295,7 +305,7 @@ test('column divider drags, cancels, undoes, resets and persists', async ({ page
 	await page.getByRole('button', { name: 'Insert columns', exact: true }).click();
 	await page.keyboard.insertText('Left content');
 	const divider = page.getByRole('button', { name: 'Resize content columns' });
-	const cols = page.locator('[data-editra-column]');
+	const cols = page.locator('.ProseMirror [data-editra-column]');
 	await expect(divider).toBeVisible();
 	const before = await page.locator('.output pre').textContent();
 	await drag(page, divider, 100, 0, true);
@@ -367,7 +377,7 @@ test('resized images keep their size and use separate left or right content sect
 	await page.getByRole('button', { name: 'Add content beside image', exact: true }).click();
 	await expect(image).toHaveAttribute('width', '300');
 	await page.keyboard.insertText('Separate content');
-	const cols = page.locator('[data-editra-column]');
+	const cols = page.locator('.ProseMirror [data-editra-column]');
 	await expect(cols.nth(1)).toContainText('Separate content');
 	await image.click();
 	await page.getByRole('button', { name: 'Image section right', exact: true }).click();
@@ -376,7 +386,7 @@ test('resized images keep their size and use separate left or right content sect
 	await page.getByRole('button', { name: 'Add content beside image', exact: true }).click();
 	await page.keyboard.insertText('More ');
 	await expect(cols.first()).toContainText('More Separate content');
-	await expect(page.locator('[data-editra-columns]')).toHaveCount(1);
+	await expect(page.locator('.ProseMirror [data-editra-columns]')).toHaveCount(1);
 	await image.click();
 	await page.getByRole('button', { name: 'Align right', exact: true }).click();
 	await expect(cols.nth(1).locator('figure')).toHaveCSS('text-align', 'right');
@@ -394,7 +404,7 @@ test('columns resize below twenty percent and toolbar actions use icons', async 
 	const divider = page.getByRole('button', { name: 'Resize content columns' });
 	await divider.focus();
 	for (let i = 0; i < 8; i++) await divider.press('ArrowLeft');
-	const cols = page.locator('[data-editra-column]');
+	const cols = page.locator('.ProseMirror [data-editra-column]');
 	await expect(cols.first()).toHaveAttribute('data-column-weight', '10');
 	expect((await cols.first().boundingBox())?.width).toBeLessThan(220);
 	await drag(page, divider, -150, 0);
@@ -424,7 +434,7 @@ test('blank space beside a tall image accepts additional independent content', a
 	await page.locator('.ProseMirror img').click();
 	await page.getByRole('button', { name: 'Add content beside image', exact: true }).click();
 	await page.keyboard.insertText('Short text');
-	const cols = page.locator('[data-editra-column]');
+	const cols = page.locator('.ProseMirror [data-editra-column]');
 	const content = cols.nth(1);
 	const box = await content.boundingBox(),
 		imageBox = await cols.first().boundingBox();
@@ -437,5 +447,5 @@ test('blank space beside a tall image accepts additional independent content', a
 	await page.getByLabel('Paragraph style').selectOption('h2');
 	await expect(content.locator('h2')).toHaveText('Content added in the empty space');
 	await expect(cols.first().locator('img')).toHaveCount(1);
-	await expect(page.locator('[data-editra-columns]')).toHaveCount(1);
+	await expect(page.locator('.ProseMirror [data-editra-columns]')).toHaveCount(1);
 });

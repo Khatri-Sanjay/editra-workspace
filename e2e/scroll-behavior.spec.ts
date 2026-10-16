@@ -77,7 +77,7 @@ test('toolbar can be pinned and unpinned and editor scrollbars are thin', async 
 	await expect(pin).toHaveAttribute('aria-pressed', 'true');
 	await expect(toolbar).toHaveCSS('position', 'sticky');
 	const editorTop = await page
-		.locator('editra-editor')
+		.locator('ngx-editra')
 		.first()
 		.evaluate((el) => el.getBoundingClientRect().top + scrollY);
 	await page.evaluate((top) => scrollTo(0, top + 250), editorTop);
@@ -87,7 +87,7 @@ test('toolbar can be pinned and unpinned and editor scrollbars are thin', async 
 	await expect(pin).toHaveAttribute('aria-pressed', 'false');
 	await expect(toolbar).not.toHaveCSS('position', 'sticky');
 	const thick = await page
-		.locator('editra-editor')
+		.locator('ngx-editra')
 		.first()
 		.evaluate((editor) =>
 			Array.from(editor.querySelectorAll('*'))

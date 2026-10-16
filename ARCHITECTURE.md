@@ -1,50 +1,128 @@
-# Architecture and implementation plan
+# Workspace architecture
 
-## Decisions
+The workspace uses Angular CLI 17.3, npm workspaces and one publishable Angular
+library. Build with Node 20.20.2/npm 10.8.2. Compatibility consumers own their
+Angular, TypeScript and runtime versions independently.
 
--   npm workspaces: `packages/angular-editor` and `apps/playground`. Compatibility consumers
-    live outside workspace dependency resolution so each major owns its Node/TypeScript graph.
--   One distribution: `ngx-editra`, with public `ngx-editra/core` and `ngx-editra/extensions`
-    secondary entry points. Core contains no Angular runtime imports. ProseMirror modules are
-    ordinary shared dependencies, never copied or bundled as private instances.
--   Compile with Angular 17 APIs, partial-Ivy and ng-packagr. Advertise only verified peer ranges.
--   One canonical ProseMirror document; transactions own editing/history. Angular implements
-    ControlValueAccessor with stable HTML values and explicit conversion methods.
--   parse5 parses untrusted HTML on server and client. Only schema-supported structures and
-    validated attributes survive. A deterministic serializer escapes text and attributes.
--   Server renders validated static content. The editor component uses a documented
-    `ngSkipHydration` boundary; afterNextRender mounts the browser view without executing DOM
-    code on the server. No arbitrary Angular sanitizer bypass.
--   Deterministic extensions declare schema/commands/plugins/node views and dependencies;
-    duplicate identifiers and command collisions are rejected.
--   URL policy defaults to HTTPS; video providers match exact host/path and produce canonical
-    embeds. No uploads, data URLs, execCommand, or uncontrolled contenteditable mutation.
+## Repository ownership
 
-## Dependencies
+```text
+editra-workspace/
+  apps/
+    playground/             Interactive editor demo and SSR application
+    documentation/          Documentation website and live examples
+    compatibility/          Isolated Angular 17-22 tarball consumers
+  packages/
+    ngx-editra/
+      src/
+        lib/
+          components/       Feature folders with templates, styles and tests
+          config/           Angular tokens and configuration providers
+          core/             Framework-independent document engine and contracts
+          extensions/       Media and Markdown integrations
+          directives/       Angular DOM behavior
+          pipes/            Angular content rendering
+          node-views/       Browser editor node views
+          utils/            Shared UI helpers
+          testing/          Tests spanning internal layers
+          public-api.ts     Explicitly supported package exports
+        styles/             Published Sass styles
+        public-api.ts       Forwards the package API
+      package.json          npm identity, peers and runtime dependencies
+      ng-package.json       Angular packaging and local style assets
+      tsconfig.lib*.json    Development and partial-Ivy production compilation
+      tsconfig.spec.json    Library test compilation
+  docs/                     Single source of feature and API documentation
+  e2e/                      Browser integration tests and fixtures
+  scripts/                  Build and verification automation
+  angular.json              Angular project roots and builders
+  tsconfig.json             Shared strict compiler settings and package alias
+  package.json              Private workspace and development commands
+  README.md                 Canonical package overview
+  LICENSE                   Canonical license
+  CHANGELOG.md              Canonical release notes
+  CONTRIBUTING.md            Canonical contributor guidance
+  PROGRESS.md                Canonical acceptance status
+```
 
-Registry metadata checked on 2026-10-13: ProseMirror model 1.25.12, state 1.4.4,
-view 1.42.6, commands 1.7.2, schema-list 1.5.1, history 1.5.1, keymap 1.2.3,
-tables 1.8.5, markdown 1.13.8; parse5 8.0.1; Playwright 1.64.0; axe-core 4.14.0.
-Angular compilation retains 17.3 and TypeScript 5.4. Tests establish actual compatibility.
+Root documents and docs/ are maintained once. The library source does not contain
+copies. dist/, artifacts/, test-results/ and node_modules/ are generated outputs,
+not architecture layers. npm may create package-local node_modules for dependency
+versions that cannot share the root installation; these must not be manually moved.
 
-## Milestones and validation
+## Public API and dependency direction
 
-1. Foundation: workspaces, core schema/security/parser/serializer, Angular forms/SSR adapter,
-   initial unit tests and packaged playground.
-2. Text: marks, block/list commands, keyboard history, toolbar and state.
-3. Media: independent image/video extensions, URL dialogs, canonical providers, resizing.
-4. Documents: tables, find/replace/counts/Markdown/fullscreen.
-5. Extensions: registry, public configuration, themes and custom commands/providers.
-6. Hardening: malicious-content tests, keyboard/axe E2E, SSR/hydration/consumer matrix,
-   performance measurements, documentation and release preparation.
+All supported TypeScript symbols are imported from ngx-editra. There are no /core
+or /extensions npm entry points. Editor and viewer styles load with their components.
+The editor uses host-prefixed global rules because ProseMirror creates document nodes
+outside Angular's template; those rules remain under `ngx-editra`. Optional Sass exports
+remain available for custom content containers and existing integrations.
+Core and extensions retain internal barrels to organize relative source imports.
+Applications consume the built distribution through the inherited root TypeScript
+alias. Library code never imports its own npm entry point or application files.
 
-Each stage runs formatting/lint/compiler/build/tests as applicable. A stage remains incomplete
-until its required behavior is implemented and its checks succeed. Package tarballs are tested
-as consumer dependencies; installation alone is never compatibility evidence.
+Dependencies flow from applications to the public package, and internally from
+Angular UI to extensions/core and from extensions to core. Core does not import
+Angular, extensions or UI. ESLint resolves relative import paths to enforce these
+boundaries, including re-exports and dynamic imports. Public exports are explicit;
+private implementation paths are unsupported. Boundary rules have regression tests.
 
-## Compatibility strategy
+Angular packages used directly by the library are peers. ProseMirror, parse5 and
+tslib are runtime dependencies. CLI, compiler, lint, formatting and test tools stay
+in the private workspace. Compatibility apps are excluded from npm workspaces so
+their tooling and dependency resolution remain isolated.
 
-Angular 17/18 use Node 20 and their supported TypeScript versions. Angular 19–21 can use
-Node 22 with their own TypeScript versions. Angular 22 uses Node 24 and TypeScript 6.
-Matrix consumers exercise builds, forms, browser behavior, SSR and hydration independently.
-Future releases remain unverified. No automatic publication is configured.
+## Build and packaging
+
+npm run build invokes scripts/build-library.mjs. It runs the configured ng-packagr
+builder, then copies the canonical root documents and docs/ directly into
+dist/ngx-editra. No generated documents are written back into package source.
+The wrapper is needed because ng-packagr rejects assets outside the library root.
+Use npm run build for the complete distribution; bare ng build only compiles the
+library and local styles. npm run watch is for code iteration, not release packaging.
+
+npm start and application build commands build the library first. Both apps inherit
+the same package alias and have distinct compiler output directories. New Angular
+projects default to packages/; application generators should explicitly use apps/.
+
+npm run pack builds and verifies exports, declarations, styles, documents and
+runtime dependencies before writing a tarball into artifacts/. Compatibility tests
+install that exact archive and record its SHA-256. Reports for older hashes do not
+validate a new archive. Publish only from dist/ngx-editra after release validation
+and explicit owner authorization; no workflow publishes automatically.
+
+## Automation responsibilities
+
+The documentation app uses separate layout, feature, core service, shared model and
+generated-content directories. Its root component is a router outlet. Full articles
+load with the guide route; the layout imports only navigation/search data. Its global
+stylesheet is composed from ordered responsibility-based Sass modules. See
+apps/documentation/README.md for the app-specific directory map and ownership rules.
+
+| Script                     | Responsibility                                                 |
+| -------------------------- | -------------------------------------------------------------- |
+| build-library.mjs          | Compile the package and assemble canonical release documents   |
+| pack.mjs                   | Validate the distribution and create the npm archive           |
+| generate-documentation.mjs | Compile root Markdown into website pages and routes            |
+| eslint-boundaries.cjs      | Enforce application and internal source-layer boundaries       |
+| eslint-boundaries.test.cjs | Verify boundary rules accept and reject representative imports |
+| run-compatibility.mjs      | Install and test the tarball in independent Angular consumers  |
+| performance.mjs            | Measure large-document engine behavior                         |
+
+Compatibility fixtures are maintained explicitly. The old generator that fetched
+latest package versions and overwrote consumer projects has been removed.
+
+## Editor behavior and verification
+
+The ProseMirror document is authoritative; editing uses transactions and history.
+Angular integrates through ControlValueAccessor. Browser views initialize after
+rendering and are destroyed with the component. SSR uses schema-validated static
+content and an explicit hydration boundary. HTML is parsed and reconstructed;
+custom extension serializers remain trusted application code. See docs/SECURITY.md.
+
+Validation commands are documented in CONTRIBUTING.md. Build and packaging checks
+must verify actual emitted files, not source-directory assumptions. Consumers use
+normal npm peer resolution, their own lockfiles and the tested tarball. See
+artifacts/compatibility-results.json for hash-bound consumer evidence. Existing
+bundle warnings, manual accessibility review and independent security review remain
+separate release considerations; compatibility does not establish stable-release readiness.

@@ -32,6 +32,9 @@ test('image pointer resizing is one reversible transaction', async ({ page }) =>
 	);
 	await page.goto('/');
 	await expect(page.locator('.ProseMirror').first()).toBeVisible();
+	await page.locator('.ProseMirror').first().click();
+	await page.keyboard.press('ControlOrMeta+a');
+	await page.keyboard.insertText('Image resizing');
 	await page.getByRole('button', { name: 'image', exact: true }).click();
 	const dialog = page.getByRole('dialog');
 	await dialog.getByLabel('URL', { exact: true }).fill('https://media.example.test/pointer.png');
@@ -51,6 +54,9 @@ test('image pointer resizing is one reversible transaction', async ({ page }) =>
 test('keyboard table grid, contextual menu and persisted row sizing', async ({ page }) => {
 	await page.goto('/');
 	await expect(page.locator('.ProseMirror').first()).toBeVisible();
+	await page.locator('.ProseMirror').first().click();
+	await page.keyboard.press('ControlOrMeta+a');
+	await page.keyboard.insertText('Table sizing');
 	await page.getByRole('button', { name: 'table', exact: true }).click();
 	const dialog = page.getByRole('dialog');
 	await dialog.getByRole('button', { name: 'Choose 1 rows and 1 columns' }).focus();

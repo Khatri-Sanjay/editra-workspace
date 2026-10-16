@@ -1,5 +1,13 @@
 # Plugins and extensions
 
+An extension adds trusted application behavior to the editor. Most applications can use built-in tools without creating one. Start with a command-only extension before adding schema nodes or browser node views.
+
+## Add a command and toolbar button
+
+1. Define an EditraExtension with a unique id.
+2. Return the custom command from commands and point a toolbar item at that command name.
+3. Pass the extension through config.extensions, including the default media extensions if you still want them.
+
 `EditraExtension` supports unique IDs, explicit `requires`, schema nodes/marks, commands,
 keyboard shortcuts, ProseMirror plugins, node views, toolbar items and browser lifecycle callbacks.
 Dependencies are ordered before dependants while preserving deterministic registration order.
@@ -7,7 +15,7 @@ Duplicate IDs/schema names/commands/shortcuts/node views and missing/cyclic depe
 
 ```typescript
 import type { EditraExtension } from 'ngx-editra';
-import { imageExtension, videoExtension } from 'ngx-editra/extensions';
+import { imageExtension, videoExtension } from 'ngx-editra';
 export const greeting: EditraExtension = {
 	id: 'greeting',
 	commands: () => ({
@@ -20,6 +28,10 @@ export const greeting: EditraExtension = {
 };
 export const extensions = [imageExtension(), videoExtension(), greeting];
 ```
+
+On your component, use `config: EditraConfig = { extensions };` and bind `[config]="config"`. Import the EditraConfig type from ngx-editra. The greeting example inserts text at the current selection and participates in document transactions/history.
+
+## Schema, ordering, and cleanup
 
 Pass this list through config.extensions. Explicit lists replace default media node views.
 Dispose extension resources in onDestroy; node views must implement destroy. Lifecycle callbacks

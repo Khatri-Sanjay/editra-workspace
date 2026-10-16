@@ -1,10 +1,15 @@
 # SSR and hydration
 
-The core entry point is safe to import and construct without window, document, DOMParser
-or navigator. parse5 converts HTML to the canonical document on both server and browser.
+Use the normal SSR setup for your application's Angular version. The editor can render initial content on the server and becomes interactive in the browser after rendering. You do not need to add fake browser globals.
+
+## Server-safe document processing
+
+The internal core does not require window, document, DOMParser or navigator for document conversion. Public imports come from the single ngx-editra Angular package; there is no separate framework-free core package entry point. parse5 converts HTML to the canonical document on both server and browser.
 The deterministic serializer uses escaped strings and validated schema attributes.
 
-The Angular component uses `EditraViewerComponent` for its initial static content.
+## What happens during rendering
+
+The Angular component uses `NgxEditraViewerComponent` for its initial static content.
 The viewer parses input through the schema and serializes validated attributes before
 marking that canonical output as trusted HTML. This preserves styles and approved video
 players on both server and browser. Raw input is never passed to Angular's trust API.
@@ -14,6 +19,8 @@ The component host has a static `ngSkipHydration` boundary. Angular hydrates the
 application, recreates that editor boundary and activates its ProseMirror view afterNextRender.
 This deliberately avoids hydrating ProseMirror-managed DOM. Initial form content survives;
 static content is removed after activation and an empty browser surface owns the view.
+
+## Application setup and custom extensions
 
 Enable your application's normal `provideClientHydration`/server rendering providers.
 Angular 18+ SSR bootstrap functions need the platform BootstrapContext, and patched newer

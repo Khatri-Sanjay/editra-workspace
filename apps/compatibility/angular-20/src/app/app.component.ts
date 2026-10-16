@@ -1,18 +1,18 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditraEditorComponent } from 'ngx-editra';
+import { NgxEditraComponent } from 'ngx-editra';
 import type { EditraConfig, EditraChange, EditraTheme } from 'ngx-editra';
 import { demoContent } from './demo-content';
 
 @Component({
 	selector: 'app-root',
 	standalone: true,
-	imports: [FormsModule, ReactiveFormsModule, EditraEditorComponent],
+	imports: [FormsModule, ReactiveFormsModule, NgxEditraComponent],
 	templateUrl: './playground.html',
 	styleUrl: './playground.scss',
 })
 export class AppComponent {
-	@ViewChild('editor') editor?: EditraEditorComponent;
+	@ViewChild('editor') editor?: NgxEditraComponent;
 	readonly initial = demoContent;
 	readonly form = new FormGroup({ body: new FormControl(demoContent, { nonNullable: true }) });
 	config: EditraConfig = {

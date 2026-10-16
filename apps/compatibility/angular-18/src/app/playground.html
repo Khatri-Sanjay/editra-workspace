@@ -35,7 +35,7 @@
 				'Touched' : 'Untouched'}}</span
 			>
 		</div>
-		@if (mounted) {<editra-editor
+		@if (mounted) {<ngx-editra
 			#editor
 			[formControl]="form.controls.body"
 			[config]="config"
@@ -64,7 +64,7 @@
 	</section>
 	<details>
 		<summary>Template-driven forms example</summary>
-		<editra-editor [(ngModel)]="templateValue" [config]="compactConfig" />
+		<ngx-editra [(ngModel)]="templateValue" [config]="compactConfig" />
 		<pre>{{templateValue}}</pre>
 	</details>
 	<details>

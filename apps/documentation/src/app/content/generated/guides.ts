@@ -1,0 +1,2890 @@
+// Generated from repository Markdown by scripts/generate-documentation.mjs.
+import type { Guide } from '../../shared/models/guide';
+export const guides: readonly Guide[] = [
+	{
+		slug: 'features',
+		title: 'Feature overview',
+		group: 'Start here',
+		source: 'docs/FEATURES.md',
+		summary:
+			'ngx-editra is a rich-text editor for Angular applications. Writers use a toolbar; your application receives an HTML string through Angular Forms. You can also read the document as JSON, plain text, or Markdown.',
+		readingMinutes: 3,
+		html: '<h1 id="feature-overview">Feature overview</h1>\n<p>ngx-editra is a rich-text editor for Angular applications. Writers use a toolbar; your application receives an HTML string through Angular Forms. You can also read the document as JSON, plain text, or Markdown.</p>\n<h2 id="start-with-these-three-steps">Start with these three steps</h2>\n<ol>\n<li><a href="/guides/installation">Install the library</a>; component styles load automatically.</li>\n<li><a href="/guides/quick-start">Create your first editor</a>.</li>\n<li><a href="/guides/angular-forms">Connect a form and save its value</a>.</li>\n</ol>\n<p>Open the live example in this documentation to try the real component. The library is an alpha; review <a href="/guides/compatibility">compatibility</a> and <a href="/guides/project-status">project status</a> before adopting it.</p>\n<h2 id="what-writers-can-do">What writers can do</h2>\n<table>\n<thead>\n<tr>\n<th>Feature</th>\n<th>What it does</th>\n<th>Learn more</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Text formatting</td>\n<td>Bold, italic, underline, strike, subscript, superscript, and clear formatting</td>\n<td><a href="/guides/formatting">Formatting</a></td>\n</tr>\n<tr>\n<td>Typography</td>\n<td>Headings, fonts, sizes, text colour, highlights, and text-case conversion</td>\n<td><a href="/guides/formatting">Formatting</a></td>\n</tr>\n<tr>\n<td>Paragraph layout</td>\n<td>Alignment, indentation, line spacing, lists, and blockquotes</td>\n<td><a href="/guides/formatting">Formatting</a></td>\n</tr>\n<tr>\n<td>Links</td>\n<td>Insert and edit validated web and email links</td>\n<td><a href="/guides/links">Links</a></td>\n</tr>\n<tr>\n<td>Images</td>\n<td>Insert by URL, add captions, align, resize, and place content beside an image</td>\n<td><a href="/guides/images">Images</a></td>\n</tr>\n<tr>\n<td>Videos</td>\n<td>Embed supported YouTube/Vimeo URLs or play a direct MP4</td>\n<td><a href="/guides/videos">Videos</a></td>\n</tr>\n<tr>\n<td>Tables</td>\n<td>Insert, merge/split cells, add rows/columns, resize, shade, and adjust borders</td>\n<td><a href="/guides/tables">Tables</a></td>\n</tr>\n<tr>\n<td>Columns</td>\n<td>Arrange independent content side by side and resize the divider</td>\n<td><a href="/guides/layout">Columns and lines</a></td>\n</tr>\n<tr>\n<td>Horizontal lines</td>\n<td>Add a divider with a chosen style and weight</td>\n<td><a href="/guides/layout">Columns and lines</a></td>\n</tr>\n<tr>\n<td>Code</td>\n<td>Insert inline code or a code block with a language label and copy control</td>\n<td><a href="/guides/code-blocks">Code blocks</a></td>\n</tr>\n<tr>\n<td>Find and replace</td>\n<td>Find text, move between matches, replace one or all</td>\n<td><a href="/guides/editing-tools">Editing tools</a></td>\n</tr>\n<tr>\n<td>Undo and redo</td>\n<td>Reverse document edits, formatting, and committed resizing operations</td>\n<td><a href="/guides/editing-tools">Editing tools</a></td>\n</tr>\n<tr>\n<td>Workspace tools</td>\n<td>Fullscreen, pinned toolbar, floating selection toolbar, and word/character counts</td>\n<td><a href="/guides/editing-tools">Editing tools</a></td>\n</tr>\n</tbody>\n</table>\n<h2 id="what-application-developers-can-do">What application developers can do</h2>\n<table>\n<thead>\n<tr>\n<th>Requirement</th>\n<th>Integration</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Bind an editor to a form</td>\n<td>Reactive Forms, form groups, or ngModel; values stay HTML</td>\n</tr>\n<tr>\n<td>Validate required content</td>\n<td>Set the editor\'s required input for semantic empty-document validation</td>\n</tr>\n<tr>\n<td>Disable editing</td>\n<td>Use the form\'s disable/enable methods, or the readonly input for viewing</td>\n</tr>\n<tr>\n<td>Set application defaults</td>\n<td>provideEditra(config), with per-editor config input overrides</td>\n</tr>\n<tr>\n<td>Match a design system</td>\n<td>Light, dark, or auto themes and CSS custom properties</td>\n</tr>\n<tr>\n<td>Save and restore content</td>\n<td>Read form HTML or explicit JSON conversion methods; use your own backend</td>\n</tr>\n<tr>\n<td>Render saved documents</td>\n<td>NgxEditraViewerComponent or the validated HTML pipe</td>\n</tr>\n<tr>\n<td>React to editor activity</td>\n<td>Content, selection, ready, destroy, focus, blur, dirty, error, and transaction events</td>\n</tr>\n<tr>\n<td>Add behavior</td>\n<td>Typed extensions with commands, toolbar items, schema contributions, plugins, and node views</td>\n</tr>\n<tr>\n<td>Server-render an application</td>\n<td>Static validated content on the server; browser editing starts after rendering</td>\n</tr>\n</tbody>\n</table>\n<h2 id="what-is-not-included">What is not included</h2>\n<p>The library does not provide a backend, file uploads, cloud storage, collaboration, track changes, PDF/Word export, or syntax highlighting. An image/video URL must already be accessible to the viewer. A valid URL does not guarantee that its host allows embedding.</p>\n<p>HTML and JSON preserve supported document features. Markdown is a conversion format and cannot preserve every colour, font, table, or media detail. See <a href="/guides/content">content and saving</a>.</p>\n',
+		headings: [
+			{
+				id: 'start-with-these-three-steps',
+				label: 'Start with these three steps',
+			},
+			{
+				id: 'what-writers-can-do',
+				label: 'What writers can do',
+			},
+			{
+				id: 'what-application-developers-can-do',
+				label: 'What application developers can do',
+			},
+			{
+				id: 'what-is-not-included',
+				label: 'What is not included',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="feature-overview">Feature overview</h1>\n',
+				id: 'feature-overview',
+				kind: 'content',
+			},
+			{
+				html: '<p>ngx-editra is a rich-text editor for Angular applications. Writers use a toolbar; your application receives an HTML string through Angular Forms. You can also read the document as JSON, plain text, or Markdown.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="start-with-these-three-steps">Start with these three steps</h2>\n',
+				id: 'start-with-these-three-steps',
+				kind: 'content',
+			},
+			{
+				html: '<ol>\n<li><a href="/guides/installation">Install the library</a>; component styles load automatically.</li>\n<li><a href="/guides/quick-start">Create your first editor</a>.</li>\n<li><a href="/guides/angular-forms">Connect a form and save its value</a>.</li>\n</ol>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Open the live example in this documentation to try the real component. The library is an alpha; review <a href="/guides/compatibility">compatibility</a> and <a href="/guides/project-status">project status</a> before adopting it.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="what-writers-can-do">What writers can do</h2>\n',
+				id: 'what-writers-can-do',
+				kind: 'content',
+			},
+			{
+				html: '<table>\n<thead>\n<tr>\n<th>Feature</th>\n<th>What it does</th>\n<th>Learn more</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Text formatting</td>\n<td>Bold, italic, underline, strike, subscript, superscript, and clear formatting</td>\n<td><a href="/guides/formatting">Formatting</a></td>\n</tr>\n<tr>\n<td>Typography</td>\n<td>Headings, fonts, sizes, text colour, highlights, and text-case conversion</td>\n<td><a href="/guides/formatting">Formatting</a></td>\n</tr>\n<tr>\n<td>Paragraph layout</td>\n<td>Alignment, indentation, line spacing, lists, and blockquotes</td>\n<td><a href="/guides/formatting">Formatting</a></td>\n</tr>\n<tr>\n<td>Links</td>\n<td>Insert and edit validated web and email links</td>\n<td><a href="/guides/links">Links</a></td>\n</tr>\n<tr>\n<td>Images</td>\n<td>Insert by URL, add captions, align, resize, and place content beside an image</td>\n<td><a href="/guides/images">Images</a></td>\n</tr>\n<tr>\n<td>Videos</td>\n<td>Embed supported YouTube/Vimeo URLs or play a direct MP4</td>\n<td><a href="/guides/videos">Videos</a></td>\n</tr>\n<tr>\n<td>Tables</td>\n<td>Insert, merge/split cells, add rows/columns, resize, shade, and adjust borders</td>\n<td><a href="/guides/tables">Tables</a></td>\n</tr>\n<tr>\n<td>Columns</td>\n<td>Arrange independent content side by side and resize the divider</td>\n<td><a href="/guides/layout">Columns and lines</a></td>\n</tr>\n<tr>\n<td>Horizontal lines</td>\n<td>Add a divider with a chosen style and weight</td>\n<td><a href="/guides/layout">Columns and lines</a></td>\n</tr>\n<tr>\n<td>Code</td>\n<td>Insert inline code or a code block with a language label and copy control</td>\n<td><a href="/guides/code-blocks">Code blocks</a></td>\n</tr>\n<tr>\n<td>Find and replace</td>\n<td>Find text, move between matches, replace one or all</td>\n<td><a href="/guides/editing-tools">Editing tools</a></td>\n</tr>\n<tr>\n<td>Undo and redo</td>\n<td>Reverse document edits, formatting, and committed resizing operations</td>\n<td><a href="/guides/editing-tools">Editing tools</a></td>\n</tr>\n<tr>\n<td>Workspace tools</td>\n<td>Fullscreen, pinned toolbar, floating selection toolbar, and word/character counts</td>\n<td><a href="/guides/editing-tools">Editing tools</a></td>\n</tr>\n</tbody>\n</table>\n',
+				id: '',
+				kind: 'table',
+			},
+			{
+				html: '<h2 id="what-application-developers-can-do">What application developers can do</h2>\n',
+				id: 'what-application-developers-can-do',
+				kind: 'content',
+			},
+			{
+				html: "<table>\n<thead>\n<tr>\n<th>Requirement</th>\n<th>Integration</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Bind an editor to a form</td>\n<td>Reactive Forms, form groups, or ngModel; values stay HTML</td>\n</tr>\n<tr>\n<td>Validate required content</td>\n<td>Set the editor's required input for semantic empty-document validation</td>\n</tr>\n<tr>\n<td>Disable editing</td>\n<td>Use the form's disable/enable methods, or the readonly input for viewing</td>\n</tr>\n<tr>\n<td>Set application defaults</td>\n<td>provideEditra(config), with per-editor config input overrides</td>\n</tr>\n<tr>\n<td>Match a design system</td>\n<td>Light, dark, or auto themes and CSS custom properties</td>\n</tr>\n<tr>\n<td>Save and restore content</td>\n<td>Read form HTML or explicit JSON conversion methods; use your own backend</td>\n</tr>\n<tr>\n<td>Render saved documents</td>\n<td>NgxEditraViewerComponent or the validated HTML pipe</td>\n</tr>\n<tr>\n<td>React to editor activity</td>\n<td>Content, selection, ready, destroy, focus, blur, dirty, error, and transaction events</td>\n</tr>\n<tr>\n<td>Add behavior</td>\n<td>Typed extensions with commands, toolbar items, schema contributions, plugins, and node views</td>\n</tr>\n<tr>\n<td>Server-render an application</td>\n<td>Static validated content on the server; browser editing starts after rendering</td>\n</tr>\n</tbody>\n</table>\n",
+				id: '',
+				kind: 'table',
+			},
+			{
+				html: '<h2 id="what-is-not-included">What is not included</h2>\n',
+				id: 'what-is-not-included',
+				kind: 'content',
+			},
+			{
+				html: '<p>The library does not provide a backend, file uploads, cloud storage, collaboration, track changes, PDF/Word export, or syntax highlighting. An image/video URL must already be accessible to the viewer. A valid URL does not guarantee that its host allows embedding.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>HTML and JSON preserve supported document features. Markdown is a conversion format and cannot preserve every colour, font, table, or media detail. See <a href="/guides/content">content and saving</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " feature overview\n\nngx-editra is a rich-text editor for angular applications. writers use a toolbar; your application receives an html string through angular forms. you can also read the document as json, plain text, or markdown.\n\n start with these three steps\n\n1. [install the library](installation.md); component styles load automatically.\n2. [create your first editor](quick_start.md).\n3. [connect a form and save its value](angular_forms.md).\n\nopen the live example in this documentation to try the real component. the library is an alpha; review [compatibility](compatibility.md) and [project status](../progress.md) before adopting it.\n\n what writers can do\n\n| feature          | what it does                                                                      | learn more                        |\n| ---------------- | --------------------------------------------------------------------------------- | --------------------------------- |\n| text formatting  | bold, italic, underline, strike, subscript, superscript, and clear formatting     | [formatting](formatting.md)       |\n| typography       | headings, fonts, sizes, text colour, highlights, and text-case conversion         | [formatting](formatting.md)       |\n| paragraph layout | alignment, indentation, line spacing, lists, and blockquotes                      | [formatting](formatting.md)       |\n| links            | insert and edit validated web and email links                                     | [links](links.md)                 |\n| images           | insert by url, add captions, align, resize, and place content beside an image     | [images](images.md)               |\n| videos           | embed supported youtube/vimeo urls or play a direct mp4                           | [videos](videos.md)               |\n| tables           | insert, merge/split cells, add rows/columns, resize, shade, and adjust borders    | [tables](tables.md)               |\n| columns          | arrange independent content side by side and resize the divider                   | [columns and lines](layout.md)    |\n| horizontal lines | add a divider with a chosen style and weight                                      | [columns and lines](layout.md)    |\n| code             | insert inline code or a code block with a language label and copy control         | [code blocks](code_blocks.md)     |\n| find and replace | find text, move between matches, replace one or all                               | [editing tools](editing_tools.md) |\n| undo and redo    | reverse document edits, formatting, and committed resizing operations             | [editing tools](editing_tools.md) |\n| workspace tools  | fullscreen, pinned toolbar, floating selection toolbar, and word/character counts | [editing tools](editing_tools.md) |\n\n what application developers can do\n\n| requirement                  | integration                                                                                  |\n| ---------------------------- | -------------------------------------------------------------------------------------------- |\n| bind an editor to a form     | reactive forms, form groups, or ngmodel; values stay html                                    |\n| validate required content    | set the editor's required input for semantic empty-document validation                       |\n| disable editing              | use the form's disable/enable methods, or the readonly input for viewing                     |\n| set application defaults     | provideeditra(config), with per-editor config input overrides                                |\n| match a design system        | light, dark, or auto themes and css custom properties                                        |\n| save and restore content     | read form html or explicit json conversion methods; use your own backend                     |\n| render saved documents       | ngxeditraviewercomponent or the validated html pipe                                          |\n| react to editor activity     | content, selection, ready, destroy, focus, blur, dirty, error, and transaction events        |\n| add behavior                 | typed extensions with commands, toolbar items, schema contributions, plugins, and node views |\n| server-render an application | static validated content on the server; browser editing starts after rendering               |\n\n what is not included\n\nthe library does not provide a backend, file uploads, cloud storage, collaboration, track changes, pdf/word export, or syntax highlighting. an image/video url must already be accessible to the viewer. a valid url does not guarantee that its host allows embedding.\n\nhtml and json preserve supported document features. markdown is a conversion format and cannot preserve every colour, font, table, or media detail. see [content and saving](content.md).\n",
+	},
+	{
+		slug: 'installation',
+		title: 'Installation',
+		group: 'Start here',
+		source: 'docs/INSTALLATION.md',
+		summary:
+			'Install ngx-editra into an existing Angular application, then import its standalone components. Their styles load automatically. The npm commands below describe consumption after publication. Until publication, use the local archive option at the end of this guide.',
+		readingMinutes: 3,
+		html: '<h1 id="installation">Installation</h1>\n<p>Install <code>ngx-editra</code> into an existing Angular application, then import its standalone components. Their styles load automatically. The npm commands below describe consumption after publication. Until publication, use the local archive option at the end of this guide.</p>\n<h2 id="1-check-the-two-environments">1. Check the two environments</h2>\n<p>Your consuming application needs Angular common, core, forms, and platform-browser packages that satisfy the library\'s peer ranges. See <a href="/guides/compatibility">compatibility</a>. Use the Node/TypeScript versions required by that application\'s Angular version.</p>\n<p>Building this repository itself uses Node 20.20.2, npm 10.8.2, Angular 17.3, and TypeScript 5.4. These are the package compilation tools; they do not require every consumer to use Angular 17. Node 20/Angular 17 are legacy tooling and compatibility is not a maintenance guarantee.</p>\n<h2 id="2-install-from-npm-after-publication">2. Install from npm after publication</h2>\n<pre><code class="language-sh">npm install ngx-editra\n</code></pre>\n<p>This installs the release tagged <code>latest</code>. If the first alpha is published under the <code>next</code> tag, use:</p>\n<pre><code class="language-sh">npm install ngx-editra@next\n</code></pre>\n<p>For a reproducible installation of the initial alpha after it is published:</p>\n<pre><code class="language-sh">npm install ngx-editra@0.1.0-alpha.0\n</code></pre>\n<p>Run these commands in your application\'s root. Consumers do not clone this repository, build the library, configure TypeScript path aliases, or install ProseMirror packages separately.</p>\n<h2 id="3-add-the-component">3. Add the component</h2>\n<p>Both components include their default styles. You do not need to edit <code>styles.scss</code>,\nregister a stylesheet in <code>angular.json</code>, or install Sass. If you previously imported\n<code>ngx-editra/styles/editor.scss</code> or <code>ngx-editra/styles/content.scss</code> only for these\ncomponents, remove that import to avoid duplicate CSS. Optional Sass exports remain\navailable for content rendered outside the components; see <a href="/guides/theming">theming</a>.</p>\n<p>Continue to <a href="/guides/quick-start">Quick start</a> for a complete standalone component. Import from ngx-editra; there are no separate core/extensions package imports. No Angular Material/CDK or external icon-font setup is required.</p>\n<p>The editor is <code>NgxEditraComponent</code> with selector <code>&lt;ngx-editra&gt;</code>. The read-only renderer is <code>NgxEditraViewerComponent</code> with selector <code>&lt;ngx-editra-viewer [html]=&quot;savedHtml&quot; /&gt;</code>. Both are exported from <code>ngx-editra</code>; the viewer input is <code>html</code>.</p>\n<h2 id="local-archive-option-before-publication">Local archive option before publication</h2>\n<p>For library development or testing an unpublished version, run these commands from this repository\'s root:</p>\n<pre><code class="language-sh">npm ci\nnpm run pack\n</code></pre>\n<p>Then, from a separate consuming application\'s root, install the generated archive:</p>\n<pre><code class="language-sh">npm install /absolute/path/to/artifacts/ngx-editra-0.1.0-alpha.0.tgz\n</code></pre>\n<p>Use the actual archive path and version. Quote paths containing spaces on Windows. Automatic styles work identically for archive and npm installations.</p>\n<h2 id="dependency-notes">Dependency notes</h2>\n<p>Angular is a peer dependency rather than a bundled runtime. ProseMirror modules and parse5 are runtime dependencies. Do not force incompatible\nProseMirror versions through package overrides. No Angular Material/CDK dependency is required.</p>\n<p>To work on the library instead of installing it in another app, run npm start in this workspace. Open the playground URL printed by Angular CLI. For this documentation website, use npm run start:docs and open http://localhost:4300.</p>\n',
+		headings: [
+			{
+				id: '1-check-the-two-environments',
+				label: '1. Check the two environments',
+			},
+			{
+				id: '2-install-from-npm-after-publication',
+				label: '2. Install from npm after publication',
+			},
+			{
+				id: '3-add-the-component',
+				label: '3. Add the component',
+			},
+			{
+				id: 'local-archive-option-before-publication',
+				label: 'Local archive option before publication',
+			},
+			{
+				id: 'dependency-notes',
+				label: 'Dependency notes',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="installation">Installation</h1>\n',
+				id: 'installation',
+				kind: 'content',
+			},
+			{
+				html: '<p>Install <code>ngx-editra</code> into an existing Angular application, then import its standalone components. Their styles load automatically. The npm commands below describe consumption after publication. Until publication, use the local archive option at the end of this guide.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="1-check-the-two-environments">1. Check the two environments</h2>\n',
+				id: '1-check-the-two-environments',
+				kind: 'content',
+			},
+			{
+				html: '<p>Your consuming application needs Angular common, core, forms, and platform-browser packages that satisfy the library\'s peer ranges. See <a href="/guides/compatibility">compatibility</a>. Use the Node/TypeScript versions required by that application\'s Angular version.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Building this repository itself uses Node 20.20.2, npm 10.8.2, Angular 17.3, and TypeScript 5.4. These are the package compilation tools; they do not require every consumer to use Angular 17. Node 20/Angular 17 are legacy tooling and compatibility is not a maintenance guarantee.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="2-install-from-npm-after-publication">2. Install from npm after publication</h2>\n',
+				id: '2-install-from-npm-after-publication',
+				kind: 'content',
+			},
+			{
+				code: 'npm install ngx-editra\n',
+				language: 'sh',
+				html: '<pre><code class="language-sh">npm install ngx-editra\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>This installs the release tagged <code>latest</code>. If the first alpha is published under the <code>next</code> tag, use:</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: 'npm install ngx-editra@next\n',
+				language: 'sh',
+				html: '<pre><code class="language-sh">npm install ngx-editra@next\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>For a reproducible installation of the initial alpha after it is published:</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: 'npm install ngx-editra@0.1.0-alpha.0\n',
+				language: 'sh',
+				html: '<pre><code class="language-sh">npm install ngx-editra@0.1.0-alpha.0\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: "<p>Run these commands in your application's root. Consumers do not clone this repository, build the library, configure TypeScript path aliases, or install ProseMirror packages separately.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="3-add-the-component">3. Add the component</h2>\n',
+				id: '3-add-the-component',
+				kind: 'content',
+			},
+			{
+				html: '<p>Both components include their default styles. You do not need to edit <code>styles.scss</code>,\nregister a stylesheet in <code>angular.json</code>, or install Sass. If you previously imported\n<code>ngx-editra/styles/editor.scss</code> or <code>ngx-editra/styles/content.scss</code> only for these\ncomponents, remove that import to avoid duplicate CSS. Optional Sass exports remain\navailable for content rendered outside the components; see <a href="/guides/theming">theming</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Continue to <a href="/guides/quick-start">Quick start</a> for a complete standalone component. Import from ngx-editra; there are no separate core/extensions package imports. No Angular Material/CDK or external icon-font setup is required.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>The editor is <code>NgxEditraComponent</code> with selector <code>&lt;ngx-editra&gt;</code>. The read-only renderer is <code>NgxEditraViewerComponent</code> with selector <code>&lt;ngx-editra-viewer [html]=&quot;savedHtml&quot; /&gt;</code>. Both are exported from <code>ngx-editra</code>; the viewer input is <code>html</code>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="local-archive-option-before-publication">Local archive option before publication</h2>\n',
+				id: 'local-archive-option-before-publication',
+				kind: 'content',
+			},
+			{
+				html: "<p>For library development or testing an unpublished version, run these commands from this repository's root:</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: 'npm ci\nnpm run pack\n',
+				language: 'sh',
+				html: '<pre><code class="language-sh">npm ci\nnpm run pack\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: "<p>Then, from a separate consuming application's root, install the generated archive:</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: 'npm install /absolute/path/to/artifacts/ngx-editra-0.1.0-alpha.0.tgz\n',
+				language: 'sh',
+				html: '<pre><code class="language-sh">npm install /absolute/path/to/artifacts/ngx-editra-0.1.0-alpha.0.tgz\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Use the actual archive path and version. Quote paths containing spaces on Windows. Automatic styles work identically for archive and npm installations.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="dependency-notes">Dependency notes</h2>\n',
+				id: 'dependency-notes',
+				kind: 'content',
+			},
+			{
+				html: '<p>Angular is a peer dependency rather than a bundled runtime. ProseMirror modules and parse5 are runtime dependencies. Do not force incompatible\nProseMirror versions through package overrides. No Angular Material/CDK dependency is required.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>To work on the library instead of installing it in another app, run npm start in this workspace. Open the playground URL printed by Angular CLI. For this documentation website, use npm run start:docs and open http://localhost:4300.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " installation\n\ninstall ngx-editra into an existing angular application, then import its standalone components. their styles load automatically. the npm commands below describe consumption after publication. until publication, use the local archive option at the end of this guide.\n\n 1. check the two environments\n\nyour consuming application needs angular common, core, forms, and platform-browser packages that satisfy the library's peer ranges. see [compatibility](compatibility.md). use the node/typescript versions required by that application's angular version.\n\nbuilding this repository itself uses node 20.20.2, npm 10.8.2, angular 17.3, and typescript 5.4. these are the package compilation tools; they do not require every consumer to use angular 17. node 20/angular 17 are legacy tooling and compatibility is not a maintenance guarantee.\n\n 2. install from npm after publication\n\nsh\nnpm install ngx-editra\n\n\nthis installs the release tagged latest. if the first alpha is published under the next tag, use:\n\nsh\nnpm install ngx-editra@next\n\n\nfor a reproducible installation of the initial alpha after it is published:\n\nsh\nnpm install ngx-editra@0.1.0-alpha.0\n\n\nrun these commands in your application's root. consumers do not clone this repository, build the library, configure typescript path aliases, or install prosemirror packages separately.\n\n 3. add the component\n\nboth components include their default styles. you do not need to edit styles.scss,\nregister a stylesheet in angular.json, or install sass. if you previously imported\nngx-editra/styles/editor.scss or ngx-editra/styles/content.scss only for these\ncomponents, remove that import to avoid duplicate css. optional sass exports remain\navailable for content rendered outside the components; see [theming](theming.md).\n\ncontinue to [quick start](quick_start.md) for a complete standalone component. import from ngx-editra; there are no separate core/extensions package imports. no angular material/cdk or external icon-font setup is required.\n\nthe editor is ngxeditracomponent with selector <ngx-editra>. the read-only renderer is ngxeditraviewercomponent with selector <ngx-editra-viewer [html]=\"savedhtml\" />. both are exported from ngx-editra; the viewer input is html.\n\n local archive option before publication\n\nfor library development or testing an unpublished version, run these commands from this repository's root:\n\nsh\nnpm ci\nnpm run pack\n\n\nthen, from a separate consuming application's root, install the generated archive:\n\nsh\nnpm install /absolute/path/to/artifacts/ngx-editra-0.1.0-alpha.0.tgz\n\n\nuse the actual archive path and version. quote paths containing spaces on windows. automatic styles work identically for archive and npm installations.\n\n dependency notes\n\nangular is a peer dependency rather than a bundled runtime. prosemirror modules and parse5 are runtime dependencies. do not force incompatible\nprosemirror versions through package overrides. no angular material/cdk dependency is required.\n\nto work on the library instead of installing it in another app, run npm start in this workspace. open the playground url printed by angular cli. for this documentation website, use npm run start:docs and open http://localhost:4300.\n",
+	},
+	{
+		slug: 'quick-start',
+		title: 'Quick start',
+		group: 'Start here',
+		source: 'docs/QUICK_START.md',
+		summary:
+			'Create a standalone component with a non-nullable HTML form control. After this guide, you will have a working editor that updates that control as you type.',
+		readingMinutes: 2,
+		html: '<h1 id="quick-start">Quick start</h1>\n<p>Create a standalone component with a non-nullable HTML form control. After this guide, you will have a working editor that updates that control as you type.</p>\n<h2 id="1-complete-installation">1. Complete installation</h2>\n<p><a href="/guides/installation">Install ngx-editra</a> first. Styles are included automatically. The editor needs ReactiveFormsModule for the formControl binding and NgxEditraComponent for its selector.</p>\n<h2 id="2-add-this-component">2. Add this component</h2>\n<pre><code class="language-typescript">import { Component } from \'@angular/core\';\nimport { FormControl, ReactiveFormsModule } from \'@angular/forms\';\nimport { NgxEditraComponent } from \'ngx-editra\';\n\n@Component({\n\tselector: \'app-example\',\n\tstandalone: true,\n\timports: [ReactiveFormsModule, NgxEditraComponent],\n\ttemplate: `&lt;ngx-editra [formControl]=&quot;body&quot; /&gt;`,\n})\nexport class ExampleComponent {\n\treadonly body = new FormControl(\'&lt;p&gt;Hello &lt;strong&gt;world&lt;/strong&gt;&lt;/p&gt;\', { nonNullable: true });\n}\n</code></pre>\n<p>Render app-example from a parent component that imports ExampleComponent, or use this pattern in your application\'s existing root component. Do not replace your application\'s bootstrap setup simply to add an editor.</p>\n<h2 id="3-try-an-edit">3. Try an edit</h2>\n<p>Select world and click Bold, type another paragraph, or insert a list. The body control contains the updated HTML. Read body.value when saving. Use body.setValue(...) to load another HTML document and body.reset(...) to restore a draft.</p>\n<p>For a temporary local preview in this same component, add <code>&lt;pre&gt;{{ body.value }}&lt;/pre&gt;</code> after the editor. Render saved content for readers with the <a href="/guides/viewer">viewer</a>.</p>\n<h2 id="4-configure-and-validate">4. Configure and validate</h2>\n<p>Add <code>[config]=&quot;config&quot;</code> when you need a typed <a href="/guides/configuration">configuration</a>. Add <code>[required]=&quot;true&quot;</code> for meaningful empty-document validation. See <a href="/guides/angular-forms">Forms</a> for a complete form-group example and <a href="/guides/content">content and saving</a> for persistence.</p>\n<h2 id="what-you-should-see">What you should see</h2>\n<p>A toolbar, an editable document, and a stable HTML form value. If the component is missing or unstyled, follow <a href="/guides/troubleshooting">troubleshooting</a>. Open the documentation\'s live example to compare a working integration.</p>\n',
+		headings: [
+			{
+				id: '1-complete-installation',
+				label: '1. Complete installation',
+			},
+			{
+				id: '2-add-this-component',
+				label: '2. Add this component',
+			},
+			{
+				id: '3-try-an-edit',
+				label: '3. Try an edit',
+			},
+			{
+				id: '4-configure-and-validate',
+				label: '4. Configure and validate',
+			},
+			{
+				id: 'what-you-should-see',
+				label: 'What you should see',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="quick-start">Quick start</h1>\n',
+				id: 'quick-start',
+				kind: 'content',
+			},
+			{
+				html: '<p>Create a standalone component with a non-nullable HTML form control. After this guide, you will have a working editor that updates that control as you type.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="1-complete-installation">1. Complete installation</h2>\n',
+				id: '1-complete-installation',
+				kind: 'content',
+			},
+			{
+				html: '<p><a href="/guides/installation">Install ngx-editra</a> first. Styles are included automatically. The editor needs ReactiveFormsModule for the formControl binding and NgxEditraComponent for its selector.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="2-add-this-component">2. Add this component</h2>\n',
+				id: '2-add-this-component',
+				kind: 'content',
+			},
+			{
+				code: "import { Component } from '@angular/core';\nimport { FormControl, ReactiveFormsModule } from '@angular/forms';\nimport { NgxEditraComponent } from 'ngx-editra';\n\n@Component({\n\tselector: 'app-example',\n\tstandalone: true,\n\timports: [ReactiveFormsModule, NgxEditraComponent],\n\ttemplate: `<ngx-editra [formControl]=\"body\" />`,\n})\nexport class ExampleComponent {\n\treadonly body = new FormControl('<p>Hello <strong>world</strong></p>', { nonNullable: true });\n}\n",
+				language: 'typescript',
+				html: "<pre><code class=\"language-typescript\">import { Component } from '@angular/core';\nimport { FormControl, ReactiveFormsModule } from '@angular/forms';\nimport { NgxEditraComponent } from 'ngx-editra';\n\n@Component({\n\tselector: 'app-example',\n\tstandalone: true,\n\timports: [ReactiveFormsModule, NgxEditraComponent],\n\ttemplate: `&lt;ngx-editra [formControl]=&quot;body&quot; /&gt;`,\n})\nexport class ExampleComponent {\n\treadonly body = new FormControl('&lt;p&gt;Hello &lt;strong&gt;world&lt;/strong&gt;&lt;/p&gt;', { nonNullable: true });\n}\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: "<p>Render app-example from a parent component that imports ExampleComponent, or use this pattern in your application's existing root component. Do not replace your application's bootstrap setup simply to add an editor.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="3-try-an-edit">3. Try an edit</h2>\n',
+				id: '3-try-an-edit',
+				kind: 'content',
+			},
+			{
+				html: '<p>Select world and click Bold, type another paragraph, or insert a list. The body control contains the updated HTML. Read body.value when saving. Use body.setValue(...) to load another HTML document and body.reset(...) to restore a draft.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>For a temporary local preview in this same component, add <code>&lt;pre&gt;{{ body.value }}&lt;/pre&gt;</code> after the editor. Render saved content for readers with the <a href="/guides/viewer">viewer</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="4-configure-and-validate">4. Configure and validate</h2>\n',
+				id: '4-configure-and-validate',
+				kind: 'content',
+			},
+			{
+				html: '<p>Add <code>[config]=&quot;config&quot;</code> when you need a typed <a href="/guides/configuration">configuration</a>. Add <code>[required]=&quot;true&quot;</code> for meaningful empty-document validation. See <a href="/guides/angular-forms">Forms</a> for a complete form-group example and <a href="/guides/content">content and saving</a> for persistence.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="what-you-should-see">What you should see</h2>\n',
+				id: 'what-you-should-see',
+				kind: 'content',
+			},
+			{
+				html: '<p>A toolbar, an editable document, and a stable HTML form value. If the component is missing or unstyled, follow <a href="/guides/troubleshooting">troubleshooting</a>. Open the documentation\'s live example to compare a working integration.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " quick start\n\ncreate a standalone component with a non-nullable html form control. after this guide, you will have a working editor that updates that control as you type.\n\n 1. complete installation\n\n[install ngx-editra](installation.md) first. styles are included automatically. the editor needs reactiveformsmodule for the formcontrol binding and ngxeditracomponent for its selector.\n\n 2. add this component\n\ntypescript\nimport { component } from '@angular/core';\nimport { formcontrol, reactiveformsmodule } from '@angular/forms';\nimport { ngxeditracomponent } from 'ngx-editra';\n\n@component({\n\tselector: 'app-example',\n\tstandalone: true,\n\timports: [reactiveformsmodule, ngxeditracomponent],\n\ttemplate: <ngx-editra [formcontrol]=\"body\" />,\n})\nexport class examplecomponent {\n\treadonly body = new formcontrol('<p>hello <strong>world</strong></p>', { nonnullable: true });\n}\n\n\nrender app-example from a parent component that imports examplecomponent, or use this pattern in your application's existing root component. do not replace your application's bootstrap setup simply to add an editor.\n\n 3. try an edit\n\nselect world and click bold, type another paragraph, or insert a list. the body control contains the updated html. read body.value when saving. use body.setvalue(...) to load another html document and body.reset(...) to restore a draft.\n\nfor a temporary local preview in this same component, add <pre>{{ body.value }}</pre> after the editor. render saved content for readers with the [viewer](viewer.md).\n\n 4. configure and validate\n\nadd [config]=\"config\" when you need a typed [configuration](configuration.md). add [required]=\"true\" for meaningful empty-document validation. see [forms](angular_forms.md) for a complete form-group example and [content and saving](content.md) for persistence.\n\n what you should see\n\na toolbar, an editable document, and a stable html form value. if the component is missing or unstyled, follow [troubleshooting](troubleshooting.md). open the documentation's live example to compare a working integration.\n",
+	},
+	{
+		slug: 'configuration',
+		title: 'Configuration',
+		group: 'Build with Editra',
+		source: 'docs/CONFIGURATION.md',
+		summary:
+			'Use configuration to control presentation, document features, and input policy. Keep the configuration object stable during ordinary change detection; replace it deliberately when an option changes.',
+		readingMinutes: 3,
+		html: "<h1 id=\"configuration\">Configuration</h1>\n<p>Use configuration to control presentation, document features, and input policy. Keep the configuration object stable during ordinary change detection; replace it deliberately when an option changes.</p>\n<h2 id=\"bind-configuration-to-the-editor\">Bind configuration to the editor</h2>\n<pre><code class=\"language-html\">&lt;ngx-editra [formControl]=&quot;body&quot; [config]=&quot;editorConfig&quot; /&gt;\n</code></pre>\n<p>Declare editorConfig on the owning component, using the typed example below.</p>\n<p><code>EditraConfig</code> is exported from <code>ngx-editra</code>; all detailed types are also exported from\n<code>ngx-editra</code>. Use an immutable config object. Example:</p>\n<pre><code class=\"language-typescript\">import type { EditraConfig } from 'ngx-editra';\nexport const editorConfig: EditraConfig = {\n\ttheme: 'auto',\n\tplaceholder: 'Write a description…',\n\tminHeight: 240,\n\timage: { enabled: true, pasteUrls: false },\n\tvideo: { enabled: true },\n\ttable: { enabled: true, maxRows: 50, maxColumns: 20 },\n\tsecurity: { allowHttp: false, maxInputLength: 1_000_000 },\n};\n</code></pre>\n<p>Defaults: light theme, 180px minimum height, spellcheck on, media/tables enabled,\nHTTPS policy, one million HTML/JSON input characters. <code>readonly</code>, <code>autofocus</code> and\n<code>maxHeight</code> are optional. Finite non-negative bounds are checked by <code>normalizeConfig</code>.</p>\n<p>Application defaults can be provided with <code>provideEditra(config)</code> from <code>ngx-editra</code>.\nAn editor's input replaces those defaults. Core <code>normalizeConfig</code> fills built-in defaults.\nChanging theme/layout/read-only does not recreate the editor view. Schema, security, provider\nor extension changes reconfigure document state, reset history and revalidate existing HTML.\nDisabling a schema feature can remove that feature's existing content.</p>\n<p>Output formats are explicit conversions; config changes never silently change form value types.</p>\n<h2 id=\"configuration-reference\">Configuration reference</h2>\n<table>\n<thead>\n<tr>\n<th>Option</th>\n<th>Default / meaning</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>placeholder</td>\n<td>Start writing… when the document is empty</td>\n</tr>\n<tr>\n<td>minHeight</td>\n<td>180 pixels</td>\n</tr>\n<tr>\n<td>maxHeight</td>\n<td>Optional; must be at least minHeight</td>\n</tr>\n<tr>\n<td>theme</td>\n<td>light; also dark or auto</td>\n</tr>\n<tr>\n<td>readonly</td>\n<td>Prevent editing without changing the document format</td>\n</tr>\n<tr>\n<td>autofocus</td>\n<td>Optional browser focus after activation</td>\n</tr>\n<tr>\n<td>spellcheck</td>\n<td>true</td>\n</tr>\n<tr>\n<td>toolbar.hidden</td>\n<td>Hide the toolbar; this does not remove schema features</td>\n</tr>\n<tr>\n<td>toolbar.items / groups</td>\n<td>Replace command buttons or organize them into labelled groups</td>\n</tr>\n<tr>\n<td>toolbar.hiddenItems</td>\n<td>Hide command IDs or formatting-control labels</td>\n</tr>\n<tr>\n<td>toolbar.overflow</td>\n<td>wrap or scroll</td>\n</tr>\n<tr>\n<td>toolbar.floating</td>\n<td>Enable a selection toolbar</td>\n</tr>\n<tr>\n<td>toolbar.sticky / stickyOffset</td>\n<td>Pin the toolbar; optional application-header offset in pixels</td>\n</tr>\n<tr>\n<td>image.enabled / pasteUrls</td>\n<td>Allow image nodes / optionally turn plain supported image URLs into media</td>\n</tr>\n<tr>\n<td>video.enabled / providers</td>\n<td>Allow video nodes / register trusted provider functions</td>\n</tr>\n<tr>\n<td>table.enabled / maxRows / maxColumns</td>\n<td>Allow tables; insertion bounds default to 50 rows and 20 columns</td>\n</tr>\n<tr>\n<td>security.allowHttp</td>\n<td>false; HTTPS is the default URL policy</td>\n</tr>\n<tr>\n<td>security.maxInputLength</td>\n<td>1,000,000 input characters</td>\n</tr>\n<tr>\n<td>extensions</td>\n<td>Trusted extension list; an explicit list replaces default media extensions</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"application-wide-defaults\">Application-wide defaults</h2>\n<pre><code class=\"language-typescript\">import { provideEditra } from 'ngx-editra';\n\n// Add to your application's providers:\nexport const editorDefaults = provideEditra({ theme: 'auto', minHeight: 240 });\n</code></pre>\n<p>An editor's config input replaces these application defaults rather than deeply merging with them. Built-in normalization still supplies missing built-in defaults. Do not create a fresh config object inline in the template on every check.</p>\n<p>To change only presentation, assign a new object, for example <code>this.editorConfig = { ...this.editorConfig, theme: 'dark' };</code>. Keep the field mutable if your application updates it. Schema or security changes can alter existing content; make them intentional user/application actions.</p>\n",
+		headings: [
+			{
+				id: 'bind-configuration-to-the-editor',
+				label: 'Bind configuration to the editor',
+			},
+			{
+				id: 'configuration-reference',
+				label: 'Configuration reference',
+			},
+			{
+				id: 'application-wide-defaults',
+				label: 'Application-wide defaults',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="configuration">Configuration</h1>\n',
+				id: 'configuration',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use configuration to control presentation, document features, and input policy. Keep the configuration object stable during ordinary change detection; replace it deliberately when an option changes.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="bind-configuration-to-the-editor">Bind configuration to the editor</h2>\n',
+				id: 'bind-configuration-to-the-editor',
+				kind: 'content',
+			},
+			{
+				code: '<ngx-editra [formControl]="body" [config]="editorConfig" />\n',
+				language: 'html',
+				html: '<pre><code class="language-html">&lt;ngx-editra [formControl]=&quot;body&quot; [config]=&quot;editorConfig&quot; /&gt;\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Declare editorConfig on the owning component, using the typed example below.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p><code>EditraConfig</code> is exported from <code>ngx-editra</code>; all detailed types are also exported from\n<code>ngx-editra</code>. Use an immutable config object. Example:</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: "import type { EditraConfig } from 'ngx-editra';\nexport const editorConfig: EditraConfig = {\n\ttheme: 'auto',\n\tplaceholder: 'Write a description…',\n\tminHeight: 240,\n\timage: { enabled: true, pasteUrls: false },\n\tvideo: { enabled: true },\n\ttable: { enabled: true, maxRows: 50, maxColumns: 20 },\n\tsecurity: { allowHttp: false, maxInputLength: 1_000_000 },\n};\n",
+				language: 'typescript',
+				html: "<pre><code class=\"language-typescript\">import type { EditraConfig } from 'ngx-editra';\nexport const editorConfig: EditraConfig = {\n\ttheme: 'auto',\n\tplaceholder: 'Write a description…',\n\tminHeight: 240,\n\timage: { enabled: true, pasteUrls: false },\n\tvideo: { enabled: true },\n\ttable: { enabled: true, maxRows: 50, maxColumns: 20 },\n\tsecurity: { allowHttp: false, maxInputLength: 1_000_000 },\n};\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Defaults: light theme, 180px minimum height, spellcheck on, media/tables enabled,\nHTTPS policy, one million HTML/JSON input characters. <code>readonly</code>, <code>autofocus</code> and\n<code>maxHeight</code> are optional. Finite non-negative bounds are checked by <code>normalizeConfig</code>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: "<p>Application defaults can be provided with <code>provideEditra(config)</code> from <code>ngx-editra</code>.\nAn editor's input replaces those defaults. Core <code>normalizeConfig</code> fills built-in defaults.\nChanging theme/layout/read-only does not recreate the editor view. Schema, security, provider\nor extension changes reconfigure document state, reset history and revalidate existing HTML.\nDisabling a schema feature can remove that feature's existing content.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Output formats are explicit conversions; config changes never silently change form value types.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="configuration-reference">Configuration reference</h2>\n',
+				id: 'configuration-reference',
+				kind: 'content',
+			},
+			{
+				html: '<table>\n<thead>\n<tr>\n<th>Option</th>\n<th>Default / meaning</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>placeholder</td>\n<td>Start writing… when the document is empty</td>\n</tr>\n<tr>\n<td>minHeight</td>\n<td>180 pixels</td>\n</tr>\n<tr>\n<td>maxHeight</td>\n<td>Optional; must be at least minHeight</td>\n</tr>\n<tr>\n<td>theme</td>\n<td>light; also dark or auto</td>\n</tr>\n<tr>\n<td>readonly</td>\n<td>Prevent editing without changing the document format</td>\n</tr>\n<tr>\n<td>autofocus</td>\n<td>Optional browser focus after activation</td>\n</tr>\n<tr>\n<td>spellcheck</td>\n<td>true</td>\n</tr>\n<tr>\n<td>toolbar.hidden</td>\n<td>Hide the toolbar; this does not remove schema features</td>\n</tr>\n<tr>\n<td>toolbar.items / groups</td>\n<td>Replace command buttons or organize them into labelled groups</td>\n</tr>\n<tr>\n<td>toolbar.hiddenItems</td>\n<td>Hide command IDs or formatting-control labels</td>\n</tr>\n<tr>\n<td>toolbar.overflow</td>\n<td>wrap or scroll</td>\n</tr>\n<tr>\n<td>toolbar.floating</td>\n<td>Enable a selection toolbar</td>\n</tr>\n<tr>\n<td>toolbar.sticky / stickyOffset</td>\n<td>Pin the toolbar; optional application-header offset in pixels</td>\n</tr>\n<tr>\n<td>image.enabled / pasteUrls</td>\n<td>Allow image nodes / optionally turn plain supported image URLs into media</td>\n</tr>\n<tr>\n<td>video.enabled / providers</td>\n<td>Allow video nodes / register trusted provider functions</td>\n</tr>\n<tr>\n<td>table.enabled / maxRows / maxColumns</td>\n<td>Allow tables; insertion bounds default to 50 rows and 20 columns</td>\n</tr>\n<tr>\n<td>security.allowHttp</td>\n<td>false; HTTPS is the default URL policy</td>\n</tr>\n<tr>\n<td>security.maxInputLength</td>\n<td>1,000,000 input characters</td>\n</tr>\n<tr>\n<td>extensions</td>\n<td>Trusted extension list; an explicit list replaces default media extensions</td>\n</tr>\n</tbody>\n</table>\n',
+				id: '',
+				kind: 'table',
+			},
+			{
+				html: '<h2 id="application-wide-defaults">Application-wide defaults</h2>\n',
+				id: 'application-wide-defaults',
+				kind: 'content',
+			},
+			{
+				code: "import { provideEditra } from 'ngx-editra';\n\n// Add to your application's providers:\nexport const editorDefaults = provideEditra({ theme: 'auto', minHeight: 240 });\n",
+				language: 'typescript',
+				html: "<pre><code class=\"language-typescript\">import { provideEditra } from 'ngx-editra';\n\n// Add to your application's providers:\nexport const editorDefaults = provideEditra({ theme: 'auto', minHeight: 240 });\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: "<p>An editor's config input replaces these application defaults rather than deeply merging with them. Built-in normalization still supplies missing built-in defaults. Do not create a fresh config object inline in the template on every check.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: "<p>To change only presentation, assign a new object, for example <code>this.editorConfig = { ...this.editorConfig, theme: 'dark' };</code>. Keep the field mutable if your application updates it. Schema or security changes can alter existing content; make them intentional user/application actions.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " configuration\n\nuse configuration to control presentation, document features, and input policy. keep the configuration object stable during ordinary change detection; replace it deliberately when an option changes.\n\n bind configuration to the editor\n\nhtml\n<ngx-editra [formcontrol]=\"body\" [config]=\"editorconfig\" />\n\n\ndeclare editorconfig on the owning component, using the typed example below.\n\neditraconfig is exported from ngx-editra; all detailed types are also exported from\nngx-editra. use an immutable config object. example:\n\ntypescript\nimport type { editraconfig } from 'ngx-editra';\nexport const editorconfig: editraconfig = {\n\ttheme: 'auto',\n\tplaceholder: 'write a description…',\n\tminheight: 240,\n\timage: { enabled: true, pasteurls: false },\n\tvideo: { enabled: true },\n\ttable: { enabled: true, maxrows: 50, maxcolumns: 20 },\n\tsecurity: { allowhttp: false, maxinputlength: 1_000_000 },\n};\n\n\ndefaults: light theme, 180px minimum height, spellcheck on, media/tables enabled,\nhttps policy, one million html/json input characters. readonly, autofocus and\nmaxheight are optional. finite non-negative bounds are checked by normalizeconfig.\n\napplication defaults can be provided with provideeditra(config) from ngx-editra.\nan editor's input replaces those defaults. core normalizeconfig fills built-in defaults.\nchanging theme/layout/read-only does not recreate the editor view. schema, security, provider\nor extension changes reconfigure document state, reset history and revalidate existing html.\ndisabling a schema feature can remove that feature's existing content.\n\noutput formats are explicit conversions; config changes never silently change form value types.\n\n configuration reference\n\n| option                               | default / meaning                                                          |\n| ------------------------------------ | -------------------------------------------------------------------------- |\n| placeholder                          | start writing… when the document is empty                                  |\n| minheight                            | 180 pixels                                                                 |\n| maxheight                            | optional; must be at least minheight                                       |\n| theme                                | light; also dark or auto                                                   |\n| readonly                             | prevent editing without changing the document format                       |\n| autofocus                            | optional browser focus after activation                                    |\n| spellcheck                           | true                                                                       |\n| toolbar.hidden                       | hide the toolbar; this does not remove schema features                     |\n| toolbar.items / groups               | replace command buttons or organize them into labelled groups              |\n| toolbar.hiddenitems                  | hide command ids or formatting-control labels                              |\n| toolbar.overflow                     | wrap or scroll                                                             |\n| toolbar.floating                     | enable a selection toolbar                                                 |\n| toolbar.sticky / stickyoffset        | pin the toolbar; optional application-header offset in pixels              |\n| image.enabled / pasteurls            | allow image nodes / optionally turn plain supported image urls into media  |\n| video.enabled / providers            | allow video nodes / register trusted provider functions                    |\n| table.enabled / maxrows / maxcolumns | allow tables; insertion bounds default to 50 rows and 20 columns           |\n| security.allowhttp                   | false; https is the default url policy                                     |\n| security.maxinputlength              | 1,000,000 input characters                                                 |\n| extensions                           | trusted extension list; an explicit list replaces default media extensions |\n\n application-wide defaults\n\ntypescript\nimport { provideeditra } from 'ngx-editra';\n\n// add to your application's providers:\nexport const editordefaults = provideeditra({ theme: 'auto', minheight: 240 });\n\n\nan editor's config input replaces these application defaults rather than deeply merging with them. built-in normalization still supplies missing built-in defaults. do not create a fresh config object inline in the template on every check.\n\nto change only presentation, assign a new object, for example this.editorconfig = { ...this.editorconfig, theme: 'dark' };. keep the field mutable if your application updates it. schema or security changes can alter existing content; make them intentional user/application actions.\n",
+	},
+	{
+		slug: 'angular-forms',
+		title: 'Angular Forms',
+		group: 'Build with Editra',
+		source: 'docs/ANGULAR_FORMS.md',
+		summary:
+			'Connect the editor to your Angular form just like another value accessor. Its value is an HTML string, so you can load, validate, reset, disable, and save it through the form API.',
+		readingMinutes: 3,
+		html: '<h1 id="angular-forms">Angular Forms</h1>\n<p>Connect the editor to your Angular form just like another value accessor. Its value is an HTML string, so you can load, validate, reset, disable, and save it through the form API.</p>\n<h2 id="complete-reactive-form-example">Complete reactive form example</h2>\n<pre><code class="language-typescript">import { Component } from \'@angular/core\';\nimport { FormControl, FormGroup, ReactiveFormsModule } from \'@angular/forms\';\nimport { NgxEditraComponent } from \'ngx-editra\';\n\n@Component({\n\tselector: \'app-description-form\',\n\tstandalone: true,\n\timports: [ReactiveFormsModule, NgxEditraComponent],\n\ttemplate: `\n\t\t&lt;form [formGroup]=&quot;form&quot; (ngSubmit)=&quot;save()&quot;&gt;\n\t\t\t&lt;h2&gt;Article description&lt;/h2&gt;\n\t\t\t&lt;ngx-editra formControlName=&quot;description&quot; [required]=&quot;true&quot; /&gt;\n\t\t\t@if (\n\t\t\t\tform.controls.description.touched &amp;&amp; form.controls.description.hasError(\'required\')\n\t\t\t) {\n\t\t\t\t&lt;p role=&quot;alert&quot;&gt;Enter a description before saving.&lt;/p&gt;\n\t\t\t}\n\t\t\t&lt;button type=&quot;submit&quot;&gt;Save draft&lt;/button&gt;\n\t\t&lt;/form&gt;\n\t`,\n})\nexport class DescriptionFormComponent {\n\treadonly form = new FormGroup({\n\t\tdescription: new FormControl(\'\', { nonNullable: true }),\n\t});\n\tsave(): void {\n\t\tthis.form.markAllAsTouched();\n\t\tif (this.form.invalid) return;\n\t\tconst html = this.form.controls.description.value;\n\t\t// Send html through your own application service.\n\t\tconsole.log(html);\n\t}\n}\n</code></pre>\n<p>Use an actual application service instead of the example console output when persisting data. The editor does not include a backend or submission handler.</p>\n<h2 id="binding-and-validation-behavior">Binding and validation behavior</h2>\n<p>Import <code>NgxEditraComponent</code> with <code>ReactiveFormsModule</code> or <code>FormsModule</code>.\n<code>[formControl]</code>, <code>formControlName</code>, and <code>[(ngModel)]</code> use stable HTML strings.\nNull resets to an empty paragraph. <code>setValue</code>, <code>patchValue</code>, reset, disable and enable\nare supported through ControlValueAccessor.</p>\n<pre><code class="language-html">&lt;ngx-editra\n\tformControlName=&quot;description&quot;\n\t[required]=&quot;true&quot;\n\t[readonly]=&quot;readOnly&quot;\n\t(contentChange)=&quot;onContentChange($event)&quot;\n/&gt;\n</code></pre>\n<p><code>required</code> on the editor validates semantic emptiness, since <code>&lt;p&gt;&lt;/p&gt;</code> is a nonempty string\nto Angular\'s ordinary string validator. Set <code>[required]=&quot;true&quot;</code> when you need this behavior.\nEditor-to-form transactions emit changes; programmatic writes do not emit <code>contentChange</code>\nor mark the form dirty. Touched is reported when focus leaves the entire editor, including\nits toolbar/dialog. Moving focus within the editor does not touch the form.</p>\n<p>For autosave, subscribe to form <code>valueChanges</code> or <code>contentChange</code>, and debounce storage\nrequests in your application. Required form consistency itself is synchronous.</p>\n<h2 id="template-driven-forms">Template-driven forms</h2>\n<p>Import FormsModule and NgxEditraComponent in the component that owns this template. Declare <code>body = \'&lt;p&gt;Initial content.&lt;/p&gt;\';</code> on that component.</p>\n<pre><code class="language-html">&lt;ngx-editra [(ngModel)]=&quot;body&quot; name=&quot;body&quot; [required]=&quot;true&quot; /&gt;\n</code></pre>\n<p>The name is needed when this control is inside a template-driven form. Do not bind ngModel and formControl to the same editor.</p>\n<h2 id="disabled-and-readonly-are-different">Disabled and readonly are different</h2>\n<p>Call <code>control.disable()</code> to disable a reactive control and <code>control.enable()</code> to restore it. Disabled controls are excluded from a FormGroup\'s ordinary value; use Angular\'s getRawValue when your save policy includes them.</p>\n<p>Use the editor\'s readonly input when users may read the content while the form control remains enabled. Neither state changes the stored HTML. For display without an editor/form control, use the <a href="/guides/viewer">viewer</a>.</p>\n',
+		headings: [
+			{
+				id: 'complete-reactive-form-example',
+				label: 'Complete reactive form example',
+			},
+			{
+				id: 'binding-and-validation-behavior',
+				label: 'Binding and validation behavior',
+			},
+			{
+				id: 'template-driven-forms',
+				label: 'Template-driven forms',
+			},
+			{
+				id: 'disabled-and-readonly-are-different',
+				label: 'Disabled and readonly are different',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="angular-forms">Angular Forms</h1>\n',
+				id: 'angular-forms',
+				kind: 'content',
+			},
+			{
+				html: '<p>Connect the editor to your Angular form just like another value accessor. Its value is an HTML string, so you can load, validate, reset, disable, and save it through the form API.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="complete-reactive-form-example">Complete reactive form example</h2>\n',
+				id: 'complete-reactive-form-example',
+				kind: 'content',
+			},
+			{
+				code: 'import { Component } from \'@angular/core\';\nimport { FormControl, FormGroup, ReactiveFormsModule } from \'@angular/forms\';\nimport { NgxEditraComponent } from \'ngx-editra\';\n\n@Component({\n\tselector: \'app-description-form\',\n\tstandalone: true,\n\timports: [ReactiveFormsModule, NgxEditraComponent],\n\ttemplate: `\n\t\t<form [formGroup]="form" (ngSubmit)="save()">\n\t\t\t<h2>Article description</h2>\n\t\t\t<ngx-editra formControlName="description" [required]="true" />\n\t\t\t@if (\n\t\t\t\tform.controls.description.touched && form.controls.description.hasError(\'required\')\n\t\t\t) {\n\t\t\t\t<p role="alert">Enter a description before saving.</p>\n\t\t\t}\n\t\t\t<button type="submit">Save draft</button>\n\t\t</form>\n\t`,\n})\nexport class DescriptionFormComponent {\n\treadonly form = new FormGroup({\n\t\tdescription: new FormControl(\'\', { nonNullable: true }),\n\t});\n\tsave(): void {\n\t\tthis.form.markAllAsTouched();\n\t\tif (this.form.invalid) return;\n\t\tconst html = this.form.controls.description.value;\n\t\t// Send html through your own application service.\n\t\tconsole.log(html);\n\t}\n}\n',
+				language: 'typescript',
+				html: "<pre><code class=\"language-typescript\">import { Component } from '@angular/core';\nimport { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';\nimport { NgxEditraComponent } from 'ngx-editra';\n\n@Component({\n\tselector: 'app-description-form',\n\tstandalone: true,\n\timports: [ReactiveFormsModule, NgxEditraComponent],\n\ttemplate: `\n\t\t&lt;form [formGroup]=&quot;form&quot; (ngSubmit)=&quot;save()&quot;&gt;\n\t\t\t&lt;h2&gt;Article description&lt;/h2&gt;\n\t\t\t&lt;ngx-editra formControlName=&quot;description&quot; [required]=&quot;true&quot; /&gt;\n\t\t\t@if (\n\t\t\t\tform.controls.description.touched &amp;&amp; form.controls.description.hasError('required')\n\t\t\t) {\n\t\t\t\t&lt;p role=&quot;alert&quot;&gt;Enter a description before saving.&lt;/p&gt;\n\t\t\t}\n\t\t\t&lt;button type=&quot;submit&quot;&gt;Save draft&lt;/button&gt;\n\t\t&lt;/form&gt;\n\t`,\n})\nexport class DescriptionFormComponent {\n\treadonly form = new FormGroup({\n\t\tdescription: new FormControl('', { nonNullable: true }),\n\t});\n\tsave(): void {\n\t\tthis.form.markAllAsTouched();\n\t\tif (this.form.invalid) return;\n\t\tconst html = this.form.controls.description.value;\n\t\t// Send html through your own application service.\n\t\tconsole.log(html);\n\t}\n}\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Use an actual application service instead of the example console output when persisting data. The editor does not include a backend or submission handler.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="binding-and-validation-behavior">Binding and validation behavior</h2>\n',
+				id: 'binding-and-validation-behavior',
+				kind: 'content',
+			},
+			{
+				html: '<p>Import <code>NgxEditraComponent</code> with <code>ReactiveFormsModule</code> or <code>FormsModule</code>.\n<code>[formControl]</code>, <code>formControlName</code>, and <code>[(ngModel)]</code> use stable HTML strings.\nNull resets to an empty paragraph. <code>setValue</code>, <code>patchValue</code>, reset, disable and enable\nare supported through ControlValueAccessor.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: '<ngx-editra\n\tformControlName="description"\n\t[required]="true"\n\t[readonly]="readOnly"\n\t(contentChange)="onContentChange($event)"\n/>\n',
+				language: 'html',
+				html: '<pre><code class="language-html">&lt;ngx-editra\n\tformControlName=&quot;description&quot;\n\t[required]=&quot;true&quot;\n\t[readonly]=&quot;readOnly&quot;\n\t(contentChange)=&quot;onContentChange($event)&quot;\n/&gt;\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: "<p><code>required</code> on the editor validates semantic emptiness, since <code>&lt;p&gt;&lt;/p&gt;</code> is a nonempty string\nto Angular's ordinary string validator. Set <code>[required]=&quot;true&quot;</code> when you need this behavior.\nEditor-to-form transactions emit changes; programmatic writes do not emit <code>contentChange</code>\nor mark the form dirty. Touched is reported when focus leaves the entire editor, including\nits toolbar/dialog. Moving focus within the editor does not touch the form.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>For autosave, subscribe to form <code>valueChanges</code> or <code>contentChange</code>, and debounce storage\nrequests in your application. Required form consistency itself is synchronous.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="template-driven-forms">Template-driven forms</h2>\n',
+				id: 'template-driven-forms',
+				kind: 'content',
+			},
+			{
+				html: "<p>Import FormsModule and NgxEditraComponent in the component that owns this template. Declare <code>body = '&lt;p&gt;Initial content.&lt;/p&gt;';</code> on that component.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: '<ngx-editra [(ngModel)]="body" name="body" [required]="true" />\n',
+				language: 'html',
+				html: '<pre><code class="language-html">&lt;ngx-editra [(ngModel)]=&quot;body&quot; name=&quot;body&quot; [required]=&quot;true&quot; /&gt;\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>The name is needed when this control is inside a template-driven form. Do not bind ngModel and formControl to the same editor.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="disabled-and-readonly-are-different">Disabled and readonly are different</h2>\n',
+				id: 'disabled-and-readonly-are-different',
+				kind: 'content',
+			},
+			{
+				html: "<p>Call <code>control.disable()</code> to disable a reactive control and <code>control.enable()</code> to restore it. Disabled controls are excluded from a FormGroup's ordinary value; use Angular's getRawValue when your save policy includes them.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use the editor\'s readonly input when users may read the content while the form control remains enabled. Neither state changes the stored HTML. For display without an editor/form control, use the <a href="/guides/viewer">viewer</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: ' angular forms\n\nconnect the editor to your angular form just like another value accessor. its value is an html string, so you can load, validate, reset, disable, and save it through the form api.\n\n complete reactive form example\n\ntypescript\nimport { component } from \'@angular/core\';\nimport { formcontrol, formgroup, reactiveformsmodule } from \'@angular/forms\';\nimport { ngxeditracomponent } from \'ngx-editra\';\n\n@component({\n\tselector: \'app-description-form\',\n\tstandalone: true,\n\timports: [reactiveformsmodule, ngxeditracomponent],\n\ttemplate: \n\t\t<form [formgroup]="form" (ngsubmit)="save()">\n\t\t\t<h2>article description</h2>\n\t\t\t<ngx-editra formcontrolname="description" [required]="true" />\n\t\t\t@if (\n\t\t\t\tform.controls.description.touched && form.controls.description.haserror(\'required\')\n\t\t\t) {\n\t\t\t\t<p role="alert">enter a description before saving.</p>\n\t\t\t}\n\t\t\t<button type="submit">save draft</button>\n\t\t</form>\n\t,\n})\nexport class descriptionformcomponent {\n\treadonly form = new formgroup({\n\t\tdescription: new formcontrol(\'\', { nonnullable: true }),\n\t});\n\tsave(): void {\n\t\tthis.form.markallastouched();\n\t\tif (this.form.invalid) return;\n\t\tconst html = this.form.controls.description.value;\n\t\t// send html through your own application service.\n\t\tconsole.log(html);\n\t}\n}\n\n\nuse an actual application service instead of the example console output when persisting data. the editor does not include a backend or submission handler.\n\n binding and validation behavior\n\nimport ngxeditracomponent with reactiveformsmodule or formsmodule.\n[formcontrol], formcontrolname, and [(ngmodel)] use stable html strings.\nnull resets to an empty paragraph. setvalue, patchvalue, reset, disable and enable\nare supported through controlvalueaccessor.\n\nhtml\n<ngx-editra\n\tformcontrolname="description"\n\t[required]="true"\n\t[readonly]="readonly"\n\t(contentchange)="oncontentchange($event)"\n/>\n\n\nrequired on the editor validates semantic emptiness, since <p></p> is a nonempty string\nto angular\'s ordinary string validator. set [required]="true" when you need this behavior.\neditor-to-form transactions emit changes; programmatic writes do not emit contentchange\nor mark the form dirty. touched is reported when focus leaves the entire editor, including\nits toolbar/dialog. moving focus within the editor does not touch the form.\n\nfor autosave, subscribe to form valuechanges or contentchange, and debounce storage\nrequests in your application. required form consistency itself is synchronous.\n\n template-driven forms\n\nimport formsmodule and ngxeditracomponent in the component that owns this template. declare body = \'<p>initial content.</p>\'; on that component.\n\nhtml\n<ngx-editra [(ngmodel)]="body" name="body" [required]="true" />\n\n\nthe name is needed when this control is inside a template-driven form. do not bind ngmodel and formcontrol to the same editor.\n\n disabled and readonly are different\n\ncall control.disable() to disable a reactive control and control.enable() to restore it. disabled controls are excluded from a formgroup\'s ordinary value; use angular\'s getrawvalue when your save policy includes them.\n\nuse the editor\'s readonly input when users may read the content while the form control remains enabled. neither state changes the stored html. for display without an editor/form control, use the [viewer](viewer.md).\n',
+	},
+	{
+		slug: 'content',
+		title: 'Load and save content',
+		group: 'Build with Editra',
+		source: 'docs/CONTENT.md',
+		summary:
+			'The editor does not save to a server automatically. Your application owns storage, authentication, loading indicators, and error handling. Angular Forms supplies the current HTML value.',
+		readingMinutes: 3,
+		html: '<h1 id="load-save-and-convert-content">Load, save, and convert content</h1>\n<p>The editor does not save to a server automatically. Your application owns storage, authentication, loading indicators, and error handling. Angular Forms supplies the current HTML value.</p>\n<h2 id="save-html-from-a-form">Save HTML from a form</h2>\n<p>Read the form control when the user submits. Send that string to your own backend, where it must be validated and authorized before storage. This example deliberately shows the integration boundary rather than an invented server endpoint.</p>\n<pre><code class="language-typescript">// Inside the component that owns your FormControl:\nsave(): void {\n  this.body.markAsTouched();\n  if (this.body.invalid || this.body.disabled) return;\n  const html = this.body.value;\n  // Pass html to your application\'s persistence service.\n}\n</code></pre>\n<p>For automatic saving, subscribe to the form control\'s valueChanges in your application, debounce changes, and clean up the subscription. Decide how to handle failed requests and concurrent writes. The library does not provide autosave or conflict resolution.</p>\n<h2 id="restore-html">Restore HTML</h2>\n<pre><code class="language-typescript">this.body.setValue(\'&lt;p&gt;A previously saved document.&lt;/p&gt;\');\nthis.body.reset(\'&lt;p&gt;A fresh draft.&lt;/p&gt;\');\nthis.body.disable();\nthis.body.enable();\n</code></pre>\n<p>Programmatic form writes update the editor through ControlValueAccessor. Angular\'s own setValue emits valueChanges unless you use its emitEvent option; this is separate from the editor\'s contentChange event. Programmatic writes do not mark the form dirty or emit the editor\'s contentChange.</p>\n<h2 id="choose-an-output-format">Choose an output format</h2>\n<table>\n<thead>\n<tr>\n<th>Format</th>\n<th>How to get it</th>\n<th>When to use it</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>HTML</td>\n<td>Form control value or editor.getHTML()</td>\n<td>Supported rich content for storage and rendering</td>\n</tr>\n<tr>\n<td>JSON</td>\n<td>editor.getJSON()</td>\n<td>A structured document using EditraDocument</td>\n</tr>\n<tr>\n<td>Plain text</td>\n<td>editor.getText()</td>\n<td>Search indexing, previews, or text-only output</td>\n</tr>\n<tr>\n<td>Markdown</td>\n<td>editor.getMarkdown()</td>\n<td>CommonMark-oriented export with documented fidelity limits</td>\n</tr>\n</tbody>\n</table>\n<p>The editor reference comes from a template variable such as <code>&lt;ngx-editra #editor [formControl]=&quot;body&quot; /&gt;</code>, or an Angular ViewChild. Calling a getter does not change the form value type.</p>\n<h2 id="restore-json-or-markdown">Restore JSON or Markdown</h2>\n<pre><code class="language-typescript">// editor is an NgxEditraComponent reference.\neditor.setJSON(savedDocument);\neditor.setMarkdown(\'# A heading\\n\\nA **bold** sentence.\');\n</code></pre>\n<p>setJSON and setMarkdown can throw on invalid input; use try/catch in your import UI. setHTML and writeValue report parsing failures through editorError while retaining the current document. Respect the configured input-size limit.</p>\n<p>Component setters silently synchronize an attached form control without emitting contentChange or valueChanges. Use an explicit application action if importing a document should trigger a save. clear() behaves as an editing action with history.</p>\n<h2 id="preserve-the-same-configuration">Preserve the same configuration</h2>\n<p>Render or restore content with the same trusted extensions, URL rules, and video providers used to create it. Disabling a schema feature can remove its content when the document is normalized. Keep server-side validation aligned with the client. See <a href="/guides/security">security</a>, <a href="/guides/markdown">Markdown</a>, and <a href="/guides/viewer">the viewer</a>.</p>\n',
+		headings: [
+			{
+				id: 'save-html-from-a-form',
+				label: 'Save HTML from a form',
+			},
+			{
+				id: 'restore-html',
+				label: 'Restore HTML',
+			},
+			{
+				id: 'choose-an-output-format',
+				label: 'Choose an output format',
+			},
+			{
+				id: 'restore-json-or-markdown',
+				label: 'Restore JSON or Markdown',
+			},
+			{
+				id: 'preserve-the-same-configuration',
+				label: 'Preserve the same configuration',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="load-save-and-convert-content">Load, save, and convert content</h1>\n',
+				id: 'load-save-and-convert-content',
+				kind: 'content',
+			},
+			{
+				html: '<p>The editor does not save to a server automatically. Your application owns storage, authentication, loading indicators, and error handling. Angular Forms supplies the current HTML value.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="save-html-from-a-form">Save HTML from a form</h2>\n',
+				id: 'save-html-from-a-form',
+				kind: 'content',
+			},
+			{
+				html: '<p>Read the form control when the user submits. Send that string to your own backend, where it must be validated and authorized before storage. This example deliberately shows the integration boundary rather than an invented server endpoint.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: "// Inside the component that owns your FormControl:\nsave(): void {\n  this.body.markAsTouched();\n  if (this.body.invalid || this.body.disabled) return;\n  const html = this.body.value;\n  // Pass html to your application's persistence service.\n}\n",
+				language: 'typescript',
+				html: '<pre><code class="language-typescript">// Inside the component that owns your FormControl:\nsave(): void {\n  this.body.markAsTouched();\n  if (this.body.invalid || this.body.disabled) return;\n  const html = this.body.value;\n  // Pass html to your application\'s persistence service.\n}\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: "<p>For automatic saving, subscribe to the form control's valueChanges in your application, debounce changes, and clean up the subscription. Decide how to handle failed requests and concurrent writes. The library does not provide autosave or conflict resolution.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="restore-html">Restore HTML</h2>\n',
+				id: 'restore-html',
+				kind: 'content',
+			},
+			{
+				code: "this.body.setValue('<p>A previously saved document.</p>');\nthis.body.reset('<p>A fresh draft.</p>');\nthis.body.disable();\nthis.body.enable();\n",
+				language: 'typescript',
+				html: "<pre><code class=\"language-typescript\">this.body.setValue('&lt;p&gt;A previously saved document.&lt;/p&gt;');\nthis.body.reset('&lt;p&gt;A fresh draft.&lt;/p&gt;');\nthis.body.disable();\nthis.body.enable();\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: "<p>Programmatic form writes update the editor through ControlValueAccessor. Angular's own setValue emits valueChanges unless you use its emitEvent option; this is separate from the editor's contentChange event. Programmatic writes do not mark the form dirty or emit the editor's contentChange.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="choose-an-output-format">Choose an output format</h2>\n',
+				id: 'choose-an-output-format',
+				kind: 'content',
+			},
+			{
+				html: '<table>\n<thead>\n<tr>\n<th>Format</th>\n<th>How to get it</th>\n<th>When to use it</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>HTML</td>\n<td>Form control value or editor.getHTML()</td>\n<td>Supported rich content for storage and rendering</td>\n</tr>\n<tr>\n<td>JSON</td>\n<td>editor.getJSON()</td>\n<td>A structured document using EditraDocument</td>\n</tr>\n<tr>\n<td>Plain text</td>\n<td>editor.getText()</td>\n<td>Search indexing, previews, or text-only output</td>\n</tr>\n<tr>\n<td>Markdown</td>\n<td>editor.getMarkdown()</td>\n<td>CommonMark-oriented export with documented fidelity limits</td>\n</tr>\n</tbody>\n</table>\n',
+				id: '',
+				kind: 'table',
+			},
+			{
+				html: '<p>The editor reference comes from a template variable such as <code>&lt;ngx-editra #editor [formControl]=&quot;body&quot; /&gt;</code>, or an Angular ViewChild. Calling a getter does not change the form value type.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="restore-json-or-markdown">Restore JSON or Markdown</h2>\n',
+				id: 'restore-json-or-markdown',
+				kind: 'content',
+			},
+			{
+				code: "// editor is an NgxEditraComponent reference.\neditor.setJSON(savedDocument);\neditor.setMarkdown('# A heading\\n\\nA **bold** sentence.');\n",
+				language: 'typescript',
+				html: '<pre><code class="language-typescript">// editor is an NgxEditraComponent reference.\neditor.setJSON(savedDocument);\neditor.setMarkdown(\'# A heading\\n\\nA **bold** sentence.\');\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>setJSON and setMarkdown can throw on invalid input; use try/catch in your import UI. setHTML and writeValue report parsing failures through editorError while retaining the current document. Respect the configured input-size limit.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Component setters silently synchronize an attached form control without emitting contentChange or valueChanges. Use an explicit application action if importing a document should trigger a save. clear() behaves as an editing action with history.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="preserve-the-same-configuration">Preserve the same configuration</h2>\n',
+				id: 'preserve-the-same-configuration',
+				kind: 'content',
+			},
+			{
+				html: '<p>Render or restore content with the same trusted extensions, URL rules, and video providers used to create it. Disabling a schema feature can remove its content when the document is normalized. Keep server-side validation aligned with the client. See <a href="/guides/security">security</a>, <a href="/guides/markdown">Markdown</a>, and <a href="/guides/viewer">the viewer</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " load, save, and convert content\n\nthe editor does not save to a server automatically. your application owns storage, authentication, loading indicators, and error handling. angular forms supplies the current html value.\n\n save html from a form\n\nread the form control when the user submits. send that string to your own backend, where it must be validated and authorized before storage. this example deliberately shows the integration boundary rather than an invented server endpoint.\n\ntypescript\n// inside the component that owns your formcontrol:\nsave(): void {\n  this.body.markastouched();\n  if (this.body.invalid || this.body.disabled) return;\n  const html = this.body.value;\n  // pass html to your application's persistence service.\n}\n\n\nfor automatic saving, subscribe to the form control's valuechanges in your application, debounce changes, and clean up the subscription. decide how to handle failed requests and concurrent writes. the library does not provide autosave or conflict resolution.\n\n restore html\n\ntypescript\nthis.body.setvalue('<p>a previously saved document.</p>');\nthis.body.reset('<p>a fresh draft.</p>');\nthis.body.disable();\nthis.body.enable();\n\n\nprogrammatic form writes update the editor through controlvalueaccessor. angular's own setvalue emits valuechanges unless you use its emitevent option; this is separate from the editor's contentchange event. programmatic writes do not mark the form dirty or emit the editor's contentchange.\n\n choose an output format\n\n| format     | how to get it                          | when to use it                                             |\n| ---------- | -------------------------------------- | ---------------------------------------------------------- |\n| html       | form control value or editor.gethtml() | supported rich content for storage and rendering           |\n| json       | editor.getjson()                       | a structured document using editradocument                 |\n| plain text | editor.gettext()                       | search indexing, previews, or text-only output             |\n| markdown   | editor.getmarkdown()                   | commonmark-oriented export with documented fidelity limits |\n\nthe editor reference comes from a template variable such as <ngx-editra editor [formcontrol]=\"body\" />, or an angular viewchild. calling a getter does not change the form value type.\n\n restore json or markdown\n\ntypescript\n// editor is an ngxeditracomponent reference.\neditor.setjson(saveddocument);\neditor.setmarkdown(' a heading\\n\\na bold sentence.');\n\n\nsetjson and setmarkdown can throw on invalid input; use try/catch in your import ui. sethtml and writevalue report parsing failures through editorerror while retaining the current document. respect the configured input-size limit.\n\ncomponent setters silently synchronize an attached form control without emitting contentchange or valuechanges. use an explicit application action if importing a document should trigger a save. clear() behaves as an editing action with history.\n\n preserve the same configuration\n\nrender or restore content with the same trusted extensions, url rules, and video providers used to create it. disabling a schema feature can remove its content when the document is normalized. keep server-side validation aligned with the client. see [security](security.md), [markdown](markdown.md), and [the viewer](viewer.md).\n",
+	},
+	{
+		slug: 'viewer',
+		title: 'Display saved content',
+		group: 'Build with Editra',
+		source: 'docs/VIEWER.md',
+		summary:
+			'Use the read-only viewer when a reader should see the saved document without editing tools. It validates input and applies the shared content presentation, including code blocks, tables, media, dividers, and columns.',
+		readingMinutes: 2,
+		html: '<h1 id="display-saved-content">Display saved content</h1>\n<p>Use the read-only viewer when a reader should see the saved document without editing tools. It validates input and applies the shared content presentation, including code blocks, tables, media, dividers, and columns.</p>\n<h2 id="use-the-standalone-viewer">Use the standalone viewer</h2>\n<pre><code class="language-typescript">import { Component } from \'@angular/core\';\nimport { NgxEditraViewerComponent } from \'ngx-editra\';\n\n@Component({\n\tselector: \'app-article\',\n\tstandalone: true,\n\timports: [NgxEditraViewerComponent],\n\ttemplate: \'&lt;ngx-editra-viewer [html]=&quot;savedHtml&quot; /&gt;\',\n})\nexport class ArticleComponent {\n\tsavedHtml = \'&lt;h2&gt;Published article&lt;/h2&gt;&lt;p&gt;Ready to read.&lt;/p&gt;\';\n}\n</code></pre>\n<p>The viewer includes its content styles automatically. Pass <code>[config]=&quot;config&quot;</code> when the document uses custom extensions, providers, URL policy, or a specific theme. Code-copy controls are included in the viewer; editing and resizing controls are not.</p>\n<h2 id="use-an-existing-html-container">Use an existing HTML container</h2>\n<p>If your layout needs its own container, import EditraHtmlPipe and EditraCodeCopyDirective in the component\'s imports and use:</p>\n<pre><code class="language-html">&lt;div class=&quot;editra-content&quot; editraCodeCopy [innerHTML]=&quot;savedHtml | editraHtml: config&quot;&gt;&lt;/div&gt;\n</code></pre>\n<p>The pipe reconstructs supported content before trusting it for Angular rendering. The directive adds copy controls to code blocks. Replace the config object when changing configuration so the pipe can observe the change.</p>\n<h2 id="content-styles">Content styles</h2>\n<p>No stylesheet import is needed for the editor or standalone viewer. If you render saved HTML in your own container using the HTML pipe rather than either component, import the optional content stylesheet globally:</p>\n<pre><code class="language-scss">@use \'ngx-editra/styles/content.scss\';\n</code></pre>\n<p>Plain Angular innerHTML may remove inline styles and embedded players. Do not solve this by trusting raw user HTML yourself. Prefer the viewer or the validated pipe, and validate content on the server as well. Custom extension serializers are trusted code and must be reviewed.</p>\n<h2 id="readonly-versus-viewer">Readonly versus viewer</h2>\n<p>Use <code>[readonly]=&quot;true&quot;</code> on an editor when you want to keep the editor component and its form integration while preventing changes. Use NgxEditraViewerComponent for a separate reading surface. See <a href="/guides/angular-forms">Forms</a> for how disabled state affects form values.</p>\n',
+		headings: [
+			{
+				id: 'use-the-standalone-viewer',
+				label: 'Use the standalone viewer',
+			},
+			{
+				id: 'use-an-existing-html-container',
+				label: 'Use an existing HTML container',
+			},
+			{
+				id: 'content-styles',
+				label: 'Content styles',
+			},
+			{
+				id: 'readonly-versus-viewer',
+				label: 'Readonly versus viewer',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="display-saved-content">Display saved content</h1>\n',
+				id: 'display-saved-content',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use the read-only viewer when a reader should see the saved document without editing tools. It validates input and applies the shared content presentation, including code blocks, tables, media, dividers, and columns.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="use-the-standalone-viewer">Use the standalone viewer</h2>\n',
+				id: 'use-the-standalone-viewer',
+				kind: 'content',
+			},
+			{
+				code: "import { Component } from '@angular/core';\nimport { NgxEditraViewerComponent } from 'ngx-editra';\n\n@Component({\n\tselector: 'app-article',\n\tstandalone: true,\n\timports: [NgxEditraViewerComponent],\n\ttemplate: '<ngx-editra-viewer [html]=\"savedHtml\" />',\n})\nexport class ArticleComponent {\n\tsavedHtml = '<h2>Published article</h2><p>Ready to read.</p>';\n}\n",
+				language: 'typescript',
+				html: "<pre><code class=\"language-typescript\">import { Component } from '@angular/core';\nimport { NgxEditraViewerComponent } from 'ngx-editra';\n\n@Component({\n\tselector: 'app-article',\n\tstandalone: true,\n\timports: [NgxEditraViewerComponent],\n\ttemplate: '&lt;ngx-editra-viewer [html]=&quot;savedHtml&quot; /&gt;',\n})\nexport class ArticleComponent {\n\tsavedHtml = '&lt;h2&gt;Published article&lt;/h2&gt;&lt;p&gt;Ready to read.&lt;/p&gt;';\n}\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>The viewer includes its content styles automatically. Pass <code>[config]=&quot;config&quot;</code> when the document uses custom extensions, providers, URL policy, or a specific theme. Code-copy controls are included in the viewer; editing and resizing controls are not.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="use-an-existing-html-container">Use an existing HTML container</h2>\n',
+				id: 'use-an-existing-html-container',
+				kind: 'content',
+			},
+			{
+				html: "<p>If your layout needs its own container, import EditraHtmlPipe and EditraCodeCopyDirective in the component's imports and use:</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: '<div class="editra-content" editraCodeCopy [innerHTML]="savedHtml | editraHtml: config"></div>\n',
+				language: 'html',
+				html: '<pre><code class="language-html">&lt;div class=&quot;editra-content&quot; editraCodeCopy [innerHTML]=&quot;savedHtml | editraHtml: config&quot;&gt;&lt;/div&gt;\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>The pipe reconstructs supported content before trusting it for Angular rendering. The directive adds copy controls to code blocks. Replace the config object when changing configuration so the pipe can observe the change.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="content-styles">Content styles</h2>\n',
+				id: 'content-styles',
+				kind: 'content',
+			},
+			{
+				html: '<p>No stylesheet import is needed for the editor or standalone viewer. If you render saved HTML in your own container using the HTML pipe rather than either component, import the optional content stylesheet globally:</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: "@use 'ngx-editra/styles/content.scss';\n",
+				language: 'scss',
+				html: '<pre><code class="language-scss">@use \'ngx-editra/styles/content.scss\';\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Plain Angular innerHTML may remove inline styles and embedded players. Do not solve this by trusting raw user HTML yourself. Prefer the viewer or the validated pipe, and validate content on the server as well. Custom extension serializers are trusted code and must be reviewed.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="readonly-versus-viewer">Readonly versus viewer</h2>\n',
+				id: 'readonly-versus-viewer',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use <code>[readonly]=&quot;true&quot;</code> on an editor when you want to keep the editor component and its form integration while preventing changes. Use NgxEditraViewerComponent for a separate reading surface. See <a href="/guides/angular-forms">Forms</a> for how disabled state affects form values.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " display saved content\n\nuse the read-only viewer when a reader should see the saved document without editing tools. it validates input and applies the shared content presentation, including code blocks, tables, media, dividers, and columns.\n\n use the standalone viewer\n\ntypescript\nimport { component } from '@angular/core';\nimport { ngxeditraviewercomponent } from 'ngx-editra';\n\n@component({\n\tselector: 'app-article',\n\tstandalone: true,\n\timports: [ngxeditraviewercomponent],\n\ttemplate: '<ngx-editra-viewer [html]=\"savedhtml\" />',\n})\nexport class articlecomponent {\n\tsavedhtml = '<h2>published article</h2><p>ready to read.</p>';\n}\n\n\nthe viewer includes its content styles automatically. pass [config]=\"config\" when the document uses custom extensions, providers, url policy, or a specific theme. code-copy controls are included in the viewer; editing and resizing controls are not.\n\n use an existing html container\n\nif your layout needs its own container, import editrahtmlpipe and editracodecopydirective in the component's imports and use:\n\nhtml\n<div class=\"editra-content\" editracodecopy [innerhtml]=\"savedhtml | editrahtml: config\"></div>\n\n\nthe pipe reconstructs supported content before trusting it for angular rendering. the directive adds copy controls to code blocks. replace the config object when changing configuration so the pipe can observe the change.\n\n content styles\n\nno stylesheet import is needed for the editor or standalone viewer. if you render saved html in your own container using the html pipe rather than either component, import the optional content stylesheet globally:\n\nscss\n@use 'ngx-editra/styles/content.scss';\n\n\nplain angular innerhtml may remove inline styles and embedded players. do not solve this by trusting raw user html yourself. prefer the viewer or the validated pipe, and validate content on the server as well. custom extension serializers are trusted code and must be reviewed.\n\n readonly versus viewer\n\nuse [readonly]=\"true\" on an editor when you want to keep the editor component and its form integration while preventing changes. use ngxeditraviewercomponent for a separate reading surface. see [forms](angular_forms.md) for how disabled state affects form values.\n",
+	},
+	{
+		slug: 'events',
+		title: 'Events and lifecycle',
+		group: 'Build with Editra',
+		source: 'docs/EVENTS.md',
+		summary:
+			"Use outputs to react to user actions without reaching into the component's private engine. Use Angular Forms for the document value and validation state.",
+		readingMinutes: 2,
+		html: "<h1 id=\"events-and-application-integration\">Events and application integration</h1>\n<p>Use outputs to react to user actions without reaching into the component's private engine. Use Angular Forms for the document value and validation state.</p>\n<h2 id=\"listen-for-content-and-errors\">Listen for content and errors</h2>\n<pre><code class=\"language-typescript\">import { Component } from '@angular/core';\nimport { FormControl, ReactiveFormsModule } from '@angular/forms';\nimport { NgxEditraComponent } from 'ngx-editra';\nimport type { EditraChange } from 'ngx-editra';\n\n@Component({\n\tselector: 'app-editor-events',\n\tstandalone: true,\n\timports: [ReactiveFormsModule, NgxEditraComponent],\n\ttemplate: `\n\t\t&lt;ngx-editra\n\t\t\t[formControl]=&quot;body&quot;\n\t\t\t(contentChange)=&quot;onContentChange($event)&quot;\n\t\t\t(editorError)=&quot;error = $event.message&quot;\n\t\t/&gt;\n\t\t&lt;p role=&quot;status&quot;&gt;{{ status }}&lt;/p&gt;\n\t\t&lt;p role=&quot;alert&quot;&gt;{{ error }}&lt;/p&gt;\n\t`,\n})\nexport class EditorEventsComponent {\n\treadonly body = new FormControl('', { nonNullable: true });\n\tstatus = 'Start editing.';\n\terror = '';\n\tonContentChange(change: EditraChange): void {\n\t\tthis.status = `Document changed: ${change.text.length} text characters.`;\n\t}\n}\n</code></pre>\n<h2 id=\"event-reference\">Event reference</h2>\n<table>\n<thead>\n<tr>\n<th>Output</th>\n<th>Payload</th>\n<th>Typical use</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>contentChange</td>\n<td>EditraChange: html, document, text</td>\n<td>Update an application preview after a document edit</td>\n</tr>\n<tr>\n<td>selectionChange</td>\n<td>from, to positions</td>\n<td>Reflect the current document selection</td>\n</tr>\n<tr>\n<td>transactionState</td>\n<td>docChanged, selectionChanged, from, to, dirty</td>\n<td>Observe editing transactions without serializing the document yourself</td>\n</tr>\n<tr>\n<td>dirtyChange</td>\n<td>boolean</td>\n<td>Show a document-edited indicator</td>\n</tr>\n<tr>\n<td>editorFocus / editorBlur</td>\n<td>void</td>\n<td>Track editor focus</td>\n</tr>\n<tr>\n<td>editorReady</td>\n<td>void</td>\n<td>Wait for browser editor activation before using DOM focus</td>\n</tr>\n<tr>\n<td>editorDestroyed</td>\n<td>void</td>\n<td>Observe component teardown</td>\n</tr>\n<tr>\n<td>editorError</td>\n<td>Error</td>\n<td>Present a parsing or initialization error in application UI</td>\n</tr>\n</tbody>\n</table>\n<p>Selection-only transactions do not emit contentChange. Programmatic writes and component setters have different notification semantics from user edits; see <a href=\"/guides/content\">loading and saving</a>.</p>\n<h2 id=\"lifecycle-and-cleanup\">Lifecycle and cleanup</h2>\n<p>DOM focus and blur calls are no-ops before browser activation. Getters and document conversions can be used during server rendering. The component owns its browser view and destroys it on teardown. Extensions must release their own subscriptions, event listeners, and node-view resources.</p>\n<p>Avoid writing the form value back into the editor on every contentChange: the form is already synchronized. This prevents feedback loops and unnecessary document replacement.</p>\n",
+		headings: [
+			{
+				id: 'listen-for-content-and-errors',
+				label: 'Listen for content and errors',
+			},
+			{
+				id: 'event-reference',
+				label: 'Event reference',
+			},
+			{
+				id: 'lifecycle-and-cleanup',
+				label: 'Lifecycle and cleanup',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="events-and-application-integration">Events and application integration</h1>\n',
+				id: 'events-and-application-integration',
+				kind: 'content',
+			},
+			{
+				html: "<p>Use outputs to react to user actions without reaching into the component's private engine. Use Angular Forms for the document value and validation state.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="listen-for-content-and-errors">Listen for content and errors</h2>\n',
+				id: 'listen-for-content-and-errors',
+				kind: 'content',
+			},
+			{
+				code: "import { Component } from '@angular/core';\nimport { FormControl, ReactiveFormsModule } from '@angular/forms';\nimport { NgxEditraComponent } from 'ngx-editra';\nimport type { EditraChange } from 'ngx-editra';\n\n@Component({\n\tselector: 'app-editor-events',\n\tstandalone: true,\n\timports: [ReactiveFormsModule, NgxEditraComponent],\n\ttemplate: `\n\t\t<ngx-editra\n\t\t\t[formControl]=\"body\"\n\t\t\t(contentChange)=\"onContentChange($event)\"\n\t\t\t(editorError)=\"error = $event.message\"\n\t\t/>\n\t\t<p role=\"status\">{{ status }}</p>\n\t\t<p role=\"alert\">{{ error }}</p>\n\t`,\n})\nexport class EditorEventsComponent {\n\treadonly body = new FormControl('', { nonNullable: true });\n\tstatus = 'Start editing.';\n\terror = '';\n\tonContentChange(change: EditraChange): void {\n\t\tthis.status = `Document changed: ${change.text.length} text characters.`;\n\t}\n}\n",
+				language: 'typescript',
+				html: "<pre><code class=\"language-typescript\">import { Component } from '@angular/core';\nimport { FormControl, ReactiveFormsModule } from '@angular/forms';\nimport { NgxEditraComponent } from 'ngx-editra';\nimport type { EditraChange } from 'ngx-editra';\n\n@Component({\n\tselector: 'app-editor-events',\n\tstandalone: true,\n\timports: [ReactiveFormsModule, NgxEditraComponent],\n\ttemplate: `\n\t\t&lt;ngx-editra\n\t\t\t[formControl]=&quot;body&quot;\n\t\t\t(contentChange)=&quot;onContentChange($event)&quot;\n\t\t\t(editorError)=&quot;error = $event.message&quot;\n\t\t/&gt;\n\t\t&lt;p role=&quot;status&quot;&gt;{{ status }}&lt;/p&gt;\n\t\t&lt;p role=&quot;alert&quot;&gt;{{ error }}&lt;/p&gt;\n\t`,\n})\nexport class EditorEventsComponent {\n\treadonly body = new FormControl('', { nonNullable: true });\n\tstatus = 'Start editing.';\n\terror = '';\n\tonContentChange(change: EditraChange): void {\n\t\tthis.status = `Document changed: ${change.text.length} text characters.`;\n\t}\n}\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<h2 id="event-reference">Event reference</h2>\n',
+				id: 'event-reference',
+				kind: 'content',
+			},
+			{
+				html: '<table>\n<thead>\n<tr>\n<th>Output</th>\n<th>Payload</th>\n<th>Typical use</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>contentChange</td>\n<td>EditraChange: html, document, text</td>\n<td>Update an application preview after a document edit</td>\n</tr>\n<tr>\n<td>selectionChange</td>\n<td>from, to positions</td>\n<td>Reflect the current document selection</td>\n</tr>\n<tr>\n<td>transactionState</td>\n<td>docChanged, selectionChanged, from, to, dirty</td>\n<td>Observe editing transactions without serializing the document yourself</td>\n</tr>\n<tr>\n<td>dirtyChange</td>\n<td>boolean</td>\n<td>Show a document-edited indicator</td>\n</tr>\n<tr>\n<td>editorFocus / editorBlur</td>\n<td>void</td>\n<td>Track editor focus</td>\n</tr>\n<tr>\n<td>editorReady</td>\n<td>void</td>\n<td>Wait for browser editor activation before using DOM focus</td>\n</tr>\n<tr>\n<td>editorDestroyed</td>\n<td>void</td>\n<td>Observe component teardown</td>\n</tr>\n<tr>\n<td>editorError</td>\n<td>Error</td>\n<td>Present a parsing or initialization error in application UI</td>\n</tr>\n</tbody>\n</table>\n',
+				id: '',
+				kind: 'table',
+			},
+			{
+				html: '<p>Selection-only transactions do not emit contentChange. Programmatic writes and component setters have different notification semantics from user edits; see <a href="/guides/content">loading and saving</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="lifecycle-and-cleanup">Lifecycle and cleanup</h2>\n',
+				id: 'lifecycle-and-cleanup',
+				kind: 'content',
+			},
+			{
+				html: '<p>DOM focus and blur calls are no-ops before browser activation. Getters and document conversions can be used during server rendering. The component owns its browser view and destroys it on teardown. Extensions must release their own subscriptions, event listeners, and node-view resources.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Avoid writing the form value back into the editor on every contentChange: the form is already synchronized. This prevents feedback loops and unnecessary document replacement.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " events and application integration\n\nuse outputs to react to user actions without reaching into the component's private engine. use angular forms for the document value and validation state.\n\n listen for content and errors\n\ntypescript\nimport { component } from '@angular/core';\nimport { formcontrol, reactiveformsmodule } from '@angular/forms';\nimport { ngxeditracomponent } from 'ngx-editra';\nimport type { editrachange } from 'ngx-editra';\n\n@component({\n\tselector: 'app-editor-events',\n\tstandalone: true,\n\timports: [reactiveformsmodule, ngxeditracomponent],\n\ttemplate: \n\t\t<ngx-editra\n\t\t\t[formcontrol]=\"body\"\n\t\t\t(contentchange)=\"oncontentchange($event)\"\n\t\t\t(editorerror)=\"error = $event.message\"\n\t\t/>\n\t\t<p role=\"status\">{{ status }}</p>\n\t\t<p role=\"alert\">{{ error }}</p>\n\t,\n})\nexport class editoreventscomponent {\n\treadonly body = new formcontrol('', { nonnullable: true });\n\tstatus = 'start editing.';\n\terror = '';\n\toncontentchange(change: editrachange): void {\n\t\tthis.status = document changed: ${change.text.length} text characters.;\n\t}\n}\n\n\n event reference\n\n| output                   | payload                                       | typical use                                                            |\n| ------------------------ | --------------------------------------------- | ---------------------------------------------------------------------- |\n| contentchange            | editrachange: html, document, text            | update an application preview after a document edit                    |\n| selectionchange          | from, to positions                            | reflect the current document selection                                 |\n| transactionstate         | docchanged, selectionchanged, from, to, dirty | observe editing transactions without serializing the document yourself |\n| dirtychange              | boolean                                       | show a document-edited indicator                                       |\n| editorfocus / editorblur | void                                          | track editor focus                                                     |\n| editorready              | void                                          | wait for browser editor activation before using dom focus              |\n| editordestroyed          | void                                          | observe component teardown                                             |\n| editorerror              | error                                         | present a parsing or initialization error in application ui            |\n\nselection-only transactions do not emit contentchange. programmatic writes and component setters have different notification semantics from user edits; see [loading and saving](content.md).\n\n lifecycle and cleanup\n\ndom focus and blur calls are no-ops before browser activation. getters and document conversions can be used during server rendering. the component owns its browser view and destroys it on teardown. extensions must release their own subscriptions, event listeners, and node-view resources.\n\navoid writing the form value back into the editor on every contentchange: the form is already synchronized. this prevents feedback loops and unnecessary document replacement.\n",
+	},
+	{
+		slug: 'toolbar',
+		title: 'Toolbar',
+		group: 'Build with Editra',
+		source: 'docs/TOOLBAR.md',
+		summary:
+			'The toolbar includes text marks, history, block styles, fonts, sizes, colours, alignment,lists, indentation, media/link dialogs, tables, find/replace and fullscreen.',
+		readingMinutes: 3,
+		html: "<h1 id=\"toolbar\">Toolbar</h1>\n<p>The toolbar includes text marks, history, block styles, fonts, sizes, colours, alignment,\nlists, indentation, media/link dialogs, tables, find/replace and fullscreen.</p>\n<h2 id=\"colour-and-highlight-palettes\">Colour and highlight palettes</h2>\n<p>Font colour and text highlight use Word-style split buttons: the main icon applies the\ncurrent/last-used colour, and the arrow opens an anchored palette. With no font colour selected,\nthe main action is theme-aware Automatic. Font/cell palettes include\ntheme shades and standard colours. Highlight offers familiar highlighter colours.\nRecent colours, custom hex values and a native More colours picker are available.\nAutomatic removes the text-colour mark; No colour removes highlighting; No fill clears cell shading.\nChoosing a colour replaces that mark's value and preserves other formatting and the document selection.\nApplying the same colour does not toggle it off. Caret-only changes affect subsequent typing.</p>\n<p>Palette swatches support arrow/Home/End navigation, Enter activation and Escape closure.\nOutside clicks or moving focus out close the palette. Controls follow disabled/read-only states.\nThe public EditraColourPickerComponent exposes label, kind, value and disabled inputs;\ncolourChange emits a validated colour or null, and opened/closed events let adapters preserve selection.</p>\n<h2 id=\"layout-and-customisation\">Layout and customisation</h2>\n<p><code>config.toolbar.hidden</code> hides the complete toolbar. <code>config.toolbar.items</code> replaces the\ncommand-button list. Each item has <code>id</code>, <code>label</code>, <code>command</code> and an optional <code>icon</code>.\nBuilt-in actions use local SVG icons rather than text buttons. Buttons retain accessible labels,\ntooltips, selection preservation and disabled/active/mixed states. The default layout separates\nnative formatting selectors and insertion tools from grouped editing commands.</p>\n<p><code>icon</code> accepts a built-in icon name such as <code>bold</code>, <code>link</code>, <code>image</code> or <code>find</code>; omitted icons\nare inferred from the command. Existing plain-text custom glyphs such as <code>★</code> remain supported.\nUnknown custom commands use an extension icon. SVG strings are never interpreted as markup.\n<code>editraIconNames</code> and the <code>EditraIconName</code> type are exported from <code>ngx-editra</code> for discovery;\n<code>EditraIconComponent</code> is available for custom Angular UI. Icons inherit currentColor and work\nwithout fonts, external requests or a third-party icon dependency.\nExtension toolbar contributions are appended. <code>groups</code> supplies labeled command groups,\n<code>overflow: 'scroll'</code> keeps them in a horizontal scrolling row, and <code>floating: true</code> enables\na selection toolbar. <code>hiddenItems</code> hides command IDs or formatting input labels. Table\noperations are contextual to a table selection. Native selectors show current/default/mixed values.\nOn small screens the editing-command row scrolls horizontally to keep the toolbar compact;\nkeyboard focus automatically brings off-screen buttons into view.</p>\n<pre><code class=\"language-typescript\">import type { EditraConfig } from 'ngx-editra';\nexport const config: EditraConfig = {\n\ttoolbar: {\n\t\titems: [\n\t\t\t{ id: 'bold', label: 'Bold', command: 'bold', icon: 'bold' },\n\t\t\t{ id: 'undo', label: 'Undo', command: 'undo' },\n\t\t],\n\t},\n};\n</code></pre>\n<p>Toolbar buttons preserve the document selection on pointer interaction. Arrow/Home/End\nkeys move focus between enabled buttons. Mark buttons expose true/false/mixed pressed state.\nShortcuts use ProseMirror's Mod key: bold, italic, underline, undo/redo, indent/outdent.\nShift+Enter inserts a hard break. Native dialogs provide focus containment and Escape closure.</p>\n<p>Override dialog presentation with <code>provideEditraDialogs({ open, close })</code> from <code>ngx-editra</code>.\nThe default presenter uses showModal/close. Custom presenters must preserve focus containment,\nEscape behavior and focus return. Dialog contents and editor commands remain owned by the library.</p>\n",
+		headings: [
+			{
+				id: 'colour-and-highlight-palettes',
+				label: 'Colour and highlight palettes',
+			},
+			{
+				id: 'layout-and-customisation',
+				label: 'Layout and customisation',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="toolbar">Toolbar</h1>\n',
+				id: 'toolbar',
+				kind: 'content',
+			},
+			{
+				html: '<p>The toolbar includes text marks, history, block styles, fonts, sizes, colours, alignment,\nlists, indentation, media/link dialogs, tables, find/replace and fullscreen.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="colour-and-highlight-palettes">Colour and highlight palettes</h2>\n',
+				id: 'colour-and-highlight-palettes',
+				kind: 'content',
+			},
+			{
+				html: "<p>Font colour and text highlight use Word-style split buttons: the main icon applies the\ncurrent/last-used colour, and the arrow opens an anchored palette. With no font colour selected,\nthe main action is theme-aware Automatic. Font/cell palettes include\ntheme shades and standard colours. Highlight offers familiar highlighter colours.\nRecent colours, custom hex values and a native More colours picker are available.\nAutomatic removes the text-colour mark; No colour removes highlighting; No fill clears cell shading.\nChoosing a colour replaces that mark's value and preserves other formatting and the document selection.\nApplying the same colour does not toggle it off. Caret-only changes affect subsequent typing.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Palette swatches support arrow/Home/End navigation, Enter activation and Escape closure.\nOutside clicks or moving focus out close the palette. Controls follow disabled/read-only states.\nThe public EditraColourPickerComponent exposes label, kind, value and disabled inputs;\ncolourChange emits a validated colour or null, and opened/closed events let adapters preserve selection.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="layout-and-customisation">Layout and customisation</h2>\n',
+				id: 'layout-and-customisation',
+				kind: 'content',
+			},
+			{
+				html: '<p><code>config.toolbar.hidden</code> hides the complete toolbar. <code>config.toolbar.items</code> replaces the\ncommand-button list. Each item has <code>id</code>, <code>label</code>, <code>command</code> and an optional <code>icon</code>.\nBuilt-in actions use local SVG icons rather than text buttons. Buttons retain accessible labels,\ntooltips, selection preservation and disabled/active/mixed states. The default layout separates\nnative formatting selectors and insertion tools from grouped editing commands.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: "<p><code>icon</code> accepts a built-in icon name such as <code>bold</code>, <code>link</code>, <code>image</code> or <code>find</code>; omitted icons\nare inferred from the command. Existing plain-text custom glyphs such as <code>★</code> remain supported.\nUnknown custom commands use an extension icon. SVG strings are never interpreted as markup.\n<code>editraIconNames</code> and the <code>EditraIconName</code> type are exported from <code>ngx-editra</code> for discovery;\n<code>EditraIconComponent</code> is available for custom Angular UI. Icons inherit currentColor and work\nwithout fonts, external requests or a third-party icon dependency.\nExtension toolbar contributions are appended. <code>groups</code> supplies labeled command groups,\n<code>overflow: 'scroll'</code> keeps them in a horizontal scrolling row, and <code>floating: true</code> enables\na selection toolbar. <code>hiddenItems</code> hides command IDs or formatting input labels. Table\noperations are contextual to a table selection. Native selectors show current/default/mixed values.\nOn small screens the editing-command row scrolls horizontally to keep the toolbar compact;\nkeyboard focus automatically brings off-screen buttons into view.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: "import type { EditraConfig } from 'ngx-editra';\nexport const config: EditraConfig = {\n\ttoolbar: {\n\t\titems: [\n\t\t\t{ id: 'bold', label: 'Bold', command: 'bold', icon: 'bold' },\n\t\t\t{ id: 'undo', label: 'Undo', command: 'undo' },\n\t\t],\n\t},\n};\n",
+				language: 'typescript',
+				html: "<pre><code class=\"language-typescript\">import type { EditraConfig } from 'ngx-editra';\nexport const config: EditraConfig = {\n\ttoolbar: {\n\t\titems: [\n\t\t\t{ id: 'bold', label: 'Bold', command: 'bold', icon: 'bold' },\n\t\t\t{ id: 'undo', label: 'Undo', command: 'undo' },\n\t\t],\n\t},\n};\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: "<p>Toolbar buttons preserve the document selection on pointer interaction. Arrow/Home/End\nkeys move focus between enabled buttons. Mark buttons expose true/false/mixed pressed state.\nShortcuts use ProseMirror's Mod key: bold, italic, underline, undo/redo, indent/outdent.\nShift+Enter inserts a hard break. Native dialogs provide focus containment and Escape closure.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Override dialog presentation with <code>provideEditraDialogs({ open, close })</code> from <code>ngx-editra</code>.\nThe default presenter uses showModal/close. Custom presenters must preserve focus containment,\nEscape behavior and focus return. Dialog contents and editor commands remain owned by the library.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " toolbar\n\nthe toolbar includes text marks, history, block styles, fonts, sizes, colours, alignment,\nlists, indentation, media/link dialogs, tables, find/replace and fullscreen.\n\n colour and highlight palettes\n\nfont colour and text highlight use word-style split buttons: the main icon applies the\ncurrent/last-used colour, and the arrow opens an anchored palette. with no font colour selected,\nthe main action is theme-aware automatic. font/cell palettes include\ntheme shades and standard colours. highlight offers familiar highlighter colours.\nrecent colours, custom hex values and a native more colours picker are available.\nautomatic removes the text-colour mark; no colour removes highlighting; no fill clears cell shading.\nchoosing a colour replaces that mark's value and preserves other formatting and the document selection.\napplying the same colour does not toggle it off. caret-only changes affect subsequent typing.\n\npalette swatches support arrow/home/end navigation, enter activation and escape closure.\noutside clicks or moving focus out close the palette. controls follow disabled/read-only states.\nthe public editracolourpickercomponent exposes label, kind, value and disabled inputs;\ncolourchange emits a validated colour or null, and opened/closed events let adapters preserve selection.\n\n layout and customisation\n\nconfig.toolbar.hidden hides the complete toolbar. config.toolbar.items replaces the\ncommand-button list. each item has id, label, command and an optional icon.\nbuilt-in actions use local svg icons rather than text buttons. buttons retain accessible labels,\ntooltips, selection preservation and disabled/active/mixed states. the default layout separates\nnative formatting selectors and insertion tools from grouped editing commands.\n\nicon accepts a built-in icon name such as bold, link, image or find; omitted icons\nare inferred from the command. existing plain-text custom glyphs such as ★ remain supported.\nunknown custom commands use an extension icon. svg strings are never interpreted as markup.\neditraiconnames and the editraiconname type are exported from ngx-editra for discovery;\neditraiconcomponent is available for custom angular ui. icons inherit currentcolor and work\nwithout fonts, external requests or a third-party icon dependency.\nextension toolbar contributions are appended. groups supplies labeled command groups,\noverflow: 'scroll' keeps them in a horizontal scrolling row, and floating: true enables\na selection toolbar. hiddenitems hides command ids or formatting input labels. table\noperations are contextual to a table selection. native selectors show current/default/mixed values.\non small screens the editing-command row scrolls horizontally to keep the toolbar compact;\nkeyboard focus automatically brings off-screen buttons into view.\n\ntypescript\nimport type { editraconfig } from 'ngx-editra';\nexport const config: editraconfig = {\n\ttoolbar: {\n\t\titems: [\n\t\t\t{ id: 'bold', label: 'bold', command: 'bold', icon: 'bold' },\n\t\t\t{ id: 'undo', label: 'undo', command: 'undo' },\n\t\t],\n\t},\n};\n\n\ntoolbar buttons preserve the document selection on pointer interaction. arrow/home/end\nkeys move focus between enabled buttons. mark buttons expose true/false/mixed pressed state.\nshortcuts use prosemirror's mod key: bold, italic, underline, undo/redo, indent/outdent.\nshift+enter inserts a hard break. native dialogs provide focus containment and escape closure.\n\noverride dialog presentation with provideeditradialogs({ open, close }) from ngx-editra.\nthe default presenter uses showmodal/close. custom presenters must preserve focus containment,\nescape behavior and focus return. dialog contents and editor commands remain owned by the library.\n",
+	},
+	{
+		slug: 'theming',
+		title: 'Theming',
+		group: 'Build with Editra',
+		source: 'docs/THEMING.md',
+		summary:
+			'Match the editor to your application with a theme, then adjust supported CSS custom properties when you need brand-specific colours. Editor and viewer styles load automatically; no global Sass import is required for either component.',
+		readingMinutes: 3,
+		html: '<h1 id="theming">Theming</h1>\n<p>Match the editor to your application with a theme, then adjust supported CSS custom properties when you need brand-specific colours. Editor and viewer styles load automatically; no global Sass import is required for either component.</p>\n<pre><code class="language-typescript">import type { EditraConfig } from \'ngx-editra\';\nexport const config: EditraConfig = { theme: \'auto\' };\n</code></pre>\n<p>Bind this config through the editor\'s config input. Auto follows the operating system\'s preferred colour scheme; choose light or dark for an explicit application setting.</p>\n<pre><code class="language-scss">ngx-editra {\n\t--editra-focus: #155d4f;\n\t--editra-border: #b8c7c1;\n}\n</code></pre>\n<h2 id="themes-variables-and-contrast">Themes, variables, and contrast</h2>\n<p>Choose light, dark or auto (prefers-color-scheme) through config.theme. Styles are scoped to the\nAngular editor; the public ProseMirror stylesheet targets only editor-generated class names.</p>\n<p>Override CSS custom properties on ngx-editra: --editra-surface, --editra-text,\n--editra-border, --editra-active and --editra-focus. Preserve contrast and visible focus.\nFonts are constrained to Arial, Georgia, Verdana, Times New Roman and monospace.\nBuilt-in toolbar icons use local SVG paths; custom text glyphs are supported. Arbitrary SVG/HTML strings are not interpreted as markup.</p>\n<p>The UI respects reduced motion, wraps on narrow screens, and provides 36px editor controls.\nWCAG automated checks are supplemented by browser keyboard tests, not a full screen-reader audit.</p>\n<h2 id="rendering-saved-html">Rendering saved HTML</h2>\n<p>Import <code>NgxEditraViewerComponent</code> from <code>ngx-editra</code> and use:</p>\n<pre><code class="language-html">&lt;ngx-editra-viewer [html]=&quot;savedHtml&quot; [config]=&quot;config&quot; /&gt;\n</code></pre>\n<p>The viewer renders headings, marks, lists, links, inline code, code blocks with language\nlabels, blockquotes, tables, images, captions, videos, dividers and columns. It uses the\nsame validated schema and content styles as the editor, without editing controls. Pass\nthe same configuration to retain custom extensions, video providers and URL policy.\nLight, dark and auto themes are supported. The viewer includes code copy controls.\nLanguage editing controls belong to the editor; saved HTML retains code text and language metadata.</p>\n<p>For HTML rendered outside Angular, include <code>ngx-editra/styles/content.scss</code> and wrap\ncanonical HTML from <code>getHTML()</code> or <code>serializeHTML()</code> in a <code>.editra-content</code> container.\nThe existing <code>editor.scss</code> entry point also includes these styles. Never insert untrusted\nraw HTML directly; the viewer validates input before rendering it.</p>\n<h2 id="using-angular-innerhtml">Using Angular innerHTML</h2>\n<p>Import the standalone <code>EditraHtmlPipe</code> and <code>EditraCodeCopyDirective</code> from <code>ngx-editra</code>\nin your component imports.\nInclude <code>@use \'ngx-editra/styles/content.scss\';</code> in your global stylesheet, then use:</p>\n<pre><code class="language-html">&lt;div class=&quot;editra-content&quot; editraCodeCopy [innerHTML]=&quot;savedHtml | editraHtml: config&quot;&gt;&lt;/div&gt;\n</code></pre>\n<p>The pipe validates saved HTML with the editor schema before trusting its output.\nPlain Angular <code>[innerHTML]=&quot;savedHtml&quot;</code> strips inline styles and embedded players;\nthe pipe preserves approved formatting and video URLs. Pass the editor configuration\nfor the same extensions and URL policy, and replace the configuration object when it changes.\nDo not bypass Angular sanitization directly on raw saved HTML.</p>\n<p>Exported HTML also includes portable inline styles for code, blockquotes and table cells,\nso native <code>element.innerHTML</code> retains their basic appearance without editor CSS.\nThe shared stylesheet adds spacing, language labels and responsive presentation.\nThe <code>editraCodeCopy</code> directive adds accessible copy icons, clipboard handling and status\nfeedback to rendered code blocks, including when the HTML changes. <code>ngx-editra-viewer</code>\nalready includes it. Clipboard access requires HTTPS or localhost. Copy controls stay\nout of saved HTML; language selectors and resize handles remain editor-only.</p>\n',
+		headings: [
+			{
+				id: 'themes-variables-and-contrast',
+				label: 'Themes, variables, and contrast',
+			},
+			{
+				id: 'rendering-saved-html',
+				label: 'Rendering saved HTML',
+			},
+			{
+				id: 'using-angular-innerhtml',
+				label: 'Using Angular innerHTML',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="theming">Theming</h1>\n',
+				id: 'theming',
+				kind: 'content',
+			},
+			{
+				html: '<p>Match the editor to your application with a theme, then adjust supported CSS custom properties when you need brand-specific colours. Editor and viewer styles load automatically; no global Sass import is required for either component.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: "import type { EditraConfig } from 'ngx-editra';\nexport const config: EditraConfig = { theme: 'auto' };\n",
+				language: 'typescript',
+				html: "<pre><code class=\"language-typescript\">import type { EditraConfig } from 'ngx-editra';\nexport const config: EditraConfig = { theme: 'auto' };\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: "<p>Bind this config through the editor's config input. Auto follows the operating system's preferred colour scheme; choose light or dark for an explicit application setting.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: 'ngx-editra {\n\t--editra-focus: #155d4f;\n\t--editra-border: #b8c7c1;\n}\n',
+				language: 'scss',
+				html: '<pre><code class="language-scss">ngx-editra {\n\t--editra-focus: #155d4f;\n\t--editra-border: #b8c7c1;\n}\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<h2 id="themes-variables-and-contrast">Themes, variables, and contrast</h2>\n',
+				id: 'themes-variables-and-contrast',
+				kind: 'content',
+			},
+			{
+				html: '<p>Choose light, dark or auto (prefers-color-scheme) through config.theme. Styles are scoped to the\nAngular editor; the public ProseMirror stylesheet targets only editor-generated class names.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Override CSS custom properties on ngx-editra: --editra-surface, --editra-text,\n--editra-border, --editra-active and --editra-focus. Preserve contrast and visible focus.\nFonts are constrained to Arial, Georgia, Verdana, Times New Roman and monospace.\nBuilt-in toolbar icons use local SVG paths; custom text glyphs are supported. Arbitrary SVG/HTML strings are not interpreted as markup.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>The UI respects reduced motion, wraps on narrow screens, and provides 36px editor controls.\nWCAG automated checks are supplemented by browser keyboard tests, not a full screen-reader audit.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="rendering-saved-html">Rendering saved HTML</h2>\n',
+				id: 'rendering-saved-html',
+				kind: 'content',
+			},
+			{
+				html: '<p>Import <code>NgxEditraViewerComponent</code> from <code>ngx-editra</code> and use:</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: '<ngx-editra-viewer [html]="savedHtml" [config]="config" />\n',
+				language: 'html',
+				html: '<pre><code class="language-html">&lt;ngx-editra-viewer [html]=&quot;savedHtml&quot; [config]=&quot;config&quot; /&gt;\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>The viewer renders headings, marks, lists, links, inline code, code blocks with language\nlabels, blockquotes, tables, images, captions, videos, dividers and columns. It uses the\nsame validated schema and content styles as the editor, without editing controls. Pass\nthe same configuration to retain custom extensions, video providers and URL policy.\nLight, dark and auto themes are supported. The viewer includes code copy controls.\nLanguage editing controls belong to the editor; saved HTML retains code text and language metadata.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>For HTML rendered outside Angular, include <code>ngx-editra/styles/content.scss</code> and wrap\ncanonical HTML from <code>getHTML()</code> or <code>serializeHTML()</code> in a <code>.editra-content</code> container.\nThe existing <code>editor.scss</code> entry point also includes these styles. Never insert untrusted\nraw HTML directly; the viewer validates input before rendering it.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="using-angular-innerhtml">Using Angular innerHTML</h2>\n',
+				id: 'using-angular-innerhtml',
+				kind: 'content',
+			},
+			{
+				html: "<p>Import the standalone <code>EditraHtmlPipe</code> and <code>EditraCodeCopyDirective</code> from <code>ngx-editra</code>\nin your component imports.\nInclude <code>@use 'ngx-editra/styles/content.scss';</code> in your global stylesheet, then use:</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: '<div class="editra-content" editraCodeCopy [innerHTML]="savedHtml | editraHtml: config"></div>\n',
+				language: 'html',
+				html: '<pre><code class="language-html">&lt;div class=&quot;editra-content&quot; editraCodeCopy [innerHTML]=&quot;savedHtml | editraHtml: config&quot;&gt;&lt;/div&gt;\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>The pipe validates saved HTML with the editor schema before trusting its output.\nPlain Angular <code>[innerHTML]=&quot;savedHtml&quot;</code> strips inline styles and embedded players;\nthe pipe preserves approved formatting and video URLs. Pass the editor configuration\nfor the same extensions and URL policy, and replace the configuration object when it changes.\nDo not bypass Angular sanitization directly on raw saved HTML.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Exported HTML also includes portable inline styles for code, blockquotes and table cells,\nso native <code>element.innerHTML</code> retains their basic appearance without editor CSS.\nThe shared stylesheet adds spacing, language labels and responsive presentation.\nThe <code>editraCodeCopy</code> directive adds accessible copy icons, clipboard handling and status\nfeedback to rendered code blocks, including when the HTML changes. <code>ngx-editra-viewer</code>\nalready includes it. Clipboard access requires HTTPS or localhost. Copy controls stay\nout of saved HTML; language selectors and resize handles remain editor-only.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: ' theming\n\nmatch the editor to your application with a theme, then adjust supported css custom properties when you need brand-specific colours. editor and viewer styles load automatically; no global sass import is required for either component.\n\ntypescript\nimport type { editraconfig } from \'ngx-editra\';\nexport const config: editraconfig = { theme: \'auto\' };\n\n\nbind this config through the editor\'s config input. auto follows the operating system\'s preferred colour scheme; choose light or dark for an explicit application setting.\n\nscss\nngx-editra {\n\t--editra-focus: 155d4f;\n\t--editra-border: b8c7c1;\n}\n\n\n themes, variables, and contrast\n\nchoose light, dark or auto (prefers-color-scheme) through config.theme. styles are scoped to the\nangular editor; the public prosemirror stylesheet targets only editor-generated class names.\n\noverride css custom properties on ngx-editra: --editra-surface, --editra-text,\n--editra-border, --editra-active and --editra-focus. preserve contrast and visible focus.\nfonts are constrained to arial, georgia, verdana, times new roman and monospace.\nbuilt-in toolbar icons use local svg paths; custom text glyphs are supported. arbitrary svg/html strings are not interpreted as markup.\n\nthe ui respects reduced motion, wraps on narrow screens, and provides 36px editor controls.\nwcag automated checks are supplemented by browser keyboard tests, not a full screen-reader audit.\n\n rendering saved html\n\nimport ngxeditraviewercomponent from ngx-editra and use:\n\nhtml\n<ngx-editra-viewer [html]="savedhtml" [config]="config" />\n\n\nthe viewer renders headings, marks, lists, links, inline code, code blocks with language\nlabels, blockquotes, tables, images, captions, videos, dividers and columns. it uses the\nsame validated schema and content styles as the editor, without editing controls. pass\nthe same configuration to retain custom extensions, video providers and url policy.\nlight, dark and auto themes are supported. the viewer includes code copy controls.\nlanguage editing controls belong to the editor; saved html retains code text and language metadata.\n\nfor html rendered outside angular, include ngx-editra/styles/content.scss and wrap\ncanonical html from gethtml() or serializehtml() in a .editra-content container.\nthe existing editor.scss entry point also includes these styles. never insert untrusted\nraw html directly; the viewer validates input before rendering it.\n\n using angular innerhtml\n\nimport the standalone editrahtmlpipe and editracodecopydirective from ngx-editra\nin your component imports.\ninclude @use \'ngx-editra/styles/content.scss\'; in your global stylesheet, then use:\n\nhtml\n<div class="editra-content" editracodecopy [innerhtml]="savedhtml | editrahtml: config"></div>\n\n\nthe pipe validates saved html with the editor schema before trusting its output.\nplain angular [innerhtml]="savedhtml" strips inline styles and embedded players;\nthe pipe preserves approved formatting and video urls. pass the editor configuration\nfor the same extensions and url policy, and replace the configuration object when it changes.\ndo not bypass angular sanitization directly on raw saved html.\n\nexported html also includes portable inline styles for code, blockquotes and table cells,\nso native element.innerhtml retains their basic appearance without editor css.\nthe shared stylesheet adds spacing, language labels and responsive presentation.\nthe editracodecopy directive adds accessible copy icons, clipboard handling and status\nfeedback to rendered code blocks, including when the html changes. ngx-editra-viewer\nalready includes it. clipboard access requires https or localhost. copy controls stay\nout of saved html; language selectors and resize handles remain editor-only.\n',
+	},
+	{
+		slug: 'formatting',
+		title: 'Text formatting',
+		group: 'Editor features',
+		source: 'docs/FORMATTING.md',
+		summary:
+			'Use the toolbar to change how content looks without writing HTML. Most text tools apply to selected text; when there is only a caret, mark tools affect what you type next.',
+		readingMinutes: 3,
+		html: '<h1 id="text-and-paragraph-formatting">Text and paragraph formatting</h1>\n<p>Use the toolbar to change how content looks without writing HTML. Most text tools apply to selected text; when there is only a caret, mark tools affect what you type next.</p>\n<h2 id="format-text">Format text</h2>\n<ol>\n<li>Select a word or sentence in the editor.</li>\n<li>Choose Bold, Italic, Underline, Strike, Subscript, or Superscript.</li>\n<li>Choose the same toggle again to remove that mark. Clear formatting removes text marks from the selection.</li>\n</ol>\n<p>Bold, italic, and underline also support the platform modifier key: Ctrl on Windows/Linux or Command on macOS, together with B, I, or U.</p>\n<h2 id="headings-fonts-and-size">Headings, fonts, and size</h2>\n<p>Use Paragraph style to choose a paragraph or heading level. Headings describe document structure; use them in a logical order instead of using size alone to create a heading.</p>\n<p>Font controls support Arial, Georgia, Verdana, Times New Roman, and monospace. Font-size values and imported styles are validated. A mixed indicator means the current selection contains more than one value; choosing a value applies it to the selection.</p>\n<h2 id="text-colour-and-highlighting">Text colour and highlighting</h2>\n<p>The main colour button applies the last chosen colour. Its arrow opens a palette. Pick a theme colour, a standard colour, a recent colour, or a custom value. Automatic removes the explicit text colour. No colour removes highlighting. Applying the same colour again keeps it applied rather than toggling it off.</p>\n<p>Use colour with sufficient contrast in both themes. Do not use colour as the only way to convey meaning.</p>\n<h2 id="convert-text-case">Convert text case</h2>\n<p>Select text and use Text case. Choices include uppercase, lowercase, title case, sentence case, camelCase, PascalCase, snake_case, kebab-case, and toggle case. Conversion changes the selected text while retaining its marks. In a selected table-cell range, the conversion is limited to those cells.</p>\n<h2 id="paragraph-layout">Paragraph layout</h2>\n<table>\n<thead>\n<tr>\n<th>Tool</th>\n<th>How to use it</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Left, centre, right, justify</td>\n<td>Place the caret in a paragraph, or select paragraphs, then choose an alignment</td>\n</tr>\n<tr>\n<td>Line height</td>\n<td>Choose spacing for the selected paragraph content</td>\n</tr>\n<tr>\n<td>Bullet or numbered list</td>\n<td>Select paragraphs and activate the appropriate list tool</td>\n</tr>\n<tr>\n<td>Indent / outdent</td>\n<td>Adjust paragraph indentation or the nesting level of list items</td>\n</tr>\n<tr>\n<td>Blockquote</td>\n<td>Use for quoted content rather than simply italicizing a paragraph</td>\n</tr>\n<tr>\n<td>Inline code</td>\n<td>Add the code command to a custom toolbar, or import code markup; see the code-block guide</td>\n</tr>\n</tbody>\n</table>\n<p>Enter creates a new block. Shift+Enter creates a line break inside the current block. Undo restores a previous document state.</p>\n<h2 id="configure-the-visible-tools">Configure the visible tools</h2>\n<p>Toolbar configuration controls presentation; hiding a button does not remove its document feature or sanitize imported content. Use schema feature configuration when you need to disable supported image, video, or table content. See <a href="/guides/toolbar">toolbar configuration</a> and <a href="/guides/configuration">configuration</a>.</p>\n',
+		headings: [
+			{
+				id: 'format-text',
+				label: 'Format text',
+			},
+			{
+				id: 'headings-fonts-and-size',
+				label: 'Headings, fonts, and size',
+			},
+			{
+				id: 'text-colour-and-highlighting',
+				label: 'Text colour and highlighting',
+			},
+			{
+				id: 'convert-text-case',
+				label: 'Convert text case',
+			},
+			{
+				id: 'paragraph-layout',
+				label: 'Paragraph layout',
+			},
+			{
+				id: 'configure-the-visible-tools',
+				label: 'Configure the visible tools',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="text-and-paragraph-formatting">Text and paragraph formatting</h1>\n',
+				id: 'text-and-paragraph-formatting',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use the toolbar to change how content looks without writing HTML. Most text tools apply to selected text; when there is only a caret, mark tools affect what you type next.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="format-text">Format text</h2>\n',
+				id: 'format-text',
+				kind: 'content',
+			},
+			{
+				html: '<ol>\n<li>Select a word or sentence in the editor.</li>\n<li>Choose Bold, Italic, Underline, Strike, Subscript, or Superscript.</li>\n<li>Choose the same toggle again to remove that mark. Clear formatting removes text marks from the selection.</li>\n</ol>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Bold, italic, and underline also support the platform modifier key: Ctrl on Windows/Linux or Command on macOS, together with B, I, or U.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="headings-fonts-and-size">Headings, fonts, and size</h2>\n',
+				id: 'headings-fonts-and-size',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use Paragraph style to choose a paragraph or heading level. Headings describe document structure; use them in a logical order instead of using size alone to create a heading.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Font controls support Arial, Georgia, Verdana, Times New Roman, and monospace. Font-size values and imported styles are validated. A mixed indicator means the current selection contains more than one value; choosing a value applies it to the selection.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="text-colour-and-highlighting">Text colour and highlighting</h2>\n',
+				id: 'text-colour-and-highlighting',
+				kind: 'content',
+			},
+			{
+				html: '<p>The main colour button applies the last chosen colour. Its arrow opens a palette. Pick a theme colour, a standard colour, a recent colour, or a custom value. Automatic removes the explicit text colour. No colour removes highlighting. Applying the same colour again keeps it applied rather than toggling it off.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use colour with sufficient contrast in both themes. Do not use colour as the only way to convey meaning.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="convert-text-case">Convert text case</h2>\n',
+				id: 'convert-text-case',
+				kind: 'content',
+			},
+			{
+				html: '<p>Select text and use Text case. Choices include uppercase, lowercase, title case, sentence case, camelCase, PascalCase, snake_case, kebab-case, and toggle case. Conversion changes the selected text while retaining its marks. In a selected table-cell range, the conversion is limited to those cells.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="paragraph-layout">Paragraph layout</h2>\n',
+				id: 'paragraph-layout',
+				kind: 'content',
+			},
+			{
+				html: '<table>\n<thead>\n<tr>\n<th>Tool</th>\n<th>How to use it</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Left, centre, right, justify</td>\n<td>Place the caret in a paragraph, or select paragraphs, then choose an alignment</td>\n</tr>\n<tr>\n<td>Line height</td>\n<td>Choose spacing for the selected paragraph content</td>\n</tr>\n<tr>\n<td>Bullet or numbered list</td>\n<td>Select paragraphs and activate the appropriate list tool</td>\n</tr>\n<tr>\n<td>Indent / outdent</td>\n<td>Adjust paragraph indentation or the nesting level of list items</td>\n</tr>\n<tr>\n<td>Blockquote</td>\n<td>Use for quoted content rather than simply italicizing a paragraph</td>\n</tr>\n<tr>\n<td>Inline code</td>\n<td>Add the code command to a custom toolbar, or import code markup; see the code-block guide</td>\n</tr>\n</tbody>\n</table>\n',
+				id: '',
+				kind: 'table',
+			},
+			{
+				html: '<p>Enter creates a new block. Shift+Enter creates a line break inside the current block. Undo restores a previous document state.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="configure-the-visible-tools">Configure the visible tools</h2>\n',
+				id: 'configure-the-visible-tools',
+				kind: 'content',
+			},
+			{
+				html: '<p>Toolbar configuration controls presentation; hiding a button does not remove its document feature or sanitize imported content. Use schema feature configuration when you need to disable supported image, video, or table content. See <a href="/guides/toolbar">toolbar configuration</a> and <a href="/guides/configuration">configuration</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: ' text and paragraph formatting\n\nuse the toolbar to change how content looks without writing html. most text tools apply to selected text; when there is only a caret, mark tools affect what you type next.\n\n format text\n\n1. select a word or sentence in the editor.\n2. choose bold, italic, underline, strike, subscript, or superscript.\n3. choose the same toggle again to remove that mark. clear formatting removes text marks from the selection.\n\nbold, italic, and underline also support the platform modifier key: ctrl on windows/linux or command on macos, together with b, i, or u.\n\n headings, fonts, and size\n\nuse paragraph style to choose a paragraph or heading level. headings describe document structure; use them in a logical order instead of using size alone to create a heading.\n\nfont controls support arial, georgia, verdana, times new roman, and monospace. font-size values and imported styles are validated. a mixed indicator means the current selection contains more than one value; choosing a value applies it to the selection.\n\n text colour and highlighting\n\nthe main colour button applies the last chosen colour. its arrow opens a palette. pick a theme colour, a standard colour, a recent colour, or a custom value. automatic removes the explicit text colour. no colour removes highlighting. applying the same colour again keeps it applied rather than toggling it off.\n\nuse colour with sufficient contrast in both themes. do not use colour as the only way to convey meaning.\n\n convert text case\n\nselect text and use text case. choices include uppercase, lowercase, title case, sentence case, camelcase, pascalcase, snake_case, kebab-case, and toggle case. conversion changes the selected text while retaining its marks. in a selected table-cell range, the conversion is limited to those cells.\n\n paragraph layout\n\n| tool                         | how to use it                                                                             |\n| ---------------------------- | ----------------------------------------------------------------------------------------- |\n| left, centre, right, justify | place the caret in a paragraph, or select paragraphs, then choose an alignment            |\n| line height                  | choose spacing for the selected paragraph content                                         |\n| bullet or numbered list      | select paragraphs and activate the appropriate list tool                                  |\n| indent / outdent             | adjust paragraph indentation or the nesting level of list items                           |\n| blockquote                   | use for quoted content rather than simply italicizing a paragraph                         |\n| inline code                  | add the code command to a custom toolbar, or import code markup; see the code-block guide |\n\nenter creates a new block. shift+enter creates a line break inside the current block. undo restores a previous document state.\n\n configure the visible tools\n\ntoolbar configuration controls presentation; hiding a button does not remove its document feature or sanitize imported content. use schema feature configuration when you need to disable supported image, video, or table content. see [toolbar configuration](toolbar.md) and [configuration](configuration.md).\n',
+	},
+	{
+		slug: 'links',
+		title: 'Links',
+		group: 'Editor features',
+		source: 'docs/LINKS.md',
+		summary:
+			'Links let readers open a web page or an email address. The editor validates URLs before adding them to the document.',
+		readingMinutes: 1,
+		html: '<h1 id="links">Links</h1>\n<p>Links let readers open a web page or an email address. The editor validates URLs before adding them to the document.</p>\n<h2 id="insert-or-edit-a-link">Insert or edit a link</h2>\n<ol>\n<li>Select the text that should become a link.</li>\n<li>Open the link tool and enter an absolute HTTPS URL, such as https://example.com/help.</li>\n<li>Apply the dialog. To change an existing link, select its text and reopen the tool.</li>\n</ol>\n<p>Email links can use mailto, such as mailto:help@example.com. Automatic link handling also recognizes supported web URLs while editing. New-tab links use noopener/noreferrer.</p>\n<h2 id="url-rules">URL rules</h2>\n<p>HTTPS is the default. Relative URLs, credentials in URLs, control characters, and javascript/data/file URLs are rejected. HTTP requires an explicit security configuration; only enable it for a deliberate application requirement.</p>\n<pre><code class="language-typescript">import type { EditraConfig } from \'ngx-editra\';\n\nexport const config: EditraConfig = {\n\tsecurity: { allowHttp: false },\n};\n</code></pre>\n<p>A link target being valid does not mean its content is safe or available. Validate saved content on your server and apply your own authorization and URL policy. See <a href="/guides/security">security</a>.</p>\n',
+		headings: [
+			{
+				id: 'insert-or-edit-a-link',
+				label: 'Insert or edit a link',
+			},
+			{
+				id: 'url-rules',
+				label: 'URL rules',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="links">Links</h1>\n',
+				id: 'links',
+				kind: 'content',
+			},
+			{
+				html: '<p>Links let readers open a web page or an email address. The editor validates URLs before adding them to the document.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="insert-or-edit-a-link">Insert or edit a link</h2>\n',
+				id: 'insert-or-edit-a-link',
+				kind: 'content',
+			},
+			{
+				html: '<ol>\n<li>Select the text that should become a link.</li>\n<li>Open the link tool and enter an absolute HTTPS URL, such as https://example.com/help.</li>\n<li>Apply the dialog. To change an existing link, select its text and reopen the tool.</li>\n</ol>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Email links can use mailto, such as mailto:help@example.com. Automatic link handling also recognizes supported web URLs while editing. New-tab links use noopener/noreferrer.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="url-rules">URL rules</h2>\n',
+				id: 'url-rules',
+				kind: 'content',
+			},
+			{
+				html: '<p>HTTPS is the default. Relative URLs, credentials in URLs, control characters, and javascript/data/file URLs are rejected. HTTP requires an explicit security configuration; only enable it for a deliberate application requirement.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: "import type { EditraConfig } from 'ngx-editra';\n\nexport const config: EditraConfig = {\n\tsecurity: { allowHttp: false },\n};\n",
+				language: 'typescript',
+				html: '<pre><code class="language-typescript">import type { EditraConfig } from \'ngx-editra\';\n\nexport const config: EditraConfig = {\n\tsecurity: { allowHttp: false },\n};\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>A link target being valid does not mean its content is safe or available. Validate saved content on your server and apply your own authorization and URL policy. See <a href="/guides/security">security</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " links\n\nlinks let readers open a web page or an email address. the editor validates urls before adding them to the document.\n\n insert or edit a link\n\n1. select the text that should become a link.\n2. open the link tool and enter an absolute https url, such as https://example.com/help.\n3. apply the dialog. to change an existing link, select its text and reopen the tool.\n\nemail links can use mailto, such as mailto:help@example.com. automatic link handling also recognizes supported web urls while editing. new-tab links use noopener/noreferrer.\n\n url rules\n\nhttps is the default. relative urls, credentials in urls, control characters, and javascript/data/file urls are rejected. http requires an explicit security configuration; only enable it for a deliberate application requirement.\n\ntypescript\nimport type { editraconfig } from 'ngx-editra';\n\nexport const config: editraconfig = {\n\tsecurity: { allowhttp: false },\n};\n\n\na link target being valid does not mean its content is safe or available. validate saved content on your server and apply your own authorization and url policy. see [security](security.md).\n",
+	},
+	{
+		slug: 'images',
+		title: 'Images',
+		group: 'Editor features',
+		source: 'docs/IMAGES.md',
+		summary:
+			'Add an image that is already hosted at an accessible HTTPS URL. The library inserts and edits image content; it does not upload files.',
+		readingMinutes: 2,
+		html: '<h1 id="images">Images</h1>\n<p>Add an image that is already hosted at an accessible HTTPS URL. The library inserts and edits image content; it does not upload files.</p>\n<h2 id="insert-your-first-image">Insert your first image</h2>\n<ol>\n<li>Place the caret where the image should appear and open the image tool.</li>\n<li>Enter the image URL and apply. A public image URL should return an image, not a website page.</li>\n<li>Select the inserted image to open its contextual tools. Add meaningful alternative text and, if useful, a caption.</li>\n<li>Drag the corner handle to resize, or focus the handle and use arrow keys. Save the HTML form value to retain the result.</li>\n</ol>\n<p>Use Add content beside image for an independent text column next to the image. See <a href="/guides/layout">columns</a>. For a smaller display without manual pixel sizing, use automatic sizing and the available content-width controls.</p>\n<h2 id="image-settings-and-behavior">Image settings and behavior</h2>\n<p>Images are URL-only block nodes. The dialog supports HTTPS URL, alternative text, caption,\nwidth/height, alignment, border, radius, spacing, wrapping and aspect-ratio preservation.\nWidth and height start blank (Auto). With both blank, images use their natural size,\nlimited to the available content width. Choose Full content width to span the content area\nresponsively, or enter pixel dimensions for a custom size. Left/centre/right alignment\npositions the media itself; captions wrap within its width.\nSelect an image then reopen the dialog to edit/replace it; Delete selection removes it.\nPointer handles and arrow keys resize it through one persisted ProseMirror transaction.\nThe corner handle follows the image, supports horizontal and vertical dragging, and starts\nfrom its displayed size. Maintain aspect ratio enables proportional resizing; disabling it\nallows independent width/height changes. Resizing full-width media switches it to a custom\nsize. Escape/pointer cancellation restores the original size. Shift+Arrow uses a 1 px step.\nDimensions survive HTML/JSON round trips and undo/redo. Copy media URL uses the browser clipboard.</p>\n<p><code>imageExtension()</code> from <code>ngx-editra</code> supplies interactive node views. The default\nAngular adapter registers it; custom extension lists should register it explicitly.\n<code>config.image.enabled = false</code> removes the node from the schema. <code>pasteUrls</code> optionally\nconverts plain supported image URLs into images. Files, base64 uploads and file pickers are absent.</p>\n<p>A valid URL can still fail due to network errors, CORS/embedding policy, authentication or\nhotlink protection. Node views announce image load failure. The library cannot reliably\ndistinguish all remote causes. Captions export as figure/figcaption; image attributes are constrained.</p>\n',
+		headings: [
+			{
+				id: 'insert-your-first-image',
+				label: 'Insert your first image',
+			},
+			{
+				id: 'image-settings-and-behavior',
+				label: 'Image settings and behavior',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="images">Images</h1>\n',
+				id: 'images',
+				kind: 'content',
+			},
+			{
+				html: '<p>Add an image that is already hosted at an accessible HTTPS URL. The library inserts and edits image content; it does not upload files.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="insert-your-first-image">Insert your first image</h2>\n',
+				id: 'insert-your-first-image',
+				kind: 'content',
+			},
+			{
+				html: '<ol>\n<li>Place the caret where the image should appear and open the image tool.</li>\n<li>Enter the image URL and apply. A public image URL should return an image, not a website page.</li>\n<li>Select the inserted image to open its contextual tools. Add meaningful alternative text and, if useful, a caption.</li>\n<li>Drag the corner handle to resize, or focus the handle and use arrow keys. Save the HTML form value to retain the result.</li>\n</ol>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use Add content beside image for an independent text column next to the image. See <a href="/guides/layout">columns</a>. For a smaller display without manual pixel sizing, use automatic sizing and the available content-width controls.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="image-settings-and-behavior">Image settings and behavior</h2>\n',
+				id: 'image-settings-and-behavior',
+				kind: 'content',
+			},
+			{
+				html: '<p>Images are URL-only block nodes. The dialog supports HTTPS URL, alternative text, caption,\nwidth/height, alignment, border, radius, spacing, wrapping and aspect-ratio preservation.\nWidth and height start blank (Auto). With both blank, images use their natural size,\nlimited to the available content width. Choose Full content width to span the content area\nresponsively, or enter pixel dimensions for a custom size. Left/centre/right alignment\npositions the media itself; captions wrap within its width.\nSelect an image then reopen the dialog to edit/replace it; Delete selection removes it.\nPointer handles and arrow keys resize it through one persisted ProseMirror transaction.\nThe corner handle follows the image, supports horizontal and vertical dragging, and starts\nfrom its displayed size. Maintain aspect ratio enables proportional resizing; disabling it\nallows independent width/height changes. Resizing full-width media switches it to a custom\nsize. Escape/pointer cancellation restores the original size. Shift+Arrow uses a 1 px step.\nDimensions survive HTML/JSON round trips and undo/redo. Copy media URL uses the browser clipboard.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p><code>imageExtension()</code> from <code>ngx-editra</code> supplies interactive node views. The default\nAngular adapter registers it; custom extension lists should register it explicitly.\n<code>config.image.enabled = false</code> removes the node from the schema. <code>pasteUrls</code> optionally\nconverts plain supported image URLs into images. Files, base64 uploads and file pickers are absent.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>A valid URL can still fail due to network errors, CORS/embedding policy, authentication or\nhotlink protection. Node views announce image load failure. The library cannot reliably\ndistinguish all remote causes. Captions export as figure/figcaption; image attributes are constrained.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: ' images\n\nadd an image that is already hosted at an accessible https url. the library inserts and edits image content; it does not upload files.\n\n insert your first image\n\n1. place the caret where the image should appear and open the image tool.\n2. enter the image url and apply. a public image url should return an image, not a website page.\n3. select the inserted image to open its contextual tools. add meaningful alternative text and, if useful, a caption.\n4. drag the corner handle to resize, or focus the handle and use arrow keys. save the html form value to retain the result.\n\nuse add content beside image for an independent text column next to the image. see [columns](layout.md). for a smaller display without manual pixel sizing, use automatic sizing and the available content-width controls.\n\n image settings and behavior\n\nimages are url-only block nodes. the dialog supports https url, alternative text, caption,\nwidth/height, alignment, border, radius, spacing, wrapping and aspect-ratio preservation.\nwidth and height start blank (auto). with both blank, images use their natural size,\nlimited to the available content width. choose full content width to span the content area\nresponsively, or enter pixel dimensions for a custom size. left/centre/right alignment\npositions the media itself; captions wrap within its width.\nselect an image then reopen the dialog to edit/replace it; delete selection removes it.\npointer handles and arrow keys resize it through one persisted prosemirror transaction.\nthe corner handle follows the image, supports horizontal and vertical dragging, and starts\nfrom its displayed size. maintain aspect ratio enables proportional resizing; disabling it\nallows independent width/height changes. resizing full-width media switches it to a custom\nsize. escape/pointer cancellation restores the original size. shift+arrow uses a 1 px step.\ndimensions survive html/json round trips and undo/redo. copy media url uses the browser clipboard.\n\nimageextension() from ngx-editra supplies interactive node views. the default\nangular adapter registers it; custom extension lists should register it explicitly.\nconfig.image.enabled = false removes the node from the schema. pasteurls optionally\nconverts plain supported image urls into images. files, base64 uploads and file pickers are absent.\n\na valid url can still fail due to network errors, cors/embedding policy, authentication or\nhotlink protection. node views announce image load failure. the library cannot reliably\ndistinguish all remote causes. captions export as figure/figcaption; image attributes are constrained.\n',
+	},
+	{
+		slug: 'videos',
+		title: 'Videos',
+		group: 'Editor features',
+		source: 'docs/VIDEOS.md',
+		summary:
+			'Insert a supported video URL rather than pasting iframe markup. The editor creates a constrained embed or direct video element and saves the original URL with the document.',
+		readingMinutes: 2,
+		html: "<h1 id=\"videos\">Videos</h1>\n<p>Insert a supported video URL rather than pasting iframe markup. The editor creates a constrained embed or direct video element and saves the original URL with the document.</p>\n<h2 id=\"insert-a-video\">Insert a video</h2>\n<ol>\n<li>Place the caret and open the video tool.</li>\n<li>Paste a supported public YouTube, Vimeo, or direct MP4 URL.</li>\n<li>Apply, then select the video to edit its layout, caption, or dimensions.</li>\n<li>Use the resize handle or full-content-width setting and save the normal HTML form value.</li>\n</ol>\n<p>If playback fails, check the host's permissions and your application's CSP. Private/protected media, blocked providers, and arbitrary embed HTML are not made accessible by the editor. See <a href=\"/guides/troubleshooting\">troubleshooting</a>.</p>\n<h2 id=\"providers-and-sizing\">Providers and sizing</h2>\n<p>Supported public URLs: YouTube watch/shortened/Shorts URLs with valid video IDs, numeric Vimeo\nURLs and direct MP4 paths. Other providers require explicit registration. Original URL is persisted\nalongside canonical provider-generated embedding. Unsupported providers/paths produce dialog errors.</p>\n<p>The video dialog edits URL, dimensions, alignment, caption, aspect ratio and direct playback controls.\nWidth and height start blank (Auto). Direct video uses its intrinsic size once metadata loads;\nprovider embeds use a responsive preview up to 640 px wide with a 16:9 default ratio.\nThese preview defaults are not written as fixed document dimensions. Full content width\nfills the content area responsively. Left/centre/right alignment positions custom or automatic sizes.\n<code>videoExtension()</code> supplies pointer/keyboard resizing. Responsive CSS constrains width to the editor.\nThe corner handle follows the video and resizes from its displayed dimensions. Maintain aspect\nratio preserves proportions; disabling it allows independent width/height changes. A drag commits\none undoable transaction; Escape cancels. Resizing full-width video switches to a saved custom size.\nEmbeds load lazily; direct video uses metadata preload. Successful embedding/playback is not\nguaranteed by syntactic URL validity. There is no upload or automatic autoplay.</p>\n<pre><code class=\"language-typescript\">import type { EditraVideoProvider } from 'ngx-editra';\nexport const provider: EditraVideoProvider = {\n\tid: 'example',\n\tembedOrigins: ['https://media.example.com'],\n\tmatches: (url) =&gt; url.hostname === 'media.example.com' &amp;&amp; /^\\/watch\\/\\d+$/.test(url.pathname),\n\tgetEmbedUrl: (url) =&gt;\n\t\tnew URL(url.pathname.replace('/watch/', '/embed/'), 'https://media.example.com'),\n};\n// Register with config.video.providers = [provider].\n</code></pre>\n<p>Provider code is trusted and must follow exact-host/path restrictions. See SECURITY.md for CSP.</p>\n",
+		headings: [
+			{
+				id: 'insert-a-video',
+				label: 'Insert a video',
+			},
+			{
+				id: 'providers-and-sizing',
+				label: 'Providers and sizing',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="videos">Videos</h1>\n',
+				id: 'videos',
+				kind: 'content',
+			},
+			{
+				html: '<p>Insert a supported video URL rather than pasting iframe markup. The editor creates a constrained embed or direct video element and saves the original URL with the document.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="insert-a-video">Insert a video</h2>\n',
+				id: 'insert-a-video',
+				kind: 'content',
+			},
+			{
+				html: '<ol>\n<li>Place the caret and open the video tool.</li>\n<li>Paste a supported public YouTube, Vimeo, or direct MP4 URL.</li>\n<li>Apply, then select the video to edit its layout, caption, or dimensions.</li>\n<li>Use the resize handle or full-content-width setting and save the normal HTML form value.</li>\n</ol>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>If playback fails, check the host\'s permissions and your application\'s CSP. Private/protected media, blocked providers, and arbitrary embed HTML are not made accessible by the editor. See <a href="/guides/troubleshooting">troubleshooting</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="providers-and-sizing">Providers and sizing</h2>\n',
+				id: 'providers-and-sizing',
+				kind: 'content',
+			},
+			{
+				html: '<p>Supported public URLs: YouTube watch/shortened/Shorts URLs with valid video IDs, numeric Vimeo\nURLs and direct MP4 paths. Other providers require explicit registration. Original URL is persisted\nalongside canonical provider-generated embedding. Unsupported providers/paths produce dialog errors.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>The video dialog edits URL, dimensions, alignment, caption, aspect ratio and direct playback controls.\nWidth and height start blank (Auto). Direct video uses its intrinsic size once metadata loads;\nprovider embeds use a responsive preview up to 640 px wide with a 16:9 default ratio.\nThese preview defaults are not written as fixed document dimensions. Full content width\nfills the content area responsively. Left/centre/right alignment positions custom or automatic sizes.\n<code>videoExtension()</code> supplies pointer/keyboard resizing. Responsive CSS constrains width to the editor.\nThe corner handle follows the video and resizes from its displayed dimensions. Maintain aspect\nratio preserves proportions; disabling it allows independent width/height changes. A drag commits\none undoable transaction; Escape cancels. Resizing full-width video switches to a saved custom size.\nEmbeds load lazily; direct video uses metadata preload. Successful embedding/playback is not\nguaranteed by syntactic URL validity. There is no upload or automatic autoplay.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: "import type { EditraVideoProvider } from 'ngx-editra';\nexport const provider: EditraVideoProvider = {\n\tid: 'example',\n\tembedOrigins: ['https://media.example.com'],\n\tmatches: (url) => url.hostname === 'media.example.com' && /^\\/watch\\/\\d+$/.test(url.pathname),\n\tgetEmbedUrl: (url) =>\n\t\tnew URL(url.pathname.replace('/watch/', '/embed/'), 'https://media.example.com'),\n};\n// Register with config.video.providers = [provider].\n",
+				language: 'typescript',
+				html: "<pre><code class=\"language-typescript\">import type { EditraVideoProvider } from 'ngx-editra';\nexport const provider: EditraVideoProvider = {\n\tid: 'example',\n\tembedOrigins: ['https://media.example.com'],\n\tmatches: (url) =&gt; url.hostname === 'media.example.com' &amp;&amp; /^\\/watch\\/\\d+$/.test(url.pathname),\n\tgetEmbedUrl: (url) =&gt;\n\t\tnew URL(url.pathname.replace('/watch/', '/embed/'), 'https://media.example.com'),\n};\n// Register with config.video.providers = [provider].\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Provider code is trusted and must follow exact-host/path restrictions. See SECURITY.md for CSP.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " videos\n\ninsert a supported video url rather than pasting iframe markup. the editor creates a constrained embed or direct video element and saves the original url with the document.\n\n insert a video\n\n1. place the caret and open the video tool.\n2. paste a supported public youtube, vimeo, or direct mp4 url.\n3. apply, then select the video to edit its layout, caption, or dimensions.\n4. use the resize handle or full-content-width setting and save the normal html form value.\n\nif playback fails, check the host's permissions and your application's csp. private/protected media, blocked providers, and arbitrary embed html are not made accessible by the editor. see [troubleshooting](troubleshooting.md).\n\n providers and sizing\n\nsupported public urls: youtube watch/shortened/shorts urls with valid video ids, numeric vimeo\nurls and direct mp4 paths. other providers require explicit registration. original url is persisted\nalongside canonical provider-generated embedding. unsupported providers/paths produce dialog errors.\n\nthe video dialog edits url, dimensions, alignment, caption, aspect ratio and direct playback controls.\nwidth and height start blank (auto). direct video uses its intrinsic size once metadata loads;\nprovider embeds use a responsive preview up to 640 px wide with a 16:9 default ratio.\nthese preview defaults are not written as fixed document dimensions. full content width\nfills the content area responsively. left/centre/right alignment positions custom or automatic sizes.\nvideoextension() supplies pointer/keyboard resizing. responsive css constrains width to the editor.\nthe corner handle follows the video and resizes from its displayed dimensions. maintain aspect\nratio preserves proportions; disabling it allows independent width/height changes. a drag commits\none undoable transaction; escape cancels. resizing full-width video switches to a saved custom size.\nembeds load lazily; direct video uses metadata preload. successful embedding/playback is not\nguaranteed by syntactic url validity. there is no upload or automatic autoplay.\n\ntypescript\nimport type { editravideoprovider } from 'ngx-editra';\nexport const provider: editravideoprovider = {\n\tid: 'example',\n\tembedorigins: ['https://media.example.com'],\n\tmatches: (url) => url.hostname === 'media.example.com' && /^\\/watch\\/\\d+$/.test(url.pathname),\n\tgetembedurl: (url) =>\n\t\tnew url(url.pathname.replace('/watch/', '/embed/'), 'https://media.example.com'),\n};\n// register with config.video.providers = [provider].\n\n\nprovider code is trusted and must follow exact-host/path restrictions. see security.md for csp.\n",
+	},
+	{
+		slug: 'tables',
+		title: 'Tables',
+		group: 'Editor features',
+		source: 'docs/TABLES.md',
+		summary:
+			'Tables arrange related data into rows and columns. Use the table tool to insert a grid, then select a cell to reveal contextual editing tools.',
+		readingMinutes: 3,
+		html: '<h1 id="tables">Tables</h1>\n<p>Tables arrange related data into rows and columns. Use the table tool to insert a grid, then select a cell to reveal contextual editing tools.</p>\n<h2 id="insert-and-edit-a-table">Insert and edit a table</h2>\n<ol>\n<li>Open the table tool and choose a grid size with the pointer or keyboard. Numeric row/column controls are available for a specific size.</li>\n<li>Click a cell and enter content. Use the table tools to add or remove a row/column, merge or split selected cells, or delete the table.</li>\n<li>Drag a row or column boundary to resize. Escape cancels; releasing commits one undoable change.</li>\n<li>Open More table settings for width, border style/weight, and minimum row height. Use AutoFit or equal-column distribution when appropriate.</li>\n</ol>\n<p>Use tables for tabular information. For two independent content areas, prefer <a href="/guides/layout">columns</a>. Table content, spans, dimensions, and supported appearance are included in saved HTML/JSON.</p>\n<h2 id="detailed-table-behavior">Detailed table behavior</h2>\n<p>Tables use prosemirror-tables for cell selection, span normalization, column resizing,\nTab/Shift+Tab navigation, copy/paste and history-aware operations.\nThe Word-style insertion picker previews a grid up to 10 columns by 8 rows. Clicking a cell\nor pressing Enter inserts immediately. Numeric rows/columns support larger sizes within the\nconfigured limits, with validation before insertion. The contextual menu supplements toolbar commands.\nCommands insert tables, add/remove rows/columns, delete tables, merge/split cells,\nand toggle header rows/columns. A contextual Table Layout ribbon supplies these actions,\ncell shading, AutoFit to page, and equal column distribution. More table settings contains\ntable border/width, minimum row height and a reset-row-heights action.\nCell text alignment uses the ordinary block alignment commands.</p>\n<p>Column widths, spans, row heights, table appearance and backgrounds are document attributes.\nSelect a table cell and drag its column borders or any point along a row border to\nresize; a guide and pixel readout preview the change, and release commits one history action.\nEscape or pointer cancellation discards the preview. Widths are assigned to logical columns,\nincluding cells with colspan/rowspan, rather than independently mutating table DOM.</p>\n<p>Resize boundaries have no visible icon. Tab focuses a boundary with a visible focus indicator.\nFocused column boundaries use Left/Right; row boundaries use Up/Down. Arrows adjust by 8 px;\nShift+Arrow adjusts by 1 px. Boundaries preserve keyboard focus during updates and are inactive\nin read-only/disabled editors. Row heights are minimums: content can require taller rows.\nGrip dimensions are bounded to 24–2000 px for rows and 48–4096 px for columns.\nTable and cell borders use consistent line settings and #b8c2d0 colour. The default\nline weight is 1 px; the line-weight control accepts supported values up to 8 px.\nSolid, dashed, dotted, double, and none styles apply consistently to table presentation,\nincluding exported HTML. Inspect the current table\'s controls when editing its appearance.</p>\n<p>AutoFit to page removes fixed column widths. Distribute columns preserves the current rendered\ntable width and gives logical columns equal widths. Percentage width edits remove fixed widths\nso the percentage takes effect. Row heights and cell styles are retained by AutoFit.\nTable overflow is horizontal. Malformed imports are repaired with fixTables.\nInsertion defaults to 3×3, bounded by config.table.maxRows/maxColumns (50/20 defaults).</p>\n<p>Automated tests cover row/column pointer and keyboard resizing, cancellation, isolated undo,\nsave/reload, merged-cell dimensions, equal columns, AutoFit, quick insertion, shading and validation.\nBroader native clipboard and cross-browser/manual accessibility coverage remains release work.</p>\n',
+		headings: [
+			{
+				id: 'insert-and-edit-a-table',
+				label: 'Insert and edit a table',
+			},
+			{
+				id: 'detailed-table-behavior',
+				label: 'Detailed table behavior',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="tables">Tables</h1>\n',
+				id: 'tables',
+				kind: 'content',
+			},
+			{
+				html: '<p>Tables arrange related data into rows and columns. Use the table tool to insert a grid, then select a cell to reveal contextual editing tools.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="insert-and-edit-a-table">Insert and edit a table</h2>\n',
+				id: 'insert-and-edit-a-table',
+				kind: 'content',
+			},
+			{
+				html: '<ol>\n<li>Open the table tool and choose a grid size with the pointer or keyboard. Numeric row/column controls are available for a specific size.</li>\n<li>Click a cell and enter content. Use the table tools to add or remove a row/column, merge or split selected cells, or delete the table.</li>\n<li>Drag a row or column boundary to resize. Escape cancels; releasing commits one undoable change.</li>\n<li>Open More table settings for width, border style/weight, and minimum row height. Use AutoFit or equal-column distribution when appropriate.</li>\n</ol>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use tables for tabular information. For two independent content areas, prefer <a href="/guides/layout">columns</a>. Table content, spans, dimensions, and supported appearance are included in saved HTML/JSON.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="detailed-table-behavior">Detailed table behavior</h2>\n',
+				id: 'detailed-table-behavior',
+				kind: 'content',
+			},
+			{
+				html: '<p>Tables use prosemirror-tables for cell selection, span normalization, column resizing,\nTab/Shift+Tab navigation, copy/paste and history-aware operations.\nThe Word-style insertion picker previews a grid up to 10 columns by 8 rows. Clicking a cell\nor pressing Enter inserts immediately. Numeric rows/columns support larger sizes within the\nconfigured limits, with validation before insertion. The contextual menu supplements toolbar commands.\nCommands insert tables, add/remove rows/columns, delete tables, merge/split cells,\nand toggle header rows/columns. A contextual Table Layout ribbon supplies these actions,\ncell shading, AutoFit to page, and equal column distribution. More table settings contains\ntable border/width, minimum row height and a reset-row-heights action.\nCell text alignment uses the ordinary block alignment commands.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Column widths, spans, row heights, table appearance and backgrounds are document attributes.\nSelect a table cell and drag its column borders or any point along a row border to\nresize; a guide and pixel readout preview the change, and release commits one history action.\nEscape or pointer cancellation discards the preview. Widths are assigned to logical columns,\nincluding cells with colspan/rowspan, rather than independently mutating table DOM.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: "<p>Resize boundaries have no visible icon. Tab focuses a boundary with a visible focus indicator.\nFocused column boundaries use Left/Right; row boundaries use Up/Down. Arrows adjust by 8 px;\nShift+Arrow adjusts by 1 px. Boundaries preserve keyboard focus during updates and are inactive\nin read-only/disabled editors. Row heights are minimums: content can require taller rows.\nGrip dimensions are bounded to 24–2000 px for rows and 48–4096 px for columns.\nTable and cell borders use consistent line settings and #b8c2d0 colour. The default\nline weight is 1 px; the line-weight control accepts supported values up to 8 px.\nSolid, dashed, dotted, double, and none styles apply consistently to table presentation,\nincluding exported HTML. Inspect the current table's controls when editing its appearance.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>AutoFit to page removes fixed column widths. Distribute columns preserves the current rendered\ntable width and gives logical columns equal widths. Percentage width edits remove fixed widths\nso the percentage takes effect. Row heights and cell styles are retained by AutoFit.\nTable overflow is horizontal. Malformed imports are repaired with fixTables.\nInsertion defaults to 3×3, bounded by config.table.maxRows/maxColumns (50/20 defaults).</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Automated tests cover row/column pointer and keyboard resizing, cancellation, isolated undo,\nsave/reload, merged-cell dimensions, equal columns, AutoFit, quick insertion, shading and validation.\nBroader native clipboard and cross-browser/manual accessibility coverage remains release work.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " tables\n\ntables arrange related data into rows and columns. use the table tool to insert a grid, then select a cell to reveal contextual editing tools.\n\n insert and edit a table\n\n1. open the table tool and choose a grid size with the pointer or keyboard. numeric row/column controls are available for a specific size.\n2. click a cell and enter content. use the table tools to add or remove a row/column, merge or split selected cells, or delete the table.\n3. drag a row or column boundary to resize. escape cancels; releasing commits one undoable change.\n4. open more table settings for width, border style/weight, and minimum row height. use autofit or equal-column distribution when appropriate.\n\nuse tables for tabular information. for two independent content areas, prefer [columns](layout.md). table content, spans, dimensions, and supported appearance are included in saved html/json.\n\n detailed table behavior\n\ntables use prosemirror-tables for cell selection, span normalization, column resizing,\ntab/shift+tab navigation, copy/paste and history-aware operations.\nthe word-style insertion picker previews a grid up to 10 columns by 8 rows. clicking a cell\nor pressing enter inserts immediately. numeric rows/columns support larger sizes within the\nconfigured limits, with validation before insertion. the contextual menu supplements toolbar commands.\ncommands insert tables, add/remove rows/columns, delete tables, merge/split cells,\nand toggle header rows/columns. a contextual table layout ribbon supplies these actions,\ncell shading, autofit to page, and equal column distribution. more table settings contains\ntable border/width, minimum row height and a reset-row-heights action.\ncell text alignment uses the ordinary block alignment commands.\n\ncolumn widths, spans, row heights, table appearance and backgrounds are document attributes.\nselect a table cell and drag its column borders or any point along a row border to\nresize; a guide and pixel readout preview the change, and release commits one history action.\nescape or pointer cancellation discards the preview. widths are assigned to logical columns,\nincluding cells with colspan/rowspan, rather than independently mutating table dom.\n\nresize boundaries have no visible icon. tab focuses a boundary with a visible focus indicator.\nfocused column boundaries use left/right; row boundaries use up/down. arrows adjust by 8 px;\nshift+arrow adjusts by 1 px. boundaries preserve keyboard focus during updates and are inactive\nin read-only/disabled editors. row heights are minimums: content can require taller rows.\ngrip dimensions are bounded to 24–2000 px for rows and 48–4096 px for columns.\ntable and cell borders use consistent line settings and b8c2d0 colour. the default\nline weight is 1 px; the line-weight control accepts supported values up to 8 px.\nsolid, dashed, dotted, double, and none styles apply consistently to table presentation,\nincluding exported html. inspect the current table's controls when editing its appearance.\n\nautofit to page removes fixed column widths. distribute columns preserves the current rendered\ntable width and gives logical columns equal widths. percentage width edits remove fixed widths\nso the percentage takes effect. row heights and cell styles are retained by autofit.\ntable overflow is horizontal. malformed imports are repaired with fixtables.\ninsertion defaults to 3×3, bounded by config.table.maxrows/maxcolumns (50/20 defaults).\n\nautomated tests cover row/column pointer and keyboard resizing, cancellation, isolated undo,\nsave/reload, merged-cell dimensions, equal columns, autofit, quick insertion, shading and validation.\nbroader native clipboard and cross-browser/manual accessibility coverage remains release work.\n",
+	},
+	{
+		slug: 'layout',
+		title: 'Columns and lines',
+		group: 'Editor features',
+		source: 'docs/LAYOUT.md',
+		summary:
+			'Use columns when two parts of a document need independent side-by-side content. Use horizontal lines to separate sections visually. Both features are saved as document content.',
+		readingMinutes: 2,
+		html: '<h1 id="columns-and-horizontal-lines">Columns and horizontal lines</h1>\n<p>Use columns when two parts of a document need independent side-by-side content. Use horizontal lines to separate sections visually. Both features are saved as document content.</p>\n<h2 id="add-columns">Add columns</h2>\n<ol>\n<li>Place the caret where you want a column layout.</li>\n<li>Use the column insertion tool, or select an image and choose Add content beside image.</li>\n<li>Click inside each column to write headings, paragraphs, lists, or media independently.</li>\n</ol>\n<p>Adding content beside an image creates separate content areas rather than floating text around the image. This makes it possible to keep writing beside a tall image without merging that text into the image caption.</p>\n<h2 id="resize-columns">Resize columns</h2>\n<p>Drag the divider between the columns to adjust their proportions. Release to commit; Escape cancels a preview. The column weights are retained when the document is saved and reloaded. Undo reverses a committed resize. Use the layout controls to restore equal proportions when needed.</p>\n<p>Check the resulting content on narrow screens. Large media remains constrained by its available content area. If you render saved HTML separately, use the viewer so the shared responsive content styling is applied.</p>\n<h2 id="insert-a-horizontal-line">Insert a horizontal line</h2>\n<p>Use Insert horizontal line to insert immediately using the current line settings. Open Line settings to choose the style and weight. The chosen settings are reused for subsequent insertions. Selecting an existing divider allows its appearance to be edited; saved HTML retains the supported divider attributes.</p>\n<p>Dividers are visual separators, not a replacement for descriptive headings. See <a href="/guides/formatting">formatting</a> for document structure and <a href="/guides/viewer">saved-content rendering</a> for displaying the result.</p>\n',
+		headings: [
+			{
+				id: 'add-columns',
+				label: 'Add columns',
+			},
+			{
+				id: 'resize-columns',
+				label: 'Resize columns',
+			},
+			{
+				id: 'insert-a-horizontal-line',
+				label: 'Insert a horizontal line',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="columns-and-horizontal-lines">Columns and horizontal lines</h1>\n',
+				id: 'columns-and-horizontal-lines',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use columns when two parts of a document need independent side-by-side content. Use horizontal lines to separate sections visually. Both features are saved as document content.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="add-columns">Add columns</h2>\n',
+				id: 'add-columns',
+				kind: 'content',
+			},
+			{
+				html: '<ol>\n<li>Place the caret where you want a column layout.</li>\n<li>Use the column insertion tool, or select an image and choose Add content beside image.</li>\n<li>Click inside each column to write headings, paragraphs, lists, or media independently.</li>\n</ol>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Adding content beside an image creates separate content areas rather than floating text around the image. This makes it possible to keep writing beside a tall image without merging that text into the image caption.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="resize-columns">Resize columns</h2>\n',
+				id: 'resize-columns',
+				kind: 'content',
+			},
+			{
+				html: '<p>Drag the divider between the columns to adjust their proportions. Release to commit; Escape cancels a preview. The column weights are retained when the document is saved and reloaded. Undo reverses a committed resize. Use the layout controls to restore equal proportions when needed.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Check the resulting content on narrow screens. Large media remains constrained by its available content area. If you render saved HTML separately, use the viewer so the shared responsive content styling is applied.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="insert-a-horizontal-line">Insert a horizontal line</h2>\n',
+				id: 'insert-a-horizontal-line',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use Insert horizontal line to insert immediately using the current line settings. Open Line settings to choose the style and weight. The chosen settings are reused for subsequent insertions. Selecting an existing divider allows its appearance to be edited; saved HTML retains the supported divider attributes.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Dividers are visual separators, not a replacement for descriptive headings. See <a href="/guides/formatting">formatting</a> for document structure and <a href="/guides/viewer">saved-content rendering</a> for displaying the result.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: ' columns and horizontal lines\n\nuse columns when two parts of a document need independent side-by-side content. use horizontal lines to separate sections visually. both features are saved as document content.\n\n add columns\n\n1. place the caret where you want a column layout.\n2. use the column insertion tool, or select an image and choose add content beside image.\n3. click inside each column to write headings, paragraphs, lists, or media independently.\n\nadding content beside an image creates separate content areas rather than floating text around the image. this makes it possible to keep writing beside a tall image without merging that text into the image caption.\n\n resize columns\n\ndrag the divider between the columns to adjust their proportions. release to commit; escape cancels a preview. the column weights are retained when the document is saved and reloaded. undo reverses a committed resize. use the layout controls to restore equal proportions when needed.\n\ncheck the resulting content on narrow screens. large media remains constrained by its available content area. if you render saved html separately, use the viewer so the shared responsive content styling is applied.\n\n insert a horizontal line\n\nuse insert horizontal line to insert immediately using the current line settings. open line settings to choose the style and weight. the chosen settings are reused for subsequent insertions. selecting an existing divider allows its appearance to be edited; saved html retains the supported divider attributes.\n\ndividers are visual separators, not a replacement for descriptive headings. see [formatting](formatting.md) for document structure and [saved-content rendering](viewer.md) for displaying the result.\n',
+	},
+	{
+		slug: 'code-blocks',
+		title: 'Code blocks',
+		group: 'Editor features',
+		source: 'docs/CODE_BLOCKS.md',
+		summary:
+			'Inline code is for a short fragment within a sentence. Code blocks are for multiple lines whose whitespace should be preserved.',
+		readingMinutes: 2,
+		html: '<h1 id="inline-code-and-code-blocks">Inline code and code blocks</h1>\n<p>Inline code is for a short fragment within a sentence. Code blocks are for multiple lines whose whitespace should be preserved.</p>\n<h2 id="insert-and-edit-code">Insert and edit code</h2>\n<ol>\n<li>Place the caret in the document or select content to format.</li>\n<li>Choose the code-block tool for a separate block. Inline code can be imported from supported HTML/Markdown or exposed with the custom toolbar button below.</li>\n<li>Enter your code and choose the language label in the code-block controls.</li>\n</ol>\n<p>Code is stored as text, not executed. For example, typing an HTML script tag into a code block displays that text rather than running a script. A language label describes the content; it does not enable syntax highlighting.</p>\n<h2 id="add-an-inline-code-button">Add an inline-code button</h2>\n<p>The built-in inline-code mark uses the code command; it is not a separate button in the default toolbar. To expose it, configure your toolbar with the following code and bind the resulting config to your editor:</p>\n<pre><code class="language-typescript">import { defaultToolbar } from \'ngx-editra\';\nimport type { EditraConfig } from \'ngx-editra\';\n\nexport const config: EditraConfig = {\n\ttoolbar: {\n\t\titems: [...defaultToolbar, { id: \'inline-code\', label: \'Inline code\', command: \'code\' }],\n\t},\n};\n</code></pre>\n<p>Select a short fragment and click Inline code to toggle that mark. The copy control described below belongs to multi-line code blocks.</p>\n<h2 id="copy-a-code-block">Copy a code block</h2>\n<p>Use the copy button on the block. It copies the code text without the language selector or other editor controls. Clipboard access requires HTTPS or localhost and may be blocked by browser permissions. A failed copy is reported instead of silently succeeding.</p>\n<h2 id="save-and-display-code">Save and display code</h2>\n<p>The normal HTML form value preserves code text, whitespace, and supported language metadata. Copy buttons and language editing controls are UI and are not stored in the document.</p>\n<p>NgxEditraViewerComponent recreates copy controls when rendering saved code. If you use the HTML pipe instead, add EditraCodeCopyDirective to the content container. See <a href="/guides/viewer">displaying saved content</a>.</p>\n',
+		headings: [
+			{
+				id: 'insert-and-edit-code',
+				label: 'Insert and edit code',
+			},
+			{
+				id: 'add-an-inline-code-button',
+				label: 'Add an inline-code button',
+			},
+			{
+				id: 'copy-a-code-block',
+				label: 'Copy a code block',
+			},
+			{
+				id: 'save-and-display-code',
+				label: 'Save and display code',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="inline-code-and-code-blocks">Inline code and code blocks</h1>\n',
+				id: 'inline-code-and-code-blocks',
+				kind: 'content',
+			},
+			{
+				html: '<p>Inline code is for a short fragment within a sentence. Code blocks are for multiple lines whose whitespace should be preserved.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="insert-and-edit-code">Insert and edit code</h2>\n',
+				id: 'insert-and-edit-code',
+				kind: 'content',
+			},
+			{
+				html: '<ol>\n<li>Place the caret in the document or select content to format.</li>\n<li>Choose the code-block tool for a separate block. Inline code can be imported from supported HTML/Markdown or exposed with the custom toolbar button below.</li>\n<li>Enter your code and choose the language label in the code-block controls.</li>\n</ol>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Code is stored as text, not executed. For example, typing an HTML script tag into a code block displays that text rather than running a script. A language label describes the content; it does not enable syntax highlighting.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="add-an-inline-code-button">Add an inline-code button</h2>\n',
+				id: 'add-an-inline-code-button',
+				kind: 'content',
+			},
+			{
+				html: '<p>The built-in inline-code mark uses the code command; it is not a separate button in the default toolbar. To expose it, configure your toolbar with the following code and bind the resulting config to your editor:</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: "import { defaultToolbar } from 'ngx-editra';\nimport type { EditraConfig } from 'ngx-editra';\n\nexport const config: EditraConfig = {\n\ttoolbar: {\n\t\titems: [...defaultToolbar, { id: 'inline-code', label: 'Inline code', command: 'code' }],\n\t},\n};\n",
+				language: 'typescript',
+				html: "<pre><code class=\"language-typescript\">import { defaultToolbar } from 'ngx-editra';\nimport type { EditraConfig } from 'ngx-editra';\n\nexport const config: EditraConfig = {\n\ttoolbar: {\n\t\titems: [...defaultToolbar, { id: 'inline-code', label: 'Inline code', command: 'code' }],\n\t},\n};\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Select a short fragment and click Inline code to toggle that mark. The copy control described below belongs to multi-line code blocks.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="copy-a-code-block">Copy a code block</h2>\n',
+				id: 'copy-a-code-block',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use the copy button on the block. It copies the code text without the language selector or other editor controls. Clipboard access requires HTTPS or localhost and may be blocked by browser permissions. A failed copy is reported instead of silently succeeding.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="save-and-display-code">Save and display code</h2>\n',
+				id: 'save-and-display-code',
+				kind: 'content',
+			},
+			{
+				html: '<p>The normal HTML form value preserves code text, whitespace, and supported language metadata. Copy buttons and language editing controls are UI and are not stored in the document.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>NgxEditraViewerComponent recreates copy controls when rendering saved code. If you use the HTML pipe instead, add EditraCodeCopyDirective to the content container. See <a href="/guides/viewer">displaying saved content</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " inline code and code blocks\n\ninline code is for a short fragment within a sentence. code blocks are for multiple lines whose whitespace should be preserved.\n\n insert and edit code\n\n1. place the caret in the document or select content to format.\n2. choose the code-block tool for a separate block. inline code can be imported from supported html/markdown or exposed with the custom toolbar button below.\n3. enter your code and choose the language label in the code-block controls.\n\ncode is stored as text, not executed. for example, typing an html script tag into a code block displays that text rather than running a script. a language label describes the content; it does not enable syntax highlighting.\n\n add an inline-code button\n\nthe built-in inline-code mark uses the code command; it is not a separate button in the default toolbar. to expose it, configure your toolbar with the following code and bind the resulting config to your editor:\n\ntypescript\nimport { defaulttoolbar } from 'ngx-editra';\nimport type { editraconfig } from 'ngx-editra';\n\nexport const config: editraconfig = {\n\ttoolbar: {\n\t\titems: [...defaulttoolbar, { id: 'inline-code', label: 'inline code', command: 'code' }],\n\t},\n};\n\n\nselect a short fragment and click inline code to toggle that mark. the copy control described below belongs to multi-line code blocks.\n\n copy a code block\n\nuse the copy button on the block. it copies the code text without the language selector or other editor controls. clipboard access requires https or localhost and may be blocked by browser permissions. a failed copy is reported instead of silently succeeding.\n\n save and display code\n\nthe normal html form value preserves code text, whitespace, and supported language metadata. copy buttons and language editing controls are ui and are not stored in the document.\n\nngxeditraviewercomponent recreates copy controls when rendering saved code. if you use the html pipe instead, add editracodecopydirective to the content container. see [displaying saved content](viewer.md).\n",
+	},
+	{
+		slug: 'editing-tools',
+		title: 'Editing tools',
+		group: 'Editor features',
+		source: 'docs/EDITING_TOOLS.md',
+		summary:
+			'These tools help writers work with larger documents. They change document state or editor presentation; your form value continues to be HTML.',
+		readingMinutes: 2,
+		html: '<h1 id="find-undo-counts-and-workspace-tools">Find, undo, counts, and workspace tools</h1>\n<p>These tools help writers work with larger documents. They change document state or editor presentation; your form value continues to be HTML.</p>\n<h2 id="find-and-replace">Find and replace</h2>\n<p>Open Find and replace, enter a search term, and use the match navigation controls to move between occurrences. Replace changes the current match; Replace all changes all applicable matches. Review the result and use Undo if needed. Searches are literal text, not user-supplied regular expressions.</p>\n<h2 id="undo-and-redo">Undo and redo</h2>\n<p>Use toolbar buttons or the platform undo/redo shortcuts. Text edits, formatting, inserted content, and committed table/media resizing participate in editing history. A resize drag is committed as one operation rather than a history entry for every pointer movement. Escape cancels an in-progress resize.</p>\n<p>Loading a document or changing schema/security/extension configuration is different from an ordinary user edit. Schema-related reconfiguration revalidates content and resets history. Do not rely on Undo as a storage backup.</p>\n<h2 id="word-and-character-counts">Word and character counts</h2>\n<p>The editor displays document counts. Words are separated by whitespace; characters are counted as Unicode code points. Plain-text conversion includes captions and image alternative text. These counts are useful UI feedback, not a substitute for a server-side content limit.</p>\n<h2 id="fullscreen">Fullscreen</h2>\n<p>Use Fullscreen to expand the editing workspace. Background page scrolling is contained while the editor is fullscreen, and restored when it closes. This is an editor layout mode, not a request to put the entire browser into its native fullscreen API.</p>\n<h2 id="keep-tools-available">Keep tools available</h2>\n<pre><code class="language-typescript">import type { EditraConfig } from \'ngx-editra\';\n\nexport const config: EditraConfig = {\n\ttoolbar: { sticky: true, stickyOffset: 64, floating: true },\n\tminHeight: 280,\n\tmaxHeight: 640,\n};\n</code></pre>\n<p>Sticky keeps the toolbar visible while scrolling. stickyOffset leaves room for an application header, in pixels. Floating enables a selection toolbar. The pin control lets writers change the sticky state. Use <a href="/guides/toolbar">toolbar configuration</a> to choose tools and grouping.</p>\n',
+		headings: [
+			{
+				id: 'find-and-replace',
+				label: 'Find and replace',
+			},
+			{
+				id: 'undo-and-redo',
+				label: 'Undo and redo',
+			},
+			{
+				id: 'word-and-character-counts',
+				label: 'Word and character counts',
+			},
+			{
+				id: 'fullscreen',
+				label: 'Fullscreen',
+			},
+			{
+				id: 'keep-tools-available',
+				label: 'Keep tools available',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="find-undo-counts-and-workspace-tools">Find, undo, counts, and workspace tools</h1>\n',
+				id: 'find-undo-counts-and-workspace-tools',
+				kind: 'content',
+			},
+			{
+				html: '<p>These tools help writers work with larger documents. They change document state or editor presentation; your form value continues to be HTML.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="find-and-replace">Find and replace</h2>\n',
+				id: 'find-and-replace',
+				kind: 'content',
+			},
+			{
+				html: '<p>Open Find and replace, enter a search term, and use the match navigation controls to move between occurrences. Replace changes the current match; Replace all changes all applicable matches. Review the result and use Undo if needed. Searches are literal text, not user-supplied regular expressions.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="undo-and-redo">Undo and redo</h2>\n',
+				id: 'undo-and-redo',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use toolbar buttons or the platform undo/redo shortcuts. Text edits, formatting, inserted content, and committed table/media resizing participate in editing history. A resize drag is committed as one operation rather than a history entry for every pointer movement. Escape cancels an in-progress resize.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Loading a document or changing schema/security/extension configuration is different from an ordinary user edit. Schema-related reconfiguration revalidates content and resets history. Do not rely on Undo as a storage backup.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="word-and-character-counts">Word and character counts</h2>\n',
+				id: 'word-and-character-counts',
+				kind: 'content',
+			},
+			{
+				html: '<p>The editor displays document counts. Words are separated by whitespace; characters are counted as Unicode code points. Plain-text conversion includes captions and image alternative text. These counts are useful UI feedback, not a substitute for a server-side content limit.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="fullscreen">Fullscreen</h2>\n',
+				id: 'fullscreen',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use Fullscreen to expand the editing workspace. Background page scrolling is contained while the editor is fullscreen, and restored when it closes. This is an editor layout mode, not a request to put the entire browser into its native fullscreen API.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="keep-tools-available">Keep tools available</h2>\n',
+				id: 'keep-tools-available',
+				kind: 'content',
+			},
+			{
+				code: "import type { EditraConfig } from 'ngx-editra';\n\nexport const config: EditraConfig = {\n\ttoolbar: { sticky: true, stickyOffset: 64, floating: true },\n\tminHeight: 280,\n\tmaxHeight: 640,\n};\n",
+				language: 'typescript',
+				html: '<pre><code class="language-typescript">import type { EditraConfig } from \'ngx-editra\';\n\nexport const config: EditraConfig = {\n\ttoolbar: { sticky: true, stickyOffset: 64, floating: true },\n\tminHeight: 280,\n\tmaxHeight: 640,\n};\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Sticky keeps the toolbar visible while scrolling. stickyOffset leaves room for an application header, in pixels. Floating enables a selection toolbar. The pin control lets writers change the sticky state. Use <a href="/guides/toolbar">toolbar configuration</a> to choose tools and grouping.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " find, undo, counts, and workspace tools\n\nthese tools help writers work with larger documents. they change document state or editor presentation; your form value continues to be html.\n\n find and replace\n\nopen find and replace, enter a search term, and use the match navigation controls to move between occurrences. replace changes the current match; replace all changes all applicable matches. review the result and use undo if needed. searches are literal text, not user-supplied regular expressions.\n\n undo and redo\n\nuse toolbar buttons or the platform undo/redo shortcuts. text edits, formatting, inserted content, and committed table/media resizing participate in editing history. a resize drag is committed as one operation rather than a history entry for every pointer movement. escape cancels an in-progress resize.\n\nloading a document or changing schema/security/extension configuration is different from an ordinary user edit. schema-related reconfiguration revalidates content and resets history. do not rely on undo as a storage backup.\n\n word and character counts\n\nthe editor displays document counts. words are separated by whitespace; characters are counted as unicode code points. plain-text conversion includes captions and image alternative text. these counts are useful ui feedback, not a substitute for a server-side content limit.\n\n fullscreen\n\nuse fullscreen to expand the editing workspace. background page scrolling is contained while the editor is fullscreen, and restored when it closes. this is an editor layout mode, not a request to put the entire browser into its native fullscreen api.\n\n keep tools available\n\ntypescript\nimport type { editraconfig } from 'ngx-editra';\n\nexport const config: editraconfig = {\n\ttoolbar: { sticky: true, stickyoffset: 64, floating: true },\n\tminheight: 280,\n\tmaxheight: 640,\n};\n\n\nsticky keeps the toolbar visible while scrolling. stickyoffset leaves room for an application header, in pixels. floating enables a selection toolbar. the pin control lets writers change the sticky state. use [toolbar configuration](toolbar.md) to choose tools and grouping.\n",
+	},
+	{
+		slug: 'markdown',
+		title: 'Markdown conversion',
+		group: 'Editor features',
+		source: 'docs/MARKDOWN.md',
+		summary:
+			"Markdown is useful for text-oriented workflows. It is an explicit conversion, not the editor's form value format: the form control always contains HTML.",
+		readingMinutes: 1,
+		html: '<h1 id="markdown-import-and-export">Markdown import and export</h1>\n<p>Markdown is useful for text-oriented workflows. It is an explicit conversion, not the editor\'s form value format: the form control always contains HTML.</p>\n<h2 id="convert-through-the-component">Convert through the component</h2>\n<pre><code class="language-html">&lt;ngx-editra #editor [formControl]=&quot;body&quot; /&gt;\n&lt;button type=&quot;button&quot; (click)=&quot;editor.setMarkdown(\'# Welcome\')&quot;&gt;Load Markdown&lt;/button&gt;\n&lt;pre&gt;{{ editor.getMarkdown() }}&lt;/pre&gt;\n</code></pre>\n<p>Import ReactiveFormsModule and NgxEditraComponent in the owning component. Use error handling around programmatic imports in production; setMarkdown can throw for invalid input. Component setters do not automatically emit a save event.</p>\n<h2 id="understand-conversion-limits">Understand conversion limits</h2>\n<p>CommonMark supports ordinary headings, paragraphs, lists, blockquotes, links, and code. It cannot represent every rich-text attribute. Font, colour, highlight, and size presentation may be lost. Tables and videos export as safe raw HTML, which the receiving Markdown renderer may reject or display differently.</p>\n<p>Raw HTML Markdown import and custom nodes are not a lossless round trip. Choose HTML or JSON when retaining all supported document presentation is required. See <a href="/guides/content">content formats</a>.</p>\n<h2 id="advanced-conversion-functions">Advanced conversion functions</h2>\n<p>The public importMarkdown(markdown, schema, config) and exportMarkdown(doc) functions operate on ProseMirror documents. They are useful when you own an engine integration. Most Angular applications should use the component methods so parsing and configuration stay aligned with the editor.</p>\n',
+		headings: [
+			{
+				id: 'convert-through-the-component',
+				label: 'Convert through the component',
+			},
+			{
+				id: 'understand-conversion-limits',
+				label: 'Understand conversion limits',
+			},
+			{
+				id: 'advanced-conversion-functions',
+				label: 'Advanced conversion functions',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="markdown-import-and-export">Markdown import and export</h1>\n',
+				id: 'markdown-import-and-export',
+				kind: 'content',
+			},
+			{
+				html: "<p>Markdown is useful for text-oriented workflows. It is an explicit conversion, not the editor's form value format: the form control always contains HTML.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="convert-through-the-component">Convert through the component</h2>\n',
+				id: 'convert-through-the-component',
+				kind: 'content',
+			},
+			{
+				code: '<ngx-editra #editor [formControl]="body" />\n<button type="button" (click)="editor.setMarkdown(\'# Welcome\')">Load Markdown</button>\n<pre>{{ editor.getMarkdown() }}</pre>\n',
+				language: 'html',
+				html: '<pre><code class="language-html">&lt;ngx-editra #editor [formControl]=&quot;body&quot; /&gt;\n&lt;button type=&quot;button&quot; (click)=&quot;editor.setMarkdown(\'# Welcome\')&quot;&gt;Load Markdown&lt;/button&gt;\n&lt;pre&gt;{{ editor.getMarkdown() }}&lt;/pre&gt;\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Import ReactiveFormsModule and NgxEditraComponent in the owning component. Use error handling around programmatic imports in production; setMarkdown can throw for invalid input. Component setters do not automatically emit a save event.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="understand-conversion-limits">Understand conversion limits</h2>\n',
+				id: 'understand-conversion-limits',
+				kind: 'content',
+			},
+			{
+				html: '<p>CommonMark supports ordinary headings, paragraphs, lists, blockquotes, links, and code. It cannot represent every rich-text attribute. Font, colour, highlight, and size presentation may be lost. Tables and videos export as safe raw HTML, which the receiving Markdown renderer may reject or display differently.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Raw HTML Markdown import and custom nodes are not a lossless round trip. Choose HTML or JSON when retaining all supported document presentation is required. See <a href="/guides/content">content formats</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="advanced-conversion-functions">Advanced conversion functions</h2>\n',
+				id: 'advanced-conversion-functions',
+				kind: 'content',
+			},
+			{
+				html: '<p>The public importMarkdown(markdown, schema, config) and exportMarkdown(doc) functions operate on ProseMirror documents. They are useful when you own an engine integration. Most Angular applications should use the component methods so parsing and configuration stay aligned with the editor.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: ' markdown import and export\n\nmarkdown is useful for text-oriented workflows. it is an explicit conversion, not the editor\'s form value format: the form control always contains html.\n\n convert through the component\n\nhtml\n<ngx-editra editor [formcontrol]="body" />\n<button type="button" (click)="editor.setmarkdown(\' welcome\')">load markdown</button>\n<pre>{{ editor.getmarkdown() }}</pre>\n\n\nimport reactiveformsmodule and ngxeditracomponent in the owning component. use error handling around programmatic imports in production; setmarkdown can throw for invalid input. component setters do not automatically emit a save event.\n\n understand conversion limits\n\ncommonmark supports ordinary headings, paragraphs, lists, blockquotes, links, and code. it cannot represent every rich-text attribute. font, colour, highlight, and size presentation may be lost. tables and videos export as safe raw html, which the receiving markdown renderer may reject or display differently.\n\nraw html markdown import and custom nodes are not a lossless round trip. choose html or json when retaining all supported document presentation is required. see [content formats](content.md).\n\n advanced conversion functions\n\nthe public importmarkdown(markdown, schema, config) and exportmarkdown(doc) functions operate on prosemirror documents. they are useful when you own an engine integration. most angular applications should use the component methods so parsing and configuration stay aligned with the editor.\n',
+	},
+	{
+		slug: 'accessibility',
+		title: 'Keyboard and accessibility',
+		group: 'Reference',
+		source: 'docs/ACCESSIBILITY.md',
+		summary:
+			'The editor provides labelled controls, keyboard navigation, focus indicators, and disabled/read-only states. Your application still needs accessible labels, validation messages, good colour contrast, and appropriate focus behavior.',
+		readingMinutes: 2,
+		html: '<h1 id="keyboard-use-and-accessibility">Keyboard use and accessibility</h1>\n<p>The editor provides labelled controls, keyboard navigation, focus indicators, and disabled/read-only states. Your application still needs accessible labels, validation messages, good colour contrast, and appropriate focus behavior.</p>\n<h2 id="useful-keyboard-actions">Useful keyboard actions</h2>\n<table>\n<thead>\n<tr>\n<th>Action</th>\n<th>Keyboard interaction</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Navigate toolbar buttons</td>\n<td>Arrow keys, Home, and End within enabled button groups</td>\n</tr>\n<tr>\n<td>Bold / italic / underline</td>\n<td>Ctrl or Command with B / I / U</td>\n</tr>\n<tr>\n<td>Undo / redo</td>\n<td>Platform undo/redo shortcuts or toolbar controls</td>\n</tr>\n<tr>\n<td>Line break</td>\n<td>Shift+Enter</td>\n</tr>\n<tr>\n<td>Close a dialog or palette</td>\n<td>Escape</td>\n</tr>\n<tr>\n<td>Navigate colour swatches</td>\n<td>Arrows, Home, End, then Enter to choose</td>\n</tr>\n<tr>\n<td>Resize a focused table column boundary</td>\n<td>Left / Right arrows</td>\n</tr>\n<tr>\n<td>Resize a focused table row boundary</td>\n<td>Up / Down arrows</td>\n</tr>\n<tr>\n<td>Fine resizing</td>\n<td>Shift+Arrow uses a smaller step</td>\n</tr>\n</tbody>\n</table>\n<p>Table resize boundaries are visually unobtrusive but show a focus indicator when reached by keyboard. A committed resize can be undone. Escape cancels a pointer preview. Readonly and disabled editors do not allow resizing.</p>\n<h2 id="application-responsibilities">Application responsibilities</h2>\n<p>Give the surrounding form section a meaningful heading, explain what the user should enter, and show validation errors near the editor. Keep toolbar text/background contrast sufficient in every supported theme. Test at narrow widths and with keyboard-only navigation.</p>\n<p>Content authors should use logical headings, descriptive links, and image alternative text. Avoid relying on colour alone. For long exported code or tables, keep scrollable regions keyboard-accessible in your application\'s output UI.</p>\n<h2 id="verification-limits">Verification limits</h2>\n<p>Automated axe checks and keyboard browser tests cover many interactions. They do not replace manual screen-reader, high-contrast, browser, and assistive-technology testing in your application. Custom dialog presenters and extensions must preserve focus containment, Escape behavior, and focus return. See <a href="/guides/toolbar">toolbar configuration</a>.</p>\n',
+		headings: [
+			{
+				id: 'useful-keyboard-actions',
+				label: 'Useful keyboard actions',
+			},
+			{
+				id: 'application-responsibilities',
+				label: 'Application responsibilities',
+			},
+			{
+				id: 'verification-limits',
+				label: 'Verification limits',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="keyboard-use-and-accessibility">Keyboard use and accessibility</h1>\n',
+				id: 'keyboard-use-and-accessibility',
+				kind: 'content',
+			},
+			{
+				html: '<p>The editor provides labelled controls, keyboard navigation, focus indicators, and disabled/read-only states. Your application still needs accessible labels, validation messages, good colour contrast, and appropriate focus behavior.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="useful-keyboard-actions">Useful keyboard actions</h2>\n',
+				id: 'useful-keyboard-actions',
+				kind: 'content',
+			},
+			{
+				html: '<table>\n<thead>\n<tr>\n<th>Action</th>\n<th>Keyboard interaction</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Navigate toolbar buttons</td>\n<td>Arrow keys, Home, and End within enabled button groups</td>\n</tr>\n<tr>\n<td>Bold / italic / underline</td>\n<td>Ctrl or Command with B / I / U</td>\n</tr>\n<tr>\n<td>Undo / redo</td>\n<td>Platform undo/redo shortcuts or toolbar controls</td>\n</tr>\n<tr>\n<td>Line break</td>\n<td>Shift+Enter</td>\n</tr>\n<tr>\n<td>Close a dialog or palette</td>\n<td>Escape</td>\n</tr>\n<tr>\n<td>Navigate colour swatches</td>\n<td>Arrows, Home, End, then Enter to choose</td>\n</tr>\n<tr>\n<td>Resize a focused table column boundary</td>\n<td>Left / Right arrows</td>\n</tr>\n<tr>\n<td>Resize a focused table row boundary</td>\n<td>Up / Down arrows</td>\n</tr>\n<tr>\n<td>Fine resizing</td>\n<td>Shift+Arrow uses a smaller step</td>\n</tr>\n</tbody>\n</table>\n',
+				id: '',
+				kind: 'table',
+			},
+			{
+				html: '<p>Table resize boundaries are visually unobtrusive but show a focus indicator when reached by keyboard. A committed resize can be undone. Escape cancels a pointer preview. Readonly and disabled editors do not allow resizing.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="application-responsibilities">Application responsibilities</h2>\n',
+				id: 'application-responsibilities',
+				kind: 'content',
+			},
+			{
+				html: '<p>Give the surrounding form section a meaningful heading, explain what the user should enter, and show validation errors near the editor. Keep toolbar text/background contrast sufficient in every supported theme. Test at narrow widths and with keyboard-only navigation.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: "<p>Content authors should use logical headings, descriptive links, and image alternative text. Avoid relying on colour alone. For long exported code or tables, keep scrollable regions keyboard-accessible in your application's output UI.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="verification-limits">Verification limits</h2>\n',
+				id: 'verification-limits',
+				kind: 'content',
+			},
+			{
+				html: '<p>Automated axe checks and keyboard browser tests cover many interactions. They do not replace manual screen-reader, high-contrast, browser, and assistive-technology testing in your application. Custom dialog presenters and extensions must preserve focus containment, Escape behavior, and focus return. See <a href="/guides/toolbar">toolbar configuration</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " keyboard use and accessibility\n\nthe editor provides labelled controls, keyboard navigation, focus indicators, and disabled/read-only states. your application still needs accessible labels, validation messages, good colour contrast, and appropriate focus behavior.\n\n useful keyboard actions\n\n| action                                 | keyboard interaction                                   |\n| -------------------------------------- | ------------------------------------------------------ |\n| navigate toolbar buttons               | arrow keys, home, and end within enabled button groups |\n| bold / italic / underline              | ctrl or command with b / i / u                         |\n| undo / redo                            | platform undo/redo shortcuts or toolbar controls       |\n| line break                             | shift+enter                                            |\n| close a dialog or palette              | escape                                                 |\n| navigate colour swatches               | arrows, home, end, then enter to choose                |\n| resize a focused table column boundary | left / right arrows                                    |\n| resize a focused table row boundary    | up / down arrows                                       |\n| fine resizing                          | shift+arrow uses a smaller step                        |\n\ntable resize boundaries are visually unobtrusive but show a focus indicator when reached by keyboard. a committed resize can be undone. escape cancels a pointer preview. readonly and disabled editors do not allow resizing.\n\n application responsibilities\n\ngive the surrounding form section a meaningful heading, explain what the user should enter, and show validation errors near the editor. keep toolbar text/background contrast sufficient in every supported theme. test at narrow widths and with keyboard-only navigation.\n\ncontent authors should use logical headings, descriptive links, and image alternative text. avoid relying on colour alone. for long exported code or tables, keep scrollable regions keyboard-accessible in your application's output ui.\n\n verification limits\n\nautomated axe checks and keyboard browser tests cover many interactions. they do not replace manual screen-reader, high-contrast, browser, and assistive-technology testing in your application. custom dialog presenters and extensions must preserve focus containment, escape behavior, and focus return. see [toolbar configuration](toolbar.md).\n",
+	},
+	{
+		slug: 'troubleshooting',
+		title: 'Troubleshooting',
+		group: 'Reference',
+		source: 'docs/TROUBLESHOOTING.md',
+		summary:
+			'Start with the symptom below. The live example can help separate application integration issues from editor behavior.',
+		readingMinutes: 3,
+		html: '<h1 id="troubleshooting">Troubleshooting</h1>\n<p>Start with the symptom below. The live example can help separate application integration issues from editor behavior.</p>\n<h2 id="installation-cannot-find-ngx-editra">Installation cannot find ngx-editra</h2>\n<p>After publication, install the alpha with <code>npm install ngx-editra@next</code>, or a stable release with <code>npm install ngx-editra</code>. A missing <code>latest</code> tag can mean only a prerelease has been published. Until publication, build with <code>npm run pack</code> and install the generated archive. Check the package name, version and tag before changing your registry configuration. See <a href="/guides/installation">installation</a>.</p>\n<h2 id="the-editor-is-not-recognized">The editor is not recognized</h2>\n<p>Import NgxEditraComponent into the standalone component or NgModule that owns the template. Import ReactiveFormsModule for formControl/formControlName, or FormsModule for ngModel. Import all public symbols from ngx-editra, without /core or /extensions suffixes.</p>\n<h2 id="the-editor-looks-unstyled">The editor looks unstyled</h2>\n<p>Editor and viewer components include their default styles automatically. Confirm you are using the updated package and restart the application build after upgrading. Check for application CSS overriding <code>ngx-editra</code>, <code>.ProseMirror</code>, or generic buttons. If Content Security Policy blocks Angular\'s style elements, configure Angular\'s style nonce for your application\'s CSP. A custom container using only the HTML pipe still needs the optional content stylesheet; see <a href="/guides/theming">theming</a>.</p>\n<h2 id="required-validation-accepts-an-empty-editor">Required validation accepts an empty editor</h2>\n<p>The HTML string <code>&lt;p&gt;&lt;/p&gt;</code> is not an empty string. Set <code>[required]=&quot;true&quot;</code> on the editor to enable semantic empty-document validation. Show the form error after touch or submit. See <a href="/guides/angular-forms">Forms</a>.</p>\n<h2 id="an-image-or-video-will-not-load">An image or video will not load</h2>\n<p>Use an absolute public HTTPS URL. Files, base64 data, authenticated local paths, and arbitrary iframe markup are unsupported. Check the browser network panel, application CSP, and the media host\'s embedding policy. Syntax validation cannot guarantee that a provider allows playback. There is no file upload adapter in the library.</p>\n<h2 id="media-stops-resizing-after-adding-an-extension">Media stops resizing after adding an extension</h2>\n<p>An explicit config.extensions list replaces the default extension list. Include imageExtension() and videoExtension() alongside custom extensions when you want their interactive media node views. See <a href="/guides/plugins">extensions</a>.</p>\n<h2 id="saved-content-loses-styles-or-embeds">Saved content loses styles or embeds</h2>\n<p>Use NgxEditraViewerComponent or the validated HTML pipe with the same configuration as the editor. Plain Angular innerHTML may strip presentation or players. A change to enabled schema features or URL policy can also remove content on normalization. Do not bypass security validation on raw HTML.</p>\n<h2 id="changing-configuration-has-no-effect">Changing configuration has no effect</h2>\n<p>Replace the configuration object rather than mutating nested properties. For example, assign <code>{ ...config, theme: \'dark\' }</code>. The config input replaces application defaults; it is not a deep merge of your previous config. Schema-related changes revalidate content and reset history.</p>\n<h2 id="a-code-copy-button-fails">A code copy button fails</h2>\n<p>Use HTTPS or localhost and allow clipboard access. Browsers can deny permission; select and copy the text manually when unavailable. Copy controls are not stored inside the saved HTML.</p>\n<h2 id="server-rendering-reports-document-window-errors">Server rendering reports document/window errors</h2>\n<p>Check custom plugins, serializers, and application code for browser-global access during import or server execution. Initialize browser-only behavior after rendering and clean it up on teardown. See <a href="/guides/ssr">SSR</a>.</p>\n<h2 id="the-playground-cannot-resolve-the-library">The playground cannot resolve the library</h2>\n<p>Run npm ci with the repository\'s Node/npm versions, then npm start. The start script builds the package first. Use npm run watch in a second terminal for ongoing library edits. npm run build assembles documentation and release assets; bare ng build and watch compile library code/local styles only.</p>\n',
+		headings: [
+			{
+				id: 'installation-cannot-find-ngx-editra',
+				label: 'Installation cannot find ngx-editra',
+			},
+			{
+				id: 'the-editor-is-not-recognized',
+				label: 'The editor is not recognized',
+			},
+			{
+				id: 'the-editor-looks-unstyled',
+				label: 'The editor looks unstyled',
+			},
+			{
+				id: 'required-validation-accepts-an-empty-editor',
+				label: 'Required validation accepts an empty editor',
+			},
+			{
+				id: 'an-image-or-video-will-not-load',
+				label: 'An image or video will not load',
+			},
+			{
+				id: 'media-stops-resizing-after-adding-an-extension',
+				label: 'Media stops resizing after adding an extension',
+			},
+			{
+				id: 'saved-content-loses-styles-or-embeds',
+				label: 'Saved content loses styles or embeds',
+			},
+			{
+				id: 'changing-configuration-has-no-effect',
+				label: 'Changing configuration has no effect',
+			},
+			{
+				id: 'a-code-copy-button-fails',
+				label: 'A code copy button fails',
+			},
+			{
+				id: 'server-rendering-reports-document-window-errors',
+				label: 'Server rendering reports document/window errors',
+			},
+			{
+				id: 'the-playground-cannot-resolve-the-library',
+				label: 'The playground cannot resolve the library',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="troubleshooting">Troubleshooting</h1>\n',
+				id: 'troubleshooting',
+				kind: 'content',
+			},
+			{
+				html: '<p>Start with the symptom below. The live example can help separate application integration issues from editor behavior.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="installation-cannot-find-ngx-editra">Installation cannot find ngx-editra</h2>\n',
+				id: 'installation-cannot-find-ngx-editra',
+				kind: 'content',
+			},
+			{
+				html: '<p>After publication, install the alpha with <code>npm install ngx-editra@next</code>, or a stable release with <code>npm install ngx-editra</code>. A missing <code>latest</code> tag can mean only a prerelease has been published. Until publication, build with <code>npm run pack</code> and install the generated archive. Check the package name, version and tag before changing your registry configuration. See <a href="/guides/installation">installation</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="the-editor-is-not-recognized">The editor is not recognized</h2>\n',
+				id: 'the-editor-is-not-recognized',
+				kind: 'content',
+			},
+			{
+				html: '<p>Import NgxEditraComponent into the standalone component or NgModule that owns the template. Import ReactiveFormsModule for formControl/formControlName, or FormsModule for ngModel. Import all public symbols from ngx-editra, without /core or /extensions suffixes.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="the-editor-looks-unstyled">The editor looks unstyled</h2>\n',
+				id: 'the-editor-looks-unstyled',
+				kind: 'content',
+			},
+			{
+				html: "<p>Editor and viewer components include their default styles automatically. Confirm you are using the updated package and restart the application build after upgrading. Check for application CSS overriding <code>ngx-editra</code>, <code>.ProseMirror</code>, or generic buttons. If Content Security Policy blocks Angular's style elements, configure Angular's style nonce for your application's CSP. A custom container using only the HTML pipe still needs the optional content stylesheet; see <a href=\"/guides/theming\">theming</a>.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="required-validation-accepts-an-empty-editor">Required validation accepts an empty editor</h2>\n',
+				id: 'required-validation-accepts-an-empty-editor',
+				kind: 'content',
+			},
+			{
+				html: '<p>The HTML string <code>&lt;p&gt;&lt;/p&gt;</code> is not an empty string. Set <code>[required]=&quot;true&quot;</code> on the editor to enable semantic empty-document validation. Show the form error after touch or submit. See <a href="/guides/angular-forms">Forms</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="an-image-or-video-will-not-load">An image or video will not load</h2>\n',
+				id: 'an-image-or-video-will-not-load',
+				kind: 'content',
+			},
+			{
+				html: "<p>Use an absolute public HTTPS URL. Files, base64 data, authenticated local paths, and arbitrary iframe markup are unsupported. Check the browser network panel, application CSP, and the media host's embedding policy. Syntax validation cannot guarantee that a provider allows playback. There is no file upload adapter in the library.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="media-stops-resizing-after-adding-an-extension">Media stops resizing after adding an extension</h2>\n',
+				id: 'media-stops-resizing-after-adding-an-extension',
+				kind: 'content',
+			},
+			{
+				html: '<p>An explicit config.extensions list replaces the default extension list. Include imageExtension() and videoExtension() alongside custom extensions when you want their interactive media node views. See <a href="/guides/plugins">extensions</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="saved-content-loses-styles-or-embeds">Saved content loses styles or embeds</h2>\n',
+				id: 'saved-content-loses-styles-or-embeds',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use NgxEditraViewerComponent or the validated HTML pipe with the same configuration as the editor. Plain Angular innerHTML may strip presentation or players. A change to enabled schema features or URL policy can also remove content on normalization. Do not bypass security validation on raw HTML.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="changing-configuration-has-no-effect">Changing configuration has no effect</h2>\n',
+				id: 'changing-configuration-has-no-effect',
+				kind: 'content',
+			},
+			{
+				html: "<p>Replace the configuration object rather than mutating nested properties. For example, assign <code>{ ...config, theme: 'dark' }</code>. The config input replaces application defaults; it is not a deep merge of your previous config. Schema-related changes revalidate content and reset history.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="a-code-copy-button-fails">A code copy button fails</h2>\n',
+				id: 'a-code-copy-button-fails',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use HTTPS or localhost and allow clipboard access. Browsers can deny permission; select and copy the text manually when unavailable. Copy controls are not stored inside the saved HTML.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="server-rendering-reports-document-window-errors">Server rendering reports document/window errors</h2>\n',
+				id: 'server-rendering-reports-document-window-errors',
+				kind: 'content',
+			},
+			{
+				html: '<p>Check custom plugins, serializers, and application code for browser-global access during import or server execution. Initialize browser-only behavior after rendering and clean it up on teardown. See <a href="/guides/ssr">SSR</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="the-playground-cannot-resolve-the-library">The playground cannot resolve the library</h2>\n',
+				id: 'the-playground-cannot-resolve-the-library',
+				kind: 'content',
+			},
+			{
+				html: "<p>Run npm ci with the repository's Node/npm versions, then npm start. The start script builds the package first. Use npm run watch in a second terminal for ongoing library edits. npm run build assembles documentation and release assets; bare ng build and watch compile library code/local styles only.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " troubleshooting\n\nstart with the symptom below. the live example can help separate application integration issues from editor behavior.\n\n installation cannot find ngx-editra\n\nafter publication, install the alpha with npm install ngx-editra@next, or a stable release with npm install ngx-editra. a missing latest tag can mean only a prerelease has been published. until publication, build with npm run pack and install the generated archive. check the package name, version and tag before changing your registry configuration. see [installation](installation.md).\n\n the editor is not recognized\n\nimport ngxeditracomponent into the standalone component or ngmodule that owns the template. import reactiveformsmodule for formcontrol/formcontrolname, or formsmodule for ngmodel. import all public symbols from ngx-editra, without /core or /extensions suffixes.\n\n the editor looks unstyled\n\neditor and viewer components include their default styles automatically. confirm you are using the updated package and restart the application build after upgrading. check for application css overriding ngx-editra, .prosemirror, or generic buttons. if content security policy blocks angular's style elements, configure angular's style nonce for your application's csp. a custom container using only the html pipe still needs the optional content stylesheet; see [theming](theming.md).\n\n required validation accepts an empty editor\n\nthe html string <p></p> is not an empty string. set [required]=\"true\" on the editor to enable semantic empty-document validation. show the form error after touch or submit. see [forms](angular_forms.md).\n\n an image or video will not load\n\nuse an absolute public https url. files, base64 data, authenticated local paths, and arbitrary iframe markup are unsupported. check the browser network panel, application csp, and the media host's embedding policy. syntax validation cannot guarantee that a provider allows playback. there is no file upload adapter in the library.\n\n media stops resizing after adding an extension\n\nan explicit config.extensions list replaces the default extension list. include imageextension() and videoextension() alongside custom extensions when you want their interactive media node views. see [extensions](plugins.md).\n\n saved content loses styles or embeds\n\nuse ngxeditraviewercomponent or the validated html pipe with the same configuration as the editor. plain angular innerhtml may strip presentation or players. a change to enabled schema features or url policy can also remove content on normalization. do not bypass security validation on raw html.\n\n changing configuration has no effect\n\nreplace the configuration object rather than mutating nested properties. for example, assign { ...config, theme: 'dark' }. the config input replaces application defaults; it is not a deep merge of your previous config. schema-related changes revalidate content and reset history.\n\n a code copy button fails\n\nuse https or localhost and allow clipboard access. browsers can deny permission; select and copy the text manually when unavailable. copy controls are not stored inside the saved html.\n\n server rendering reports document/window errors\n\ncheck custom plugins, serializers, and application code for browser-global access during import or server execution. initialize browser-only behavior after rendering and clean it up on teardown. see [ssr](ssr.md).\n\n the playground cannot resolve the library\n\nrun npm ci with the repository's node/npm versions, then npm start. the start script builds the package first. use npm run watch in a second terminal for ongoing library edits. npm run build assembles documentation and release assets; bare ng build and watch compile library code/local styles only.\n",
+	},
+	{
+		slug: 'plugins',
+		title: 'Extensions',
+		group: 'Reference',
+		source: 'docs/PLUGINS.md',
+		summary:
+			'An extension adds trusted application behavior to the editor. Most applications can use built-in tools without creating one. Start with a command-only extension before adding schema nodes or browser node views.',
+		readingMinutes: 2,
+		html: "<h1 id=\"plugins-and-extensions\">Plugins and extensions</h1>\n<p>An extension adds trusted application behavior to the editor. Most applications can use built-in tools without creating one. Start with a command-only extension before adding schema nodes or browser node views.</p>\n<h2 id=\"add-a-command-and-toolbar-button\">Add a command and toolbar button</h2>\n<ol>\n<li>Define an EditraExtension with a unique id.</li>\n<li>Return the custom command from commands and point a toolbar item at that command name.</li>\n<li>Pass the extension through config.extensions, including the default media extensions if you still want them.</li>\n</ol>\n<p><code>EditraExtension</code> supports unique IDs, explicit <code>requires</code>, schema nodes/marks, commands,\nkeyboard shortcuts, ProseMirror plugins, node views, toolbar items and browser lifecycle callbacks.\nDependencies are ordered before dependants while preserving deterministic registration order.\nDuplicate IDs/schema names/commands/shortcuts/node views and missing/cyclic dependencies throw.</p>\n<pre><code class=\"language-typescript\">import type { EditraExtension } from 'ngx-editra';\nimport { imageExtension, videoExtension } from 'ngx-editra';\nexport const greeting: EditraExtension = {\n\tid: 'greeting',\n\tcommands: () =&gt; ({\n\t\tgreeting: (state, dispatch) =&gt; {\n\t\t\tif (dispatch) dispatch(state.tr.insertText('Hello from an extension'));\n\t\t\treturn true;\n\t\t},\n\t}),\n\ttoolbar: [{ id: 'greeting', label: 'Insert greeting', command: 'greeting' }],\n};\nexport const extensions = [imageExtension(), videoExtension(), greeting];\n</code></pre>\n<p>On your component, use <code>config: EditraConfig = { extensions };</code> and bind <code>[config]=&quot;config&quot;</code>. Import the EditraConfig type from ngx-editra. The greeting example inserts text at the current selection and participates in document transactions/history.</p>\n<h2 id=\"schema-ordering-and-cleanup\">Schema, ordering, and cleanup</h2>\n<p>Pass this list through config.extensions. Explicit lists replace default media node views.\nDispose extension resources in onDestroy; node views must implement destroy. Lifecycle callbacks\nare browser-only. Schema functions/serializers must be SSR-safe and extension code is trusted.\nBuilt-in HTML import handles the documented schema; custom nodes need their own import policy.\nCustom nodes can implement the SSR-safe <code>parseElement</code> hook, which receives a typed tag,\nattribute map, child nodes and text. Core tags and blocked executable subtrees take precedence.\nJSON imports pass through HTML normalization; a custom node needs both a serializer and a\nparseElement importer to round trip. A custom-node round-trip regression test covers this contract.</p>\n",
+		headings: [
+			{
+				id: 'add-a-command-and-toolbar-button',
+				label: 'Add a command and toolbar button',
+			},
+			{
+				id: 'schema-ordering-and-cleanup',
+				label: 'Schema, ordering, and cleanup',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="plugins-and-extensions">Plugins and extensions</h1>\n',
+				id: 'plugins-and-extensions',
+				kind: 'content',
+			},
+			{
+				html: '<p>An extension adds trusted application behavior to the editor. Most applications can use built-in tools without creating one. Start with a command-only extension before adding schema nodes or browser node views.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="add-a-command-and-toolbar-button">Add a command and toolbar button</h2>\n',
+				id: 'add-a-command-and-toolbar-button',
+				kind: 'content',
+			},
+			{
+				html: '<ol>\n<li>Define an EditraExtension with a unique id.</li>\n<li>Return the custom command from commands and point a toolbar item at that command name.</li>\n<li>Pass the extension through config.extensions, including the default media extensions if you still want them.</li>\n</ol>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p><code>EditraExtension</code> supports unique IDs, explicit <code>requires</code>, schema nodes/marks, commands,\nkeyboard shortcuts, ProseMirror plugins, node views, toolbar items and browser lifecycle callbacks.\nDependencies are ordered before dependants while preserving deterministic registration order.\nDuplicate IDs/schema names/commands/shortcuts/node views and missing/cyclic dependencies throw.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: "import type { EditraExtension } from 'ngx-editra';\nimport { imageExtension, videoExtension } from 'ngx-editra';\nexport const greeting: EditraExtension = {\n\tid: 'greeting',\n\tcommands: () => ({\n\t\tgreeting: (state, dispatch) => {\n\t\t\tif (dispatch) dispatch(state.tr.insertText('Hello from an extension'));\n\t\t\treturn true;\n\t\t},\n\t}),\n\ttoolbar: [{ id: 'greeting', label: 'Insert greeting', command: 'greeting' }],\n};\nexport const extensions = [imageExtension(), videoExtension(), greeting];\n",
+				language: 'typescript',
+				html: "<pre><code class=\"language-typescript\">import type { EditraExtension } from 'ngx-editra';\nimport { imageExtension, videoExtension } from 'ngx-editra';\nexport const greeting: EditraExtension = {\n\tid: 'greeting',\n\tcommands: () =&gt; ({\n\t\tgreeting: (state, dispatch) =&gt; {\n\t\t\tif (dispatch) dispatch(state.tr.insertText('Hello from an extension'));\n\t\t\treturn true;\n\t\t},\n\t}),\n\ttoolbar: [{ id: 'greeting', label: 'Insert greeting', command: 'greeting' }],\n};\nexport const extensions = [imageExtension(), videoExtension(), greeting];\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>On your component, use <code>config: EditraConfig = { extensions };</code> and bind <code>[config]=&quot;config&quot;</code>. Import the EditraConfig type from ngx-editra. The greeting example inserts text at the current selection and participates in document transactions/history.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="schema-ordering-and-cleanup">Schema, ordering, and cleanup</h2>\n',
+				id: 'schema-ordering-and-cleanup',
+				kind: 'content',
+			},
+			{
+				html: '<p>Pass this list through config.extensions. Explicit lists replace default media node views.\nDispose extension resources in onDestroy; node views must implement destroy. Lifecycle callbacks\nare browser-only. Schema functions/serializers must be SSR-safe and extension code is trusted.\nBuilt-in HTML import handles the documented schema; custom nodes need their own import policy.\nCustom nodes can implement the SSR-safe <code>parseElement</code> hook, which receives a typed tag,\nattribute map, child nodes and text. Core tags and blocked executable subtrees take precedence.\nJSON imports pass through HTML normalization; a custom node needs both a serializer and a\nparseElement importer to round trip. A custom-node round-trip regression test covers this contract.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " plugins and extensions\n\nan extension adds trusted application behavior to the editor. most applications can use built-in tools without creating one. start with a command-only extension before adding schema nodes or browser node views.\n\n add a command and toolbar button\n\n1. define an editraextension with a unique id.\n2. return the custom command from commands and point a toolbar item at that command name.\n3. pass the extension through config.extensions, including the default media extensions if you still want them.\n\neditraextension supports unique ids, explicit requires, schema nodes/marks, commands,\nkeyboard shortcuts, prosemirror plugins, node views, toolbar items and browser lifecycle callbacks.\ndependencies are ordered before dependants while preserving deterministic registration order.\nduplicate ids/schema names/commands/shortcuts/node views and missing/cyclic dependencies throw.\n\ntypescript\nimport type { editraextension } from 'ngx-editra';\nimport { imageextension, videoextension } from 'ngx-editra';\nexport const greeting: editraextension = {\n\tid: 'greeting',\n\tcommands: () => ({\n\t\tgreeting: (state, dispatch) => {\n\t\t\tif (dispatch) dispatch(state.tr.inserttext('hello from an extension'));\n\t\t\treturn true;\n\t\t},\n\t}),\n\ttoolbar: [{ id: 'greeting', label: 'insert greeting', command: 'greeting' }],\n};\nexport const extensions = [imageextension(), videoextension(), greeting];\n\n\non your component, use config: editraconfig = { extensions }; and bind [config]=\"config\". import the editraconfig type from ngx-editra. the greeting example inserts text at the current selection and participates in document transactions/history.\n\n schema, ordering, and cleanup\n\npass this list through config.extensions. explicit lists replace default media node views.\ndispose extension resources in ondestroy; node views must implement destroy. lifecycle callbacks\nare browser-only. schema functions/serializers must be ssr-safe and extension code is trusted.\nbuilt-in html import handles the documented schema; custom nodes need their own import policy.\ncustom nodes can implement the ssr-safe parseelement hook, which receives a typed tag,\nattribute map, child nodes and text. core tags and blocked executable subtrees take precedence.\njson imports pass through html normalization; a custom node needs both a serializer and a\nparseelement importer to round trip. a custom-node round-trip regression test covers this contract.\n",
+	},
+	{
+		slug: 'api',
+		title: 'Public API',
+		group: 'Reference',
+		source: 'docs/API.md',
+		summary:
+			'All public symbols are imported from ngx-editra. Replace previous /core and/extensions import sources with ngx-editra; internal implementation paths are unsupported.',
+		readingMinutes: 4,
+		html: '<h1 id="public-api">Public API</h1>\n<h2 id="single-package-entry-point">Single package entry point</h2>\n<p>All public symbols are imported from <code>ngx-editra</code>. Replace previous <code>/core</code> and\n<code>/extensions</code> import sources with <code>ngx-editra</code>; internal implementation paths are unsupported.</p>\n<p>New to the component? Start with <a href="/guides/quick-start">Quick start</a>. Use <a href="/guides/events">events</a> for typed event handlers, <a href="/guides/content">content and saving</a> for conversion/persistence, and <a href="/guides/viewer">the viewer</a> for reading surfaces. This page is the compact reference rather than a setup tutorial.</p>\n<p><code>ngx-editra</code>: NgxEditraComponent, EditraToolbarComponent, EditraIconComponent, EditraColourPickerComponent,\neditraIconNames, EditraIconName, defaultToolbar, EDITRA_CONFIG,\nprovideEditra, EDITRA_DIALOG_PRESENTER, provideEditraDialogs and typed configuration/change/document/\nextension/provider/dialog presentation exports.</p>\n<p>Core exports from <code>ngx-editra</code>: EditraEngine, createSchema, createCommands, normalizeConfig, orderExtensions,\nparseHTML, serializeHTML, parseJSON, documentJSON, plainText, safeUrl, validateUrl, resolveVideo,\nsafeColor, safeFont, dimension, alignment, markActive/markStatus, cellBackground,\ntableAttribute, setParagraphAttribute, automaticLinks and typed contracts.</p>\n<p>Table dimension helpers: resizeTableRow, resizeTableColumns, setTableWidthPercent,\nfitTableToPage, distributeTableColumns and resetTableRowHeights. Resize helpers return validated\ntransactions or null; commands use the usual ProseMirror Command signature.</p>\n<p>Extension exports from <code>ngx-editra</code>: imageExtension, videoExtension, importMarkdown, exportMarkdown.</p>\n<h2 id="media-document-attributes">Media document attributes</h2>\n<p>Image/video nodes use <code>width: 0</code> and <code>height: 0</code> for automatic sizing, or positive pixel\ndimensions for custom sizing. <code>fullWidth: true</code> fills the available content width responsively.\n<code>align</code> supports left/center/right positioning, and <code>aspect</code> controls proportional interactive\nresizing. A resize saves custom dimensions and sets <code>fullWidth</code> to false. These are document\nattributes, rather than global editor configuration options.</p>\n<h2 id="component-inputs">Component inputs</h2>\n<table>\n<thead>\n<tr>\n<th>Input</th>\n<th>Type</th>\n<th>Purpose</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>config</code></td>\n<td><code>EditraConfig</code></td>\n<td>Immutable editor configuration.</td>\n</tr>\n<tr>\n<td><code>readonly</code></td>\n<td><code>boolean</code></td>\n<td>Display content without editing.</td>\n</tr>\n<tr>\n<td><code>required</code></td>\n<td><code>boolean</code></td>\n<td>Enable semantic empty-document validation.</td>\n</tr>\n</tbody>\n</table>\n<p>Forms disabled state is set through the form API.</p>\n<h2 id="component-outputs">Component outputs</h2>\n<p>Outputs: contentChange ({html, document, text}), selectionChange ({from,to}), editorFocus,\neditorBlur, editorReady, editorDestroyed, editorError (Error), dirtyChange (boolean),\ntransactionState ({docChanged, selectionChanged, from, to, dirty}).\nSelection-only transactions never emit full contentChange.</p>\n<h2 id="instance-methods">Instance methods</h2>\n<table>\n<thead>\n<tr>\n<th>Method</th>\n<th>Return type</th>\n<th>Purpose</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>getHTML()</code></td>\n<td><code>string</code></td>\n<td>Export canonical HTML.</td>\n</tr>\n<tr>\n<td><code>getText()</code></td>\n<td><code>string</code></td>\n<td>Export plain text including captions and image alt text.</td>\n</tr>\n<tr>\n<td><code>getJSON()</code></td>\n<td><code>EditraDocument</code></td>\n<td>Export the document model.</td>\n</tr>\n<tr>\n<td><code>getMarkdown()</code></td>\n<td><code>string</code></td>\n<td>Export Markdown under the documented conversion policy.</td>\n</tr>\n<tr>\n<td><code>setHTML(html: string)</code></td>\n<td><code>void</code></td>\n<td>Replace content using the HTML policy.</td>\n</tr>\n<tr>\n<td><code>setJSON(value: EditraDocument)</code></td>\n<td><code>void</code></td>\n<td>Validate and replace document content.</td>\n</tr>\n<tr>\n<td><code>setMarkdown(value: string)</code></td>\n<td><code>void</code></td>\n<td>Import Markdown.</td>\n</tr>\n<tr>\n<td><code>clear()</code></td>\n<td><code>void</code></td>\n<td>Clear content with editing history.</td>\n</tr>\n<tr>\n<td><code>focus()</code> / <code>blur()</code></td>\n<td><code>void</code></td>\n<td>Control browser editing focus.</td>\n</tr>\n<tr>\n<td><code>isEmpty()</code></td>\n<td><code>boolean</code></td>\n<td>Check semantic document emptiness.</td>\n</tr>\n<tr>\n<td><code>isDirty()</code></td>\n<td><code>boolean</code></td>\n<td>Check editor dirty state.</td>\n</tr>\n</tbody>\n</table>\n<p>Programmatic setters silently synchronize an attached form\ncontrol without marking it dirty or emitting contentChange/valueChanges.\nclear is a user-style transaction with history. DOM focus/blur are no-ops before browser activation.\nState/conversion getters and setters work during SSR. Plain text includes captions and image alt text;\ncounts use whitespace-separated words and Unicode code points, including block separators.\nsetJSON/setMarkdown can throw on invalid input;\nwriteValue/setHTML report parsing failures through editorError without destroying existing content.</p>\n<h2 id="core-engine">Core engine</h2>\n<p>Core EditraEngine is an imperative framework adapter API with a read-only EditorState getter and apply(Transaction).\nDo not mutate the Angular component\'s private engine. Use documented methods or extensions.</p>\n<p>For an advanced integration that owns its engine, the public engine can be used like this in an Angular application:</p>\n<pre><code class="language-typescript">import { EditraEngine } from \'ngx-editra\';\n\nconst engine = new EditraEngine({}, \'&lt;p&gt;Hello&lt;/p&gt;\');\nengine.apply(engine.state.tr.insertText(\' world\', 6));\nconst html = engine.getHTML();\nconsole.log(html);\n</code></pre>\n<p>This is a separate document engine, not a way to access the Angular component\'s private state. Most applications should use the component and Angular Forms. The published package includes Angular integration, so direct Node.js scripts need the appropriate Angular compilation/runtime setup.</p>\n<h2 id="markdown-conversion-policy">Markdown conversion policy</h2>\n<p>CommonMark conversion supports its ordinary blocks/marks. Tables/videos export as safe raw HTML;\ncolour/font/size marks lose presentation. Raw HTML Markdown imports and custom nodes are not lossless.</p>\n',
+		headings: [
+			{
+				id: 'single-package-entry-point',
+				label: 'Single package entry point',
+			},
+			{
+				id: 'media-document-attributes',
+				label: 'Media document attributes',
+			},
+			{
+				id: 'component-inputs',
+				label: 'Component inputs',
+			},
+			{
+				id: 'component-outputs',
+				label: 'Component outputs',
+			},
+			{
+				id: 'instance-methods',
+				label: 'Instance methods',
+			},
+			{
+				id: 'core-engine',
+				label: 'Core engine',
+			},
+			{
+				id: 'markdown-conversion-policy',
+				label: 'Markdown conversion policy',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="public-api">Public API</h1>\n',
+				id: 'public-api',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="single-package-entry-point">Single package entry point</h2>\n',
+				id: 'single-package-entry-point',
+				kind: 'content',
+			},
+			{
+				html: '<p>All public symbols are imported from <code>ngx-editra</code>. Replace previous <code>/core</code> and\n<code>/extensions</code> import sources with <code>ngx-editra</code>; internal implementation paths are unsupported.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>New to the component? Start with <a href="/guides/quick-start">Quick start</a>. Use <a href="/guides/events">events</a> for typed event handlers, <a href="/guides/content">content and saving</a> for conversion/persistence, and <a href="/guides/viewer">the viewer</a> for reading surfaces. This page is the compact reference rather than a setup tutorial.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p><code>ngx-editra</code>: NgxEditraComponent, EditraToolbarComponent, EditraIconComponent, EditraColourPickerComponent,\neditraIconNames, EditraIconName, defaultToolbar, EDITRA_CONFIG,\nprovideEditra, EDITRA_DIALOG_PRESENTER, provideEditraDialogs and typed configuration/change/document/\nextension/provider/dialog presentation exports.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Core exports from <code>ngx-editra</code>: EditraEngine, createSchema, createCommands, normalizeConfig, orderExtensions,\nparseHTML, serializeHTML, parseJSON, documentJSON, plainText, safeUrl, validateUrl, resolveVideo,\nsafeColor, safeFont, dimension, alignment, markActive/markStatus, cellBackground,\ntableAttribute, setParagraphAttribute, automaticLinks and typed contracts.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Table dimension helpers: resizeTableRow, resizeTableColumns, setTableWidthPercent,\nfitTableToPage, distributeTableColumns and resetTableRowHeights. Resize helpers return validated\ntransactions or null; commands use the usual ProseMirror Command signature.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Extension exports from <code>ngx-editra</code>: imageExtension, videoExtension, importMarkdown, exportMarkdown.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="media-document-attributes">Media document attributes</h2>\n',
+				id: 'media-document-attributes',
+				kind: 'content',
+			},
+			{
+				html: '<p>Image/video nodes use <code>width: 0</code> and <code>height: 0</code> for automatic sizing, or positive pixel\ndimensions for custom sizing. <code>fullWidth: true</code> fills the available content width responsively.\n<code>align</code> supports left/center/right positioning, and <code>aspect</code> controls proportional interactive\nresizing. A resize saves custom dimensions and sets <code>fullWidth</code> to false. These are document\nattributes, rather than global editor configuration options.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="component-inputs">Component inputs</h2>\n',
+				id: 'component-inputs',
+				kind: 'content',
+			},
+			{
+				html: '<table>\n<thead>\n<tr>\n<th>Input</th>\n<th>Type</th>\n<th>Purpose</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>config</code></td>\n<td><code>EditraConfig</code></td>\n<td>Immutable editor configuration.</td>\n</tr>\n<tr>\n<td><code>readonly</code></td>\n<td><code>boolean</code></td>\n<td>Display content without editing.</td>\n</tr>\n<tr>\n<td><code>required</code></td>\n<td><code>boolean</code></td>\n<td>Enable semantic empty-document validation.</td>\n</tr>\n</tbody>\n</table>\n',
+				id: '',
+				kind: 'table',
+			},
+			{
+				html: '<p>Forms disabled state is set through the form API.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="component-outputs">Component outputs</h2>\n',
+				id: 'component-outputs',
+				kind: 'content',
+			},
+			{
+				html: '<p>Outputs: contentChange ({html, document, text}), selectionChange ({from,to}), editorFocus,\neditorBlur, editorReady, editorDestroyed, editorError (Error), dirtyChange (boolean),\ntransactionState ({docChanged, selectionChanged, from, to, dirty}).\nSelection-only transactions never emit full contentChange.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="instance-methods">Instance methods</h2>\n',
+				id: 'instance-methods',
+				kind: 'content',
+			},
+			{
+				html: '<table>\n<thead>\n<tr>\n<th>Method</th>\n<th>Return type</th>\n<th>Purpose</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>getHTML()</code></td>\n<td><code>string</code></td>\n<td>Export canonical HTML.</td>\n</tr>\n<tr>\n<td><code>getText()</code></td>\n<td><code>string</code></td>\n<td>Export plain text including captions and image alt text.</td>\n</tr>\n<tr>\n<td><code>getJSON()</code></td>\n<td><code>EditraDocument</code></td>\n<td>Export the document model.</td>\n</tr>\n<tr>\n<td><code>getMarkdown()</code></td>\n<td><code>string</code></td>\n<td>Export Markdown under the documented conversion policy.</td>\n</tr>\n<tr>\n<td><code>setHTML(html: string)</code></td>\n<td><code>void</code></td>\n<td>Replace content using the HTML policy.</td>\n</tr>\n<tr>\n<td><code>setJSON(value: EditraDocument)</code></td>\n<td><code>void</code></td>\n<td>Validate and replace document content.</td>\n</tr>\n<tr>\n<td><code>setMarkdown(value: string)</code></td>\n<td><code>void</code></td>\n<td>Import Markdown.</td>\n</tr>\n<tr>\n<td><code>clear()</code></td>\n<td><code>void</code></td>\n<td>Clear content with editing history.</td>\n</tr>\n<tr>\n<td><code>focus()</code> / <code>blur()</code></td>\n<td><code>void</code></td>\n<td>Control browser editing focus.</td>\n</tr>\n<tr>\n<td><code>isEmpty()</code></td>\n<td><code>boolean</code></td>\n<td>Check semantic document emptiness.</td>\n</tr>\n<tr>\n<td><code>isDirty()</code></td>\n<td><code>boolean</code></td>\n<td>Check editor dirty state.</td>\n</tr>\n</tbody>\n</table>\n',
+				id: '',
+				kind: 'table',
+			},
+			{
+				html: '<p>Programmatic setters silently synchronize an attached form\ncontrol without marking it dirty or emitting contentChange/valueChanges.\nclear is a user-style transaction with history. DOM focus/blur are no-ops before browser activation.\nState/conversion getters and setters work during SSR. Plain text includes captions and image alt text;\ncounts use whitespace-separated words and Unicode code points, including block separators.\nsetJSON/setMarkdown can throw on invalid input;\nwriteValue/setHTML report parsing failures through editorError without destroying existing content.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="core-engine">Core engine</h2>\n',
+				id: 'core-engine',
+				kind: 'content',
+			},
+			{
+				html: "<p>Core EditraEngine is an imperative framework adapter API with a read-only EditorState getter and apply(Transaction).\nDo not mutate the Angular component's private engine. Use documented methods or extensions.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>For an advanced integration that owns its engine, the public engine can be used like this in an Angular application:</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: "import { EditraEngine } from 'ngx-editra';\n\nconst engine = new EditraEngine({}, '<p>Hello</p>');\nengine.apply(engine.state.tr.insertText(' world', 6));\nconst html = engine.getHTML();\nconsole.log(html);\n",
+				language: 'typescript',
+				html: "<pre><code class=\"language-typescript\">import { EditraEngine } from 'ngx-editra';\n\nconst engine = new EditraEngine({}, '&lt;p&gt;Hello&lt;/p&gt;');\nengine.apply(engine.state.tr.insertText(' world', 6));\nconst html = engine.getHTML();\nconsole.log(html);\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: "<p>This is a separate document engine, not a way to access the Angular component's private state. Most applications should use the component and Angular Forms. The published package includes Angular integration, so direct Node.js scripts need the appropriate Angular compilation/runtime setup.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="markdown-conversion-policy">Markdown conversion policy</h2>\n',
+				id: 'markdown-conversion-policy',
+				kind: 'content',
+			},
+			{
+				html: '<p>CommonMark conversion supports its ordinary blocks/marks. Tables/videos export as safe raw HTML;\ncolour/font/size marks lose presentation. Raw HTML Markdown imports and custom nodes are not lossless.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " public api\n\n single package entry point\n\nall public symbols are imported from ngx-editra. replace previous /core and\n/extensions import sources with ngx-editra; internal implementation paths are unsupported.\n\nnew to the component? start with [quick start](quick_start.md). use [events](events.md) for typed event handlers, [content and saving](content.md) for conversion/persistence, and [the viewer](viewer.md) for reading surfaces. this page is the compact reference rather than a setup tutorial.\n\nngx-editra: ngxeditracomponent, editratoolbarcomponent, editraiconcomponent, editracolourpickercomponent,\neditraiconnames, editraiconname, defaulttoolbar, editra_config,\nprovideeditra, editra_dialog_presenter, provideeditradialogs and typed configuration/change/document/\nextension/provider/dialog presentation exports.\n\ncore exports from ngx-editra: editraengine, createschema, createcommands, normalizeconfig, orderextensions,\nparsehtml, serializehtml, parsejson, documentjson, plaintext, safeurl, validateurl, resolvevideo,\nsafecolor, safefont, dimension, alignment, markactive/markstatus, cellbackground,\ntableattribute, setparagraphattribute, automaticlinks and typed contracts.\n\ntable dimension helpers: resizetablerow, resizetablecolumns, settablewidthpercent,\nfittabletopage, distributetablecolumns and resettablerowheights. resize helpers return validated\ntransactions or null; commands use the usual prosemirror command signature.\n\nextension exports from ngx-editra: imageextension, videoextension, importmarkdown, exportmarkdown.\n\n media document attributes\n\nimage/video nodes use width: 0 and height: 0 for automatic sizing, or positive pixel\ndimensions for custom sizing. fullwidth: true fills the available content width responsively.\nalign supports left/center/right positioning, and aspect controls proportional interactive\nresizing. a resize saves custom dimensions and sets fullwidth to false. these are document\nattributes, rather than global editor configuration options.\n\n component inputs\n\n| input      | type           | purpose                                    |\n| ---------- | -------------- | ------------------------------------------ |\n| config   | editraconfig | immutable editor configuration.            |\n| readonly | boolean      | display content without editing.           |\n| required | boolean      | enable semantic empty-document validation. |\n\nforms disabled state is set through the form api.\n\n component outputs\n\noutputs: contentchange ({html, document, text}), selectionchange ({from,to}), editorfocus,\neditorblur, editorready, editordestroyed, editorerror (error), dirtychange (boolean),\ntransactionstate ({docchanged, selectionchanged, from, to, dirty}).\nselection-only transactions never emit full contentchange.\n\n instance methods\n\n| method                           | return type      | purpose                                                  |\n| -------------------------------- | ---------------- | -------------------------------------------------------- |\n| gethtml()                      | string         | export canonical html.                                   |\n| gettext()                      | string         | export plain text including captions and image alt text. |\n| getjson()                      | editradocument | export the document model.                               |\n| getmarkdown()                  | string         | export markdown under the documented conversion policy.  |\n| sethtml(html: string)          | void           | replace content using the html policy.                   |\n| setjson(value: editradocument) | void           | validate and replace document content.                   |\n| setmarkdown(value: string)     | void           | import markdown.                                         |\n| clear()                        | void           | clear content with editing history.                      |\n| focus() / blur()             | void           | control browser editing focus.                           |\n| isempty()                      | boolean        | check semantic document emptiness.                       |\n| isdirty()                      | boolean        | check editor dirty state.                                |\n\nprogrammatic setters silently synchronize an attached form\ncontrol without marking it dirty or emitting contentchange/valuechanges.\nclear is a user-style transaction with history. dom focus/blur are no-ops before browser activation.\nstate/conversion getters and setters work during ssr. plain text includes captions and image alt text;\ncounts use whitespace-separated words and unicode code points, including block separators.\nsetjson/setmarkdown can throw on invalid input;\nwritevalue/sethtml report parsing failures through editorerror without destroying existing content.\n\n core engine\n\ncore editraengine is an imperative framework adapter api with a read-only editorstate getter and apply(transaction).\ndo not mutate the angular component's private engine. use documented methods or extensions.\n\nfor an advanced integration that owns its engine, the public engine can be used like this in an angular application:\n\ntypescript\nimport { editraengine } from 'ngx-editra';\n\nconst engine = new editraengine({}, '<p>hello</p>');\nengine.apply(engine.state.tr.inserttext(' world', 6));\nconst html = engine.gethtml();\nconsole.log(html);\n\n\nthis is a separate document engine, not a way to access the angular component's private state. most applications should use the component and angular forms. the published package includes angular integration, so direct node.js scripts need the appropriate angular compilation/runtime setup.\n\n markdown conversion policy\n\ncommonmark conversion supports its ordinary blocks/marks. tables/videos export as safe raw html;\ncolour/font/size marks lose presentation. raw html markdown imports and custom nodes are not lossless.\n",
+	},
+	{
+		slug: 'ssr',
+		title: 'SSR & hydration',
+		group: 'Reference',
+		source: 'docs/SSR.md',
+		summary:
+			"Use the normal SSR setup for your application's Angular version. The editor can render initial content on the server and becomes interactive in the browser after rendering. You do not need to add fake browser globals.",
+		readingMinutes: 2,
+		html: '<h1 id="ssr-and-hydration">SSR and hydration</h1>\n<p>Use the normal SSR setup for your application\'s Angular version. The editor can render initial content on the server and becomes interactive in the browser after rendering. You do not need to add fake browser globals.</p>\n<h2 id="server-safe-document-processing">Server-safe document processing</h2>\n<p>The internal core does not require window, document, DOMParser or navigator for document conversion. Public imports come from the single ngx-editra Angular package; there is no separate framework-free core package entry point. parse5 converts HTML to the canonical document on both server and browser.\nThe deterministic serializer uses escaped strings and validated schema attributes.</p>\n<h2 id="what-happens-during-rendering">What happens during rendering</h2>\n<p>The Angular component uses <code>NgxEditraViewerComponent</code> for its initial static content.\nThe viewer parses input through the schema and serializes validated attributes before\nmarking that canonical output as trusted HTML. This preserves styles and approved video\nplayers on both server and browser. Raw input is never passed to Angular\'s trust API.\nExtensions and video providers remain trusted application code.</p>\n<p>The component host has a static <code>ngSkipHydration</code> boundary. Angular hydrates the consuming\napplication, recreates that editor boundary and activates its ProseMirror view afterNextRender.\nThis deliberately avoids hydrating ProseMirror-managed DOM. Initial form content survives;\nstatic content is removed after activation and an empty browser surface owns the view.</p>\n<h2 id="application-setup-and-custom-extensions">Application setup and custom extensions</h2>\n<p>Enable your application\'s normal <code>provideClientHydration</code>/server rendering providers.\nAngular 18+ SSR bootstrap functions need the platform BootstrapContext, and patched newer\nrenderApplication APIs need explicit allowedHosts. The compatibility consumers demonstrate\nversion-specific server setup. Do not set browser globals on the server to hide errors.</p>\n<p>Editor DOM methods are no-ops before activation. Conversion/state methods work during SSR.\nExtension onCreate/onDestroy callbacks run for browser editor activation/destruction only.</p>\n',
+		headings: [
+			{
+				id: 'server-safe-document-processing',
+				label: 'Server-safe document processing',
+			},
+			{
+				id: 'what-happens-during-rendering',
+				label: 'What happens during rendering',
+			},
+			{
+				id: 'application-setup-and-custom-extensions',
+				label: 'Application setup and custom extensions',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="ssr-and-hydration">SSR and hydration</h1>\n',
+				id: 'ssr-and-hydration',
+				kind: 'content',
+			},
+			{
+				html: "<p>Use the normal SSR setup for your application's Angular version. The editor can render initial content on the server and becomes interactive in the browser after rendering. You do not need to add fake browser globals.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="server-safe-document-processing">Server-safe document processing</h2>\n',
+				id: 'server-safe-document-processing',
+				kind: 'content',
+			},
+			{
+				html: '<p>The internal core does not require window, document, DOMParser or navigator for document conversion. Public imports come from the single ngx-editra Angular package; there is no separate framework-free core package entry point. parse5 converts HTML to the canonical document on both server and browser.\nThe deterministic serializer uses escaped strings and validated schema attributes.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="what-happens-during-rendering">What happens during rendering</h2>\n',
+				id: 'what-happens-during-rendering',
+				kind: 'content',
+			},
+			{
+				html: "<p>The Angular component uses <code>NgxEditraViewerComponent</code> for its initial static content.\nThe viewer parses input through the schema and serializes validated attributes before\nmarking that canonical output as trusted HTML. This preserves styles and approved video\nplayers on both server and browser. Raw input is never passed to Angular's trust API.\nExtensions and video providers remain trusted application code.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>The component host has a static <code>ngSkipHydration</code> boundary. Angular hydrates the consuming\napplication, recreates that editor boundary and activates its ProseMirror view afterNextRender.\nThis deliberately avoids hydrating ProseMirror-managed DOM. Initial form content survives;\nstatic content is removed after activation and an empty browser surface owns the view.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="application-setup-and-custom-extensions">Application setup and custom extensions</h2>\n',
+				id: 'application-setup-and-custom-extensions',
+				kind: 'content',
+			},
+			{
+				html: "<p>Enable your application's normal <code>provideClientHydration</code>/server rendering providers.\nAngular 18+ SSR bootstrap functions need the platform BootstrapContext, and patched newer\nrenderApplication APIs need explicit allowedHosts. The compatibility consumers demonstrate\nversion-specific server setup. Do not set browser globals on the server to hide errors.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Editor DOM methods are no-ops before activation. Conversion/state methods work during SSR.\nExtension onCreate/onDestroy callbacks run for browser editor activation/destruction only.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " ssr and hydration\n\nuse the normal ssr setup for your application's angular version. the editor can render initial content on the server and becomes interactive in the browser after rendering. you do not need to add fake browser globals.\n\n server-safe document processing\n\nthe internal core does not require window, document, domparser or navigator for document conversion. public imports come from the single ngx-editra angular package; there is no separate framework-free core package entry point. parse5 converts html to the canonical document on both server and browser.\nthe deterministic serializer uses escaped strings and validated schema attributes.\n\n what happens during rendering\n\nthe angular component uses ngxeditraviewercomponent for its initial static content.\nthe viewer parses input through the schema and serializes validated attributes before\nmarking that canonical output as trusted html. this preserves styles and approved video\nplayers on both server and browser. raw input is never passed to angular's trust api.\nextensions and video providers remain trusted application code.\n\nthe component host has a static ngskiphydration boundary. angular hydrates the consuming\napplication, recreates that editor boundary and activates its prosemirror view afternextrender.\nthis deliberately avoids hydrating prosemirror-managed dom. initial form content survives;\nstatic content is removed after activation and an empty browser surface owns the view.\n\n application setup and custom extensions\n\nenable your application's normal provideclienthydration/server rendering providers.\nangular 18+ ssr bootstrap functions need the platform bootstrapcontext, and patched newer\nrenderapplication apis need explicit allowedhosts. the compatibility consumers demonstrate\nversion-specific server setup. do not set browser globals on the server to hide errors.\n\neditor dom methods are no-ops before activation. conversion/state methods work during ssr.\nextension oncreate/ondestroy callbacks run for browser editor activation/destruction only.\n",
+	},
+	{
+		slug: 'security',
+		title: 'Security',
+		group: 'Reference',
+		source: 'docs/SECURITY.md',
+		summary:
+			'All HTML is parsed with parse5 and reconstructed as supported schema nodes/marks.Executable/foreign subtrees are dropped, unknown wrappers are unwrapped, and only explicitattributes survive. Output text and attributes are escaped. HTML sanitization is not regex-based.Regexes are used only for constrained scalar validation, URL recognition and literal search.',
+		readingMinutes: 2,
+		html: '<h1 id="content-policy-and-security">Content policy and security</h1>\n<p>All HTML is parsed with parse5 and reconstructed as supported schema nodes/marks.\nExecutable/foreign subtrees are dropped, unknown wrappers are unwrapped, and only explicit\nattributes survive. Output text and attributes are escaped. HTML sanitization is not regex-based.\nRegexes are used only for constrained scalar validation, URL recognition and literal search.</p>\n<p>EditraHtmlPipe passes only the output of staticPreview\'s schema-based parsing and serialization\nto Angular\'s bypassSecurityTrustHtml API. This preserves validated formatting and approved media\nwhen rendering content. It does not make arbitrary HTML trustworthy. Keep this trust operation\ncentralized in the pipe and never pass raw input directly to it. Custom extension schemas and\nserializers are trusted application code and can affect this guarantee.</p>\n<p>URLs require absolute HTTPS by default. HTTP is explicitly opt-in. Credentials, control/space\ncharacters, javascript/data/file URLs and unsupported providers are rejected. Links also\npermit mailto. New-tab links have noopener/noreferrer. CSS values are bounded numbers,\nenumerated alignments/borders, approved fonts, and hex/RGB colours; arbitrary CSS is dropped.</p>\n<p>YouTube/Vimeo match exact hostnames and paths and create canonical HTTPS iframe URLs.\nCustom providers must declare exact allowed embed origins. Iframes use a restricted sandbox,\nlazy loading, referrer policy and fullscreen/picture-in-picture permissions. No autoplay permission\nis granted. Providers are trusted application code, not user-controlled configuration.</p>\n<p>Suggested CSP policy additions for enabled features:</p>\n<pre><code class="language-text">frame-src https://www.youtube-nocookie.com https://player.vimeo.com;\nimg-src \'self\' https:;\nmedia-src \'self\' https:;\nstyle-src-attr \'unsafe-inline\';\n</code></pre>\n<p>Prefer narrower image/media origins for your application. Angular/application script and style\npolicies need their normal nonce/hash configuration. Generated content uses bounded inline style\nattributes, so style-src-attr must permit them; this does not require unsafe-inline scripts.\nApplications prohibiting style attributes need a class-based renderer to preserve all formatting.\nNever permit arbitrary frame origins.\nThird-party providers may have additional requirements and may block playback or embedding.</p>\n<p>Client sanitization is not a replacement for server validation, authorization or safe redisplay.\nRevalidate stored HTML/JSON on the server with the same content policy. Limits are one million\ninput characters and 100 nesting levels. Extension serializers/plugins are trusted application\ncode and need an independent audit; they must not emit unsafe tags/URLs or perform uploads.</p>\n<p>See <a href="https://angular.dev/best-practices/security">Angular security guidance</a> and\n<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/style-src-attr">CSP style attribute behavior</a>.</p>\n',
+		headings: [],
+		blocks: [
+			{
+				html: '<h1 id="content-policy-and-security">Content policy and security</h1>\n',
+				id: 'content-policy-and-security',
+				kind: 'content',
+			},
+			{
+				html: '<p>All HTML is parsed with parse5 and reconstructed as supported schema nodes/marks.\nExecutable/foreign subtrees are dropped, unknown wrappers are unwrapped, and only explicit\nattributes survive. Output text and attributes are escaped. HTML sanitization is not regex-based.\nRegexes are used only for constrained scalar validation, URL recognition and literal search.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: "<p>EditraHtmlPipe passes only the output of staticPreview's schema-based parsing and serialization\nto Angular's bypassSecurityTrustHtml API. This preserves validated formatting and approved media\nwhen rendering content. It does not make arbitrary HTML trustworthy. Keep this trust operation\ncentralized in the pipe and never pass raw input directly to it. Custom extension schemas and\nserializers are trusted application code and can affect this guarantee.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>URLs require absolute HTTPS by default. HTTP is explicitly opt-in. Credentials, control/space\ncharacters, javascript/data/file URLs and unsupported providers are rejected. Links also\npermit mailto. New-tab links have noopener/noreferrer. CSS values are bounded numbers,\nenumerated alignments/borders, approved fonts, and hex/RGB colours; arbitrary CSS is dropped.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>YouTube/Vimeo match exact hostnames and paths and create canonical HTTPS iframe URLs.\nCustom providers must declare exact allowed embed origins. Iframes use a restricted sandbox,\nlazy loading, referrer policy and fullscreen/picture-in-picture permissions. No autoplay permission\nis granted. Providers are trusted application code, not user-controlled configuration.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Suggested CSP policy additions for enabled features:</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: "frame-src https://www.youtube-nocookie.com https://player.vimeo.com;\nimg-src 'self' https:;\nmedia-src 'self' https:;\nstyle-src-attr 'unsafe-inline';\n",
+				language: 'text',
+				html: "<pre><code class=\"language-text\">frame-src https://www.youtube-nocookie.com https://player.vimeo.com;\nimg-src 'self' https:;\nmedia-src 'self' https:;\nstyle-src-attr 'unsafe-inline';\n</code></pre>\n",
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Prefer narrower image/media origins for your application. Angular/application script and style\npolicies need their normal nonce/hash configuration. Generated content uses bounded inline style\nattributes, so style-src-attr must permit them; this does not require unsafe-inline scripts.\nApplications prohibiting style attributes need a class-based renderer to preserve all formatting.\nNever permit arbitrary frame origins.\nThird-party providers may have additional requirements and may block playback or embedding.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Client sanitization is not a replacement for server validation, authorization or safe redisplay.\nRevalidate stored HTML/JSON on the server with the same content policy. Limits are one million\ninput characters and 100 nesting levels. Extension serializers/plugins are trusted application\ncode and need an independent audit; they must not emit unsafe tags/URLs or perform uploads.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>See <a href="https://angular.dev/best-practices/security">Angular security guidance</a> and\n<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/style-src-attr">CSP style attribute behavior</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " content policy and security\n\nall html is parsed with parse5 and reconstructed as supported schema nodes/marks.\nexecutable/foreign subtrees are dropped, unknown wrappers are unwrapped, and only explicit\nattributes survive. output text and attributes are escaped. html sanitization is not regex-based.\nregexes are used only for constrained scalar validation, url recognition and literal search.\n\neditrahtmlpipe passes only the output of staticpreview's schema-based parsing and serialization\nto angular's bypasssecuritytrusthtml api. this preserves validated formatting and approved media\nwhen rendering content. it does not make arbitrary html trustworthy. keep this trust operation\ncentralized in the pipe and never pass raw input directly to it. custom extension schemas and\nserializers are trusted application code and can affect this guarantee.\n\nurls require absolute https by default. http is explicitly opt-in. credentials, control/space\ncharacters, javascript/data/file urls and unsupported providers are rejected. links also\npermit mailto. new-tab links have noopener/noreferrer. css values are bounded numbers,\nenumerated alignments/borders, approved fonts, and hex/rgb colours; arbitrary css is dropped.\n\nyoutube/vimeo match exact hostnames and paths and create canonical https iframe urls.\ncustom providers must declare exact allowed embed origins. iframes use a restricted sandbox,\nlazy loading, referrer policy and fullscreen/picture-in-picture permissions. no autoplay permission\nis granted. providers are trusted application code, not user-controlled configuration.\n\nsuggested csp policy additions for enabled features:\n\ntext\nframe-src https://www.youtube-nocookie.com https://player.vimeo.com;\nimg-src 'self' https:;\nmedia-src 'self' https:;\nstyle-src-attr 'unsafe-inline';\n\n\nprefer narrower image/media origins for your application. angular/application script and style\npolicies need their normal nonce/hash configuration. generated content uses bounded inline style\nattributes, so style-src-attr must permit them; this does not require unsafe-inline scripts.\napplications prohibiting style attributes need a class-based renderer to preserve all formatting.\nnever permit arbitrary frame origins.\nthird-party providers may have additional requirements and may block playback or embedding.\n\nclient sanitization is not a replacement for server validation, authorization or safe redisplay.\nrevalidate stored html/json on the server with the same content policy. limits are one million\ninput characters and 100 nesting levels. extension serializers/plugins are trusted application\ncode and need an independent audit; they must not emit unsafe tags/urls or perform uploads.\n\nsee [angular security guidance](https://angular.dev/best-practices/security) and\n[csp style attribute behavior](https://developer.mozilla.org/en-us/docs/web/http/reference/headers/content-security-policy/style-src-attr).\n",
+	},
+	{
+		slug: 'compatibility',
+		title: 'Compatibility',
+		group: 'Reference',
+		source: 'docs/COMPATIBILITY.md',
+		summary: '﻿# Compatibility evidence',
+		readingMinutes: 3,
+		html: '<p>﻿# Compatibility evidence</p>\n<p>The table below is a historical validation baseline. A new archive must be checked independently; use the archive SHA-256 in artifacts/compatibility-results.json to identify the package actually tested. Published peer ranges describe supported Angular package versions, not a guarantee about every application or third-party extension.</p>\n<p>The package is compiled with Angular 17 APIs and partial-Ivy. The exact installed tarball\nwas validated in independent applications with normal npm peer resolution and isolated tooling.</p>\n<table>\n<thead>\n<tr>\n<th>Angular</th>\n<th>Node</th>\n<th>TypeScript</th>\n<th>Production build</th>\n<th>Forms</th>\n<th>SSR</th>\n<th>Hydration boundary activation</th>\n<th>Browser E2E</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>17.3.12</td>\n<td>20.20.2</td>\n<td>5.4.5</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>16 passed</td>\n</tr>\n<tr>\n<td>18.2.14</td>\n<td>20.20.2</td>\n<td>5.5.4</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>16 passed</td>\n</tr>\n<tr>\n<td>19.2.25</td>\n<td>20.20.2</td>\n<td>5.8.3</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>16 passed</td>\n</tr>\n<tr>\n<td>20.3.33</td>\n<td>20.20.2</td>\n<td>5.9.3</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>16 passed</td>\n</tr>\n<tr>\n<td>21.2.25</td>\n<td>24.21.0</td>\n<td>5.9.3</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>16 passed</td>\n</tr>\n<tr>\n<td>22.2.2</td>\n<td>24.21.0</td>\n<td>6.0.3</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>16 passed</td>\n</tr>\n</tbody>\n</table>\n<p>Tests exercise reactive forms, reset, disabled/read-only mode, repeated mounting, selection formatting,\nsecurity rejection, URL media, tables, themes, mobile layout, axe accessibility, server HTML and browser\nactivation without duplicate nodes or browser console/runtime errors. Media responses are mocked;\nthis establishes integration and canonical URLs, not external provider availability.</p>\n<p>The editor host deliberately uses ngSkipHydration. The surrounding application hydrates;\nProseMirror-managed DOM is activated after rendering rather than hydrated directly.</p>\n<p>Peer ranges begin at tested patch versions: ^17.3.12 || ^18.2.14 || ^19.2.25 || ^20.3.33 ||\n^21.2.25 || ^22.2.2. Future patches/minors rely on SemVer expectations and should remain in CI;\nolder patches and future Angular majors are not claimed as verified.</p>\n<p>Machine-readable results: artifacts/compatibility-results.json and per-version E2E reports.\nThe separate playground suite passed 21 tests and the core/Angular suite passed 41 tests.\nThe consumer suite includes colour palettes, quick table insertion, pointer/keyboard row and column\nresizing, isolated undo, save/reload, merged cells, AutoFit, and light/dark/mobile accessibility.\nIt also covers automatic image/video dimensions, fitted alignment, full-content-width mode,\niframe pointer resizing, independent dimensions, responsive media and actual MP4 metadata.\nThe maintained Angular 22 production graph\'s npm audit reported zero vulnerabilities at validation time.\nGitHub Actions is configured but has not executed remotely in this environment.</p>\n<p>To rerun, set EDITRA_NPM_CLI to npm\'s JavaScript CLI, EDITRA_NODE20 and EDITRA_NODE24 to\nappropriate executables, optionally EDITRA_BROWSER to an installed Chromium browser, then\nrun npm run test:compatibility. Each consumer has its own package-lock.json. When validating\nunchanged consumers, npm ci installs the existing lockfile; the runner uses npm install to refresh\nan explicitly supplied newly built tarball. Candidate-only peer bypass requires explicit\nEDITRA_CANDIDATE_PEERS=1 and is not used for the final report.</p>\n<p>Legacy Angular and Node versions have reached end of support. Compatibility is not a\nsecurity-maintenance guarantee. Runtime/compiler ranges are based on the\n<a href="https://angular.dev/reference/versions">official Angular table</a>.</p>\n',
+		headings: [],
+		blocks: [
+			{
+				html: '<p>﻿# Compatibility evidence</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>The table below is a historical validation baseline. A new archive must be checked independently; use the archive SHA-256 in artifacts/compatibility-results.json to identify the package actually tested. Published peer ranges describe supported Angular package versions, not a guarantee about every application or third-party extension.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>The package is compiled with Angular 17 APIs and partial-Ivy. The exact installed tarball\nwas validated in independent applications with normal npm peer resolution and isolated tooling.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<table>\n<thead>\n<tr>\n<th>Angular</th>\n<th>Node</th>\n<th>TypeScript</th>\n<th>Production build</th>\n<th>Forms</th>\n<th>SSR</th>\n<th>Hydration boundary activation</th>\n<th>Browser E2E</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>17.3.12</td>\n<td>20.20.2</td>\n<td>5.4.5</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>16 passed</td>\n</tr>\n<tr>\n<td>18.2.14</td>\n<td>20.20.2</td>\n<td>5.5.4</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>16 passed</td>\n</tr>\n<tr>\n<td>19.2.25</td>\n<td>20.20.2</td>\n<td>5.8.3</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>16 passed</td>\n</tr>\n<tr>\n<td>20.3.33</td>\n<td>20.20.2</td>\n<td>5.9.3</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>16 passed</td>\n</tr>\n<tr>\n<td>21.2.25</td>\n<td>24.21.0</td>\n<td>5.9.3</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>16 passed</td>\n</tr>\n<tr>\n<td>22.2.2</td>\n<td>24.21.0</td>\n<td>6.0.3</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>Pass</td>\n<td>16 passed</td>\n</tr>\n</tbody>\n</table>\n',
+				id: '',
+				kind: 'table',
+			},
+			{
+				html: '<p>Tests exercise reactive forms, reset, disabled/read-only mode, repeated mounting, selection formatting,\nsecurity rejection, URL media, tables, themes, mobile layout, axe accessibility, server HTML and browser\nactivation without duplicate nodes or browser console/runtime errors. Media responses are mocked;\nthis establishes integration and canonical URLs, not external provider availability.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>The editor host deliberately uses ngSkipHydration. The surrounding application hydrates;\nProseMirror-managed DOM is activated after rendering rather than hydrated directly.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Peer ranges begin at tested patch versions: ^17.3.12 || ^18.2.14 || ^19.2.25 || ^20.3.33 ||\n^21.2.25 || ^22.2.2. Future patches/minors rely on SemVer expectations and should remain in CI;\nolder patches and future Angular majors are not claimed as verified.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: "<p>Machine-readable results: artifacts/compatibility-results.json and per-version E2E reports.\nThe separate playground suite passed 21 tests and the core/Angular suite passed 41 tests.\nThe consumer suite includes colour palettes, quick table insertion, pointer/keyboard row and column\nresizing, isolated undo, save/reload, merged cells, AutoFit, and light/dark/mobile accessibility.\nIt also covers automatic image/video dimensions, fitted alignment, full-content-width mode,\niframe pointer resizing, independent dimensions, responsive media and actual MP4 metadata.\nThe maintained Angular 22 production graph's npm audit reported zero vulnerabilities at validation time.\nGitHub Actions is configured but has not executed remotely in this environment.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: "<p>To rerun, set EDITRA_NPM_CLI to npm's JavaScript CLI, EDITRA_NODE20 and EDITRA_NODE24 to\nappropriate executables, optionally EDITRA_BROWSER to an installed Chromium browser, then\nrun npm run test:compatibility. Each consumer has its own package-lock.json. When validating\nunchanged consumers, npm ci installs the existing lockfile; the runner uses npm install to refresh\nan explicitly supplied newly built tarball. Candidate-only peer bypass requires explicit\nEDITRA_CANDIDATE_PEERS=1 and is not used for the final report.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Legacy Angular and Node versions have reached end of support. Compatibility is not a\nsecurity-maintenance guarantee. Runtime/compiler ranges are based on the\n<a href="https://angular.dev/reference/versions">official Angular table</a>.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: "﻿ compatibility evidence\n\nthe table below is a historical validation baseline. a new archive must be checked independently; use the archive sha-256 in artifacts/compatibility-results.json to identify the package actually tested. published peer ranges describe supported angular package versions, not a guarantee about every application or third-party extension.\n\nthe package is compiled with angular 17 apis and partial-ivy. the exact installed tarball\nwas validated in independent applications with normal npm peer resolution and isolated tooling.\n\n| angular | node    | typescript | production build | forms | ssr  | hydration boundary activation | browser e2e |\n| ------- | ------- | ---------- | ---------------- | ----- | ---- | ----------------------------- | ----------- |\n| 17.3.12 | 20.20.2 | 5.4.5      | pass             | pass  | pass | pass                          | 16 passed   |\n| 18.2.14 | 20.20.2 | 5.5.4      | pass             | pass  | pass | pass                          | 16 passed   |\n| 19.2.25 | 20.20.2 | 5.8.3      | pass             | pass  | pass | pass                          | 16 passed   |\n| 20.3.33 | 20.20.2 | 5.9.3      | pass             | pass  | pass | pass                          | 16 passed   |\n| 21.2.25 | 24.21.0 | 5.9.3      | pass             | pass  | pass | pass                          | 16 passed   |\n| 22.2.2  | 24.21.0 | 6.0.3      | pass             | pass  | pass | pass                          | 16 passed   |\n\ntests exercise reactive forms, reset, disabled/read-only mode, repeated mounting, selection formatting,\nsecurity rejection, url media, tables, themes, mobile layout, axe accessibility, server html and browser\nactivation without duplicate nodes or browser console/runtime errors. media responses are mocked;\nthis establishes integration and canonical urls, not external provider availability.\n\nthe editor host deliberately uses ngskiphydration. the surrounding application hydrates;\nprosemirror-managed dom is activated after rendering rather than hydrated directly.\n\npeer ranges begin at tested patch versions: ^17.3.12 || ^18.2.14 || ^19.2.25 || ^20.3.33 ||\n^21.2.25 || ^22.2.2. future patches/minors rely on semver expectations and should remain in ci;\nolder patches and future angular majors are not claimed as verified.\n\nmachine-readable results: artifacts/compatibility-results.json and per-version e2e reports.\nthe separate playground suite passed 21 tests and the core/angular suite passed 41 tests.\nthe consumer suite includes colour palettes, quick table insertion, pointer/keyboard row and column\nresizing, isolated undo, save/reload, merged cells, autofit, and light/dark/mobile accessibility.\nit also covers automatic image/video dimensions, fitted alignment, full-content-width mode,\niframe pointer resizing, independent dimensions, responsive media and actual mp4 metadata.\nthe maintained angular 22 production graph's npm audit reported zero vulnerabilities at validation time.\ngithub actions is configured but has not executed remotely in this environment.\n\nto rerun, set editra_npm_cli to npm's javascript cli, editra_node20 and editra_node24 to\nappropriate executables, optionally editra_browser to an installed chromium browser, then\nrun npm run test:compatibility. each consumer has its own package-lock.json. when validating\nunchanged consumers, npm ci installs the existing lockfile; the runner uses npm install to refresh\nan explicitly supplied newly built tarball. candidate-only peer bypass requires explicit\neditra_candidate_peers=1 and is not used for the final report.\n\nlegacy angular and node versions have reached end of support. compatibility is not a\nsecurity-maintenance guarantee. runtime/compiler ranges are based on the\n[official angular table](https://angular.dev/reference/versions).\n",
+	},
+	{
+		slug: 'releasing',
+		title: 'Release process',
+		group: 'Project',
+		source: 'docs/RELEASING.md',
+		summary:
+			'Run the validation commands in CONTRIBUTING.md and complete the outstanding acceptancecriteria in PROGRESS.md. Do not call this alpha a stable release.',
+		readingMinutes: 2,
+		html: '<h1 id="release-preparation">Release preparation</h1>\n<ol>\n<li>Run the validation commands in CONTRIBUTING.md and complete the outstanding acceptance\ncriteria in PROGRESS.md. Do not call this alpha a stable release.</li>\n<li>Update package version, changelog, consumer tarball paths and any demonstrated peer ranges.</li>\n<li>Run npm run pack (production build, dry-run package validation and actual tarball).</li>\n<li>Install that exact tarball into independent consumers; run the full compatibility matrix.</li>\n<li>Confirm README, LICENSE, public declarations, the single root API export and SCSS are in the archive.</li>\n<li>Verify package-name ownership and npm account permissions immediately before publication.</li>\n<li>After explicit owner authorization, publish the exact tested archive from the workspace root with the prerelease tag:</li>\n</ol>\n<pre><code class="language-sh">npm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next\n</code></pre>\n<p>No workflow publishes automatically. GitHub Actions prepares validation evidence and archives.\nThe package is named <code>ngx-editra</code>; source metadata defaults publishing to public access and the\n<code>next</code> tag. The workspace root is private. Do not publish <code>packages/ngx-editra</code> directly:\nng-packagr\'s compiled distribution is the package consumers need. Update the archive filename\nwhen the version changes. After a stable release is approved, explicitly publish that stable\narchive with <code>--tag latest</code> and update the source publishing default accordingly.</p>\n<p>After publication, verify the published alpha and its consumer instructions:</p>\n<pre><code class="language-sh">npm view ngx-editra@next version dist-tags peerDependencies\nnpm install ngx-editra@next\n</code></pre>\n<p>Run installation in a separate Angular application and follow <a href="/guides/installation">installation</a>\nand <a href="/guides/quick-start">quick start</a>. Verify both components work without any application Sass import.\nPackage-name ownership and availability must be checked at release time; no name is reserved.\nSee the <a href="https://docs.npmjs.com/cli/v10/commands/npm-publish/">official npm publish reference</a>\nfor archive publishing and tags.</p>\n',
+		headings: [],
+		blocks: [
+			{
+				html: '<h1 id="release-preparation">Release preparation</h1>\n',
+				id: 'release-preparation',
+				kind: 'content',
+			},
+			{
+				html: '<ol>\n<li>Run the validation commands in CONTRIBUTING.md and complete the outstanding acceptance\ncriteria in PROGRESS.md. Do not call this alpha a stable release.</li>\n<li>Update package version, changelog, consumer tarball paths and any demonstrated peer ranges.</li>\n<li>Run npm run pack (production build, dry-run package validation and actual tarball).</li>\n<li>Install that exact tarball into independent consumers; run the full compatibility matrix.</li>\n<li>Confirm README, LICENSE, public declarations, the single root API export and SCSS are in the archive.</li>\n<li>Verify package-name ownership and npm account permissions immediately before publication.</li>\n<li>After explicit owner authorization, publish the exact tested archive from the workspace root with the prerelease tag:</li>\n</ol>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: 'npm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next\n',
+				language: 'sh',
+				html: '<pre><code class="language-sh">npm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: "<p>No workflow publishes automatically. GitHub Actions prepares validation evidence and archives.\nThe package is named <code>ngx-editra</code>; source metadata defaults publishing to public access and the\n<code>next</code> tag. The workspace root is private. Do not publish <code>packages/ngx-editra</code> directly:\nng-packagr's compiled distribution is the package consumers need. Update the archive filename\nwhen the version changes. After a stable release is approved, explicitly publish that stable\narchive with <code>--tag latest</code> and update the source publishing default accordingly.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>After publication, verify the published alpha and its consumer instructions:</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				code: 'npm view ngx-editra@next version dist-tags peerDependencies\nnpm install ngx-editra@next\n',
+				language: 'sh',
+				html: '<pre><code class="language-sh">npm view ngx-editra@next version dist-tags peerDependencies\nnpm install ngx-editra@next\n</code></pre>\n',
+				id: '',
+				kind: 'code',
+			},
+			{
+				html: '<p>Run installation in a separate Angular application and follow <a href="/guides/installation">installation</a>\nand <a href="/guides/quick-start">quick start</a>. Verify both components work without any application Sass import.\nPackage-name ownership and availability must be checked at release time; no name is reserved.\nSee the <a href="https://docs.npmjs.com/cli/v10/commands/npm-publish/">official npm publish reference</a>\nfor archive publishing and tags.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " release preparation\n\n1. run the validation commands in contributing.md and complete the outstanding acceptance\n   criteria in progress.md. do not call this alpha a stable release.\n2. update package version, changelog, consumer tarball paths and any demonstrated peer ranges.\n3. run npm run pack (production build, dry-run package validation and actual tarball).\n4. install that exact tarball into independent consumers; run the full compatibility matrix.\n5. confirm readme, license, public declarations, the single root api export and scss are in the archive.\n6. verify package-name ownership and npm account permissions immediately before publication.\n7. after explicit owner authorization, publish the exact tested archive from the workspace root with the prerelease tag:\n\nsh\nnpm publish ./artifacts/ngx-editra-0.1.0-alpha.0.tgz --access public --tag next\n\n\nno workflow publishes automatically. github actions prepares validation evidence and archives.\nthe package is named ngx-editra; source metadata defaults publishing to public access and the\nnext tag. the workspace root is private. do not publish packages/ngx-editra directly:\nng-packagr's compiled distribution is the package consumers need. update the archive filename\nwhen the version changes. after a stable release is approved, explicitly publish that stable\narchive with --tag latest and update the source publishing default accordingly.\n\nafter publication, verify the published alpha and its consumer instructions:\n\nsh\nnpm view ngx-editra@next version dist-tags peerdependencies\nnpm install ngx-editra@next\n\n\nrun installation in a separate angular application and follow [installation](installation.md)\nand [quick start](quick_start.md). verify both components work without any application sass import.\npackage-name ownership and availability must be checked at release time; no name is reserved.\nsee the [official npm publish reference](https://docs.npmjs.com/cli/v10/commands/npm-publish/)\nfor archive publishing and tags.\n",
+	},
+	{
+		slug: 'project-status',
+		title: 'Project status',
+		group: 'Project',
+		source: 'PROGRESS.md',
+		summary: '﻿# Progress',
+		readingMinutes: 6,
+		html: '<p>﻿# Progress</p>\n<h2 id="status">Status</h2>\n<p>Milestones 1–5 have working implementations and passed automated regression and normal-peer\nconsumer validation. Milestone 6 is not complete; this is an alpha release.\nNo package has been published and no stable-release claim is made.</p>\n<h2 id="implemented">Implemented</h2>\n<ul>\n<li>\n<p>Documentation application with generated Markdown guides, search, routed pages, mobile\nnavigation, light/dark themes, public-package live example and prerendered output.\nIts production build prerenders 20 routes; four documentation browser tests passed,\nincluding all guide routes, code copying, forms editing and automated accessibility.</p>\n</li>\n<li>\n<p>npm workspaces, Angular Package Format/partial-Ivy, core and extensions public entry points.</p>\n</li>\n<li>\n<p>Angular-free ProseMirror engine; strict typed document/configuration/extension contracts.</p>\n</li>\n<li>\n<p>Schema for paragraphs, H1–H6, quotes, lists, code, rules, breaks, URL media and tables.</p>\n</li>\n<li>\n<p>All requested text marks, alignment/indent/line height, history, shortcuts and clear formatting.</p>\n</li>\n<li>\n<p>Server-safe parse5/schema import, deterministic escaped HTML output, JSON validation/round trips.</p>\n</li>\n<li>\n<p>HTML-valued CVA, reactive/named template forms, required semantic validation, disabled/read-only,\nreset/patchValue/setValue, programmatic public setters that silently synchronize form models.</p>\n</li>\n<li>\n<p>Secure static SSR representation, explicit ngSkipHydration boundary, atomic browser activation,\nOnPush/explicit change notifications for modern Angular scheduling, destruction/repeated mounting.</p>\n</li>\n<li>\n<p>Configurable grouped/scrolling/floating toolbar, hidden controls, native dialogs and a presenter DI seam.</p>\n</li>\n<li>\n<p>Local SVG toolbar icons, separated formatting/command strips, default command groups,\naccessible icon labels/tooltips, current-colour indicators and contextual table-action icons.</p>\n</li>\n<li>\n<p>URL-only image/video insertion/editing/replacement, captions/alt/dimensions/alignment/wrapping,\nborders/radius/spacing, pointer/keyboard resize, aspect preservation and clipboard URL copying.</p>\n</li>\n<li>\n<p>Optional automatic media dimensions, full-content-width mode, fitted left/centre/right figures,\nwrapping captions and media-attached corner resizing with cancellation and independent dimensions.</p>\n</li>\n<li>\n<p>Exact-host YouTube/watch/short/Shorts and Vimeo providers, direct MP4, canonical/sandboxed embeds,\nexplicit provider registry, responsive geometry, and loading failure status/error events.</p>\n</li>\n<li>\n<p>Tables: insertion grid, contextual menu, row/column operations, merge/split/headers, cell colours,\nblock alignment, consistent 1 px table/cell borders, invisible pointer/keyboard row and column boundaries, preview/cancel,\nisolated history, AutoFit/equal columns, quick insertion and persisted minimum row heights.</p>\n</li>\n<li>\n<p>Word-style split font/highlight/cell-shading palettes with theme/standard/recent colours,\ncustom hex/native colour input, removal actions, keyboard navigation and selection preservation.</p>\n</li>\n<li>\n<p>Literal find/replace/navigation, word/Unicode character counts, caption-aware plain text,\nCommonMark conversion with explicitly documented presentation limitations.</p>\n</li>\n<li>\n<p>Extension ordering/dependencies/conflict detection, schema import hooks, custom commands/providers,\nbrowser lifecycle callbacks and multiple isolated editor instances.</p>\n</li>\n<li>\n<p>Playground with real package public imports, forms, outputs, themes/presets/plugins and HTML/Markdown import.</p>\n</li>\n<li>\n<p>Developer/API/security/SSR/media/release documentation, MIT license and GitHub Actions preparation workflow.</p>\n</li>\n</ul>\n<h2 id="executed-validation-so-far">Executed validation so far</h2>\n<ul>\n<li>Clean npm ci with Node 20.20.2/npm 10.8.2 passed after removing generated-tarball install dependency.</li>\n<li>Package production builds, actual npm pack and dry-run required-asset checks passed.</li>\n<li>41 current unit/integration tests passed, including automatic/full-width media round trips, parent forms,\nrequired validation, spanned-table resizing and nested-table preservation.</li>\n<li>All 21 current production playground browser tests passed: toolbar state/groups, custom commands,\ncolour palettes, row/column pointer and keyboard resizing, isolated undo/save-reload, safe paste,\nfull-width row-border dragging, consistent solid/dashed/none borders, grid/menu, video replacement,\nautomatic image/video sizing, full-width mode, alignment, real MP4 metadata and independent resizing,\nforms, SSR/hydration, axe and performance.</li>\n<li>Four documentation app browser tests passed, including the live editor and mobile accessibility.</li>\n<li>Candidate Angular 17–21 consumers passed production builds and six browser tests each.</li>\n<li>Angular 22\'s asynchronous activation issue was fixed with explicit change detection; its six tests passed.</li>\n<li>Current normal-peer Angular 17–22 matrix passed: six production consumer builds and 96 browser tests,\nincluding Word-style palettes, table insertion, resizing, persistence and keyboard accessibility.</li>\n<li>npm audit --omit=dev on the Angular 22 production graph reported zero vulnerabilities.</li>\n<li>Browser import/render observations: about 363 ms for 1,000 paragraphs and 529 ms for 100?20 cells.</li>\n<li>Reports and visual capture are in artifacts/.</li>\n<li>Pure Node core import/parse/render/transaction runs succeeded without DOM globals.</li>\n<li>Empty/malformed/oversized-span table normalization checks passed.</li>\n<li>Core measurements at 5,000 paragraphs: approximately 224 ms parse, 45 ms serialize, 10 ms transaction\nin one Windows/Node 20 run. These are observations, not universal performance guarantees.</li>\n</ul>\n<h2 id="architectural-decisions">Architectural decisions</h2>\n<p>See ARCHITECTURE.md. One published package prevents unnecessary fragmentation. Model ownership is\ncentralized in the engine (its EditorState is readable but cannot be reassigned). Browser views use\ntransactions and node views; SSR never constructs them. Imported data never chooses executable\ncallbacks or iframe origins. ProseMirror modules are shared external dependencies.</p>\n<h2 id="remaining-release-work-and-known-limitations">Remaining release work and known limitations</h2>\n<ul>\n<li>Automated compiler/unit/browser/consumer checks passed; packaging/documentation consistency is finalized separately.</li>\n<li>Manual screen-reader/high-contrast evaluation and independent application/security review.</li>\n<li>More native clipboard/table resize/browser memory stress coverage; current tests cannot establish\nall real assistive-technology and external-service behavior.</li>\n<li>Full demo exceeds the CLI\'s 500 kB warning budget. Core and browser performance measurements\nare recorded; further optional-feature bundling work is needed before calling it lightweight.</li>\n<li>SSR Angular sanitization strips styles/iframes in static content; interactive content uses the\nvalidated canonical model inside the explicit boundary.</li>\n<li>CommonMark cannot retain all font/colour/table/media presentation; the conversion policy is documented.</li>\n<li>Row heights are minimums and cannot force content to render shorter than its natural height.</li>\n<li>Real YouTube/Vimeo/media availability and embeddability cannot be inferred from valid URLs;\ndeterministic tests use mock responses for network resources.</li>\n<li>Legacy Angular 17/Node 20/ESLint 8 are end of support. Compatibility is not a maintenance guarantee.</li>\n<li>GitHub Actions files are configured but have not run remotely in this environment.</li>\n<li>Future Angular versions and npm name/account ownership remain unverified until explicitly checked.</li>\n</ul>\n<h2 id="single-entry-package-architecture">Single-entry package architecture</h2>\n<p>Core and extensions remain in src/lib/core and src/lib/extensions. Their public symbols\nare exported from ngx-editra alongside Angular components. Root secondary packaging\nfolders are removed; consumers must replace previous /core and /extensions imports.\nEarlier compatibility evidence applies to its recorded archive hash and must be refreshed\nfor the consolidated package before publication.</p>\n<h2 id="root-and-package-ownership">Root and package ownership</h2>\n<p>Documentation now includes a feature index and task-based guides for installation, forms,\nformatting, media, tables, columns, code, content conversion, persistence, events, rendering,\nkeyboard use and troubleshooting. The documentation app includes per-example copying,\nreading-time metadata, live Markdown output and a reader preview. The content-only Sass\nentry is exported for the documented viewer-only integration.</p>\n<p>Root documents and docs/ are canonical. Package source now contains only implementation,\nstyles and build configuration. The library build assembles all release documentation\ndirectly in dist/ngx-editra. Duplicate package documents and the unused compatibility\nfixture generator have been removed. Applications inherit one package alias and use\nseparate compiler output directories.</p>\n',
+		headings: [
+			{
+				id: 'status',
+				label: 'Status',
+			},
+			{
+				id: 'implemented',
+				label: 'Implemented',
+			},
+			{
+				id: 'executed-validation-so-far',
+				label: 'Executed validation so far',
+			},
+			{
+				id: 'architectural-decisions',
+				label: 'Architectural decisions',
+			},
+			{
+				id: 'remaining-release-work-and-known-limitations',
+				label: 'Remaining release work and known limitations',
+			},
+			{
+				id: 'single-entry-package-architecture',
+				label: 'Single-entry package architecture',
+			},
+			{
+				id: 'root-and-package-ownership',
+				label: 'Root and package ownership',
+			},
+		],
+		blocks: [
+			{
+				html: '<p>﻿# Progress</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="status">Status</h2>\n',
+				id: 'status',
+				kind: 'content',
+			},
+			{
+				html: '<p>Milestones 1–5 have working implementations and passed automated regression and normal-peer\nconsumer validation. Milestone 6 is not complete; this is an alpha release.\nNo package has been published and no stable-release claim is made.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="implemented">Implemented</h2>\n',
+				id: 'implemented',
+				kind: 'content',
+			},
+			{
+				html: '<ul>\n<li>\n<p>Documentation application with generated Markdown guides, search, routed pages, mobile\nnavigation, light/dark themes, public-package live example and prerendered output.\nIts production build prerenders 20 routes; four documentation browser tests passed,\nincluding all guide routes, code copying, forms editing and automated accessibility.</p>\n</li>\n<li>\n<p>npm workspaces, Angular Package Format/partial-Ivy, core and extensions public entry points.</p>\n</li>\n<li>\n<p>Angular-free ProseMirror engine; strict typed document/configuration/extension contracts.</p>\n</li>\n<li>\n<p>Schema for paragraphs, H1–H6, quotes, lists, code, rules, breaks, URL media and tables.</p>\n</li>\n<li>\n<p>All requested text marks, alignment/indent/line height, history, shortcuts and clear formatting.</p>\n</li>\n<li>\n<p>Server-safe parse5/schema import, deterministic escaped HTML output, JSON validation/round trips.</p>\n</li>\n<li>\n<p>HTML-valued CVA, reactive/named template forms, required semantic validation, disabled/read-only,\nreset/patchValue/setValue, programmatic public setters that silently synchronize form models.</p>\n</li>\n<li>\n<p>Secure static SSR representation, explicit ngSkipHydration boundary, atomic browser activation,\nOnPush/explicit change notifications for modern Angular scheduling, destruction/repeated mounting.</p>\n</li>\n<li>\n<p>Configurable grouped/scrolling/floating toolbar, hidden controls, native dialogs and a presenter DI seam.</p>\n</li>\n<li>\n<p>Local SVG toolbar icons, separated formatting/command strips, default command groups,\naccessible icon labels/tooltips, current-colour indicators and contextual table-action icons.</p>\n</li>\n<li>\n<p>URL-only image/video insertion/editing/replacement, captions/alt/dimensions/alignment/wrapping,\nborders/radius/spacing, pointer/keyboard resize, aspect preservation and clipboard URL copying.</p>\n</li>\n<li>\n<p>Optional automatic media dimensions, full-content-width mode, fitted left/centre/right figures,\nwrapping captions and media-attached corner resizing with cancellation and independent dimensions.</p>\n</li>\n<li>\n<p>Exact-host YouTube/watch/short/Shorts and Vimeo providers, direct MP4, canonical/sandboxed embeds,\nexplicit provider registry, responsive geometry, and loading failure status/error events.</p>\n</li>\n<li>\n<p>Tables: insertion grid, contextual menu, row/column operations, merge/split/headers, cell colours,\nblock alignment, consistent 1 px table/cell borders, invisible pointer/keyboard row and column boundaries, preview/cancel,\nisolated history, AutoFit/equal columns, quick insertion and persisted minimum row heights.</p>\n</li>\n<li>\n<p>Word-style split font/highlight/cell-shading palettes with theme/standard/recent colours,\ncustom hex/native colour input, removal actions, keyboard navigation and selection preservation.</p>\n</li>\n<li>\n<p>Literal find/replace/navigation, word/Unicode character counts, caption-aware plain text,\nCommonMark conversion with explicitly documented presentation limitations.</p>\n</li>\n<li>\n<p>Extension ordering/dependencies/conflict detection, schema import hooks, custom commands/providers,\nbrowser lifecycle callbacks and multiple isolated editor instances.</p>\n</li>\n<li>\n<p>Playground with real package public imports, forms, outputs, themes/presets/plugins and HTML/Markdown import.</p>\n</li>\n<li>\n<p>Developer/API/security/SSR/media/release documentation, MIT license and GitHub Actions preparation workflow.</p>\n</li>\n</ul>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="executed-validation-so-far">Executed validation so far</h2>\n',
+				id: 'executed-validation-so-far',
+				kind: 'content',
+			},
+			{
+				html: "<ul>\n<li>Clean npm ci with Node 20.20.2/npm 10.8.2 passed after removing generated-tarball install dependency.</li>\n<li>Package production builds, actual npm pack and dry-run required-asset checks passed.</li>\n<li>41 current unit/integration tests passed, including automatic/full-width media round trips, parent forms,\nrequired validation, spanned-table resizing and nested-table preservation.</li>\n<li>All 21 current production playground browser tests passed: toolbar state/groups, custom commands,\ncolour palettes, row/column pointer and keyboard resizing, isolated undo/save-reload, safe paste,\nfull-width row-border dragging, consistent solid/dashed/none borders, grid/menu, video replacement,\nautomatic image/video sizing, full-width mode, alignment, real MP4 metadata and independent resizing,\nforms, SSR/hydration, axe and performance.</li>\n<li>Four documentation app browser tests passed, including the live editor and mobile accessibility.</li>\n<li>Candidate Angular 17–21 consumers passed production builds and six browser tests each.</li>\n<li>Angular 22's asynchronous activation issue was fixed with explicit change detection; its six tests passed.</li>\n<li>Current normal-peer Angular 17–22 matrix passed: six production consumer builds and 96 browser tests,\nincluding Word-style palettes, table insertion, resizing, persistence and keyboard accessibility.</li>\n<li>npm audit --omit=dev on the Angular 22 production graph reported zero vulnerabilities.</li>\n<li>Browser import/render observations: about 363 ms for 1,000 paragraphs and 529 ms for 100?20 cells.</li>\n<li>Reports and visual capture are in artifacts/.</li>\n<li>Pure Node core import/parse/render/transaction runs succeeded without DOM globals.</li>\n<li>Empty/malformed/oversized-span table normalization checks passed.</li>\n<li>Core measurements at 5,000 paragraphs: approximately 224 ms parse, 45 ms serialize, 10 ms transaction\nin one Windows/Node 20 run. These are observations, not universal performance guarantees.</li>\n</ul>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="architectural-decisions">Architectural decisions</h2>\n',
+				id: 'architectural-decisions',
+				kind: 'content',
+			},
+			{
+				html: '<p>See ARCHITECTURE.md. One published package prevents unnecessary fragmentation. Model ownership is\ncentralized in the engine (its EditorState is readable but cannot be reassigned). Browser views use\ntransactions and node views; SSR never constructs them. Imported data never chooses executable\ncallbacks or iframe origins. ProseMirror modules are shared external dependencies.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="remaining-release-work-and-known-limitations">Remaining release work and known limitations</h2>\n',
+				id: 'remaining-release-work-and-known-limitations',
+				kind: 'content',
+			},
+			{
+				html: "<ul>\n<li>Automated compiler/unit/browser/consumer checks passed; packaging/documentation consistency is finalized separately.</li>\n<li>Manual screen-reader/high-contrast evaluation and independent application/security review.</li>\n<li>More native clipboard/table resize/browser memory stress coverage; current tests cannot establish\nall real assistive-technology and external-service behavior.</li>\n<li>Full demo exceeds the CLI's 500 kB warning budget. Core and browser performance measurements\nare recorded; further optional-feature bundling work is needed before calling it lightweight.</li>\n<li>SSR Angular sanitization strips styles/iframes in static content; interactive content uses the\nvalidated canonical model inside the explicit boundary.</li>\n<li>CommonMark cannot retain all font/colour/table/media presentation; the conversion policy is documented.</li>\n<li>Row heights are minimums and cannot force content to render shorter than its natural height.</li>\n<li>Real YouTube/Vimeo/media availability and embeddability cannot be inferred from valid URLs;\ndeterministic tests use mock responses for network resources.</li>\n<li>Legacy Angular 17/Node 20/ESLint 8 are end of support. Compatibility is not a maintenance guarantee.</li>\n<li>GitHub Actions files are configured but have not run remotely in this environment.</li>\n<li>Future Angular versions and npm name/account ownership remain unverified until explicitly checked.</li>\n</ul>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="single-entry-package-architecture">Single-entry package architecture</h2>\n',
+				id: 'single-entry-package-architecture',
+				kind: 'content',
+			},
+			{
+				html: '<p>Core and extensions remain in src/lib/core and src/lib/extensions. Their public symbols\nare exported from ngx-editra alongside Angular components. Root secondary packaging\nfolders are removed; consumers must replace previous /core and /extensions imports.\nEarlier compatibility evidence applies to its recorded archive hash and must be refreshed\nfor the consolidated package before publication.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="root-and-package-ownership">Root and package ownership</h2>\n',
+				id: 'root-and-package-ownership',
+				kind: 'content',
+			},
+			{
+				html: '<p>Documentation now includes a feature index and task-based guides for installation, forms,\nformatting, media, tables, columns, code, content conversion, persistence, events, rendering,\nkeyboard use and troubleshooting. The documentation app includes per-example copying,\nreading-time metadata, live Markdown output and a reader preview. The content-only Sass\nentry is exported for the documented viewer-only integration.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Root documents and docs/ are canonical. Package source now contains only implementation,\nstyles and build configuration. The library build assembles all release documentation\ndirectly in dist/ngx-editra. Duplicate package documents and the unused compatibility\nfixture generator have been removed. Applications inherit one package alias and use\nseparate compiler output directories.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: "﻿ progress\n\n status\n\nmilestones 1–5 have working implementations and passed automated regression and normal-peer\nconsumer validation. milestone 6 is not complete; this is an alpha release.\nno package has been published and no stable-release claim is made.\n\n implemented\n\n-   documentation application with generated markdown guides, search, routed pages, mobile\n    navigation, light/dark themes, public-package live example and prerendered output.\n    its production build prerenders 20 routes; four documentation browser tests passed,\n    including all guide routes, code copying, forms editing and automated accessibility.\n\n-   npm workspaces, angular package format/partial-ivy, core and extensions public entry points.\n-   angular-free prosemirror engine; strict typed document/configuration/extension contracts.\n-   schema for paragraphs, h1–h6, quotes, lists, code, rules, breaks, url media and tables.\n-   all requested text marks, alignment/indent/line height, history, shortcuts and clear formatting.\n-   server-safe parse5/schema import, deterministic escaped html output, json validation/round trips.\n-   html-valued cva, reactive/named template forms, required semantic validation, disabled/read-only,\n    reset/patchvalue/setvalue, programmatic public setters that silently synchronize form models.\n-   secure static ssr representation, explicit ngskiphydration boundary, atomic browser activation,\n    onpush/explicit change notifications for modern angular scheduling, destruction/repeated mounting.\n-   configurable grouped/scrolling/floating toolbar, hidden controls, native dialogs and a presenter di seam.\n-   local svg toolbar icons, separated formatting/command strips, default command groups,\n    accessible icon labels/tooltips, current-colour indicators and contextual table-action icons.\n-   url-only image/video insertion/editing/replacement, captions/alt/dimensions/alignment/wrapping,\n    borders/radius/spacing, pointer/keyboard resize, aspect preservation and clipboard url copying.\n-   optional automatic media dimensions, full-content-width mode, fitted left/centre/right figures,\n    wrapping captions and media-attached corner resizing with cancellation and independent dimensions.\n-   exact-host youtube/watch/short/shorts and vimeo providers, direct mp4, canonical/sandboxed embeds,\n    explicit provider registry, responsive geometry, and loading failure status/error events.\n-   tables: insertion grid, contextual menu, row/column operations, merge/split/headers, cell colours,\n    block alignment, consistent 1 px table/cell borders, invisible pointer/keyboard row and column boundaries, preview/cancel,\n    isolated history, autofit/equal columns, quick insertion and persisted minimum row heights.\n-   word-style split font/highlight/cell-shading palettes with theme/standard/recent colours,\n    custom hex/native colour input, removal actions, keyboard navigation and selection preservation.\n-   literal find/replace/navigation, word/unicode character counts, caption-aware plain text,\n    commonmark conversion with explicitly documented presentation limitations.\n-   extension ordering/dependencies/conflict detection, schema import hooks, custom commands/providers,\n    browser lifecycle callbacks and multiple isolated editor instances.\n-   playground with real package public imports, forms, outputs, themes/presets/plugins and html/markdown import.\n-   developer/api/security/ssr/media/release documentation, mit license and github actions preparation workflow.\n\n executed validation so far\n\n-   clean npm ci with node 20.20.2/npm 10.8.2 passed after removing generated-tarball install dependency.\n-   package production builds, actual npm pack and dry-run required-asset checks passed.\n-   41 current unit/integration tests passed, including automatic/full-width media round trips, parent forms,\n    required validation, spanned-table resizing and nested-table preservation.\n-   all 21 current production playground browser tests passed: toolbar state/groups, custom commands,\n    colour palettes, row/column pointer and keyboard resizing, isolated undo/save-reload, safe paste,\n    full-width row-border dragging, consistent solid/dashed/none borders, grid/menu, video replacement,\n    automatic image/video sizing, full-width mode, alignment, real mp4 metadata and independent resizing,\n    forms, ssr/hydration, axe and performance.\n-   four documentation app browser tests passed, including the live editor and mobile accessibility.\n-   candidate angular 17–21 consumers passed production builds and six browser tests each.\n-   angular 22's asynchronous activation issue was fixed with explicit change detection; its six tests passed.\n-   current normal-peer angular 17–22 matrix passed: six production consumer builds and 96 browser tests,\n    including word-style palettes, table insertion, resizing, persistence and keyboard accessibility.\n-   npm audit --omit=dev on the angular 22 production graph reported zero vulnerabilities.\n-   browser import/render observations: about 363 ms for 1,000 paragraphs and 529 ms for 100?20 cells.\n-   reports and visual capture are in artifacts/.\n-   pure node core import/parse/render/transaction runs succeeded without dom globals.\n-   empty/malformed/oversized-span table normalization checks passed.\n-   core measurements at 5,000 paragraphs: approximately 224 ms parse, 45 ms serialize, 10 ms transaction\n    in one windows/node 20 run. these are observations, not universal performance guarantees.\n\n architectural decisions\n\nsee architecture.md. one published package prevents unnecessary fragmentation. model ownership is\ncentralized in the engine (its editorstate is readable but cannot be reassigned). browser views use\ntransactions and node views; ssr never constructs them. imported data never chooses executable\ncallbacks or iframe origins. prosemirror modules are shared external dependencies.\n\n remaining release work and known limitations\n\n-   automated compiler/unit/browser/consumer checks passed; packaging/documentation consistency is finalized separately.\n-   manual screen-reader/high-contrast evaluation and independent application/security review.\n-   more native clipboard/table resize/browser memory stress coverage; current tests cannot establish\n    all real assistive-technology and external-service behavior.\n-   full demo exceeds the cli's 500 kb warning budget. core and browser performance measurements\n    are recorded; further optional-feature bundling work is needed before calling it lightweight.\n-   ssr angular sanitization strips styles/iframes in static content; interactive content uses the\n    validated canonical model inside the explicit boundary.\n-   commonmark cannot retain all font/colour/table/media presentation; the conversion policy is documented.\n-   row heights are minimums and cannot force content to render shorter than its natural height.\n-   real youtube/vimeo/media availability and embeddability cannot be inferred from valid urls;\n    deterministic tests use mock responses for network resources.\n-   legacy angular 17/node 20/eslint 8 are end of support. compatibility is not a maintenance guarantee.\n-   github actions files are configured but have not run remotely in this environment.\n-   future angular versions and npm name/account ownership remain unverified until explicitly checked.\n\n single-entry package architecture\n\ncore and extensions remain in src/lib/core and src/lib/extensions. their public symbols\nare exported from ngx-editra alongside angular components. root secondary packaging\nfolders are removed; consumers must replace previous /core and /extensions imports.\nearlier compatibility evidence applies to its recorded archive hash and must be refreshed\nfor the consolidated package before publication.\n\n root and package ownership\n\ndocumentation now includes a feature index and task-based guides for installation, forms,\nformatting, media, tables, columns, code, content conversion, persistence, events, rendering,\nkeyboard use and troubleshooting. the documentation app includes per-example copying,\nreading-time metadata, live markdown output and a reader preview. the content-only sass\nentry is exported for the documented viewer-only integration.\n\nroot documents and docs/ are canonical. package source now contains only implementation,\nstyles and build configuration. the library build assembles all release documentation\ndirectly in dist/ngx-editra. duplicate package documents and the unused compatibility\nfixture generator have been removed. applications inherit one package alias and use\nseparate compiler output directories.\n",
+	},
+	{
+		slug: 'contributing',
+		title: 'Contributing',
+		group: 'Project',
+		source: 'CONTRIBUTING.md',
+		summary:
+			'Use Node 20.20.2/npm 10.8.2 for package compilation. Run npm ci, npm run format:check,npm run lint, npm run typecheck, npm run build, npm run test:ci and npm run build:playground.Browser tests use npm run test:e2e; install Chromium with npx playwright install chromiumor set EDITRA_BROWSER to an installed compatible browser executable.',
+		readingMinutes: 2,
+		html: '<h1 id="contributing">Contributing</h1>\n<p>Use Node 20.20.2/npm 10.8.2 for package compilation. Run npm ci, npm run format:check,\nnpm run lint, npm run typecheck, npm run build, npm run test:ci and npm run build:playground.\nBrowser tests use npm run test:e2e; install Chromium with npx playwright install chromium\nor set EDITRA_BROWSER to an installed compatible browser executable.</p>\n<p>Core must have no Angular runtime dependency or browser-global evaluation. Keep changes transaction-based,\nstrictly typed and covered by meaningful tests. Do not use any or ts-ignore. The only permitted Angular\nHTML trust boundary is EditraHtmlPipe: it must reconstruct input through staticPreview\'s schema-based\nparser and serializer before calling bypassSecurityTrustHtml. Never trust raw input or bypass this\nvalidation path. Custom schema serializers are trusted application code and require independent review.\nNew features need security, serialization, undo/redo and accessibility consideration.\nRun npm run pack and test the tarball in independent consumers before widening peer ranges.\nCompatibility scripts require EDITRA_NPM_CLI, EDITRA_NODE20 and EDITRA_NODE24 as documented\nin scripts/run-compatibility.mjs. Consumer lockfiles keep each tooling graph separate.</p>\n<p>Update PROGRESS.md, docs and CHANGELOG.md. Never publish automatically or claim unexecuted checks passed.</p>\n<p><code>npm start</code> and <code>npm run build:playground</code> build the library first. During library development,\nrun <code>npm run watch</code> in a second terminal to refresh the distribution consumed by the apps.\nRun <code>npm run test:architecture</code> when changing import-boundary rules. Browser unit tests use\nCHROME_BIN; Playwright uses EDITRA_BROWSER when a system Chromium browser is selected.</p>\n<p>Root documents and <code>docs/</code> are canonical. Do not copy them into package source.\n<code>npm run build</code> compiles the library and assembles documents directly in <code>dist/ngx-editra</code>;\nbare <code>ng build ngx-editra</code> and <code>npm run watch</code> compile code and local styles only.\nThe package source contains implementation and configuration; generated output belongs\nin <code>dist/</code>, reports and archives in <code>artifacts/</code>. See ARCHITECTURE.md for ownership.</p>\n',
+		headings: [],
+		blocks: [
+			{
+				html: '<h1 id="contributing">Contributing</h1>\n',
+				id: 'contributing',
+				kind: 'content',
+			},
+			{
+				html: '<p>Use Node 20.20.2/npm 10.8.2 for package compilation. Run npm ci, npm run format:check,\nnpm run lint, npm run typecheck, npm run build, npm run test:ci and npm run build:playground.\nBrowser tests use npm run test:e2e; install Chromium with npx playwright install chromium\nor set EDITRA_BROWSER to an installed compatible browser executable.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: "<p>Core must have no Angular runtime dependency or browser-global evaluation. Keep changes transaction-based,\nstrictly typed and covered by meaningful tests. Do not use any or ts-ignore. The only permitted Angular\nHTML trust boundary is EditraHtmlPipe: it must reconstruct input through staticPreview's schema-based\nparser and serializer before calling bypassSecurityTrustHtml. Never trust raw input or bypass this\nvalidation path. Custom schema serializers are trusted application code and require independent review.\nNew features need security, serialization, undo/redo and accessibility consideration.\nRun npm run pack and test the tarball in independent consumers before widening peer ranges.\nCompatibility scripts require EDITRA_NPM_CLI, EDITRA_NODE20 and EDITRA_NODE24 as documented\nin scripts/run-compatibility.mjs. Consumer lockfiles keep each tooling graph separate.</p>\n",
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Update PROGRESS.md, docs and CHANGELOG.md. Never publish automatically or claim unexecuted checks passed.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p><code>npm start</code> and <code>npm run build:playground</code> build the library first. During library development,\nrun <code>npm run watch</code> in a second terminal to refresh the distribution consumed by the apps.\nRun <code>npm run test:architecture</code> when changing import-boundary rules. Browser unit tests use\nCHROME_BIN; Playwright uses EDITRA_BROWSER when a system Chromium browser is selected.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>Root documents and <code>docs/</code> are canonical. Do not copy them into package source.\n<code>npm run build</code> compiles the library and assembles documents directly in <code>dist/ngx-editra</code>;\nbare <code>ng build ngx-editra</code> and <code>npm run watch</code> compile code and local styles only.\nThe package source contains implementation and configuration; generated output belongs\nin <code>dist/</code>, reports and archives in <code>artifacts/</code>. See ARCHITECTURE.md for ownership.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: " contributing\n\nuse node 20.20.2/npm 10.8.2 for package compilation. run npm ci, npm run format:check,\nnpm run lint, npm run typecheck, npm run build, npm run test:ci and npm run build:playground.\nbrowser tests use npm run test:e2e; install chromium with npx playwright install chromium\nor set editra_browser to an installed compatible browser executable.\n\ncore must have no angular runtime dependency or browser-global evaluation. keep changes transaction-based,\nstrictly typed and covered by meaningful tests. do not use any or ts-ignore. the only permitted angular\nhtml trust boundary is editrahtmlpipe: it must reconstruct input through staticpreview's schema-based\nparser and serializer before calling bypasssecuritytrusthtml. never trust raw input or bypass this\nvalidation path. custom schema serializers are trusted application code and require independent review.\nnew features need security, serialization, undo/redo and accessibility consideration.\nrun npm run pack and test the tarball in independent consumers before widening peer ranges.\ncompatibility scripts require editra_npm_cli, editra_node20 and editra_node24 as documented\nin scripts/run-compatibility.mjs. consumer lockfiles keep each tooling graph separate.\n\nupdate progress.md, docs and changelog.md. never publish automatically or claim unexecuted checks passed.\n\nnpm start and npm run build:playground build the library first. during library development,\nrun npm run watch in a second terminal to refresh the distribution consumed by the apps.\nrun npm run test:architecture when changing import-boundary rules. browser unit tests use\nchrome_bin; playwright uses editra_browser when a system chromium browser is selected.\n\nroot documents and docs/ are canonical. do not copy them into package source.\nnpm run build compiles the library and assembles documents directly in dist/ngx-editra;\nbare ng build ngx-editra and npm run watch compile code and local styles only.\nthe package source contains implementation and configuration; generated output belongs\nin dist/, reports and archives in artifacts/. see architecture.md for ownership.\n",
+	},
+	{
+		slug: 'changelog',
+		title: 'Changelog',
+		group: 'Project',
+		source: 'CHANGELOG.md',
+		summary:
+			'Renamed the public editor to NgxEditraComponent (ngx-editra) and viewer toNgxEditraViewerComponent (ngx-editra-viewer), including component directories,styles, examples and tests. Consumers of earlier source snapshots must updatetheir imports and template selectors; viewer HTML remains bound through [html].',
+		readingMinutes: 2,
+		html: '<h1 id="changelog">Changelog</h1>\n<h2 id="0-1-0-alpha-0-unreleased">0.1.0-alpha.0 — unreleased</h2>\n<ul>\n<li>\n<p>Renamed the public editor to <code>NgxEditraComponent</code> (<code>ngx-editra</code>) and viewer to\n<code>NgxEditraViewerComponent</code> (<code>ngx-editra-viewer</code>), including component directories,\nstyles, examples and tests. Consumers of earlier source snapshots must update\ntheir imports and template selectors; viewer HTML remains bound through <code>[html]</code>.</p>\n</li>\n<li>\n<p>Documented npm installation, prerelease tags and complete published-package usage.</p>\n</li>\n<li>\n<p>Bundled default editor styles with the component so applications no longer need\na global Sass import. The standalone viewer also includes its content styles.</p>\n</li>\n<li>\n<p>ProseMirror document engine with server-safe parsing and deterministic HTML rendering.</p>\n</li>\n<li>\n<p>Expanded task-based documentation with setup, feature walkthroughs, saving/rendering,\nevents, accessibility and troubleshooting; per-example copying and live Markdown/viewer previews.</p>\n</li>\n<li>\n<p>Organized the documentation app into a shared layout, lazy feature pages, core services,\nshared models, generated content and ordered stylesheet modules.</p>\n</li>\n<li>\n<p>Standalone Angular HTML-valued forms adapter and explicit hydration boundary.</p>\n</li>\n<li>\n<p>Text formatting, keyboard history, lists, URL media, table commands and resizing.</p>\n</li>\n<li>\n<p>Extension registry, themes, find/replace, counts and CommonMark conversions.</p>\n</li>\n<li>\n<p>Packaged SCSS, playground, security/command/forms tests and browser validation.</p>\n</li>\n<li>\n<p>Independent Angular consumer matrix and release-preparation workflow.</p>\n</li>\n<li>\n<p>Consolidated public imports into ngx-editra; removed /core and /extensions package entry points.</p>\n</li>\n<li>\n<p>Centralized documentation at the workspace root and assembled release documents directly\ninto the distribution, with one build script and no duplicate package-source documents.</p>\n</li>\n<li>\n<p>Library sources organized under packages/ngx-editra/src with explicit public exports,\nenforced entry-point boundaries, build-before-serve scripts and package export validation.</p>\n</li>\n</ul>\n<p>This is a prerelease. Completion gaps and executed compatibility evidence are recorded in PROGRESS.md\nand docs/COMPATIBILITY.md. No package has been published.</p>\n',
+		headings: [
+			{
+				id: '0-1-0-alpha-0-unreleased',
+				label: '0.1.0-alpha.0 — unreleased',
+			},
+		],
+		blocks: [
+			{
+				html: '<h1 id="changelog">Changelog</h1>\n',
+				id: 'changelog',
+				kind: 'content',
+			},
+			{
+				html: '<h2 id="0-1-0-alpha-0-unreleased">0.1.0-alpha.0 — unreleased</h2>\n',
+				id: '0-1-0-alpha-0-unreleased',
+				kind: 'content',
+			},
+			{
+				html: '<ul>\n<li>\n<p>Renamed the public editor to <code>NgxEditraComponent</code> (<code>ngx-editra</code>) and viewer to\n<code>NgxEditraViewerComponent</code> (<code>ngx-editra-viewer</code>), including component directories,\nstyles, examples and tests. Consumers of earlier source snapshots must update\ntheir imports and template selectors; viewer HTML remains bound through <code>[html]</code>.</p>\n</li>\n<li>\n<p>Documented npm installation, prerelease tags and complete published-package usage.</p>\n</li>\n<li>\n<p>Bundled default editor styles with the component so applications no longer need\na global Sass import. The standalone viewer also includes its content styles.</p>\n</li>\n<li>\n<p>ProseMirror document engine with server-safe parsing and deterministic HTML rendering.</p>\n</li>\n<li>\n<p>Expanded task-based documentation with setup, feature walkthroughs, saving/rendering,\nevents, accessibility and troubleshooting; per-example copying and live Markdown/viewer previews.</p>\n</li>\n<li>\n<p>Organized the documentation app into a shared layout, lazy feature pages, core services,\nshared models, generated content and ordered stylesheet modules.</p>\n</li>\n<li>\n<p>Standalone Angular HTML-valued forms adapter and explicit hydration boundary.</p>\n</li>\n<li>\n<p>Text formatting, keyboard history, lists, URL media, table commands and resizing.</p>\n</li>\n<li>\n<p>Extension registry, themes, find/replace, counts and CommonMark conversions.</p>\n</li>\n<li>\n<p>Packaged SCSS, playground, security/command/forms tests and browser validation.</p>\n</li>\n<li>\n<p>Independent Angular consumer matrix and release-preparation workflow.</p>\n</li>\n<li>\n<p>Consolidated public imports into ngx-editra; removed /core and /extensions package entry points.</p>\n</li>\n<li>\n<p>Centralized documentation at the workspace root and assembled release documents directly\ninto the distribution, with one build script and no duplicate package-source documents.</p>\n</li>\n<li>\n<p>Library sources organized under packages/ngx-editra/src with explicit public exports,\nenforced entry-point boundaries, build-before-serve scripts and package export validation.</p>\n</li>\n</ul>\n',
+				id: '',
+				kind: 'content',
+			},
+			{
+				html: '<p>This is a prerelease. Completion gaps and executed compatibility evidence are recorded in PROGRESS.md\nand docs/COMPATIBILITY.md. No package has been published.</p>\n',
+				id: '',
+				kind: 'content',
+			},
+		],
+		search: ' changelog\n\n 0.1.0-alpha.0 — unreleased\n\n-   renamed the public editor to ngxeditracomponent (ngx-editra) and viewer to\n    ngxeditraviewercomponent (ngx-editra-viewer), including component directories,\n    styles, examples and tests. consumers of earlier source snapshots must update\n    their imports and template selectors; viewer html remains bound through [html].\n-   documented npm installation, prerelease tags and complete published-package usage.\n-   bundled default editor styles with the component so applications no longer need\n    a global sass import. the standalone viewer also includes its content styles.\n\n-   prosemirror document engine with server-safe parsing and deterministic html rendering.\n-   expanded task-based documentation with setup, feature walkthroughs, saving/rendering,\n    events, accessibility and troubleshooting; per-example copying and live markdown/viewer previews.\n-   organized the documentation app into a shared layout, lazy feature pages, core services,\n    shared models, generated content and ordered stylesheet modules.\n-   standalone angular html-valued forms adapter and explicit hydration boundary.\n-   text formatting, keyboard history, lists, url media, table commands and resizing.\n-   extension registry, themes, find/replace, counts and commonmark conversions.\n-   packaged scss, playground, security/command/forms tests and browser validation.\n-   independent angular consumer matrix and release-preparation workflow.\n-   consolidated public imports into ngx-editra; removed /core and /extensions package entry points.\n-   centralized documentation at the workspace root and assembled release documents directly\n    into the distribution, with one build script and no duplicate package-source documents.\n-   library sources organized under packages/ngx-editra/src with explicit public exports,\n    enforced entry-point boundaries, build-before-serve scripts and package export validation.\n\nthis is a prerelease. completion gaps and executed compatibility evidence are recorded in progress.md\nand docs/compatibility.md. no package has been published.\n',
+	},
+];

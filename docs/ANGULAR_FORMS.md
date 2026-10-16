@@ -1,12 +1,56 @@
 # Angular Forms
 
-Import `EditraEditorComponent` with `ReactiveFormsModule` or `FormsModule`.
+Connect the editor to your Angular form just like another value accessor. Its value is an HTML string, so you can load, validate, reset, disable, and save it through the form API.
+
+## Complete reactive form example
+
+```typescript
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { NgxEditraComponent } from 'ngx-editra';
+
+@Component({
+	selector: 'app-description-form',
+	standalone: true,
+	imports: [ReactiveFormsModule, NgxEditraComponent],
+	template: `
+		<form [formGroup]="form" (ngSubmit)="save()">
+			<h2>Article description</h2>
+			<ngx-editra formControlName="description" [required]="true" />
+			@if (
+				form.controls.description.touched && form.controls.description.hasError('required')
+			) {
+				<p role="alert">Enter a description before saving.</p>
+			}
+			<button type="submit">Save draft</button>
+		</form>
+	`,
+})
+export class DescriptionFormComponent {
+	readonly form = new FormGroup({
+		description: new FormControl('', { nonNullable: true }),
+	});
+	save(): void {
+		this.form.markAllAsTouched();
+		if (this.form.invalid) return;
+		const html = this.form.controls.description.value;
+		// Send html through your own application service.
+		console.log(html);
+	}
+}
+```
+
+Use an actual application service instead of the example console output when persisting data. The editor does not include a backend or submission handler.
+
+## Binding and validation behavior
+
+Import `NgxEditraComponent` with `ReactiveFormsModule` or `FormsModule`.
 `[formControl]`, `formControlName`, and `[(ngModel)]` use stable HTML strings.
 Null resets to an empty paragraph. `setValue`, `patchValue`, reset, disable and enable
 are supported through ControlValueAccessor.
 
 ```html
-<editra-editor
+<ngx-editra
 	formControlName="description"
 	[required]="true"
 	[readonly]="readOnly"
@@ -22,3 +66,19 @@ its toolbar/dialog. Moving focus within the editor does not touch the form.
 
 For autosave, subscribe to form `valueChanges` or `contentChange`, and debounce storage
 requests in your application. Required form consistency itself is synchronous.
+
+## Template-driven forms
+
+Import FormsModule and NgxEditraComponent in the component that owns this template. Declare `body = '<p>Initial content.</p>';` on that component.
+
+```html
+<ngx-editra [(ngModel)]="body" name="body" [required]="true" />
+```
+
+The name is needed when this control is inside a template-driven form. Do not bind ngModel and formControl to the same editor.
+
+## Disabled and readonly are different
+
+Call `control.disable()` to disable a reactive control and `control.enable()` to restore it. Disabled controls are excluded from a FormGroup's ordinary value; use Angular's getRawValue when your save policy includes them.
+
+Use the editor's readonly input when users may read the content while the form control remains enabled. Neither state changes the stored HTML. For display without an editor/form control, use the [viewer](VIEWER.md).

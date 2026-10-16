@@ -1,14 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-	EditraEditorComponent,
+	NgxEditraComponent,
 	EditraHtmlPipe,
 	EditraCodeCopyDirective,
 	defaultToolbar,
 } from 'ngx-editra';
 import type { EditraConfig, EditraChange, EditraTheme } from 'ngx-editra';
 import { demoContent } from './demo-content';
-import { imageExtension, videoExtension } from 'ngx-editra/extensions';
+import { imageExtension, videoExtension } from 'ngx-editra';
 
 @Component({
 	selector: 'app-root',
@@ -16,7 +16,7 @@ import { imageExtension, videoExtension } from 'ngx-editra/extensions';
 	imports: [
 		FormsModule,
 		ReactiveFormsModule,
-		EditraEditorComponent,
+		NgxEditraComponent,
 		EditraHtmlPipe,
 		EditraCodeCopyDirective,
 	],
@@ -24,7 +24,7 @@ import { imageExtension, videoExtension } from 'ngx-editra/extensions';
 	styleUrl: './playground.scss',
 })
 export class AppComponent {
-	@ViewChild('editor') editor?: EditraEditorComponent;
+	@ViewChild('editor') editor?: NgxEditraComponent;
 	readonly initial = demoContent;
 	readonly form = new FormGroup({ body: new FormControl(demoContent, { nonNullable: true }) });
 	config: EditraConfig = {

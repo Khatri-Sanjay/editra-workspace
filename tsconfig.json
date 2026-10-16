@@ -14,9 +14,7 @@
 		"noFallthroughCasesInSwitch": true,
 		"skipLibCheck": true,
 		"paths": {
-			"ngx-editra": ["./dist/ngx-editra"],
-			"ngx-editra/core": ["./packages/angular-editor/core/src/public-api.ts"],
-			"ngx-editra/extensions": ["./packages/angular-editor/extensions/src/public-api.ts"]
+			"ngx-editra": ["./dist/ngx-editra"]
 		},
 		"esModuleInterop": true,
 		"sourceMap": true,

@@ -22,14 +22,34 @@ const dry = JSON.parse(await run(['pack', './dist/ngx-editra', '--dry-run', '--j
 const files = dry[0].files.map((file) => file.path);
 for (const path of [
 	'index.d.ts',
-	'core/index.d.ts',
-	'extensions/index.d.ts',
 	'styles/editor.scss',
+	'styles/content.scss',
 	'LICENSE',
 	'README.md',
+	'ARCHITECTURE.md',
+	'CHANGELOG.md',
+	'CONTRIBUTING.md',
+	'PROGRESS.md',
+	'docs/INSTALLATION.md',
+	'docs/API.md',
 ])
 	if (!files.includes(path)) throw new Error(`Missing package asset: ${path}`);
 const pkg = JSON.parse(await readFile('dist/ngx-editra/package.json', 'utf8'));
+if (pkg.name !== 'ngx-editra') throw new Error('Unexpected npm package name');
+const rootExport = pkg.exports?.['.'];
+if (!rootExport?.types || !rootExport?.default)
+	throw new Error('Missing public ngx-editra entry point');
+if (pkg.exports?.['./core'] || pkg.exports?.['./extensions'])
+	throw new Error('Unexpected secondary entry points');
+function verifyExportTargets(exports) {
+	if (typeof exports === 'string') {
+		if (!exports.startsWith('./') || !files.includes(exports.slice(2)))
+			throw new Error(`Missing or non-local export target: ${exports}`);
+	} else if (exports && typeof exports === 'object') {
+		for (const value of Object.values(exports)) verifyExportTargets(value);
+	}
+}
+verifyExportTargets(pkg.exports);
 if (
 	Object.values(pkg.dependencies).some(
 		(value) => value.startsWith('file:') || value.startsWith('workspace:'),

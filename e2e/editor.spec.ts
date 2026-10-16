@@ -126,9 +126,9 @@ test('tables, find/replace, themes, fullscreen and mobile layout', async ({ page
 	await page.getByRole('button', { name: 'Add row below', exact: true }).click();
 	await expect(page.locator('.ProseMirror td')).toHaveCount(6);
 	await page.getByLabel('Theme', { exact: true }).selectOption('dark');
-	await expect(page.locator('editra-editor').first()).toHaveClass(/editra-dark/u);
+	await expect(page.locator('ngx-editra').first()).toHaveClass(/editra-dark/u);
 	await page.getByRole('button', { name: 'Fullscreen', exact: true }).click();
-	await expect(page.locator('editra-editor').first()).toHaveClass(/editra-fullscreen/u);
+	await expect(page.locator('ngx-editra').first()).toHaveClass(/editra-fullscreen/u);
 	await page.getByRole('button', { name: 'Fullscreen', exact: true }).click();
 	await page.setViewportSize({ width: 390, height: 844 });
 	expect(

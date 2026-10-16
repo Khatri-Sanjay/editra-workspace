@@ -43,7 +43,7 @@
 				'Touched' : 'Untouched'}}</span
 			>
 		</div>
-		@if (mounted) {<editra-editor
+		@if (mounted) {<ngx-editra
 			#editor
 			[formControl]="form.controls.body"
 			[config]="config"
@@ -74,7 +74,7 @@
 				{{format}}</button
 			>}
 		</div>
-		<pre>{{output()}}</pre>
+		<pre tabindex="0" role="region" aria-label="Document source code">{{output()}}</pre>
 		<label>Import Markdown <textarea [(ngModel)]="markdownInput" rows="3"></textarea></label
 		><button type="button" (click)="importMarkdown()">Import Markdown</button>
 	</section>
@@ -87,8 +87,8 @@
 	</details>
 	<details>
 		<summary>Template-driven forms example</summary>
-		<editra-editor [(ngModel)]="templateValue" [config]="compactConfig" />
-		<pre>{{templateValue}}</pre>
+		<ngx-editra [(ngModel)]="templateValue" [config]="compactConfig" />
+		<pre tabindex="0" role="region" aria-label="Template form output">{{templateValue}}</pre>
 	</details>
 	<footer>
 		URL-only media. No uploads. HTML-valued forms. SSR static rendering with an explicit editor

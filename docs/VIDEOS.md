@@ -1,5 +1,18 @@
 # Videos
 
+Insert a supported video URL rather than pasting iframe markup. The editor creates a constrained embed or direct video element and saves the original URL with the document.
+
+## Insert a video
+
+1. Place the caret and open the video tool.
+2. Paste a supported public YouTube, Vimeo, or direct MP4 URL.
+3. Apply, then select the video to edit its layout, caption, or dimensions.
+4. Use the resize handle or full-content-width setting and save the normal HTML form value.
+
+If playback fails, check the host's permissions and your application's CSP. Private/protected media, blocked providers, and arbitrary embed HTML are not made accessible by the editor. See [troubleshooting](TROUBLESHOOTING.md).
+
+## Providers and sizing
+
 Supported public URLs: YouTube watch/shortened/Shorts URLs with valid video IDs, numeric Vimeo
 URLs and direct MP4 paths. Other providers require explicit registration. Original URL is persisted
 alongside canonical provider-generated embedding. Unsupported providers/paths produce dialog errors.

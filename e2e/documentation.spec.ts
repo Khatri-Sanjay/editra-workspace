@@ -29,7 +29,7 @@ test('every documented guide has a prerendered page and code is copyable', async
 	await page.getByRole('button', { name: 'Copy code examples' }).click();
 	await expect(page.locator('.copy-status')).toHaveText('Code examples copied.');
 	expect(await page.evaluate(() => navigator.clipboard.readText())).toContain(
-		'EditraEditorComponent',
+		'NgxEditraComponent',
 	);
 	await page.goto('/guides/api');
 	const anchor = page.locator('.on-this-page a[href*="#"]').first();
@@ -56,7 +56,7 @@ test('docs render on the server, navigate, search, and persist theme', async ({
 	await page.getByRole('link', { name: 'Start building' }).click();
 	await expect(page).toHaveURL(/guides\/quick-start/);
 	await expect(page.locator('.guide-prose h1')).toHaveText('Quick start');
-	await expect(page.locator('.guide-prose pre')).toContainText('EditraEditorComponent');
+	await expect(page.locator('.guide-prose pre')).toContainText('NgxEditraComponent');
 	await page.getByRole('searchbox').fill('javascript/data/file');
 	await expect(page.locator('.search-results')).toContainText('Security');
 	await page
@@ -94,6 +94,42 @@ test('live example edits real form values and handles disabled, read-only, and r
 	await expect(surface).toHaveAttribute('contenteditable', 'true');
 	await page.getByRole('button', { name: 'Reset content', exact: true }).click();
 	await expect(surface).toHaveText('A fresh start.');
+	await expect(page.locator('ngx-editra-viewer')).toContainText('A fresh start.');
+	await page.getByRole('button', { name: 'MARKDOWN', exact: true }).click();
+	await expect(page.locator('.output-panel pre')).toContainText('A fresh start.');
+	await expect(page.locator('.output-panel pre')).not.toContainText('<p>');
+});
+
+test('task guides explain setup, every feature family, and individual code copying', async ({
+	page,
+	context,
+}) => {
+	await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+	await page.goto('/guides/features');
+	await expect(
+		page.getByRole('heading', { name: 'Feature overview', exact: true }),
+	).toBeVisible();
+	await expect(page.locator('.guide-prose')).toContainText('What is not included');
+	await page
+		.locator('.guide-prose')
+		.getByRole('link', { name: 'Columns and lines', exact: true })
+		.first()
+		.click();
+	await expect(page).toHaveURL(/guides\/layout/);
+	await expect(page.locator('.guide-prose')).toContainText('Resize columns');
+	await page.goto('/guides/installation');
+	await expect(page.locator('.guide-prose')).toContainText('npm install ngx-editra@next');
+	await expect(page.locator('.guide-prose')).toContainText('Until publication');
+	const firstCode = page.locator('.guide-code-region').first();
+	await firstCode.getByRole('button', { name: /Copy code example/ }).click();
+	await expect(firstCode.getByRole('status')).toHaveText('Code copied to clipboard.');
+	expect(await page.evaluate(() => navigator.clipboard.readText())).toContain(
+		'npm install ngx-editra',
+	);
+	await page.goto('/guides/content');
+	await expect(page.locator('.guide-prose')).toContainText('valueChanges');
+	await page.getByRole('searchbox').fill('syntax highlighting');
+	await expect(page.locator('.search-results')).toContainText('Code blocks');
 });
 
 test('mobile navigation and document pages remain accessible', async ({ page }) => {
@@ -113,4 +149,134 @@ test('mobile navigation and document pages remain accessible', async ({ page }) 
 	).toBe(true);
 	expect(await accessibility(page)).toEqual([]);
 	await page.screenshot({ path: 'artifacts/documentation-mobile.png', fullPage: true });
+});
+
+test('copy feedback keeps code blocks, buttons and the page position stable', async ({ page }) => {
+	await page.addInitScript(() => {
+		Object.defineProperty(navigator, 'clipboard', {
+			configurable: true,
+			value: { writeText: () => new Promise<void>((resolve) => setTimeout(resolve, 350)) },
+		});
+	});
+	await page.goto('/guides/installation');
+	const example = page.locator('.guide-code-region').first();
+	const button = example.getByRole('button');
+	const geometry = () =>
+		example.evaluate((element) => {
+			const block = element.getBoundingClientRect();
+			const control = element.querySelector('button')!.getBoundingClientRect();
+			return {
+				height: block.height,
+				top: block.top,
+				buttonWidth: control.width,
+				buttonHeight: control.height,
+				buttonLeft: control.left,
+				scroll: window.scrollY,
+			};
+		});
+	for (const width of [1280, 390]) {
+		await page.setViewportSize({ width, height: 900 });
+		await button.scrollIntoViewIfNeeded();
+		const before = await geometry();
+		await button.click();
+		await expect(button).toHaveText('Copying…');
+		await expect(button).toBeFocused();
+		expect(await geometry()).toEqual(before);
+		await expect(button).toHaveText('Copied!');
+		expect(await geometry()).toEqual(before);
+		await expect(button).toHaveText('Copy code', { timeout: 4000 });
+		expect(await geometry()).toEqual(before);
+	}
+	await page.evaluate(() => {
+		Object.defineProperty(navigator.clipboard, 'writeText', {
+			value: () => Promise.reject(new Error('Permission denied')),
+		});
+	});
+	const before = await geometry();
+	await button.click();
+	await expect(example.getByRole('status')).toContainText('Select the code');
+	await expect(example.locator('.code-example-language')).toHaveText('Copy manually');
+	expect(await geometry()).toEqual(before);
+});
+
+test('the entire editor canvas accepts typing with one outer focus border', async ({ page }) => {
+	await page.goto('/examples');
+	await page.getByRole('button', { name: 'Reset content', exact: true }).click();
+	const editor = page.locator('ngx-editra');
+	const canvas = editor.locator('.editra-surface');
+	const document = canvas.locator('.ProseMirror');
+	for (const width of [1280, 390]) {
+		await page.setViewportSize({ width, height: 900 });
+		const bounds = await canvas.boundingBox();
+		if (!bounds) throw new Error('Missing editor canvas');
+		await canvas.click({ position: { x: 24, y: bounds.height - 8 } });
+		await expect(document).toBeFocused();
+		await page.keyboard.type(` Canvas ${width}.`);
+		await expect(page.locator('.output-panel pre')).toContainText(`Canvas ${width}.`);
+		const size = await canvas.evaluate((surface) => {
+			const content = surface.querySelector('.ProseMirror')!;
+			return {
+				canvas: surface.clientHeight,
+				document: content.getBoundingClientRect().height,
+			};
+		});
+		expect(Math.abs(size.canvas - size.document)).toBeLessThanOrEqual(1);
+		await expect(document).toHaveCSS('outline-style', 'none');
+		await expect(editor).not.toHaveCSS('box-shadow', 'none');
+	}
+	await editor.screenshot({ path: 'artifacts/editor-full-canvas-mobile.png' });
+	await page.getByRole('button', { name: 'Fullscreen', exact: true }).click();
+	const fullscreen = await canvas.boundingBox();
+	if (!fullscreen) throw new Error('Missing fullscreen canvas');
+	await canvas.click({ position: { x: 24, y: fullscreen.height - 8 } });
+	await expect(document).toBeFocused();
+	await page.keyboard.type(' Fullscreen canvas.');
+	await expect(document).toContainText('Fullscreen canvas.');
+	await page.getByRole('button', { name: 'Fullscreen', exact: true }).click();
+});
+
+test('code copying preserves source, shows local feedback, and handles clipboard denial', async ({
+	page,
+	context,
+}) => {
+	await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+	await page.goto('/');
+	const homeExample = page.locator('app-code-example');
+	await homeExample.getByRole('button', { name: 'Copy code example: getting started' }).click();
+	// Windows clipboard storage normalizes line endings to CRLF.
+	expect((await page.evaluate(() => navigator.clipboard.readText())).replace(/\r\n/g, '\n')).toBe(
+		await homeExample.locator('code').textContent(),
+	);
+	await expect(homeExample.getByRole('button')).toHaveText('Copied!');
+	await expect(homeExample.getByRole('button')).toHaveText('Copy code', { timeout: 4000 });
+	await page.goto('/guides/installation');
+	const example = page.locator('.guide-code-region').first();
+	await expect(example.locator('.code-example-language')).toHaveText('sh');
+	await example.getByRole('button').focus();
+	await page.keyboard.press('Enter');
+	expect((await page.evaluate(() => navigator.clipboard.readText())).replace(/\r\n/g, '\n')).toBe(
+		'npm install ngx-editra\n',
+	);
+	await expect(example.getByRole('status')).toHaveText('Code copied to clipboard.');
+	await page.evaluate(() => {
+		Object.defineProperty(navigator.clipboard, 'writeText', {
+			configurable: true,
+			value: () => Promise.reject(new Error('Permission denied')),
+		});
+	});
+	await example.getByRole('button').click();
+	await expect(example.getByRole('status')).toContainText('Select the code');
+	await expect(example.getByRole('button')).toBeEnabled();
+	await expect(example.locator('code')).toHaveText('npm install ngx-editra\n');
+	await page.goto('/guides/quick-start');
+	await expect(page.locator('.code-example-status')).toBeEmpty();
+	await page.setViewportSize({ width: 390, height: 844 });
+	const code = page.locator('.guide-code-region pre').first();
+	await code.scrollIntoViewIfNeeded();
+	await code.evaluate((element) => {
+		element.scrollLeft = element.scrollWidth;
+	});
+	await expect(page.locator('.guide-code-region button').first()).toBeInViewport();
+	expect(await accessibility(page)).toEqual([]);
+	await page.screenshot({ path: 'artifacts/documentation-copy-mobile.png', fullPage: true });
 });

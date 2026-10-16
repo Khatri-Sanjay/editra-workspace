@@ -5,6 +5,12 @@ Executable/foreign subtrees are dropped, unknown wrappers are unwrapped, and onl
 attributes survive. Output text and attributes are escaped. HTML sanitization is not regex-based.
 Regexes are used only for constrained scalar validation, URL recognition and literal search.
 
+EditraHtmlPipe passes only the output of staticPreview's schema-based parsing and serialization
+to Angular's bypassSecurityTrustHtml API. This preserves validated formatting and approved media
+when rendering content. It does not make arbitrary HTML trustworthy. Keep this trust operation
+centralized in the pipe and never pass raw input directly to it. Custom extension schemas and
+serializers are trusted application code and can affect this guarantee.
+
 URLs require absolute HTTPS by default. HTTP is explicitly opt-in. Credentials, control/space
 characters, javascript/data/file URLs and unsupported providers are rejected. Links also
 permit mailto. New-tab links have noopener/noreferrer. CSS values are bounded numbers,

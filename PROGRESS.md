@@ -91,3 +91,25 @@ callbacks or iframe origins. ProseMirror modules are shared external dependencie
 -   Legacy Angular 17/Node 20/ESLint 8 are end of support. Compatibility is not a maintenance guarantee.
 -   GitHub Actions files are configured but have not run remotely in this environment.
 -   Future Angular versions and npm name/account ownership remain unverified until explicitly checked.
+
+## Single-entry package architecture
+
+Core and extensions remain in src/lib/core and src/lib/extensions. Their public symbols
+are exported from ngx-editra alongside Angular components. Root secondary packaging
+folders are removed; consumers must replace previous /core and /extensions imports.
+Earlier compatibility evidence applies to its recorded archive hash and must be refreshed
+for the consolidated package before publication.
+
+## Root and package ownership
+
+Documentation now includes a feature index and task-based guides for installation, forms,
+formatting, media, tables, columns, code, content conversion, persistence, events, rendering,
+keyboard use and troubleshooting. The documentation app includes per-example copying,
+reading-time metadata, live Markdown output and a reader preview. The content-only Sass
+entry is exported for the documented viewer-only integration.
+
+Root documents and docs/ are canonical. Package source now contains only implementation,
+styles and build configuration. The library build assembles all release documentation
+directly in dist/ngx-editra. Duplicate package documents and the unused compatibility
+fixture generator have been removed. Applications inherit one package alias and use
+separate compiler output directories.

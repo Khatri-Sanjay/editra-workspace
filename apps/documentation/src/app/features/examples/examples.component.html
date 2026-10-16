@@ -1,0 +1,89 @@
+<div class="examples-page">
+	<div class="article-breadcrumb">
+		<a routerLink="/">Docs</a><span aria-hidden="true">/</span> Live example
+	</div>
+	<div class="eyebrow">TRY IT YOURSELF</div>
+	<h1>A real editor.<br /><span>Right here.</span></h1>
+	<p class="hero-description">
+		Explore editing, formatting, media, and tables. This example uses the built library's public
+		API and an Angular reactive form.
+	</p>
+	<section class="guide-section" aria-labelledby="try-tasks-title">
+		<h2 id="try-tasks-title">A few things to try</h2>
+		<ol>
+			<li>Select a sentence, change its heading or colour, and use Undo.</li>
+			<li>Insert a table, select a cell, and explore the table tools.</li>
+			<li>Compare HTML, text, JSON, and Markdown output below the editor.</li>
+			<li>Toggle readonly or disabled, then reset the form to a fresh draft.</li>
+		</ol>
+		<p>
+			Need setup code? Follow <a routerLink="/guides/quick-start">Quick start</a>. For
+			detailed steps, use the <a routerLink="/guides/features">feature guide</a>.
+		</p>
+	</section>
+	<div class="example-controls">
+		<button
+			type="button"
+			(click)="readonlyState = !readonlyState"
+			[attr.aria-pressed]="readonlyState"
+		>
+			{{ readonlyState ? 'Read-only on' : 'Read-only off' }}</button
+		><button type="button" (click)="toggleDisabled()" [attr.aria-pressed]="body.disabled">
+			{{ body.disabled ? 'Enable editor' : 'Disable editor' }}</button
+		><button type="button" (click)="reset()">Reset content</button>
+	</div>
+	<ngx-editra #editor [formControl]="body" [config]="config()" [readonly]="readonlyState" />
+	<div class="form-status">
+		<span><i class="status-dot"></i> Reactive FormControl</span
+		><span
+			>{{ body.dirty ? 'Dirty' : 'Pristine' }} ·
+			{{ body.touched ? 'Touched' : 'Untouched' }} ·
+			{{ body.disabled ? 'Disabled' : 'Enabled' }}</span
+		>
+	</div>
+	<section class="output-panel" aria-labelledby="output-title">
+		<div class="output-heading">
+			<h2 id="output-title">Your document, your format.</h2>
+			<div class="output-tabs" aria-label="Output format">
+				@for (format of formats; track format) {
+					<button
+						type="button"
+						[attr.aria-pressed]="output === format"
+						(click)="output = format"
+					>
+						{{ format.toUpperCase() }}
+					</button>
+				}
+			</div>
+		</div>
+		<pre
+			tabindex="0"
+			role="region"
+			aria-label="Current document source"
+		><code>{{ output === 'html' ? body.value : output === 'text' ? editor.getText() : output === 'markdown' ? editor.getMarkdown() : jsonOutput(editor.getJSON()) }}</code></pre>
+	</section>
+	<section class="output-panel" aria-labelledby="reader-preview-title">
+		<h2 id="reader-preview-title">What your readers see</h2>
+		<p>
+			This uses NgxEditraViewerComponent with the same HTML and configuration. Editing
+			controls are not stored in your document.
+		</p>
+		<ngx-editra-viewer [html]="body.value" [config]="config()" />
+		<a class="text-link" routerLink="/guides/viewer">Add the viewer to your application →</a>
+	</section>
+	<div class="release-notice">
+		<strong>URL-based media only.</strong>
+		<p>
+			Images and videos use validated external URLs. There are no file uploads. External media
+			may be blocked by its host or your browser.
+		</p>
+	</div>
+	<div class="hero-actions">
+		<a class="text-link" routerLink="/guides/toolbar">Customize the toolbar →</a
+		><a class="text-link" routerLink="/guides/angular-forms">Understand Forms integration →</a>
+	</div>
+	<footer class="page-footer">
+		<span>ngx-editra · MIT licensed</span
+		><a routerLink="/guides/api">Explore the public API ↗</a>
+	</footer>
+</div>

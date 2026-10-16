@@ -1,0 +1,39 @@
+<div class="code-example">
+	<div class="code-example-header">
+		<span
+			class="code-example-language"
+			[title]="
+				state() === 'error'
+					? 'Copy unavailable. Select the code and copy it manually.'
+					: language
+			"
+			>{{ state() === 'error' ? 'Copy manually' : language || 'Code' }}</span
+		>
+		<button
+			type="button"
+			(click)="copy()"
+			[attr.aria-disabled]="state() === 'copying' ? 'true' : null"
+			[attr.aria-label]="'Copy ' + label.toLowerCase()"
+		>
+			<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none">
+				@if (state() === 'copied') {
+					<path d="m5 12 4 4L19 6" />
+				} @else {
+					<rect x="8" y="8" width="12" height="13" rx="2" />
+					<path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3" />
+				}
+			</svg>
+			{{
+				state() === 'copied' ? 'Copied!' : state() === 'copying' ? 'Copying…' : 'Copy code'
+			}}
+		</button>
+	</div>
+	<pre tabindex="0" role="region" [attr.aria-label]="label"><code>{{ code }}</code></pre>
+	<p class="code-example-status" role="status">
+		@if (state() === 'copied') {
+			Code copied to clipboard.
+		} @else if (state() === 'error') {
+			Copy unavailable. Select the code and copy it manually.
+		}
+	</p>
+</div>

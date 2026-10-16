@@ -1,22 +1,40 @@
 # Theming
 
+Match the editor to your application with a theme, then adjust supported CSS custom properties when you need brand-specific colours. Editor and viewer styles load automatically; no global Sass import is required for either component.
+
+```typescript
+import type { EditraConfig } from 'ngx-editra';
+export const config: EditraConfig = { theme: 'auto' };
+```
+
+Bind this config through the editor's config input. Auto follows the operating system's preferred colour scheme; choose light or dark for an explicit application setting.
+
+```scss
+ngx-editra {
+	--editra-focus: #155d4f;
+	--editra-border: #b8c7c1;
+}
+```
+
+## Themes, variables, and contrast
+
 Choose light, dark or auto (prefers-color-scheme) through config.theme. Styles are scoped to the
 Angular editor; the public ProseMirror stylesheet targets only editor-generated class names.
 
-Override CSS custom properties on editra-editor: --editra-surface, --editra-text,
+Override CSS custom properties on ngx-editra: --editra-surface, --editra-text,
 --editra-border, --editra-active and --editra-focus. Preserve contrast and visible focus.
 Fonts are constrained to Arial, Georgia, Verdana, Times New Roman and monospace.
-Toolbar icons are text/unicode, never arbitrary HTML.
+Built-in toolbar icons use local SVG paths; custom text glyphs are supported. Arbitrary SVG/HTML strings are not interpreted as markup.
 
 The UI respects reduced motion, wraps on narrow screens, and provides 36px editor controls.
 WCAG automated checks are supplemented by browser keyboard tests, not a full screen-reader audit.
 
 ## Rendering saved HTML
 
-Import `EditraViewerComponent` from `ngx-editra` and use:
+Import `NgxEditraViewerComponent` from `ngx-editra` and use:
 
 ```html
-<editra-viewer [html]="savedHtml" [config]="config" />
+<ngx-editra-viewer [html]="savedHtml" [config]="config" />
 ```
 
 The viewer renders headings, marks, lists, links, inline code, code blocks with language
@@ -51,6 +69,6 @@ Exported HTML also includes portable inline styles for code, blockquotes and tab
 so native `element.innerHTML` retains their basic appearance without editor CSS.
 The shared stylesheet adds spacing, language labels and responsive presentation.
 The `editraCodeCopy` directive adds accessible copy icons, clipboard handling and status
-feedback to rendered code blocks, including when the HTML changes. `editra-viewer`
+feedback to rendered code blocks, including when the HTML changes. `ngx-editra-viewer`
 already includes it. Clipboard access requires HTTPS or localhost. Copy controls stay
 out of saved HTML; language selectors and resize handles remain editor-only.

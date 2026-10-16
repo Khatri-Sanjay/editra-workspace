@@ -1,5 +1,18 @@
 # Tables
 
+Tables arrange related data into rows and columns. Use the table tool to insert a grid, then select a cell to reveal contextual editing tools.
+
+## Insert and edit a table
+
+1. Open the table tool and choose a grid size with the pointer or keyboard. Numeric row/column controls are available for a specific size.
+2. Click a cell and enter content. Use the table tools to add or remove a row/column, merge or split selected cells, or delete the table.
+3. Drag a row or column boundary to resize. Escape cancels; releasing commits one undoable change.
+4. Open More table settings for width, border style/weight, and minimum row height. Use AutoFit or equal-column distribution when appropriate.
+
+Use tables for tabular information. For two independent content areas, prefer [columns](LAYOUT.md). Table content, spans, dimensions, and supported appearance are included in saved HTML/JSON.
+
+## Detailed table behavior
+
 Tables use prosemirror-tables for cell selection, span normalization, column resizing,
 Tab/Shift+Tab navigation, copy/paste and history-aware operations.
 The Word-style insertion picker previews a grid up to 10 columns by 8 rows. Clicking a cell
@@ -22,8 +35,10 @@ Focused column boundaries use Left/Right; row boundaries use Up/Down. Arrows adj
 Shift+Arrow adjusts by 1 px. Boundaries preserve keyboard focus during updates and are inactive
 in read-only/disabled editors. Row heights are minimums: content can require taller rows.
 Grip dimensions are bounded to 24–2000 px for rows and 48–4096 px for columns.
-All table and cell borders use the same 1 px thickness and #b8c2d0 colour. The table's
-solid/dashed/none style applies to both outer and inner borders, including exported HTML.
+Table and cell borders use consistent line settings and #b8c2d0 colour. The default
+line weight is 1 px; the line-weight control accepts supported values up to 8 px.
+Solid, dashed, dotted, double, and none styles apply consistently to table presentation,
+including exported HTML. Inspect the current table's controls when editing its appearance.
 
 AutoFit to page removes fixed column widths. Distribute columns preserves the current rendered
 table width and gives logical columns equal widths. Percentage width edits remove fixed widths

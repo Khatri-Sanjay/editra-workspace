@@ -22,8 +22,8 @@ module.exports = [
 			parser: tsParser,
 			parserOptions: {
 				project: [
-					'packages/angular-editor/tsconfig.lib.json',
-					'packages/angular-editor/tsconfig.spec.json',
+					'packages/ngx-editra/tsconfig.lib.json',
+					'packages/ngx-editra/tsconfig.spec.json',
 					'apps/playground/tsconfig.app.json',
 					'apps/documentation/tsconfig.app.json',
 				],
@@ -51,7 +51,7 @@ module.exports = [
 			],
 			'@angular-eslint/component-selector': [
 				'error',
-				{ type: 'element', prefix: 'editra', style: 'kebab-case' },
+				{ type: 'element', prefix: ['editra', 'ngx'], style: 'kebab-case' },
 			],
 			'@angular-eslint/directive-selector': [
 				'error',
@@ -60,6 +60,17 @@ module.exports = [
 			'@angular-eslint/use-lifecycle-interface': 'error',
 			'@angular-eslint/no-empty-lifecycle-method': 'error',
 		},
+	},
+	{
+		files: [
+			'packages/ngx-editra/**/*.ts',
+			'apps/playground/**/*.ts',
+			'apps/documentation/**/*.ts',
+		],
+		plugins: {
+			architecture: { rules: { boundaries: require('./scripts/eslint-boundaries.cjs') } },
+		},
+		rules: { 'architecture/boundaries': 'error' },
 	},
 	{
 		files: ['packages/**/*.html', 'apps/playground/**/*.html', 'apps/documentation/**/*.html'],

@@ -15,6 +15,9 @@ test('video insertion, replacement, canonical URLs and keyboard resizing', async
 	);
 	await page.goto('/');
 	await expect(page.locator('.ProseMirror').first()).toBeVisible();
+	await page.locator('.ProseMirror').first().click();
+	await page.keyboard.press('ControlOrMeta+a');
+	await page.keyboard.insertText('Video resizing');
 	await page.getByRole('button', { name: 'video', exact: true }).click();
 	const dialog = page.getByRole('dialog');
 	await dialog.getByLabel('URL', { exact: true }).fill('https://youtu.be/dQw4w9WgXcQ');

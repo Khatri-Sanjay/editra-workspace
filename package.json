@@ -4,14 +4,14 @@
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve playground",
-		"build": "node scripts/sync-package-docs.mjs && ng build ngx-editra",
+		"build": "node scripts/build-library.mjs",
 		"watch": "ng build ngx-editra --watch --configuration development",
 		"test": "ng test ngx-editra",
 		"lint": "eslint packages apps/playground apps/documentation --max-warnings=0",
 		"lint:fix": "npm run lint -- --fix",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
-		"typecheck": "ngc -p packages/angular-editor/tsconfig.lib.json --noEmit && ngc -p packages/angular-editor/tsconfig.spec.json --noEmit",
+		"typecheck": "ngc -p packages/ngx-editra/tsconfig.lib.json --noEmit && ngc -p packages/ngx-editra/tsconfig.spec.json --noEmit",
 		"test:ci": "ng test ngx-editra --watch=false --browsers=ChromeHeadless",
 		"build:playground": "ng build playground",
 		"test:e2e": "playwright test",
@@ -26,7 +26,10 @@
 		"serve:ssr:docs": "node dist/documentation/server/server.mjs",
 		"test:docs": "playwright test --config playwright.docs.config.ts",
 		"prestart:docs": "npm run build",
-		"prebuild:docs": "npm run build"
+		"prebuild:docs": "npm run build",
+		"prestart": "npm run build",
+		"prebuild:playground": "npm run build",
+		"test:architecture": "node scripts/eslint-boundaries.test.cjs"
 	},
 	"private": true,
 	"dependencies": {
@@ -78,7 +81,7 @@
 	},
 	"packageManager": "npm@10.8.2",
 	"workspaces": [
-		"packages/angular-editor",
+		"packages/ngx-editra",
 		"apps/playground",
 		"apps/documentation"
 	]

@@ -1,0 +1,46 @@
+{
+	"name": "ngx-editra",
+	"version": "0.1.0-alpha.0",
+	"peerDependencies": {
+		"@angular/common": "^17.3.12 || ^18.2.14 || ^19.2.25 || ^20.3.33 || ^21.2.25 || ^22.2.2",
+		"@angular/core": "^17.3.12 || ^18.2.14 || ^19.2.25 || ^20.3.33 || ^21.2.25 || ^22.2.2",
+		"@angular/forms": "^17.3.12 || ^18.2.14 || ^19.2.25 || ^20.3.33 || ^21.2.25 || ^22.2.2",
+		"@angular/platform-browser": "^17.3.12 || ^18.2.14 || ^19.2.25 || ^20.3.33 || ^21.2.25 || ^22.2.2"
+	},
+	"dependencies": {
+		"tslib": "^2.3.0",
+		"prosemirror-model": "1.25.12",
+		"prosemirror-state": "1.4.4",
+		"prosemirror-view": "1.42.6",
+		"prosemirror-commands": "1.7.2",
+		"prosemirror-schema-list": "1.5.1",
+		"prosemirror-history": "1.5.1",
+		"prosemirror-keymap": "1.2.3",
+		"prosemirror-tables": "1.8.5",
+		"prosemirror-markdown": "1.13.8",
+		"parse5": "8.0.1"
+	},
+	"sideEffects": false,
+	"description": "Modular ProseMirror rich-text editor for Angular",
+	"license": "MIT",
+	"keywords": [
+		"angular",
+		"editor",
+		"prosemirror",
+		"rich-text"
+	],
+	"exports": {
+		"./styles/content.scss": {
+			"sass": "./styles/content.scss",
+			"default": "./styles/content.scss"
+		},
+		"./styles/editor.scss": {
+			"sass": "./styles/editor.scss",
+			"default": "./styles/editor.scss"
+		}
+	},
+	"publishConfig": {
+		"access": "public",
+		"tag": "next"
+	}
+}

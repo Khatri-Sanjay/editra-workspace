@@ -7,11 +7,13 @@ const root = process.cwd(),
 	results = [];
 const node20 = process.env['EDITRA_NODE20'] ?? process.execPath;
 const node24 = process.env['EDITRA_NODE24'] ?? process.execPath;
-const npm = process.env['EDITRA_NPM_CLI'];
+const npm = process.env['EDITRA_NPM_CLI'] ?? process.env['npm_execpath'];
 if (!npm) throw new Error('Set EDITRA_NPM_CLI to the npm CLI JavaScript entry point');
 const majors = process.argv.slice(2).length
 	? process.argv.slice(2).map(Number)
 	: [17, 18, 19, 20, 21, 22];
+if (majors.some((major) => ![17, 18, 19, 20, 21, 22].includes(major)))
+	throw new Error('Supported consumer majors: 17, 18, 19, 20, 21, 22');
 function run(node, args, cwd, env = {}) {
 	return new Promise((resolveResult) => {
 		const child = spawn(node, args, {
@@ -28,10 +30,24 @@ function run(node, args, cwd, env = {}) {
 	});
 }
 await mkdir(resolve(root, 'artifacts'), { recursive: true });
-const archive = resolve(root, 'artifacts/ngx-editra-0.1.0-alpha.0.tgz');
+const pkg = JSON.parse(await readFile(resolve(root, 'packages/ngx-editra/package.json'), 'utf8'));
+const archive = resolve(root, `artifacts/${pkg.name}-${pkg.version}.tgz`);
 const archiveSha256 = createHash('sha256')
 	.update(await readFile(archive))
 	.digest('hex');
+// Preserve other consumer results only when they validate this exact archive.
+try {
+	const previous = JSON.parse(
+		await readFile(resolve(root, 'artifacts/compatibility-results.json'), 'utf8'),
+	);
+	results.push(
+		...previous.filter(
+			(result) => result.archiveSha256 === archiveSha256 && !majors.includes(result.angular),
+		),
+	);
+} catch (error) {
+	if (error.code !== 'ENOENT') throw error;
+}
 // Prevent npm caching an older same-version local package.
 const snapshot = resolve(root, `artifacts/ngx-editra-${archiveSha256.slice(0, 12)}.tgz`);
 await copyFile(archive, snapshot);

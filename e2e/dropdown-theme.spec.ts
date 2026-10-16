@@ -4,7 +4,7 @@ test('line control stays centered and dropdowns follow dark, light, and automati
 }) => {
 	await page.goto('/');
 	await page.getByLabel('Theme', { exact: true }).selectOption('dark');
-	const editor = page.locator('editra-editor').first();
+	const editor = page.locator('ngx-editra').first();
 	await expect(editor).toHaveCSS('color-scheme', 'dark');
 	const line = page.getByRole('button', { name: 'Insert horizontal line', exact: true });
 	await line.hover();
